@@ -1,0 +1,9 @@
+	<div id="DIAGRAM_ID_source_xml_dialog" title="流程源代码" style="text-align:center;padding:5px;">
+		<iframe id="DIAGRAM_ID_source_xml_iframe" frameborder="0" height="332" width="584" style="border:1px solid #ccc;"></iframe>
+	</div>
+	<div id="DIAGRAM_ID_toolbar" class="ui-widget-header" style="text-align:left;height:24px;padding:2px;width:100%;display: inline-block;">
+		<button id="DIAGRAM_ID_zoom_in" title="放大" style="font-size:11px;height:22px;width:28px" ></button>
+		<button id="DIAGRAM_ID_zoom_out" title="缩小" style="font-size:11px;height:22px;width:28px" ></button>
+		<button id="DIAGRAM_ID_zoom_fit" title="放缩到合适尺寸" style="font-size:11px;height:22px;width:28px" ></button>		
+		<input type="checkbox" id="DIAGRAM_ID_move" title="移动流程图" /><label for="DIAGRAM_ID_move" style="font-size:11px;height:20px;width:28px">移动流程图</label>
+		<button id="DIAGRAM_ID_source_xml" title="查看流程定义源代码" style="font-size:11px;height:22px;width:28px" ></button>

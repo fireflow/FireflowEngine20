@@ -1,0 +1,145 @@
+/**
+ * Copyright 2007-2010 非也
+ * All rights reserved. 
+ * 
+ * This library is free software; you can redistribute it and/or modify it under the
+ * terms of the GNU Lesser General Public License v3 as published by the Free Software
+ * Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License along
+ * with this library; if not, see http://www.gnu.org/licenses/lgpl.html.
+ *
+ */
+package org.fireflow.simulation;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+import org.fireflow.pdl.fpdl.io.FPDLDeserializer;
+import org.fireflow.pdl.fpdl.process.WorkflowProcess;
+import org.fireflow.simulation.springutil.ContextLoader;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+
+/**
+ *
+ * @author 非也 nychen2000@163.com
+ * Fire Workflow 官方网站：www.firesoa.com 或者 www.fireflow.org
+ *
+ */
+public class SimulatorRunner {
+	protected ApplicationContext springApplicationContext = null;
+
+	public void setApplicationContext(ApplicationContext applicationContext)
+			throws BeansException {
+		springApplicationContext = applicationContext;
+
+	}
+	/**
+	 * 命令行参数
+	 * -processfile="<流程文件的名>" ；该参数必填<br/>
+	 * -subprocessid="<要启动的子流程的id>"；如果没有该参数则启动main子流程<br/>
+	 * -springcontextfiles="<spring配置文件名>"；如果有多个配置文件，则逗号分割<br/>
+	 * 例如：<br/>
+	 *  FireflowSimulatorImpl -processfile="Process1.fpdl20.xml" -subprocessid="subprocess1" -springcontextfiles="applicationContext.xml,applicationContext-misc.xml" 
+	 * @param args
+	 */
+	@SuppressWarnings("unused")
+	public static void main(String[] args)throws SimulationException {
+
+		//1、处理输入参数
+		boolean processFileExist = false;//process file 是必录项
+		if (args!=null){
+			for (String arg : args){
+				if (arg!=null && arg.startsWith(ARG_PREFIX_PROCESS_FILE)){
+					processFileExist = true;
+				}
+			}
+		}
+		if (!processFileExist){
+			throw new SimulationException("错误：启动模拟器的命令行中必须有\"-processfile=\"参数，以便读取流程定义文件");
+		}
+		
+		Map<String,Object> argsMap = parseArgs(args);
+		
+		String subProcessId = (String)argsMap.get(ARG_PREFIX_SUBPROCESS_ID);
+		
+		//2、解析流程定义文件
+		String processFileFullName = (String)argsMap.get(ARG_PREFIX_PROCESS_FILE);
+		File f = new File(processFileFullName);
+		if (!f.exists()){
+			throw new SimulationException("错误：流程定义文件不存在，文件全路径名是"+processFileFullName);
+		}
+		WorkflowProcess process = null;
+		try{
+			FileInputStream fIn = new FileInputStream(f);
+			FPDLDeserializer deserializer = new FPDLDeserializer();
+			process = deserializer.deserialize(fIn);
+		}catch(Exception e){
+			throw new SimulationException(e);
+		}
+		
+
+
+		//3、解析spring context
+		List<String> locationsList = (List<String>)argsMap.get(ARG_PREFIX_SPRING_CONTEXT_FILES);
+		String[] locations = new String[locationsList.size()];
+		for(int i=0;i<locationsList.size();i++){
+			locations[i] = locationsList.get(i);
+		}
+		ApplicationContext springAppCtx = null;
+		try{
+			springAppCtx = ContextLoader.loadContext(locations);
+		}catch(Exception e){
+			throw new SimulationException(e);
+		}
+		
+
+		//4、启动流程实例
+//		FireflowSimulatorImpl simulator = new FireflowSimulatorImpl();
+//		simulator.setWorkflowProcess(process);
+//		simulator.setApplicationContext(springAppCtx);
+//		simulator.setSubProcessId(subProcessId);
+//		simulator.startProcessInstance(null, null, null);
+//
+//		if (true) {
+//			System.exit(0);
+//		}
+	}
+	
+	private static Map<String,Object> parseArgs(String[] args){
+		Map<String,Object> result = new HashMap<String,Object>();
+		for (String arg : args){
+			if (arg!=null && !arg.trim().equals("")){
+				if(arg.startsWith(ARG_PREFIX_PROCESS_FILE)){
+					String value = arg.substring(ARG_PREFIX_PROCESS_FILE.length());
+					result.put(ARG_PREFIX_PROCESS_FILE, value);
+				}
+				else if (arg.startsWith(ARG_PREFIX_SUBPROCESS_ID)){
+					String value = arg.substring(ARG_PREFIX_SUBPROCESS_ID.length());
+					result.put(ARG_PREFIX_PROCESS_FILE, value);
+				}
+				else if (arg.startsWith(ARG_PREFIX_SPRING_CONTEXT_FILES)){
+					String value = arg.substring(ARG_PREFIX_SPRING_CONTEXT_FILES.length());
+					StringTokenizer tokenizer = new StringTokenizer(value,",");
+					List<String> arrayList = new ArrayList<String>();
+					while(tokenizer.hasMoreTokens()){
+						arrayList.add(tokenizer.nextToken());
+					}
+					result.put(ARG_PREFIX_SPRING_CONTEXT_FILES, arrayList);
+				}
+			}
+		}
+		return result;
+	}
+}

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.fireflow.org/schema/service/20"
+	xmlns:tns="http://www.fireflow.org/schema/service/20"
+	elementFormDefault="qualified"
+	xmlns:s="http://www.fireflow.org/schema/service/20" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+	<!-- 
+	<import schemaLocation="http://schemas.xmlsoap.org/wsdl/" namespace="http://schemas.xmlsoap.org/wsdl/"></import>
+	  -->
+	 
+	<element name="services" type="s:servicesType"></element>
+
+	<element name="service" type="s:serviceType" abstract="true"></element>
+
+
+	<complexType name="servicesType">
+		<sequence>
+			<element ref="s:service" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="serviceType">
+		<sequence>
+			<element type="s:typesType" name="types"></element>
+		</sequence>	
+		<attribute name="id" type="ID" use="required"></attribute>
+		<attribute name="name" type="string" use="required"></attribute>
+		<attribute name="display-name" type="string" use="optional"></attribute>
+		<attribute name="biz-category" type="string" use="optional">
+			<annotation>
+				<documentation>
+					业务类别[例如：公司行政管理/请假申请。该字段用于将服务分门别类。]
+				</documentation>
+			</annotation>
+		</attribute>
+		<!-- 
+			<attribute name="service-type" type="string" use="required">
+			<annotation>
+			<documentation>服务类型[该字段由Fire
+			workflow系统或者服务扩展插件决定，缺省的可用值为：HUMAN,JAVA,TIMER,WEBSERVICE,SUBFLOW等等。]
+			</documentation>
+			</annotation>
+			</attribute>
+		-->
+		<attribute name="invoker-bean" type="string" use="optional">
+			<annotation>
+				<documentation>
+					服务执行器Bean[自定义的服务执行器的Bean的Id或Name。invokerBean和involerClass没有设置时，使用系统缺省的执行器，
+					否则使用invokerBean或者involerClass指定的执行器，invokerBean优先与invokerClass。]
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="invoker-class" type="string" use="optional">
+			<annotation>
+				<documentation>
+					服务执行器Class[自定义的服务执行器的Class类名，如果已经定义了invokerBean，则该属性被忽略。]
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="version" type="string" use="optional" default="1"></attribute>
+	</complexType>
+
+	<complexType name="typesType">
+		<sequence>
+			<any namespace="##other" minOccurs="0" maxOccurs="unbounded"
+				processContents="lax" />
+		</sequence>
+	</complexType>
+
+	<complexType name="extendedAttributesType">
+		<sequence>
+			<element name="extended-attribute">
+				<complexType>
+					<attribute name="name" type="string"></attribute>
+					<attribute name="value" type="string"></attribute>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<element name="interface" type="s:interfaceType" abstract="true"></element>
+	
+	<complexType name="interfaceType">
+		<!--  每个Service仅有一个Interface，所以Name属性可以不需要
+		<attribute name="name" type="string" use="required"></attribute>
+		<attribute name="display-name" type="string" use="optional"></attribute>
+		 -->
+	</complexType>
+
+	<element name="interface.common" type="s:commonInterfaceType" substitutionGroup="s:interface"></element>
+	<complexType name="commonInterfaceType">
+		<complexContent>
+			<extension base="s:interfaceType">
+				<sequence>
+					<element ref="s:operation" minOccurs="0" maxOccurs="unbounded"></element>
+				</sequence>
+
+			</extension>
+		</complexContent>
+	</complexType>
+	
+
+	<element name="operation" type="s:operationType"></element>
+
+
+	<complexType name="operationType">
+		<sequence>
+			<element ref="s:inputs" minOccurs="0" maxOccurs="1"></element>
+			<element ref="s:outputs" minOccurs="0" maxOccurs="1"></element>
+
+		</sequence>
+		<attribute name="name" type="string"></attribute>
+	</complexType>
+
+	<element name="inputs" type="s:inputsType"></element>
+
+	<element name="input" type="s:inputType"></element>
+
+	<element name="outputs" type="s:outputsType"></element>
+
+	<element name="output" type="s:outputType"></element>
+
+	<complexType name="outputsType">
+		<sequence>
+			<element ref="s:output" minOccurs="0" maxOccurs="unbounded"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="inputsType">
+		<sequence>
+			<element ref="s:input" minOccurs="0" maxOccurs="unbounded"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="inputType">
+		<attribute name="name" type="Name"></attribute>
+		<attribute name="display-name" type="string"></attribute>
+		<attribute name="data-type" type="QName" use="required">
+			<annotation>
+				<documentation>
+					输入的数据类型，java系统中用类型的类名表示，例如：java.lang.String，表示一个String类型的输入
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="default-value" type="string">
+			<annotation>
+				<documentation>缺省值</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+
+	<complexType name="outputType">
+		<attribute name="name" type="Name"></attribute>
+		<attribute name="display-name" type="string"></attribute>
+		<attribute name="data-type" type="QName">
+			<annotation>
+				<documentation>
+					数据类型，在java系统中用java类名表示，例如java.lang.Integer表示一个整数类型的输出。
+				</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+	
+	<complexType name="expressionType">
+		<sequence>
+			<element name="body" type="string" minOccurs="1" maxOccurs="1"></element>
+		</sequence>
+		<attribute name="language" type="string" use="required"></attribute>
+		<attribute name="name" type="string" use="optional"></attribute>
+		<attribute name="display-name" type="string" use="optional"></attribute>
+	</complexType>
+</schema>

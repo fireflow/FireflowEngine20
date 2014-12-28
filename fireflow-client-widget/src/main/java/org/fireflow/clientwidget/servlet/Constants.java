@@ -1,0 +1,36 @@
+/**
+ * Copyright 2007-2010 非也
+ * All rights reserved. 
+ * 
+ * This library is free software; you can redistribute it and/or modify it under the
+ * terms of the GNU Lesser General Public License v3 as published by the Free Software
+ * Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License along
+ * with this library; if not, see http://www.gnu.org/licenses/lgpl.html.
+ *
+ */
+package org.fireflow.clientwidget.servlet;
+
+/**
+ *
+ * @author 非也 nychen2000@163.com
+ * Fire Workflow 官方网站：www.firesoa.com 或者 www.fireflow.org
+ *
+ */
+public class Constants {
+	public static final String ACTION_TYPE = "workflowActionType";
+	//
+	//public static final String LOAD_IMAGE = "LOAD_IMAGE";
+	
+	public static final String GET_PROCESS_DEFS = "GET_PROCESS_DEFS";
+	
+	public static final String GET_PROCESS_DIAGRAM = "GET_PROCESS_DIAGRAM";
+	
+
+}

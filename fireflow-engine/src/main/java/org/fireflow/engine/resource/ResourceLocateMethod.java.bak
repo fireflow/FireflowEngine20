@@ -1,0 +1,83 @@
+/**
+ * Copyright 2007-2010 非也
+ * All rights reserved. 
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation。
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see http://www.gnu.org/licenses. *
+ */
+package org.fireflow.engine.resource;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+/**
+ * 系统提供的资源定位方法列表。具体的业务系统提供的资源定位方法可以是这些方法的子集。
+ * 
+ * （1、流程发起者和流程拥有者的区别。
+ *   2、对于任何一个业务参与者，应该可以确定
+ *      他所属的部门，分公司，公司，集团等信息，
+ *      但是这些信息规则如何建立？
+ *      
+ *   3、成员获得后，还可能需要管辖范围和业务权限进行过滤，怎么表达
+ * 
+ * @author 非也
+ * @version 2.0
+ */
+public enum ResourceLocateMethod {
+	PROCESS_CREATOR("processCreator"),
+	DIRECT_LEADER_OF_PROCESS_CREATOR("directLeaderOfProcessCreator"),
+	
+	DEPARTMENT_MANAGER_OF_INITIATOR("departmentManagerOfInitiator"),
+	USERS_SET_BY_PREVIOUS_ACTOR("participantsSetByPreviousActor"),
+	
+	ACTORS_OF("actorsOf"),
+	DIRECT_LEADERS_OF_ACTORS("directLeadersOfActors"),
+	USER_BY_ID("userById"),
+	
+	MANAGER_OF("managerOf"),
+	
+	VICE_MANAGERS_OF("viceManagersOf"),
+	
+	MEMBERS_OF_ROLE("membersOfRole"),
+	
+	MEMGERS_OF_DEPARTMENT("membersOfDepartment"),
+	
+	MEMBERS_OF_USERGROUP("membersOfUserGroup"),
+	
+	///通用方法
+	DIRECT_LEADER_OF("directLeaderOf"),
+	
+	//管辖部门，所属部门，角色，业务范围
+	COMPLEX_FILTER("complexFilter")
+	
+
+	
+	;
+	
+	String methodName = null;
+	private ResourceLocateMethod(String name){
+		this.methodName = name;
+	}
+	
+	public String getMethodName(){
+		return this.methodName;
+	}
+	
+	public String getDisplayName(Locale locale){
+		ResourceBundle resb = ResourceBundle.getBundle("myres", locale);
+		return resb.getString(this.methodName);
+	}
+	
+	public String getDisplayName(){
+		return this.getDisplayName(Locale.getDefault());
+	}	
+}

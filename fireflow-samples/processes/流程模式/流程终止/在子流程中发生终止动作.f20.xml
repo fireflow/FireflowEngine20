@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="在子流程中发生终止动作" id="TerminateInSubProcess" name="TerminateInSubProcess" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.call biz-category="" display-name="带终止节点的子流程@在子流程中发生终止动作" id="Call_SubProcess2" invoker-class="org.fireflow.service.call.CallServiceInvoker" name="Call_SubProcess2" parser-class="org.fireflow.service.call.CallServiceParser" target-namespace="">
+      <s:interface.common name="call_subprocess_interface">
+        <s:operation name="call_subprocess">
+          <s:inputs>
+            <s:input data-type="{http://jcp.org/en/jsr/detail?id=270}short" default-value="10" display-name="x" name="x"/>
+          </s:inputs>
+          <s:outputs>
+            <s:output data-type="{http://jcp.org/en/jsr/detail?id=270}short" display-name="x" name="x"/>
+          </s:outputs>
+        </s:operation>
+      </s:interface.common>
+      <s:process-id>TerminateInSubProcess</s:process-id>
+      <s:subprocess-id>TerminateInSubProcess.SubProcess2</s:subprocess-id>
+      <s:process-version>0</s:process-version>
+    </s:service.call>
+    <s:service.human biz-category="" display-name="表单1" id="form1" name="form1" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+      <s:form-url>/test.jsp</s:form-url>
+      <s:workitem-subject>
+        <s:expression display-name="工作项主题" language="UNIFIEDJEXL" name="WorkItemSubject">
+          <s:body><![CDATA[测试用人工活动]]></s:body>
+        </s:expression>
+      </s:workitem-subject>
+      <s:interface.common name="form1">
+        <s:operation name="打开表单：表单1">
+          <s:inputs/>
+          <s:outputs/>
+        </s:operation>
+      </s:interface.common>
+    </s:service.human>
+  </s:services>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="TerminateInSubProcess.main.StartNode1" id="TerminateInSubProcess.main" name="main">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="x" id="TerminateInSubProcess.main.x" init-value="5" name="x"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="TerminateInSubProcess.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="子流程调用" id="TerminateInSubProcess.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1">
+          <f20:service-binding operation-name="call_subprocess" service-id="Call_SubProcess2">
+            <f20:input-assignments>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="流程变量/x" language="XPATH" name="x">
+                    <f20:body><![CDATA[processVars/x]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}short" display-name="x" language="XPATH" name="x">
+                    <f20:body><![CDATA[inputs/x]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+            </f20:input-assignments>
+          </f20:service-binding>
+        </f20:activity>
+        <f20:activity display-name="Activity2" id="TerminateInSubProcess.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2">
+          <f20:service-binding operation-name="打开表单：表单1" service-id="form1"/>
+        </f20:activity>
+      </f20:activities>
+      <f20:routers>
+        <f20:router display-name="Router1" id="TerminateInSubProcess.main.Router1" name="Router1">
+          <f20:features>
+            <f20:default-router-feature/>
+          </f20:features>
+        </f20:router>
+        <f20:router display-name="Router2" id="TerminateInSubProcess.main.Router2" name="Router2">
+          <f20:features>
+            <f20:default-router-feature/>
+          </f20:features>
+        </f20:router>
+      </f20:routers>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="TerminateInSubProcess.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="" from="TerminateInSubProcess.main.StartNode1" id="TerminateInSubProcess.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="TerminateInSubProcess.main.Router1"/>
+        <f20:transition display-name="" from="TerminateInSubProcess.main.Router1" id="TerminateInSubProcess.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="TerminateInSubProcess.main.Activity1"/>
+        <f20:transition display-name="" from="TerminateInSubProcess.main.Router1" id="TerminateInSubProcess.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="TerminateInSubProcess.main.Activity2"/>
+        <f20:transition display-name="" from="TerminateInSubProcess.main.Activity1" id="TerminateInSubProcess.main.Transition4" is-default="false" is-loop="false" name="Transition4" to="TerminateInSubProcess.main.Router2"/>
+        <f20:transition display-name="" from="TerminateInSubProcess.main.Router2" id="TerminateInSubProcess.main.Transition5" is-default="false" is-loop="false" name="Transition5" to="TerminateInSubProcess.main.EndNode1"/>
+        <f20:transition display-name="" from="TerminateInSubProcess.main.Activity2" id="TerminateInSubProcess.main.Transition6" is-default="false" is-loop="false" name="Transition6" to="TerminateInSubProcess.main.Router2"/>
+      </f20:transitions>
+    </f20:sub-process>
+    <f20:sub-process display-name="带终止节点的子流程" entry="TerminateInSubProcess.SubProcess2.StartNode1" id="TerminateInSubProcess.SubProcess2" name="SubProcess2">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}short" display-name="x" id="TerminateInSubProcess.SubProcess2.x" init-value="10" name="x"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="TerminateInSubProcess.SubProcess2.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="Activity1" id="TerminateInSubProcess.SubProcess2.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1"/>
+        <f20:activity display-name="Activity2" id="TerminateInSubProcess.SubProcess2.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2"/>
+        <f20:activity display-name="Activity3" id="TerminateInSubProcess.SubProcess2.Activity3" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity3">
+          <f20:service-binding operation-name="打开表单：表单1" service-id="form1"/>
+        </f20:activity>
+        <f20:activity display-name="Activity4" id="TerminateInSubProcess.SubProcess2.Activity4" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity4"/>
+      </f20:activities>
+      <f20:routers>
+        <f20:router display-name="Router1" id="TerminateInSubProcess.SubProcess2.Router1" name="Router1">
+          <f20:features>
+            <f20:xorjoin-xorsplit-feature/>
+          </f20:features>
+        </f20:router>
+      </f20:routers>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="TerminateInSubProcess.SubProcess2.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+        <f20:end-node display-name="EndNode2" id="TerminateInSubProcess.SubProcess2.EndNode2" name="EndNode2">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+        <f20:end-node display-name="EndNode3" id="TerminateInSubProcess.SubProcess2.EndNode3" name="EndNode3">
+          <f20:features>
+            <f20:throw-termination-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="" from="TerminateInSubProcess.SubProcess2.StartNode1" id="TerminateInSubProcess.SubProcess2.Transition1" is-default="false" is-loop="false" name="Transition1" to="TerminateInSubProcess.SubProcess2.Router1"/>
+        <f20:transition display-name="processVars.x&gt;10" from="TerminateInSubProcess.SubProcess2.Router1" id="TerminateInSubProcess.SubProcess2.Transition2" is-default="false" is-loop="false" name="Transition2" to="TerminateInSubProcess.SubProcess2.Activity1">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[processVars.x>10]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+        <f20:transition display-name="" from="TerminateInSubProcess.SubProcess2.Activity1" id="TerminateInSubProcess.SubProcess2.Transition4" is-default="false" is-loop="false" name="Transition4" to="TerminateInSubProcess.SubProcess2.EndNode1"/>
+        <f20:transition display-name="" from="TerminateInSubProcess.SubProcess2.Router1" id="TerminateInSubProcess.SubProcess2.Transition5" is-default="true" is-loop="false" name="Transition5" to="TerminateInSubProcess.SubProcess2.Activity2"/>
+        <f20:transition display-name="" from="TerminateInSubProcess.SubProcess2.Activity2" id="TerminateInSubProcess.SubProcess2.Transition6" is-default="false" is-loop="false" name="Transition6" to="TerminateInSubProcess.SubProcess2.Activity3"/>
+        <f20:transition display-name="" from="TerminateInSubProcess.SubProcess2.Activity2" id="TerminateInSubProcess.SubProcess2.Transition7" is-default="false" is-loop="false" name="Transition7" to="TerminateInSubProcess.SubProcess2.Activity4"/>
+        <f20:transition display-name="" from="TerminateInSubProcess.SubProcess2.Activity3" id="TerminateInSubProcess.SubProcess2.Transition8" is-default="false" is-loop="false" name="Transition8" to="TerminateInSubProcess.SubProcess2.EndNode2"/>
+        <f20:transition display-name="" from="TerminateInSubProcess.SubProcess2.Activity4" id="TerminateInSubProcess.SubProcess2.Transition9" is-default="false" is-loop="false" name="Transition9" to="TerminateInSubProcess.SubProcess2.EndNode3"/>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" grid-enabled="false" id="7ef5d1eb-9157-40f6-a9a5-fa90de8dac3a" ref="TerminateInSubProcess.main" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="4ab3e654-f755-4f13-ab65-6b1cc665398c" ref="TerminateInSubProcess.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="45" y="118"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="8eec06e7-328c-4219-b396-4f9ad1002d14" ref="TerminateInSubProcess.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="604" y="118"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="109ce613-ceb0-414e-9fd1-f6c412913207" ref="TerminateInSubProcess.main.Activity1" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="260" y="24">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="62dc2267-04f9-460a-98db-7d6dc35415f7" ref="TerminateInSubProcess.main.Activity2" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="260" y="175">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="7b759a32-2bda-4a78-b359-ecdf86b961b0" ref="TerminateInSubProcess.main.Router1" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="167" y="118"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="f5c0c1dc-37a9-4757-aae6-665e0d6d2270" ref="TerminateInSubProcess.main.Router2" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="411" y="118"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="3af4116c-1e48-415d-a447-6882f6ffd26c" type="comment">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#323232" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[注意本流程中的主流程-子流程参数传递，在主流程中x是string类型，而在子流程汇总x是short类型。
+
+fire flow可以做一定的类型自动转换工作。]]></f20:label>
+            </f20:content>
+            <f20:bounds height="81" width="393" x="303" y="261">
+              <f20:border-style color="#696969" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#DCDCDC" gradient-style="UL2LR"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="4ab3e654-f755-4f13-ab65-6b1cc665398c" id="a1c6cb79-5736-4145-baab-1d775eb3f041" ref="TerminateInSubProcess.main.Transition1" to="7b759a32-2bda-4a78-b359-ecdf86b961b0" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="7b759a32-2bda-4a78-b359-ecdf86b961b0" id="a31dfaf7-372f-4905-8c03-88df9350b9a9" ref="TerminateInSubProcess.main.Transition2" to="109ce613-ceb0-414e-9fd1-f6c412913207" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="7b759a32-2bda-4a78-b359-ecdf86b961b0" id="b59397ff-8179-47aa-af54-6117084a70d0" ref="TerminateInSubProcess.main.Transition3" to="62dc2267-04f9-460a-98db-7d6dc35415f7" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="109ce613-ceb0-414e-9fd1-f6c412913207" id="7ad605cf-ad83-4aba-9180-287103f6f8bc" ref="TerminateInSubProcess.main.Transition4" to="f5c0c1dc-37a9-4757-aae6-665e0d6d2270" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="f5c0c1dc-37a9-4757-aae6-665e0d6d2270" id="fdcad42d-d81c-474e-9f1b-9a514a49fa6d" ref="TerminateInSubProcess.main.Transition5" to="8eec06e7-328c-4219-b396-4f9ad1002d14" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="62dc2267-04f9-460a-98db-7d6dc35415f7" id="26648688-a757-48c3-9008-1aa4747d6fe9" ref="TerminateInSubProcess.main.Transition6" to="f5c0c1dc-37a9-4757-aae6-665e0d6d2270" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+    <f20:diagram direction="H" grid-enabled="false" id="f3ecf2b1-875a-4ecd-9666-f7733fa70794" ref="TerminateInSubProcess.SubProcess2" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="3a463bce-3f09-447a-9e22-ef45ab448d91" ref="TerminateInSubProcess.SubProcess2.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="63" y="125"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="2db7cc77-8337-4eb9-8329-b7cd1801810e" ref="TerminateInSubProcess.SubProcess2.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="484" y="34"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="aa8d7dab-fe91-4777-948c-625340f3a891" ref="TerminateInSubProcess.SubProcess2.Activity1" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="277" y="14">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="4baac396-3121-4066-8a6b-e5ed18368939" ref="TerminateInSubProcess.SubProcess2.Router1" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="156" y="125"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="dde4eff4-32b2-4575-9b06-54f075353ec0" ref="TerminateInSubProcess.SubProcess2.Activity2" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="289" y="199">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="d3cd6e8c-3e25-4e97-9a1a-3d278e92af4c" ref="TerminateInSubProcess.SubProcess2.Activity3" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="451" y="143">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="eea91af0-6bfd-4560-85c5-ea1fc122945e" ref="TerminateInSubProcess.SubProcess2.Activity4" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="451" y="270">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="c7b4b037-8fa0-4e95-bae1-63f119297b0a" ref="TerminateInSubProcess.SubProcess2.EndNode2" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="625" y="165"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="7ec1d8e4-726d-43ee-a786-bbdb79cc61e3" ref="TerminateInSubProcess.SubProcess2.EndNode3" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="625" y="290"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="3a463bce-3f09-447a-9e22-ef45ab448d91" id="46079dec-a314-4ad1-8538-ddfa4cb8abe9" ref="TerminateInSubProcess.SubProcess2.Transition1" to="4baac396-3121-4066-8a6b-e5ed18368939" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="4baac396-3121-4066-8a6b-e5ed18368939" id="b7b4b0ce-8ac3-4760-8ba0-778954694de6" ref="TerminateInSubProcess.SubProcess2.Transition2" to="aa8d7dab-fe91-4777-948c-625340f3a891" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(-19,-27)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="aa8d7dab-fe91-4777-948c-625340f3a891" id="4503e052-6422-4a7a-b8e8-09799b32cbe1" ref="TerminateInSubProcess.SubProcess2.Transition4" to="2db7cc77-8337-4eb9-8329-b7cd1801810e" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="4baac396-3121-4066-8a6b-e5ed18368939" id="57ee6991-2263-4ca5-b33b-91169735fed3" ref="TerminateInSubProcess.SubProcess2.Transition5" to="dde4eff4-32b2-4575-9b06-54f075353ec0" type="transition">
+        <f20:figure>
+          <f20:line point-list="(171,235)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="dde4eff4-32b2-4575-9b06-54f075353ec0" id="62d3943a-1c89-4ecb-9985-772892a99427" ref="TerminateInSubProcess.SubProcess2.Transition6" to="d3cd6e8c-3e25-4e97-9a1a-3d278e92af4c" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="dde4eff4-32b2-4575-9b06-54f075353ec0" id="b40779b7-7dd8-4435-9c0a-dbcfc03d039d" ref="TerminateInSubProcess.SubProcess2.Transition7" to="eea91af0-6bfd-4560-85c5-ea1fc122945e" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="d3cd6e8c-3e25-4e97-9a1a-3d278e92af4c" id="265687fc-0587-416b-b42b-d382b0fe8f8e" ref="TerminateInSubProcess.SubProcess2.Transition8" to="c7b4b037-8fa0-4e95-bae1-63f119297b0a" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="eea91af0-6bfd-4560-85c5-ea1fc122945e" id="705a2f84-c0ec-4e59-8a7c-8bff9e98fe89" ref="TerminateInSubProcess.SubProcess2.Transition9" to="7ec1d8e4-726d-43ee-a786-bbdb79cc61e3" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

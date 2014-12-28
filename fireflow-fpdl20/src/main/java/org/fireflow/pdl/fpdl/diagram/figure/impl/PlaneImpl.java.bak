@@ -1,0 +1,98 @@
+/**
+ * Copyright 2007-2010 非也
+ * All rights reserved. 
+ * 
+ * This library is free software; you can redistribute it and/or modify it under the
+ * terms of the GNU Lesser General Public License v3 as published by the Free Software
+ * Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License along
+ * with this library; if not, see http://www.gnu.org/licenses/lgpl.html.
+ *
+ */
+package org.fireflow.pdl.fpdl.diagram.figure.impl;
+
+import org.fireflow.pdl.fpdl.diagram.figure.Bounds;
+import org.fireflow.pdl.fpdl.diagram.figure.Label;
+import org.fireflow.pdl.fpdl.diagram.figure.Plane;
+import org.fireflow.pdl.fpdl.diagram.style.FulfilStyle;
+import org.fireflow.pdl.fpdl.diagram.style.impl.FulfilStyleImpl;
+
+/**
+ *
+ * @author 非也 nychen2000@163.com
+ * Fire Workflow 官方网站：www.firesoa.com 或者 www.fireflow.org
+ *
+ */
+public class PlaneImpl implements Plane {
+	protected Bounds bounds = null;
+	protected Label label = null;
+	protected FulfilStyle fulfilStyle = null;
+
+	public PlaneImpl(){
+		label = new LabelImpl();
+		bounds = new BoundsImpl();
+		fulfilStyle = new FulfilStyleImpl();
+	}
+	/* (non-Javadoc)
+	 * @see org.fireflow.pdl.fpdl.diagram.figure.Plane#getShapes()
+	 */
+//	public List<Shape> getChildren() {
+//		return children;
+//	}
+//	
+//	public void addChild(Shape shape){
+//		this.children.add(shape);
+//	}
+
+	/* (non-Javadoc)
+	 * @see org.fireflow.pdl.fpdl.diagram.figure.Plane#getBounds()
+	 */
+	public Bounds getBounds() {
+		return bounds;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.fireflow.pdl.fpdl.diagram.figure.Plane#setBounds(org.fireflow.pdl.fpdl.diagram.figure.Bounds)
+	 */
+	public void setBounds(Bounds bounds) {
+		this.bounds = bounds;
+
+	}
+
+	/* (non-Javadoc)
+	 * @see org.fireflow.pdl.fpdl.diagram.figure.Plane#getFulfillStyle()
+	 */
+	public FulfilStyle getFulfilStyle() {
+		return fulfilStyle;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.fireflow.pdl.fpdl.diagram.figure.Plane#setFulfillStyle(org.fireflow.pdl.fpdl.diagram.style.FulfillStyle)
+	 */
+	public void setFulfilStyle(FulfilStyle style) {
+		fulfilStyle = style;
+
+	}
+
+	/* (non-Javadoc)
+	 * @see org.fireflow.pdl.fpdl.diagram.figure.Plane#getLabel()
+	 */
+	public Label getLabel() {
+		return label;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.fireflow.pdl.fpdl.diagram.figure.Plane#setLabel(org.fireflow.pdl.fpdl.diagram.figure.Label)
+	 */
+	public void setLabel(Label lb) {
+		this.label = lb;
+		
+	}
+
+}

@@ -1,0 +1,67 @@
+#title: 1.a.29 发行注记
+#index:0,1
+#author:zozoh(zozohtnt@gmail.com)
+#author:wendal(wendal1985@gmail.com)
+--------------------------------------------------------------------------------------------------------
+关于 1.a.29
+	这是一个Bug Fix版本
+	 
+--------------------------------------------------------------------------------------------------------
+问题修复
+	 * [http://code.google.com/p/nutz/issues/detail?id=211 Issue 211] 更换1.28后的问题
+	 * [http://code.google.com/p/nutz/issues/detail?id=214 Issue 214] aop: 有些时候，用 AOP 生成的字节码抛 UnsupportedClassVersion 
+	 * [http://code.google.com/p/nutz/issues/detail?id=216 Issue 216] Aop: 声明式切片 难以配置   
+	 * [http://code.google.com/p/nutz/issues/detail?id=217 Issue 217] Json toJson()当传入的是HttpRequest时出错 
+	 * [http://code.google.com/p/nutz/issues/detail?id=218 Issue 218] org.nutz.lang.String 510行，注释字写错了 
+	 * [http://code.google.com/p/nutz/issues/detail?id=219 Issue 219] 上传文件出错
+	 * [http://code.google.com/p/nutz/issues/detail?id=221 Issue 221] Ioc 如果DataSource是在Web容器里面定义的,就无法获取
+	 * [http://code.google.com/p/nutz/issues/detail?id=223 Issue 223] Ioc @Inject应当允许标注在set方法上
+	 * [http://code.google.com/p/nutz/issues/detail?id=225 Issue 225] ioc: 自定义注入的特殊类型不能正确解析
+	 * [http://code.google.com/p/nutz/issues/detail?id=227 Issue 227] mvc: ServerRedirectView.render函数类型转换bug 
+	 * [http://code.google.com/p/nutz/issues/detail?id=228 Issue 228] ioc: 注入容器上下文貌似没有实现
+
+--------------------------------------------------------------------------------------------------------
+质量
+	 # 共通过了 503 个单元测试用例,代码覆盖率达到62%(按line计算)
+	 # Nutz.Dao 经测试在如下数据库上可以工作正常
+		 * [http://www.h2database.com H2]
+		 * [http://www.mysql.com MySql]
+		 * [http://www.oracle.com Oracle]
+		 * [http://www.postgresql.org Postgresql]
+		 * [http://www.microsoft.com/hk/sql/default.mspx SqlServer2005]
+		 * [http://www.microsoft.com/hk/sql/default.mspx SqlServer2000]
+--------------------------------------------------------------------------------------------------------
+文档
+	  * 修正部分文字错误
+	 
+--------------------------------------------------------------------------------------------------------
+主要贡献者名单
+	贡献的种类:
+	 * 问题: 给项目的[http://code.google.com/p/nutz/issues/list 问题列表]汇报一个上的问题，并且该问题被本次发布包括
+	 * 博客: 在本版本开发期间，写过关于 Nutz 的文章，并被 [http://code.google.com/p/nutz/wiki/appendix_resources 推荐列表]收录
+	 * 支持: 总结至少出 FAQ 文档
+		 * 关于 FAQ 文档的写作规范请先阅读： [http://groups.google.de/group/nutzam/browse_thread/thread/4caf8181456b7adc?hl=zh-CN Nutz 的虎年计划.5提供更好的社区支持]
+	 * 代码: 提交过至少一个修订
+	 * Demo: 为 [http://code.google.com/p/nutzdemo Demo Site] 提交过代码
+	 * 文档: 提交过文档，在讨论区发帖或者通过文档上的留言指出现有文档存在的问题
+	 * 测试: 发布前，参与测试周，发布人给出的任务
+	 
+	 如有遗漏,请提醒我们 ^_^
+	 
+	|| 贡献者 									|| 问题|| 博客|| 支持|| 代码|| Demo|| 文档|| 测试||
+	|| happyday0517 							||  O  ||  -  ||  -  ||  -	||  -  ||  -  ||  -  ||
+	|| landraxee 								||  O  ||  -  ||  -  ||  O	||  -  ||  -  ||  -  ||
+	|| wendal									||  O  ||  -  ||  O  ||  O	||  -  ||  O  ||  O  ||
+	|| winstars									||  O  ||  -  ||  -  ||  -	||  -  ||  -  ||  -  ||
+	|| zozohtnt									||  O  ||  -  ||  O  ||  O	||  -  ||  O  ||  O  ||
+	
+	
+	
+	另外，非常感谢
+	 * [https://groups.google.at/group/nutzam?hl=zh-CN Nutzam 讨论区]
+	 * [http://qun.qq.com/air/#75818186 Nutz QQ 群(75818186)]
+	 * [http://qun.qq.com/air/#68315571 Nutz QQ 2群(68315571)]
+	 * GTalk 聊天群 {#AAAAAA;/添加帐号 nutzam@chatterous.com 为好友，然后发送 @join 指令}
+	的朋友们，你们提出的任何问题，发表的任何言论，实际上都对这个小框架 {*产生着潜移默化的影响}。
+	我们也正在不断的努力，希望每一个新版本都能让大家获得更好的编程体验。
+

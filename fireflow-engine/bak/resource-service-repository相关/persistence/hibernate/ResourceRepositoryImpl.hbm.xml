@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.fireflow.engine.entity.repository.impl.ResourceRepositoryImpl"
+		table="T_FF_DF_RESOURCE_REPOSITORY">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid" />
+		</id>
+		
+		<property name="fileName" type="java.lang.String" update="false" unique-key="RSC_REP_FILE_NAME">
+			<column length="200" name="FILE_NAME" not-null="true" />
+		</property>		
+		
+		<property name="resourceContent" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<column  name="RESOURCE_CONTENT"  />
+		</property>				
+		
+		
+	</class>
+</hibernate-mapping>

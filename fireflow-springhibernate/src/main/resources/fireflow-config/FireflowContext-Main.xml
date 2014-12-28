@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<import resource="modules/FireflowContext-PVM.xml"/>
+	<import resource="modules/FireflowContext-Persistence.xml"/>
+	<import resource="modules/FireflowContext-CalendarAndSchedule.xml"/>
+	<import resource="modules/FireflowContext-BeanFactory.xml"/>
+	<import resource="modules/FireflowContext-LoadStrategy.xml"/>
+	<import resource="modules/FireflowContext-OUSystemConnector.xml"/>
+	<import resource="modules/FireflowContext-FormSystemConnector.xml"/>
+	<import resource="modules/FireflowContext-EventBroadcaster.xml"/>
+	<import resource="modules/FireflowContext-Environment.xml"/>
+	<import resource="modules/FireflowContext-WorkflowEngineService.xml"/>	                         
+	
+	<import resource="processlanguages/FireflowContext-FPDL.xml"/>
+		
+	<bean id="fireflowRuntimeContext" class="org.fireflow.engine.context.RuntimeContext"
+		init-method="initialize">
+		<property name="transactionTemplate">
+			<ref bean="springTransactionTempate"/>
+		</property>
+		<!-- 装载缺省的引擎模块 -->
+		<property name="defaultEngineModules">
+			<map>
+				<!-- 流程虚拟机 -->
+				<entry key="org.fireflow.pvm.kernel.KernelManager">
+					<ref bean="fireflowKernelManager"/>
+				</entry>	
+				 
+				<!-- 流程事件广播 -->		
+				<entry key="org.fireflow.engine.modules.event.EventBroadcasterManager">
+					<ref bean="fireflowEventBroadcasterManager"/>
+				</entry>			
+				
+				<!-- Fireflow Engine Service -->
+				<entry key="org.fireflow.server.WorkflowEngineService">
+					<ref bean="fireflowEngineService"/>
+				</entry>
+				
+				<!-- 调度模块 -->		
+				<entry key="org.fireflow.engine.modules.schedule.Scheduler">
+					<ref bean="fireflowScheduler"/>
+				</entry>
+				
+				<!-- BeanFactory -->
+				<entry key="org.fireflow.engine.modules.beanfactory.BeanFactory">
+					<ref bean="fireflowBeanFactorySpringImpl"/>
+				</entry>
+				
+				<!-- 缺省的存储策略 -->
+				<entry key="org.fireflow.engine.modules.persistence.PersistenceService">
+					<ref bean="hibernatePersistenceService"/>
+				</entry>
+				
+				<!-- ==========下面的 moudule通常要被项目定制======================================== -->
+				<!-- 缺省的流程装载策略 -->
+				<entry key="org.fireflow.engine.modules.loadstrategy.ProcessLoadStrategy">
+					<ref bean="fireflowDefaultProcessLoadStrategy"/>
+				</entry>
+				
+				<!-- 运行环境相关设置 -->
+				<entry key="org.fireflow.engine.modules.environment.Environment">
+					<ref bean="fireflowJ2SEEnvironment"/>
+				</entry>				
+				
+				<!-- 组织机构链接器 -->
+				<entry key="org.fireflow.engine.modules.ousystem.OUSystemConnector">
+					<ref bean="ouSystemConnectorEmptyImpl"/>
+				</entry>
+				
+				<!-- 表单系统链接器 -->
+				<entry key="org.fireflow.engine.modules.formsystem.FormSystemConnector">
+					<ref bean="formSystemConnectorEmptyImpl"/>
+				</entry>
+				
+				<!-- 日历模块 -->
+				<entry key="org.fireflow.engine.modules.calendar.CalendarService">
+					<ref bean="fireflowDefaultCalendarService"/>
+				</entry>				
+			</map>
+		</property>
+		
+		<!-- 装载特定语言的扩展 -->
+		<property name="processLanguages">
+			<list>
+				<ref bean="fireflowProcessDefinitionLanguageManager"/>
+			</list>			
+		</property>
+	</bean>
+	
+	<!-- Fire workflow server -->
+
+	<bean id="fireflowServer" class="org.fireflow.server.WorkflowServer"
+		init-method="start" destroy-method="stop">
+		<property name="engineServiceEnabled" value="false"></property>
+		<property name="runtimeContext">
+			<ref bean="fireflowRuntimeContext" />
+		</property>
+	</bean>
+	
+	<!-- 客户化定制 -->
+	<bean class="org.firesoa.common.util.BeanRefPropertyOverrideConfigurer">
+		<property name="location" value="classpath:/FireflowContext-Override.properties"/>
+		<property name="ignoreInvalidKeys" value="true"/>
+		<property name="ignoreResourceNotFound" value="true"/>
+		<property name="order" value="9"></property>
+	</bean>
+	
+</beans>

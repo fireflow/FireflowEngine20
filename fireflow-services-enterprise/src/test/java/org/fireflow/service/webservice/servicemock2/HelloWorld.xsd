@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.6 in JDK 6. --><xs:schema xmlns:tns="http://servicemock.webservice.service.fireflow.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://servicemock.webservice.service.fireflow.org/">
+
+<xs:element name="Exception" type="tns:Exception"></xs:element>
+
+<xs:element name="sayHello" type="tns:sayHello"></xs:element>
+
+<xs:element name="sayHelloResponse" type="tns:sayHelloResponse"></xs:element>
+
+<xs:complexType name="sayHello">
+<xs:sequence>
+<xs:element name="person" type="tns:person" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="person">
+<xs:sequence>
+<xs:element name="address" type="tns:address" minOccurs="0"></xs:element>
+<xs:element name="name" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="sex" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="address">
+<xs:sequence>
+<xs:element name="cityName" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="streetName" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sayHelloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

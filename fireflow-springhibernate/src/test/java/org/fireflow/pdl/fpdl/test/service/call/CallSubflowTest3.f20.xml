@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="我的新流程21" id="My_New_Process21" name="My_New_Process21" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.call biz-category="" display-name="子流程2@我的新流程21" id="Call_SubProcess2" invoker-class="org.fireflow.service.call.CallServiceInvoker" name="Call_SubProcess2" parser-class="org.fireflow.service.call.CallServiceParser" target-namespace="">
+      <s:interface.common name="call_subprocess_interface">
+        <s:operation name="call_subprocess">
+          <s:inputs>
+            <s:input data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="变量A" name="a"/>
+            <s:input data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="变量B" name="b"/>
+            <s:input data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="计算结果" name="result"/>
+          </s:inputs>
+          <s:outputs>
+            <s:output data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="变量A" name="a"/>
+            <s:output data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="变量B" name="b"/>
+            <s:output data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="计算结果" name="result"/>
+          </s:outputs>
+        </s:operation>
+      </s:interface.common>
+      <s:process-id>My_New_Process21</s:process-id>
+      <s:subprocess-id>My_New_Process21.SubProcess2</s:subprocess-id>
+      <s:process-version>0</s:process-version>
+    </s:service.call>
+    <s:service.java biz-category="" display-name="Java类[CalculatorEx]" id="CalculatorEx" invoker-class="org.fireflow.service.java.JavaInvoker" name="CalculatorEx" parser-class="org.fireflow.service.java.JavaServiceParser" target-namespace="">
+      <s:description><![CDATA[Java类：org.fireflow.test.CalculatorEx]]></s:description>
+      <s:java-class-name>org.fireflow.test.CalculatorEx</s:java-class-name>
+      <s:interface.java>
+        <s:interface-class>org.fireflow.test.ICalculatorEx</s:interface-class>
+      </s:interface.java>
+    </s:service.java>
+  </s:services>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="子流程2" entry="My_New_Process21.SubProcess2.StartNode1" id="My_New_Process21.SubProcess2" name="SubProcess2">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="变量A" id="My_New_Process21.SubProcess2.a" init-value="" name="a"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="变量B" id="My_New_Process21.SubProcess2.b" init-value="" name="b"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="计算结果" id="My_New_Process21.SubProcess2.result" init-value="" name="result"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="My_New_Process21.SubProcess2.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="Activity1" id="My_New_Process21.SubProcess2.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1">
+          <f20:service-binding operation-name="multiply" service-id="CalculatorEx">
+            <f20:input-assignments>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="流程变量/变量A" language="XPATH" name="a">
+                    <f20:body><![CDATA[processVars/a]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="a" language="XPATH" name="a">
+                    <f20:body><![CDATA[inputs/a]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="流程变量/变量B" language="XPATH" name="b">
+                    <f20:body><![CDATA[processVars/b]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="b" language="XPATH" name="b">
+                    <f20:body><![CDATA[inputs/b]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+            </f20:input-assignments>
+            <f20:output-assignments>
+              <f20:output-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="output_of_multiply" language="XPATH" name="output_of_multiply">
+                    <f20:body><![CDATA[outputs/output_of_multiply]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="流程变量/计算结果" language="XPATH" name="result">
+                    <f20:body><![CDATA[processVars/result]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:output-assignment>
+            </f20:output-assignments>
+          </f20:service-binding>
+        </f20:activity>
+      </f20:activities>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="My_New_Process21.SubProcess2.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="Transition1" from="My_New_Process21.SubProcess2.StartNode1" id="My_New_Process21.SubProcess2.Transition1" is-default="false" is-loop="false" name="Transition1" to="My_New_Process21.SubProcess2.Activity1"/>
+        <f20:transition display-name="Transition2" from="My_New_Process21.SubProcess2.Activity1" id="My_New_Process21.SubProcess2.Transition2" is-default="false" is-loop="false" name="Transition2" to="My_New_Process21.SubProcess2.EndNode1"/>
+      </f20:transitions>
+    </f20:sub-process>
+    <f20:sub-process display-name="main" entry="My_New_Process21.main.StartNode1" id="My_New_Process21.main" name="main">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="变量aa" id="My_New_Process21.main.a" init-value="" name="a"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="变量bb" id="My_New_Process21.main.b" init-value="" name="b"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="结果" id="My_New_Process21.main.result" init-value="" name="result"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="result2" id="My_New_Process21.main.result2" init-value="" name="result2"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="My_New_Process21.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="调用子流程2@我的新流程21" id="My_New_Process21.main.Call_Call_SubProcess2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Call_Call_SubProcess2">
+          <f20:service-binding operation-name="call_subprocess" service-id="Call_SubProcess2">
+            <f20:input-assignments>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="流程变量/变量aa" language="XPATH" name="a">
+                    <f20:body><![CDATA[processVars/a]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="a" language="XPATH" name="a">
+                    <f20:body><![CDATA[inputs/a]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="流程变量/变量bb" language="XPATH" name="b">
+                    <f20:body><![CDATA[processVars/b]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="b" language="XPATH" name="b">
+                    <f20:body><![CDATA[inputs/b]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+            </f20:input-assignments>
+            <f20:output-assignments>
+              <f20:output-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="result" language="XPATH" name="result">
+                    <f20:body><![CDATA[outputs/result]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="流程变量/结果" language="XPATH" name="result">
+                    <f20:body><![CDATA[processVars/result]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:output-assignment>
+              <f20:output-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="b" language="XPATH" name="b">
+                    <f20:body><![CDATA[outputs/b]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="流程变量/result2" language="XPATH" name="result2">
+                    <f20:body><![CDATA[processVars/result2]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:output-assignment>
+            </f20:output-assignments>
+          </f20:service-binding>
+        </f20:activity>
+      </f20:activities>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="My_New_Process21.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="Transition1" from="My_New_Process21.main.StartNode1" id="My_New_Process21.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="My_New_Process21.main.Call_Call_SubProcess2"/>
+        <f20:transition display-name="Transition2" from="My_New_Process21.main.Call_Call_SubProcess2" id="My_New_Process21.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="My_New_Process21.main.EndNode1"/>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" id="fc81fa85-d0c8-4500-b4bd-a485faf1b477" ref="My_New_Process21.SubProcess2">
+      <f20:node id="1f1358a1-25ee-439d-9c57-b43afe750fef" ref="My_New_Process21.SubProcess2.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="105" y="53"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="4393f5cf-7036-4986-a458-6b27114f5ea8" ref="My_New_Process21.SubProcess2.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="425" y="111"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="9f9cc2ae-a302-44c9-8358-657ab046c62d" ref="My_New_Process21.SubProcess2.Activity1" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:content>
+              <f20:titleLabel color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="217" y="127">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="1f1358a1-25ee-439d-9c57-b43afe750fef" id="349c3aa2-bfc4-4ee0-8291-bd30307f1213" ref="My_New_Process21.SubProcess2.Transition1" to="9f9cc2ae-a302-44c9-8358-657ab046c62d" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="9f9cc2ae-a302-44c9-8358-657ab046c62d" id="3452bb98-1d77-464f-85f0-a2d3461fe3ae" ref="My_New_Process21.SubProcess2.Transition2" to="4393f5cf-7036-4986-a458-6b27114f5ea8" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+    <f20:diagram direction="H" id="15a5a676-5c98-40a5-98d0-15507aad0ae0" ref="My_New_Process21.main">
+      <f20:node id="37200c5b-f7d5-4623-ac38-779613b1057b" ref="My_New_Process21.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="84" y="40"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="0b228597-f5b5-4593-b1bc-ff57add5fa29" ref="My_New_Process21.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="562" y="76"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="150c602e-c44a-4268-a622-04d63c3d7daf" ref="My_New_Process21.main.Call_Call_SubProcess2" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:content>
+              <f20:titleLabel color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="259" y="119">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="37200c5b-f7d5-4623-ac38-779613b1057b" id="2e53e25a-0cdb-4c43-878d-0db3504e7ee1" ref="My_New_Process21.main.Transition1" to="150c602e-c44a-4268-a622-04d63c3d7daf" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="150c602e-c44a-4268-a622-04d63c3d7daf" id="a047373c-d70c-467c-9d05-f74e098f9cc6" ref="My_New_Process21.main.Transition2" to="0b228597-f5b5-4593-b1bc-ff57add5fa29" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

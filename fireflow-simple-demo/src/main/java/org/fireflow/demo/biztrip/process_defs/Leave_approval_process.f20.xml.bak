@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="Leave_approval_process" id="Leave_approval_process" name="Leave_approval_process" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.human biz-category="" display-name="请假审批" id="Approve" invoker-bean="workItemManager" name="Approve" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+      <s:form-url>/demo/leave_approval_process/Approve.jsp</s:form-url>
+      <s:workitem-subject>
+        <s:expression display-name="工作项主题" language="UNIFIEDJEXL" name="WorkItemSubject">
+          <s:body><![CDATA[请假审批【申请人：${applicant}， 请假天数：${days}】]]></s:body>
+        </s:expression>
+      </s:workitem-subject>
+      <s:interface.common name="Approve">
+        <s:operation name="打开表单：请假审批">
+          <s:inputs>
+            <s:input data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="业务单据编号" name="bizId"/>
+          </s:inputs>
+          <s:outputs/>
+        </s:operation>
+      </s:interface.common>
+    </s:service.human>
+    <s:service.human biz-category="" display-name="请假申请" id="Apply" invoker-bean="workItemManager" name="Apply" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+      <s:form-url>/demo/leave_approval_process/Apply.jsp</s:form-url>
+      <s:workitem-subject>
+        <s:expression display-name="工作项主题" language="UNIFIEDJEXL" name="WorkItemSubject">
+          <s:body><![CDATA[请假流程【申请人：${applicant}， 请假天数：${days} 】]]></s:body>
+        </s:expression>
+      </s:workitem-subject>
+      <s:interface.common name="Apply">
+        <s:operation name="打开表单：请假申请">
+          <s:inputs>
+            <s:input data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="业务单据编号" name="bizId"/>
+          </s:inputs>
+          <s:outputs/>
+        </s:operation>
+      </s:interface.common>
+    </s:service.human>
+  </s:services>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程创建者" id="processCreator" name="processCreator" resource-type="org.fireflow.constants.ProcessInstanceCreator" value="Leave_approval_process">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="请假审批流程" id="Leave_approval_process.main" name="main" entry="Leave_approval_process.main.StartNode1">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="申请人" id="Leave_approval_process.main.applicant" init-value="" name="applicant"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="请假天数" id="Leave_approval_process.main.days" init-value="" name="days"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="Leave_approval_process.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="请假申请" id="Leave_approval_process.main.Apply" loop-strategy="org.fireflow.constants.REDO" name="Apply">
+          <f20:service-binding operation-name="打开表单：请假申请" service-id="Apply">
+            <f20:input-assignments>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="当前流程实例/流程实例所关联的业务主键" language="XPATH" name="bizId">
+                    <f20:body><![CDATA[currentProcessInstance/bizId]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="bizId" language="XPATH" name="bizId">
+                    <f20:body><![CDATA[inputs/bizId]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+            </f20:input-assignments>
+          </f20:service-binding>
+          <f20:resource-binding assignment-strategy="org.fireflow.constants.ASSIGN_TO_ANY" display-name="">
+            <f20:potential-owners>
+              <f20:resource-ref resource-id="processCreator"/>
+            </f20:potential-owners>
+          </f20:resource-binding>
+        </f20:activity>
+        <f20:activity display-name="请假审批" id="Leave_approval_process.main.Approve" loop-strategy="org.fireflow.constants.REDO" name="Approve">
+          <f20:service-binding operation-name="打开表单：请假审批" service-id="Approve">
+            <f20:input-assignments>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="当前流程实例/流程实例所关联的业务主键" language="XPATH" name="bizId">
+                    <f20:body><![CDATA[currentProcessInstance/bizId]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="bizId" language="XPATH" name="bizId">
+                    <f20:body><![CDATA[inputs/bizId]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+            </f20:input-assignments>
+          </f20:service-binding>
+          <f20:resource-binding assignment-strategy="org.fireflow.constants.ASSIGN_TO_ANY" display-name="">
+            <f20:potential-owners>
+              <f20:resource-ref resource-id="processCreator"/>
+            </f20:potential-owners>
+          </f20:resource-binding>
+        </f20:activity>
+      </f20:activities>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="Leave_approval_process.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="T1" from="Leave_approval_process.main.StartNode1" id="Leave_approval_process.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="Leave_approval_process.main.Apply"/>
+        <f20:transition display-name="T2" from="Leave_approval_process.main.Apply" id="Leave_approval_process.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="Leave_approval_process.main.Approve"/>
+        <f20:transition display-name="T3" from="Leave_approval_process.main.Approve" id="Leave_approval_process.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="Leave_approval_process.main.EndNode1"/>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" id="6ad2e219-7245-4ff0-a518-ae3ae0d7adaa" ref="Leave_approval_process.main">
+      <f20:child id="25eab623-abf6-4a46-8562-b1cbde43902d" ref="Leave_approval_process.main.EndNode1" type="end-node">
+        <f20:circle color="#000000" line-type="SOLID" radius="16" the-center="(595,143)" thick="2">
+          <f20:label color="#000000" size="10" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+          <f20:fulfil-style color="#FFFFFF" gradient-style="NONE"/>
+        </f20:circle>
+      </f20:child>
+      <f20:child id="d3c7dbc8-835c-461b-9172-ba54f9fcc8fd" ref="Leave_approval_process.main.StartNode1" type="start-node">
+        <f20:circle color="#000000" line-type="SOLID" radius="16" the-center="(125,144)" thick="2">
+          <f20:label color="#000000" size="10" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+          <f20:fulfil-style color="#FFFFFF" gradient-style="NONE"/>
+        </f20:circle>
+      </f20:child>
+      <f20:child id="a60c17c4-bcc1-49bd-a959-4390a88d24a4" ref="Leave_approval_process.main.Apply" type="activity">
+        <f20:rectangle>
+          <f20:title>
+            <f20:label color="#000000" size="12" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+          </f20:title>
+          <f20:content>
+            <f20:label color="#191970" size="10" weight="BOLD"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+          </f20:content>
+          <f20:bounds height="72" upper-left-corner="(192,98)" width="108">
+            <f20:bounds-style color="#4682B4" corner-type="DASHED" line-type="SOLID" radius="11" space="0" thick="2"/>
+          </f20:bounds>
+          <f20:fulfil-style color="#F0FFFF" gradient-style="LEFT2RIGHT"/>
+        </f20:rectangle>
+      </f20:child>
+      <f20:child id="bb366f84-ed88-40c3-b5a9-837a15e12627" ref="Leave_approval_process.main.Approve" type="activity">
+        <f20:rectangle>
+          <f20:title>
+            <f20:label color="#000000" size="12" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+          </f20:title>
+          <f20:content>
+            <f20:label color="#191970" size="10" weight="BOLD"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+          </f20:content>
+          <f20:bounds height="72" upper-left-corner="(411,97)" width="108">
+            <f20:bounds-style color="#4682B4" corner-type="DASHED" line-type="SOLID" radius="11" space="0" thick="2"/>
+          </f20:bounds>
+          <f20:fulfil-style color="#F0FFFF" gradient-style="LEFT2RIGHT"/>
+        </f20:rectangle>
+      </f20:child>
+      <f20:connector from="d3c7dbc8-835c-461b-9172-ba54f9fcc8fd" id="1dd62212-7933-4372-bd06-6d2c16accef0" ref="Leave_approval_process.main.Transition1" to="a60c17c4-bcc1-49bd-a959-4390a88d24a4" type="transition">
+        <f20:line color="#000000" label-direction="H" label-position="(0,0)" line-type="SOLID" thick="2">
+          <f20:label color="#000000" size="12" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+        </f20:line>
+      </f20:connector>
+      <f20:connector from="a60c17c4-bcc1-49bd-a959-4390a88d24a4" id="3e30933d-d61c-44a2-bbf9-6bc2ae8476fd" ref="Leave_approval_process.main.Transition2" to="bb366f84-ed88-40c3-b5a9-837a15e12627" type="transition">
+        <f20:line color="#000000" label-direction="H" label-position="(0,0)" line-type="SOLID" thick="2">
+          <f20:label color="#000000" size="12" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+        </f20:line>
+      </f20:connector>
+      <f20:connector from="bb366f84-ed88-40c3-b5a9-837a15e12627" id="c1dd41f2-2935-4550-8631-c49dc8846679" ref="Leave_approval_process.main.Transition3" to="25eab623-abf6-4a46-8562-b1cbde43902d" type="transition">
+        <f20:line color="#000000" label-direction="H" label-position="(0,0)" line-type="SOLID" thick="2">
+          <f20:label color="#000000" size="12" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+        </f20:line>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

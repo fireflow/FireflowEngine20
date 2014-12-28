@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.fireflow.org/schema/service"
+	xmlns:tns="http://www.fireflow.org/schema/service"
+	elementFormDefault="qualified">
+
+	<include schemaLocation="../../../../../../../../../fireflow-model/src/main/resources/ServiceSchema-2.0-Core.xsd"></include>
+	
+	<element name="service.file-reader" type="tns:fileReaderType" substitutionGroup="tns:service"></element>
+
+    <complexType name="fileReaderType">
+    	<complexContent>
+    		<extension base="tns:serviceType">
+    			<sequence>
+     				<element name="extended-properties" type="tns:extendedPropertiesType">
+    				</element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+</schema>

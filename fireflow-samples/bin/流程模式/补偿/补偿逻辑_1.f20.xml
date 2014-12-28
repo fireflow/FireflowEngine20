@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="补偿逻辑_1" id="Compensation_1" name="Compensation_1" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service"/>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="Compensation_1.main.StartNode1" id="Compensation_1.main" name="main">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="x" id="Compensation_1.main.x" init-value="1" name="x"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="Compensation_1.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+        <f20:start-node display-name="捕获补偿01" id="Compensation_1.main.StartNode2" name="StartNode2">
+          <f20:features>
+            <f20:catch-compensation-feature attached-to-activity="Compensation_1.main.Activity1" compensation-code="COMPENSATION_01"/>
+          </f20:features>
+        </f20:start-node>
+        <f20:start-node display-name="捕获补偿02" id="Compensation_1.main.StartNode3" name="StartNode3">
+          <f20:features>
+            <f20:catch-compensation-feature attached-to-activity="Compensation_1.main.Activity2" compensation-code="COMPENSATION_02"/>
+          </f20:features>
+        </f20:start-node>
+        <f20:start-node display-name="捕获补偿01,02" id="Compensation_1.main.StartNode4" name="StartNode4">
+          <f20:features>
+            <f20:catch-compensation-feature attached-to-activity="Compensation_1.main.Activity3" compensation-code="COMPENSATION_01;COMPENSATION_02"/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="Activity1" id="Compensation_1.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1"/>
+        <f20:activity display-name="Activity2" id="Compensation_1.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2"/>
+        <f20:activity display-name="Activity3" id="Compensation_1.main.Activity3" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity3"/>
+        <f20:activity display-name="补偿Activity1" id="Compensation_1.main.Activity4" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity4"/>
+        <f20:activity display-name="补偿Activity2" id="Compensation_1.main.Activity5" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity5"/>
+        <f20:activity display-name="补偿Activity3" id="Compensation_1.main.Activity6" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity6"/>
+      </f20:activities>
+      <f20:routers>
+        <f20:router display-name="Router1" id="Compensation_1.main.Router1" name="Router1">
+          <f20:features>
+            <f20:andjoin-andsplit-feature/>
+          </f20:features>
+        </f20:router>
+        <f20:router display-name="Router2" id="Compensation_1.main.Router2" name="Router2">
+          <f20:features>
+            <f20:andjoin-andsplit-feature/>
+          </f20:features>
+        </f20:router>
+        <f20:router display-name="Router3" id="Compensation_1.main.Router3" name="Router3">
+          <f20:features>
+            <f20:xorjoin-xorsplit-feature/>
+          </f20:features>
+        </f20:router>
+      </f20:routers>
+      <f20:end-nodes>
+        <f20:end-node display-name="补偿[代号01]" id="Compensation_1.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:throw-compensation-feature compensation-codes="COMPENSATION_01"/>
+          </f20:features>
+        </f20:end-node>
+        <f20:end-node display-name="补偿[代号02]" id="Compensation_1.main.EndNode2" name="EndNode2">
+          <f20:features>
+            <f20:throw-compensation-feature compensation-codes="COMPENSATION_02"/>
+          </f20:features>
+        </f20:end-node>
+        <f20:end-node display-name="正常结束" id="Compensation_1.main.EndNode3" name="EndNode3">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="" from="Compensation_1.main.StartNode1" id="Compensation_1.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="Compensation_1.main.Router1"/>
+        <f20:transition display-name="" from="Compensation_1.main.Router1" id="Compensation_1.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="Compensation_1.main.Activity1"/>
+        <f20:transition display-name="" from="Compensation_1.main.Router1" id="Compensation_1.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="Compensation_1.main.Activity2"/>
+        <f20:transition display-name="" from="Compensation_1.main.Activity1" id="Compensation_1.main.Transition4" is-default="false" is-loop="false" name="Transition4" to="Compensation_1.main.Router2"/>
+        <f20:transition display-name="" from="Compensation_1.main.Activity2" id="Compensation_1.main.Transition5" is-default="false" is-loop="false" name="Transition5" to="Compensation_1.main.Router2"/>
+        <f20:transition display-name="" from="Compensation_1.main.Router2" id="Compensation_1.main.Transition6" is-default="false" is-loop="false" name="Transition6" to="Compensation_1.main.Activity3"/>
+        <f20:transition display-name="" from="Compensation_1.main.StartNode2" id="Compensation_1.main.Transition8" is-default="false" is-loop="false" name="Transition8" to="Compensation_1.main.Activity4"/>
+        <f20:transition display-name="" from="Compensation_1.main.StartNode3" id="Compensation_1.main.Transition9" is-default="false" is-loop="false" name="Transition9" to="Compensation_1.main.Activity5"/>
+        <f20:transition display-name="" from="Compensation_1.main.StartNode4" id="Compensation_1.main.Transition10" is-default="false" is-loop="false" name="Transition10" to="Compensation_1.main.Activity6"/>
+        <f20:transition display-name="" from="Compensation_1.main.Activity3" id="Compensation_1.main.Transition11" is-default="false" is-loop="false" name="Transition11" to="Compensation_1.main.Router3"/>
+        <f20:transition display-name="x&lt;0" from="Compensation_1.main.Router3" id="Compensation_1.main.Transition12" is-default="false" is-loop="false" name="Transition12" to="Compensation_1.main.EndNode1">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[processVars.x<0]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+        <f20:transition display-name="x&gt;0" from="Compensation_1.main.Router3" id="Compensation_1.main.Transition13" is-default="false" is-loop="false" name="Transition13" to="Compensation_1.main.EndNode2">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[processVars.x>0]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+        <f20:transition display-name="x==0" from="Compensation_1.main.Router3" id="Compensation_1.main.Transition14" is-default="false" is-loop="false" name="Transition14" to="Compensation_1.main.EndNode3">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[processVars.x==0]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" grid-enabled="false" id="502e91a6-8ced-400b-81ce-cfd94edd15e3" ref="Compensation_1.main" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="fb034f29-a945-422f-a006-36df9482ccaf" ref="Compensation_1.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="46" y="123"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="4a2d2a70-aa60-4c87-a114-a8133676f774" ref="Compensation_1.main.Activity1" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="296" y="25">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+        <f20:node id="8e776216-bb81-4fb1-9648-553c56253a24" ref="Compensation_1.main.StartNode2" type="start-node">
+          <f20:figure>
+            <f20:circle>
+              <f20:title>
+                <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:title>
+              <f20:bounds height="32" width="32" x="315" y="78"/>
+            </f20:circle>
+          </f20:figure>
+        </f20:node>
+      </f20:node>
+      <f20:node id="b2c3b952-d91a-4e45-ab09-2f79acf23cc1" ref="Compensation_1.main.Activity2" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="319" y="260">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+        <f20:node id="79a44081-2bcd-4331-a2e7-6198c90225a3" ref="Compensation_1.main.StartNode3" type="start-node">
+          <f20:figure>
+            <f20:circle>
+              <f20:title>
+                <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:title>
+              <f20:bounds height="32" width="32" x="348" y="313"/>
+            </f20:circle>
+          </f20:figure>
+        </f20:node>
+      </f20:node>
+      <f20:node id="3c7be401-fed6-4dad-84c6-db2a2a6b4c2e" ref="Compensation_1.main.Activity3" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="617" y="103">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+        <f20:node id="0b2d2e07-b8fc-4abc-a8da-6f9726f5fff5" ref="Compensation_1.main.StartNode4" type="start-node">
+          <f20:figure>
+            <f20:circle>
+              <f20:title>
+                <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:title>
+              <f20:bounds height="32" width="32" x="645" y="150"/>
+            </f20:circle>
+          </f20:figure>
+        </f20:node>
+      </f20:node>
+      <f20:node id="88b0367f-aaae-4a55-b279-80cb7be47582" ref="Compensation_1.main.Activity4" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="58" width="93" x="349" y="151">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="17bec4bf-e5d7-4796-8554-f069b831e55a" ref="Compensation_1.main.Activity5" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="58" width="93" x="375" y="413">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="31583331-218d-4d90-9198-263f9b102e91" ref="Compensation_1.main.Activity6" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="58" width="93" x="668" y="231">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="dd145a7f-4553-4626-a360-6968813f925f" ref="Compensation_1.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="948" y="37"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="8276b9c7-8882-43bd-8b40-fd1f2c4e4002" ref="Compensation_1.main.Router1" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="161" y="123"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="33c7970b-8935-4705-ba9b-f40ea7b3879f" ref="Compensation_1.main.Router2" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="510" y="123"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="6564453c-a7a6-4525-aecf-2b8e5b9c55e7" ref="Compensation_1.main.Router3" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="782" y="123"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="d175fc4a-ddd5-466f-8aaa-9b9fefce5135" ref="Compensation_1.main.EndNode2" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="948" y="123"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="347e2c5e-cbd4-42a6-8151-720839173237" ref="Compensation_1.main.EndNode3" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="948" y="208"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="fb034f29-a945-422f-a006-36df9482ccaf" id="461b7b45-7c92-4edf-aaaa-ed6534944855" ref="Compensation_1.main.Transition1" to="8276b9c7-8882-43bd-8b40-fd1f2c4e4002" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="8276b9c7-8882-43bd-8b40-fd1f2c4e4002" id="0dadfbac-9033-4343-b4cd-625f75be0101" ref="Compensation_1.main.Transition2" to="4a2d2a70-aa60-4c87-a114-a8133676f774" type="transition">
+        <f20:figure>
+          <f20:line point-list="(176,61)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="8276b9c7-8882-43bd-8b40-fd1f2c4e4002" id="5435b6a3-4d20-45f1-a640-623c11a45e70" ref="Compensation_1.main.Transition3" to="b2c3b952-d91a-4e45-ab09-2f79acf23cc1" type="transition">
+        <f20:figure>
+          <f20:line point-list="(177,296)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="4a2d2a70-aa60-4c87-a114-a8133676f774" id="e4805a6d-e828-4c1c-99a2-89ad8ba1b4c6" ref="Compensation_1.main.Transition4" to="33c7970b-8935-4705-ba9b-f40ea7b3879f" type="transition">
+        <f20:figure>
+          <f20:line point-list="(526,60)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="b2c3b952-d91a-4e45-ab09-2f79acf23cc1" id="a9ae197c-e829-4c76-90cf-0014daddc2fe" ref="Compensation_1.main.Transition5" to="33c7970b-8935-4705-ba9b-f40ea7b3879f" type="transition">
+        <f20:figure>
+          <f20:line point-list="(526,296)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="33c7970b-8935-4705-ba9b-f40ea7b3879f" id="4cf887e6-59aa-4dff-a0d0-4b1626270d39" ref="Compensation_1.main.Transition6" to="3c7be401-fed6-4dad-84c6-db2a2a6b4c2e" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="8e776216-bb81-4fb1-9648-553c56253a24" id="e8c424b0-d71b-45c1-9cfb-a8dc49d78cca" ref="Compensation_1.main.Transition8" to="88b0367f-aaae-4a55-b279-80cb7be47582" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="79a44081-2bcd-4331-a2e7-6198c90225a3" id="b8b468d6-c7e1-410c-9ea3-3755e34b08dd" ref="Compensation_1.main.Transition9" to="17bec4bf-e5d7-4796-8554-f069b831e55a" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="0b2d2e07-b8fc-4abc-a8da-6f9726f5fff5" id="d2be2cb1-795e-4f15-a02d-f9ece47fc01f" ref="Compensation_1.main.Transition10" to="31583331-218d-4d90-9198-263f9b102e91" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="3c7be401-fed6-4dad-84c6-db2a2a6b4c2e" id="4a47f434-8b52-4094-a354-a0c935e2dd15" ref="Compensation_1.main.Transition11" to="6564453c-a7a6-4525-aecf-2b8e5b9c55e7" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="6564453c-a7a6-4525-aecf-2b8e5b9c55e7" id="e75afd72-ce9f-40f8-8af1-4cac04ed39c9" ref="Compensation_1.main.Transition12" to="dd145a7f-4553-4626-a360-6968813f925f" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(2,-14)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="6564453c-a7a6-4525-aecf-2b8e5b9c55e7" id="ebb0e10a-2504-4093-a78b-a3a6132da201" ref="Compensation_1.main.Transition13" to="d175fc4a-ddd5-466f-8aaa-9b9fefce5135" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(3,-10)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="6564453c-a7a6-4525-aecf-2b8e5b9c55e7" id="38ebdd64-91bf-4a72-bb58-5f37bb6d31ee" ref="Compensation_1.main.Transition14" to="347e2c5e-cbd4-42a6-8151-720839173237" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(6,-8)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

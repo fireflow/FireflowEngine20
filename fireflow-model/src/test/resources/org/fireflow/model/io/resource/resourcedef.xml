@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+  <r:resource display-name="流程创建者" id="ProcessCreator" name="ProcessCreator" resource-type="org.fireflow.constants.ProcessInstanceCreator"/>
+  <r:resource display-name="申报人" id="Applicant" name="Applicant" resource-type="org.fireflow.constants.ProcessInstanceCreator">
+    <r:extended-attributes>
+      <r:extended-attribute name="ACTIVITY_ID" value="process1.main_flow.activity1"/>
+    </r:extended-attributes>
+  </r:resource>
+  <r:resource display-name="流程变量" id="var_implement" name="var_implement" resource-type="org.fireflow.constants.VariableImplication">
+    <r:extended-attributes>
+      <r:extended-attribute name="VARIABLE_NAME" value="var1"/>
+    </r:extended-attributes>
+  </r:resource>
+  <r:resource display-name="临时工作组1" id="TempGroup1" name="TempGroup1" resource-type="org.fireflow.constants.Custom">
+    <r:resolver bean-name="resolver_bean_1"/>
+  </r:resource>
+  <r:resource display-name="临时工作组2" id="TempGroup2" name="TempGroup2" resource-type="org.fireflow.constants.Custom">
+    <r:resolver class-name="com.fireflow.demo.TheResourceResolver"/>
+  </r:resource>
+</r:resources>

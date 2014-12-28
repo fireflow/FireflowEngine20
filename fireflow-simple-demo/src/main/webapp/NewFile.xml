@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div class="TreeMenu" id="CategoryTree">
+	<h4>CSS树形菜单</h4>
+	<ul>
+		<li class="Opened">
+			<img class="s" src="css/s.gif" onclick="javascript:ChangeStatus(this);" />
+			<a href="#" onclick="javascript:ChangeStatus(this);">根节点</a>
+			<ul>
+				<li class="Closed">
+					<img class="s" src="css/s.gif" onclick="javascript:ChangeStatus(this);" />
+					<a href="#" onclick="javascript:ChangeStatus(this);">学习</a>
+					<ul>
+						<li class="Closed">
+							<img class="s" src="css/s.gif" onclick="javascript:ChangeStatus(this);" />
+							<a href="#" onclick="javascript:ChangeStatus(this);">编程</a>
+
+							<ul>
+								<li class="Child">
+									<img class="s" src="css/s.gif" />
+									<a href="http://www.csdn.net" target="mainFrame">csdn</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<ul>
+						<li class="Closed">
+							<img class="s" src="css/s.gif" onclick="javascript:ChangeStatus(this);" />
+							<a href="#" onclick="javascript:ChangeStatus(this);">网络</a>
+
+							<ul>
+								<li class="Child">
+									<img class="s" src="css/s.gif" />
+									<a href="http://www.csdn.net" target="mainFrame">csdn</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<ul>
+						<li class="Closed">
+							<img class="s" src="css/s.gif" onclick="javascript:ChangeStatus(this);" />
+							<a href="#" onclick="javascript:ChangeStatus(this);">网站制作</a>
+
+							<ul>
+								<li class="Child">
+									<img class="s" src="css/s.gif" />
+									<a href="http://www.csdn.net" target="mainFrame">csdn</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+				</li>
+			</ul>
+			<ul>
+				<li class="Closed">
+					<img class="s" src="css/s.gif" onclick="javascript:ChangeStatus(this);" />
+					<a href="#" onclick="javascript:ChangeStatus(this);">娱乐</a>
+					<ul>
+						<li class="Child">
+							<img class="s" src="css/s.gif" />
+							<a href="http://www.163.com" target="mainFrame">网易</a>
+						</li>
+					</ul>
+					<ul>
+						<li class="Child">
+							<img class="s" src="css/s.gif" />
+							<a href="http://www.sina.com" target="mainFrame">新浪</a>
+						</li>
+					</ul>
+					<ul>
+						<li class="Child">
+							<img class="s" src="css/s.gif" />
+							<a href="http://www.sohu.com" target="mainFrame">搜狐</a>
+						</li>
+					</ul>
+					<ul>
+						<li class="Child">
+							<img class="s" src="css/s.gif" />
+							<a href="http://www.maopu.com" target="mainFrame">猫扑</a>
+						</li>
+					</ul>
+
+				</li>
+			</ul>
+			<ul>
+				<li class="Closed">
+					<img class="s" src="css/s.gif" onclick="javascript:ChangeStatus(this);" />
+					<a href="#" onclick="javascript:ChangeStatus(this);">新闻</a>
+					<ul>
+						<li class="Child">
+							<img class="s" src="css/s.gif" />
+							<a href="http://www.cctv.com" target="mainFrame">中央电视台</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<ul>
+				<li class="Closed">
+					<img class="s" src="css/s.gif" onclick="javascript:ChangeStatus(this);" />
+					<a href="#" onclick="javascript:ChangeStatus(this);">测试</a>
+				</li>
+			</ul>
+		</li>
+
+	</ul>
+</div>

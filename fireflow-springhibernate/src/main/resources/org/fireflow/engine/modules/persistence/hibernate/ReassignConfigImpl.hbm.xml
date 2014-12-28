@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class dynamic-update="true"
+		name="org.fireflow.engine.entity.config.impl.ReassignConfigImpl" table="T_FF_CFG_REASSIGN_CONFIG">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid.hex">
+			</generator>
+		</id>
+		<property name="processId" type="java.lang.String">
+			<column length="100" name="PROCESS_ID" not-null="true" />
+		</property>
+		<property name="processType" type="java.lang.String">
+			<column length="100" name="PROCESS_TYPE" not-null="true" />
+		</property>			
+					
+		<property name="processName" type="java.lang.String">
+			<column length="100" name="PROCESS_NAME" not-null="true" />
+		</property>
+		<property name="processDisplayName" type="java.lang.String">
+			<column length="128" name="PROCESS_DISPLAY_NAME" />
+		</property>
+		
+		<property name="activityId" type="java.lang.String">
+			<column length="100" name="ACTIVITY_ID" not-null="true" />
+		</property>		
+		<property name="activityName" type="java.lang.String" update="false">
+			<column length="100" name="ACTIVITY_NAME" not-null="true">
+				<comment>活动名称</comment>
+			</column>
+		</property>
+		<property name="activityDisplayName" type="java.lang.String" update="false">
+			<column length="128" name="ACTIVITY_DISPLAY_NAME">
+				<comment>活动中文名称</comment>
+			</column>
+		</property>	
+		
+		<property name="grantorId" type="java.lang.String">
+			<column length="100" name="GRANTOR_ID" not-null="true" />
+		</property>
+		<property name="grantorName" type="java.lang.String">
+			<column length="100" name="GRANTOR_NAME" not-null="true" />
+		</property>			
+					
+		<property name="grantorDeptId" type="java.lang.String">
+			<column length="100" name="GRANTOR_DEPT_ID" not-null="true" />
+		</property>
+		<property name="grantorDeptName" type="java.lang.String">
+			<column length="128" name="GRANTOR_DEPT_NAME" />
+		</property>	
+		
+		<property name="agentId" type="java.lang.String">
+			<column length="100" name="AGENT_ID" not-null="true" />
+		</property>			
+					
+		<property name="agentName" type="java.lang.String">
+			<column length="100" name="AGENT_NAME" not-null="true" />
+		</property>
+		<property name="agentType" type="java.lang.String">
+			<column length="128" name="AGENT_TYPE" not-null="true"/>
+		</property>			
+		
+		<property name="alive" type="java.lang.Boolean">
+			<column length="1" name="ALIVE" not-null="true">
+				<comment>是否有效</comment>
+			</column>
+		</property>
+
+		<property name="startTime" type="java.util.Date" >
+			<column name="START_TIME" not-null="true">
+				<comment>起始时间</comment>
+			</column>
+		</property>		
+		<property name="endTime" type="java.util.Date" >
+			<column name="END_TIME" not-null="true">
+				<comment>终止时间</comment>
+			</column>
+		</property>		
+		
+		<property name="lastUpdateTime" type="java.util.Date"  generated="always" >
+			<column name="LAST_UPDATE_TIME"  sql-type="timestamp"  default="CURRENT_TIMESTAMP">
+				<comment>最后更新时间</comment>
+			</column>
+		</property>						
+</class>
+</hibernate-mapping>		

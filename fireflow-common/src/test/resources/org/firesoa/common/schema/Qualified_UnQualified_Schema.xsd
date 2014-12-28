@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/Qualified_UnQualified_Schema"
+	xmlns:tns="http://www.example.org/Qualified_UnQualified_Schema"
+	elementFormDefault="qualified" xmlns:pref="http://www.example.org/Unqualified_Schema" attributeFormDefault="qualified">
+	<import schemaLocation="Unqualified_Schema.xsd" namespace="http://www.example.org/Unqualified_Schema"></import>
+
+	<element name="Person" type="tns:PersonType"></element>
+
+	<complexType name="PersonType">
+		<sequence>
+			<element name="name" type="string"></element>
+			<element ref="pref:Foo"></element>
+			<element name="person_foo" type="pref:FooType"></element>
+		</sequence>
+		<attribute name="person_attr_1" type="string"></attribute>
+	</complexType>
+</schema>

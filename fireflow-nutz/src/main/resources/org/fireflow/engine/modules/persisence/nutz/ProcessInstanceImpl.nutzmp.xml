@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nutz-mapping>
+	<class name="org.fireflow.engine.entity.runtime.impl.ProcessInstanceImpl" table="T_FF_RT_PROCESS_INSTANCE">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+		</id>
+		<property name="bizId" type="java.lang.String">
+			<column length="100" name="BIZ_ID" >
+				<comment>业务表单Id</comment>
+			</column>
+		</property>		
+		<property name="processId" type="java.lang.String" update="false">
+			<column length="100" name="PROCESS_ID" not-null="true">
+				<comment>流程Id</comment>
+			</column>
+		</property>
+		<property name="version" type="java.lang.Integer" update="false">
+			<column length="4" name="VERSION" not-null="true">
+				<comment>流程版本号</comment>
+			</column>
+		</property>
+		<property name="processType" type="java.lang.String" update="false">
+			<column length="100" name="PROCESS_TYPE" not-null="true">
+				<comment>流程类型</comment>
+			</column>
+		</property>		
+		<property name="subProcessId" type="java.lang.String" update="false">
+			<column length="100" name="SUBPROCESS_ID" not-null="true">
+				<comment>子流程Id</comment>
+			</column>
+		</property>				
+		<property name="processName" type="java.lang.String" update="false">
+			<column length="128" name="PROCESS_NAME">
+				<comment>流程名称</comment>
+			</column>
+		</property>
+		<property name="processDisplayName" type="java.lang.String" update="false">
+			<column length="128" name="PROCESS_DISPLAY_NAME">
+				<comment>流程显示名称</comment>
+			</column>
+		</property>
+		<property name="subProcessName" type="java.lang.String" update="false">
+			<column length="128" name="SUBPROCESS_NAME" >
+				<comment>子流程名称</comment>
+			</column>
+		</property>	
+		<property name="subProcessDisplayName" type="java.lang.String" update="false">
+			<column length="128" name="SUBPROCESS_DISPLAY_NAME" >
+				<comment>子流程显示名称</comment>
+			</column>
+		</property>			
+		<property name="bizType" type="java.lang.String"  update="false">
+			<column length="200" name="BIZ_TYPE">
+				<comment>业务类别名称</comment>
+			</column>
+		</property>		
+		<property name="packageId" type="java.lang.String"  update="false">
+			<column length="256" name="PACKAGE_ID">
+				<comment>业务类别名称</comment>
+			</column>
+		</property>			
+		<property name="state" type="org.fireflow.engine.modules.persistence.hibernate.ProcessInstanceStateType">
+			<column length="2" name="STATE" not-null="true">
+				<comment>流程实例状态</comment>
+			</column>
+		</property>
+		<property name="suspended" type="java.lang.Boolean">
+			<column length="1" name="SUSPENDED" not-null="true">
+				<comment>是否被挂起</comment>
+			</column>
+		</property>
+		<property name="creatorId" type="java.lang.String"  update="false">
+			<column name="CREATOR_ID" length="50"  not-null="true">
+				<comment>创建者Id</comment>
+			</column>
+		</property>
+		<property name="creatorName" type="java.lang.String"  update="false">
+			<column name="CREATOR_NAME" length="50">
+				<comment>创建者姓名</comment>
+			</column>
+		</property>		
+		<property name="creatorDeptId" type="java.lang.String"  update="false">
+			<column name="CREATOR_DEPT_ID" length="50" >
+				<comment>创建者所属部门Id</comment>
+			</column>
+		</property>		
+		<property name="creatorDeptName" type="java.lang.String"  update="false">
+			<column name="CREATOR_DEPT_NAME" length="50">
+				<comment>创建者所属部门名称</comment>
+			</column>
+		</property>
+				
+		<property name="createdTime" type="java.util.Date" update="false">
+			<column name="CREATED_TIME"  not-null="true">
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		<property name="startedTime" type="java.util.Date">
+			<column name="STARTED_TIME">
+				<comment>启动时间</comment>
+			</column>
+		</property>
+		<property name="expiredTime" type="java.util.Date">
+			<column name="EXPIRED_TIME">
+				<comment>到期时间</comment>
+			</column>
+		</property>
+		<property name="endTime" type="java.util.Date">
+			<column name="END_TIME">
+				<comment>终止时间</comment>
+			</column>
+		</property>
+		<property name="parentProcessInstanceId" type="java.lang.String"
+			update="false">
+			<column length="50" name="PARENT_PROCESS_INSTANCE_ID">
+				<comment>父流程实例Id</comment>
+			</column>
+		</property>
+		<property name="parentActivityInstanceId" type="java.lang.String"
+			update="false">
+			<column length="50" name="PARENT_ACTIVITY_INSTANCE_ID">
+				<comment>父活动实例id</comment>
+			</column>
+		</property>
+		
+		<property name="parentScopeId" type="java.lang.String"
+			update="false">
+			<column length="50" name="PARENT_SCOPE_ID">
+				<comment>父Scope Id</comment>
+			</column>
+		</property>
+		<property name="tokenId" type="java.lang.String">
+			<column length="50" name="TOKEN_ID">
+				<comment>Token Id</comment>
+			</column>
+		</property>
+		<property name="note" type="java.lang.String"
+			update="true">
+			<column length="1000" name="NOTE">
+				<comment>备注信息</comment>
+			</column>
+		</property>		
+		
+		<property name="lastUpdateTime" type="java.util.Date"  generated="always" >
+			<column name="LAST_UPDATE_TIME"  sql-type="timestamp"  default="CURRENT_TIMESTAMP">
+				<comment>最后更新时间</comment>
+			</column>
+		</property>			
+	</class>
+
+</nutz-mapping>

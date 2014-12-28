@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/UnQualified_Unqualified_Schema"
+	xmlns:tns="http://www.example.org/UnQualified_Unqualified_Schema"
+	elementFormDefault="unqualified" xmlns:pref="http://www.example.org/Unqualified_Schema" attributeFormDefault="unqualified">
+	<import schemaLocation="Unqualified_Schema.xsd" namespace="http://www.example.org/Unqualified_Schema"></import>
+
+	<element name="Bar" type="tns:BarType"></element>
+
+	<complexType name="BarType">
+		<sequence>
+			<element name="bar_1" type="string"></element>
+			<element name="bar_2" type="string"></element>
+			<element name="bar_foo" type="pref:FooType"></element>
+			<element ref="pref:Foo"></element>
+			<element name="bar_3" type="tns:TmpType"/>
+		</sequence>
+		<attribute name="bar_aatr_1" type="string"></attribute>
+	</complexType>
+	
+	<complexType name="TmpType">
+		<sequence>
+			<element name="bar_3_1" type="string"/>
+			<element ref="pref:Foo"></element>
+		</sequence>
+	</complexType>
+</schema>

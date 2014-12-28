@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>fireflow</artifactId>
+		<groupId>org.fireflow</groupId>
+		<version>2.0.0-SNAPSHOT</version>
+	</parent>
+	<groupId>org.fireflow</groupId>
+	<artifactId>fireflow-simple-demo</artifactId>
+	<version>2.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>fireflow-simple-demo Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fireflow</groupId>
+			<artifactId>fireflow-common</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fireflow</groupId>
+			<artifactId>fireflow-engine</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fireflow</groupId>
+			<artifactId>fireflow-fpdl20</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fireflow</groupId>
+			<artifactId>fireflow-model</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fireflow</groupId>
+			<artifactId>fireflow-services</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fireflow</groupId>
+			<artifactId>fireflow-simulator</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fireflow</groupId>
+			<artifactId>fireflow-client-widget</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>fireflow-simple-demo</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat6-maven-plugin</artifactId>
+					<version>2.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+
+</project>

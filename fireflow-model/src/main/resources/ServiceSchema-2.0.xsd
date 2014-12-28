@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.fireflow.org/schema/service/20"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:s="http://www.fireflow.org/schema/service/20">
+
+
+	<include schemaLocation="ServiceSchema-2.0-Core.xsd"></include>
+	<include schemaLocation="../../../../fireflow-services/src/main/java/org/fireflow/service/java/ServiceSchema-2.0-Java.xsd"></include>
+</schema>

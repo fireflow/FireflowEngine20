@@ -1,0 +1,131 @@
+<taglib xsi:schemaLocation="http://java.sun.com/xml/ns/javaee web-jsptaglibrary_2_1.xsd"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="2.1">
+
+	<!-- ============== Tag Library Description Elements ============= -->
+	<tlib-version>2.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>ff</short-name>
+	<uri>http://www.firesoa.com/fireflow-client-widget/taglib</uri>
+	<display-name>fireflow</display-name>
+	<description>
+	</description>
+
+	<!-- ===================== tags for process diagram ============================ -->
+
+	<tag>
+
+		<name>process-diagram</name>
+		<tag-class>org.fireflow.webdesigner.tag.ProcessDiagramTag
+		</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			显示流程图
+    </description>
+		<attribute>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+			<type>String</type>
+		</attribute>
+
+		<attribute>
+			<name>processId</name>
+			<required>true</required>
+			<type>
+				java.lang.String
+                </type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>subProcessName</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>version</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!--  采用固定值
+		<attribute>
+			<name>rtCtxBeanName</name>
+			<required>false</required>
+			<type>
+				java.lang.String
+      		</type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		-->
+		
+		<attribute>
+			<name>useFireflowJQueryUI</name>
+			<required>false</required>
+			<type>
+				java.lang.Boolean
+      		</type>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>	
+		
+		<attribute>
+			<name>useFireflowJQueryTheme</name>
+			<required>false</required>
+			<type>
+				java.lang.String
+      		</type>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>	
+		
+		<!--  采用固定值 
+		<attribute>
+			<name>clientWidgetServletPath</name>
+			<required>false</required>
+			<type>
+				java.lang.String
+      		</type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>		
+		-->
+
+		<attribute>
+			<name>width</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>height</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>borderWidth</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>borderColor</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+	</tag>
+
+</taglib>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="bpelLanguage" 
+		class="org.fireflow.engine.context.ProcessDefinitionLanguageExtension">
+		<property name="processType">
+			<value>BPEL</value>
+		</property>
+		<property name="description">
+			<value>A simple extension for some bpel language grammars, such as If,While,Sequence,etc.</value>
+		</property>
+		<!-- 扩展的引擎模块 		-->
+		<property name="engineModules">
+			<map>
+				<entry key="org.fireflow.engine.modules.processlanguage.ProcessLanguageManager">
+					<bean class="org.fireflow.pdl.bpel.enginemodules.BpelManager"></bean>
+				</entry>
+				<entry key="org.fireflow.engine.modules.instancemanager.ProcessInstanceManager">
+					<bean class="org.fireflow.pdl.bpel.enginemodules.ProcessInstanceManagerBpelImpl"/>
+				</entry>
+				<entry key="org.fireflow.engine.modules.instancemanager.ActivityInstanceManager">
+					<bean class="org.fireflow.pdl.bpel.enginemodules.ActivityInstanceManagerBpelImpl"/>
+				</entry>				
+				
+				<entry key="org.fireflow.pvm.translate.Process2PObjectTranslator">
+					<bean class="org.fireflow.pdl.bpel.enginemodules.Process2PObjectTranslatorBpelImpl"/>
+				</entry>
+			
+				
+			</map>
+		</property>
+	</bean>
+</beans>

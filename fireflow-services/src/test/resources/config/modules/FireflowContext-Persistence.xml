@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="hibernatePersistenceService"
+		class="org.fireflow.engine.modules.persistence.PersistenceServiceDefaultImpl">
+		<property name="tokenPersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.TokenPersisterHibernateImpl">
+				<property name="sessionFactory">
+					<ref bean="hibernateSessionFactory"/>
+				</property>
+			</bean>
+		</property>
+		<property name="activityInstancePersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ActivityInstancePersisterHibernateImpl">
+				<property name="sessionFactory">
+					<ref bean="hibernateSessionFactory"/>
+				</property>			
+			</bean>
+		</property>
+		<property name="processInstancePersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ProcessInstancePersisterHibernateImpl">
+				<property name="sessionFactory">
+					<ref bean="hibernateSessionFactory"/>
+				</property>			
+			</bean>
+		</property>
+		<property name="variablePersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.VariablePersisterHibernateImpl">
+				<property name="sessionFactory">
+					<ref bean="hibernateSessionFactory"/>
+				</property>			
+			</bean>
+		</property>		
+		<property name="scheduleJobPersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ScheduleJobPersisterHibernateImpl">
+				<property name="sessionFactory">
+					<ref bean="hibernateSessionFactory"/>
+				</property>			
+			</bean>
+		</property>
+		<property name="processPersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ProcessPersisterHibernateImpl">
+				<property name="sessionFactory">
+					<ref bean="hibernateSessionFactory"/>
+				</property>				
+			</bean>
+		</property>
+		
+		<property name="workItemPersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.WorkItemPersisterHibernateImpl">
+				<property name="sessionFactory">
+					<ref bean="hibernateSessionFactory"/>
+				</property>				
+			</bean>
+		</property>			
+		
+		<property name="reassignConfigPersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ReassignConfigPersisterHibernateImpl">
+				<property name="sessionFactory">
+					<ref bean="hibernateSessionFactory"/>
+				</property>				
+			</bean>
+		</property>	
+		
+		<!-- Resource Persister and Service Persister -->	
+		<!-- 
+		<property name="resourcePersister">
+			<bean class="org.fireflow.engine.modules.persistence.classpath.ResourcePersisterClassPathImpl">
+			</bean>
+		</property>
+		 -->		
+		<!-- 
+		<property name="servicePersister">
+			<bean class="org.fireflow.engine.modules.persistence.classpath.ServicePersisterClassPathImpl">
+			</bean>
+		</property>	
+		 -->	
+		<property name="resourcePersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ResourcePersisterHibernateImpl">
+				<property name="sessionFactory">
+					<ref bean="hibernateSessionFactory"/>
+				</property>				
+			</bean>
+		</property>			 
+		 
+		<property name="servicePersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ServicePersisterHibernateImpl">
+				<property name="sessionFactory">
+					<ref bean="hibernateSessionFactory"/>
+				</property>				
+			</bean>
+		</property>			
+		
+	</bean>	
+</beans>

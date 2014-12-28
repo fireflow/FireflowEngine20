@@ -1,0 +1,132 @@
+#title: 1.b.48 发行注记
+#index:0,1
+#author:zozoh(zozohtnt@gmail.com)
+--------------------------------------------------------------------------------------------------------
+1.b.48 发行注记
+
+    大家好，天气暖和了，春天和 H1N9 一起在雾霾之后接踵而来。为了防止 [http://wendal.net Wendal]扁我，马上
+    开始写发行注记 -_-!
+
+    好久木有发布 Nutz 了，这个版也是个 bug fix 版，请大家安心升级。
+
+    由于最近心情沉痛，就不多说什么了。让我们一起祝愿雅安的公民们度过这一劫。
+
+    这个时候才知道自己弱小，如果 Nutz 这个松散的组织有一定人力物力的话，我们就 ... 
+
+    或许我们不能仅仅满足自己安逸的生活，或许我们应该再努力一些，这样，在需要的时候，我们才有能力为他人伸出
+    帮助之手，而不是像现在这样心里发两个祝愿了事。
+
+    ------------------------------ Nutz 的下载地址的分隔线 -------------------------
+
+     * 稳定版下载地址 : [http://code.google.com/p/nutz/downloads/list]
+     * 日编译下载地址 : [https://oss.sonatype.org/content/repositories/snapshots/org/nutz/nutz/]
+     * Nutz 的主页 :  [http://nutzam.com]
+
+--------------------------------------------------------------------------------------------------------
+问题修复
+
+    * [https://github.com/nutzam/nutz/issues/435 Issue 435] `适配器应支持yyyy-MM-dd格式也可以转时间戳类型` {#888;by} {*winstars}
+    * [https://github.com/nutzam/nutz/issues/434 Issue 434] `SQLServer2005分页语句没有进行页内排序` {#888;by} {*happyday517}
+    * [https://github.com/nutzam/nutz/issues/432 Issue 432] `nutz-1.b.44升级nutz-1.b.47，原应用中的国际化失效，jsp取不到{msg....}等信息` {#888;by} {*naily}
+    * [https://github.com/nutzam/nutz/issues/429 Issue 429] `在“7.8.4.1.2. 使用 JSTL”章节存在描述多余的文字，见截图！` {#888;by} {*glenzcs}
+    * [https://github.com/nutzam/nutz/issues/428 Issue 428] `AbstractJdbcExpert.setupEntityField(Connection conn, Entity<?> en)捕获的异常提示尴尬` {#888;by} {*gstripe}
+    * [https://github.com/nutzam/nutz/issues/427 Issue 427] `分页 page 为0 没报错提示` {#888;by} {*xushoudong}
+    * [https://github.com/nutzam/nutz/issues/422 Issue 422] `LazyNutDao取Many和ManyMany会报错或进入死循环` {#888;by} {*ericktang}
+    * [https://github.com/nutzam/nutz/issues/421 Issue 421] `完善@SessionBy在文档中的说明` {#888;by} {*kyo19}
+    * [https://github.com/nutzam/nutz/issues/415 Issue 415] `增加ignoreResourceNotFound属性，指示是否可以忽略无法加载到的文件` {#888;by} {*hzl7652}
+    * [https://github.com/nutzam/nutz/issues/410 Issue 410] `v1.b.43+的Scans.rs2class方法存在严重的性能问题` {#888;by} {*lAndRaxeE}
+    * [https://github.com/nutzam/nutz/issues/404 Issue 404] `XmlIocLoader为支持app标签` {#888;by} {*lAndRaxeE}
+    * [https://github.com/nutzam/nutz/issues/402 Issue 402] `异常去壳的策略疑问` {#888;by} {*liangx8}
+    * [https://github.com/nutzam/nutz/issues/401 Issue 401] `某些情况下，XmlIocLoader会将一个xml文件加载两次` {#888;by} {*lAndRaxeE}
+    * [https://github.com/nutzam/nutz/issues/396 Issue 396] `关于1.48版本中一对多同时插入master和pets的时候，pets中关联的masterID为0 的原因` {#888;by} {*jacking124}
+    * [https://github.com/nutzam/nutz/issues/395 Issue 395] `在使用一对多的过程中同时删除master和pets的时候` {#888;by} {*jacking124}
+    * [https://github.com/nutzam/nutz/issues/394 Issue 394] `Sql 不支持类似于 EXEC [cms].dbo.sp_get_system_image 这样的语句` {#888;by} {*qinerg}
+    * [https://github.com/nutzam/nutz/issues/392 Issue 392] `Mirror.blankArrayArg() 无法处理以 byte[] 为参数的构造函数` {#888;by} {*biggates}
+    * [https://github.com/nutzam/nutz/issues/372 Issue 372] `@Ok("raw:json")返回的Content-Type值的问题` {#888;by} {*ywjno}
+    * [https://github.com/nutzam/nutz/issues/366 Issue 366] `NutMvc在android上启动不了,找不到default-chains.js文件` {#888;by} {*wendal}
+    * [https://github.com/nutzam/nutz/issues/354 Issue 354] `http无法设置timeout` {#888;by} {*hujun82589167}
+    * [https://github.com/nutzam/nutz/issues/352 Issue 352] `Mvc 的入口函数参数支持 InputStream 和 Reader` {#888;by} {*zozoh}
+    * [https://github.com/nutzam/nutz/issues/343 Issue 343] `1.b.45转换为json时，报空指针 (getter方法调用失败)` {#888;by} {*for5million}
+
+--------------------------------------------------------------------------------------------------------
+质量
+	共通过了 {#FF00FF;*826}  个单元测试用例,代码覆盖率达到 {#FF00FF;70%}(按line计算)
+
+    <http://www.nutzam.com/wiki/img/emma.png>
+	 
+	Nutz.Dao 经测试在如下数据库上可以工作正常
+	 * [http://www.h2database.com H2]
+	 * [http://www.sqlite.org SQLite] -- 仅有限支持事务操作
+	 * [http://hsqldb.org hsqldb]
+	 * [http://www.mysql.com MySql]
+	 * [http://www.oracle.com Oracle]
+	 * [http://www.postgresql.org Postgresql]
+	 * [http://www.microsoft.com/hk/sql/default.mspx SqlServer2005]
+	 * [http://www.microsoft.com/hk/sql/default.mspx SqlServer2000]
+	 * [http://www.ibm.com/software/data/db2/ DB2]
+	 * [http://db.apache.org/derby/ Derby]
+
+--------------------------------------------------------------------------------------------------------
+文档
+
+    * 增加 [http://nutzam.com/doc/html/#mvc/session.html Session机制]
+    * 修改 [http://nutzam.com/doc/html/#ioc/events.html 事件监听]
+
+--------------------------------------------------------------------------------------------------------
+主要贡献者名单
+	贡献的种类:
+	 * 问题: 给项目的[https://github.com/nutzam/nutz/issues 问题列表]汇报一个上的问题，并且该问题被本次发布包括
+	 * 博客: 在本版本开发期间，写过关于 Nutz 的文章，并被 [http://code.google.com/p/nutz/wiki/appendix_resources 推荐列表]收录
+	 * 代码: 提交过至少一个修订
+	 * Demo: 为 [https://github.com/nutzam/nutzdemo NutzDemo] 提交过代码
+	 * 文档: 提交过文档，在讨论区发帖或者通过文档上的留言指出现有文档存在的问题
+	 * 测试: 发布前，参与测试周发布人给出的任务
+	 
+	 如有遗漏,请提醒我们 ^_^
+	 
+	{#CCC;/贡献列表，我已经写了一个小程序，根据 Issue 列表来自动统计...}   
+    
+    || 贡献者          || 问题 || 博客 || 支持 || 代码 || 示例 || 文档 || 测试 ||
+    || Aduan           ||  -   ||  -   ||  O   ||  -   ||  -   ||  -   ||  -   ||
+    || biggates        ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || conanca         ||  -   ||  -   ||  -   ||  O   ||  -   ||  -   ||  -   ||
+    || ericktang       ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || for5million     ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || glenzcs         ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || gstripe         ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || hujun82589167   ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || hzl7652         ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || jacking124      ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || kyo19           ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || lAndRaxeE       ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || liangx8         ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || naily           ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || qinerg          ||  O   ||  -   ||  -   ||  O   ||  -   ||  -   ||  -   ||
+    || tom.wen         ||  -   ||  -   ||  -   ||  -   ||  -   ||  O   ||  -   ||
+    || wendal          ||  O   ||  O   ||  O   ||  O   ||  O   ||  O   ||  O   ||
+    || winstars        ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || xushoudong      ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+    || zozoh           ||  O   ||  -   ||  -   ||  O   ||  -   ||  O   ||  -   ||
+    || 冬天的温泉      ||  O   ||  -   ||  O   ||  O   ||  -   ||  O   ||  O   ||
+    || 鲁鲁            ||  -   ||  -   ||  -   ||  O   ||  -   ||  -   ||  -   ||
+    || 罗马钟          ||  -   ||  -   ||  -   ||  O   ||  -   ||  -   ||  -   ||
+    || 王成            ||  -   ||  -   ||  -   ||  O   ||  -   ||  -   ||  -   ||
+    || 幸福的旁边      ||  O   ||  -   ||  -   ||  -   ||  -   ||  -   ||  -   ||
+
+
+
+	另外，很多朋友都在：
+	 * [https://groups.google.bg/group/nutzam?hl=zh-CN Nutzam 讨论区]
+	 * [http://qun.qq.com/air/#58444676 Nutz & XBlink （58444676 超级群）]
+	 * [http://qun.qq.com/#jointhegroup/gid/60504323 Nutz在微笑 （60504323）超级群]
+     * [http://qun.qq.com/#jointhegroup/gid/68428921 Nutz ② 群 （68428921）超级群]
+	 * GTalk 聊天群 {#AAAAAA;/添加帐号 nutzam@chatterous.com 为好友，然后发送 @join 指令}
+     * [http://q.weibo.com/128323 Nutz的新浪微群]
+     * [http://www.douban.com/group/339199/ Nutz的豆瓣小组]
+     * [http://www.chatterous.com/nutzam/ Nutz的聊天室]
+	回答新手的问题，我们现在只能根据印象草草统计，贡献列表非常不完善。
+	我们正在想办法，争取在不远的将来，能记录下来大家每一点一滴的付出 ^_^!
+	
+	欢迎访问[http://nutzam.com 官网],以获取 [https://oss.sonatype.org/content/repositories/snapshots/org/nutz/nutz/ 最新的快照版] 和
+	[http://nutzam.com/doc/html/ 用户手册]
+

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="GBK"?><f20:workflow-process xmlns:f20="http://www.fireflow.org/schema/workflowprocess" biz-category="" display-name="And分支_1" id="AndSplit_1" name="AndSplit_1">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service"/>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="AndSplit_1.main.StartNode1" id="AndSplit_1.main" name="main">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="x" id="AndSplit_1.main.x" init-value="0" name="x"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="AndSplit_1.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="Activity1" id="AndSplit_1.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1"/>
+        <f20:activity display-name="Activity2" id="AndSplit_1.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2"/>
+        <f20:activity display-name="Activity3" id="AndSplit_1.main.Activity3" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity3"/>
+        <f20:activity display-name="Activity4" id="AndSplit_1.main.Activity4" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity4"/>
+        <f20:activity display-name="Activity5" id="AndSplit_1.main.Activity5" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity5"/>
+      </f20:activities>
+      <f20:routers>
+        <f20:router display-name="And分支" id="AndSplit_1.main.Router1" name="Router1">
+          <f20:features>
+            <f20:andjoin-andsplit-feature/>
+          </f20:features>
+        </f20:router>
+      </f20:routers>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="AndSplit_1.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+        <f20:end-node display-name="EndNode2" id="AndSplit_1.main.EndNode2" name="EndNode2">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+        <f20:end-node display-name="EndNode3" id="AndSplit_1.main.EndNode3" name="EndNode3">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="" from="AndSplit_1.main.StartNode1" id="AndSplit_1.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="AndSplit_1.main.Activity1"/>
+        <f20:transition display-name="" from="AndSplit_1.main.Activity1" id="AndSplit_1.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="AndSplit_1.main.Router1"/>
+        <f20:transition display-name="" from="AndSplit_1.main.Router1" id="AndSplit_1.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="AndSplit_1.main.Activity2"/>
+        <f20:transition display-name="processVars.x!=0" from="AndSplit_1.main.Router1" id="AndSplit_1.main.Transition4" is-default="false" is-loop="false" name="Transition4" to="AndSplit_1.main.Activity3">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[ processVars.x!=0]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+        <f20:transition display-name="" from="AndSplit_1.main.Activity2" id="AndSplit_1.main.Transition5" is-default="false" is-loop="false" name="Transition5" to="AndSplit_1.main.EndNode1"/>
+        <f20:transition display-name="" from="AndSplit_1.main.Activity3" id="AndSplit_1.main.Transition6" is-default="false" is-loop="false" name="Transition6" to="AndSplit_1.main.Activity4"/>
+        <f20:transition display-name="" from="AndSplit_1.main.Activity4" id="AndSplit_1.main.Transition7" is-default="false" is-loop="false" name="Transition7" to="AndSplit_1.main.EndNode2"/>
+        <f20:transition display-name="" from="AndSplit_1.main.Router1" id="AndSplit_1.main.Transition8" is-default="false" is-loop="false" name="Transition8" to="AndSplit_1.main.Activity5"/>
+        <f20:transition display-name="" from="AndSplit_1.main.Activity5" id="AndSplit_1.main.Transition9" is-default="false" is-loop="false" name="Transition9" to="AndSplit_1.main.EndNode3"/>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" grid-enabled="false" id="6d7b38ff-8aef-4a03-a7af-6a0019f125e2" ref="AndSplit_1.main" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="5c39ac2e-da16-4de8-9067-0b9219c9f82a" ref="AndSplit_1.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="32" y="132"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="1cf5efcb-e0fa-49b6-ac38-3a4a3fb86241" ref="AndSplit_1.main.Router1" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="271" y="132"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="fa7238f7-62e1-4ba1-b55c-677e7baa0e2b" ref="AndSplit_1.main.Activity1" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="120" y="112">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="c1b64d0d-1b76-46b2-8c67-54668836582d" ref="AndSplit_1.main.Activity2" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="384" y="13">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="023ae641-97d6-48aa-9284-6191edaa518c" ref="AndSplit_1.main.Activity3" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="384" y="225">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="4f344a80-3b16-4c44-8312-6506e15b3360" ref="AndSplit_1.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="580" y="35"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="549c4585-9f54-464c-aa2b-1187b396a8b1" ref="AndSplit_1.main.Activity4" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="543" y="225">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="cfda7808-aa77-410b-81e0-b58277225f74" ref="AndSplit_1.main.EndNode2" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="703" y="245"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="aba23d4f-ad0a-466e-9d3d-d22412e91e84" ref="AndSplit_1.main.Activity5" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="384" y="112">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="254a0ced-3fc8-44fc-8888-303ae1e42f58" ref="AndSplit_1.main.EndNode3" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="571" y="132"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="6b833f07-2292-4e0a-a9c1-62b6319937b7" type="comment">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#323232" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[And分支都被执行，分支上的条件被忽略；例如“processVars.x!=0”不会被执行]]></f20:label>
+            </f20:content>
+            <f20:bounds height="74" width="255" x="84" y="344">
+              <f20:border-style color="#696969" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#DCDCDC" gradient-style="UL2LR"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="5c39ac2e-da16-4de8-9067-0b9219c9f82a" id="5947fad6-c35d-4f34-9ede-a940e8037986" ref="AndSplit_1.main.Transition1" to="fa7238f7-62e1-4ba1-b55c-677e7baa0e2b" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="fa7238f7-62e1-4ba1-b55c-677e7baa0e2b" id="0e91cb41-8c64-427e-a445-a9de94ffd160" ref="AndSplit_1.main.Transition2" to="1cf5efcb-e0fa-49b6-ac38-3a4a3fb86241" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="1cf5efcb-e0fa-49b6-ac38-3a4a3fb86241" id="fbb59f23-f88f-4b27-9d72-d32721e9dec0" ref="AndSplit_1.main.Transition3" to="c1b64d0d-1b76-46b2-8c67-54668836582d" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="1cf5efcb-e0fa-49b6-ac38-3a4a3fb86241" id="cec7cb87-d749-4a2f-9024-c2125ecc6de5" ref="AndSplit_1.main.Transition4" to="023ae641-97d6-48aa-9284-6191edaa518c" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(-3,10)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="c1b64d0d-1b76-46b2-8c67-54668836582d" id="0d3e01b7-9c94-4864-b4c3-f323bf7ff5c0" ref="AndSplit_1.main.Transition5" to="4f344a80-3b16-4c44-8312-6506e15b3360" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="023ae641-97d6-48aa-9284-6191edaa518c" id="62aeb6d5-7abf-4a59-ba62-0292f17049f7" ref="AndSplit_1.main.Transition6" to="549c4585-9f54-464c-aa2b-1187b396a8b1" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="549c4585-9f54-464c-aa2b-1187b396a8b1" id="c2a95ebc-b6ae-4610-a166-cf1611d28f24" ref="AndSplit_1.main.Transition7" to="cfda7808-aa77-410b-81e0-b58277225f74" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="1cf5efcb-e0fa-49b6-ac38-3a4a3fb86241" id="2cd283ff-392c-414d-a7a3-50f4dd77f0d4" ref="AndSplit_1.main.Transition8" to="aba23d4f-ad0a-466e-9d3d-d22412e91e84" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="aba23d4f-ad0a-466e-9d3d-d22412e91e84" id="4f0cc65c-22a9-4419-9237-73e7568ef992" ref="AndSplit_1.main.Transition9" to="254a0ced-3fc8-44fc-8888-303ae1e42f58" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="6b833f07-2292-4e0a-a9c1-62b6319937b7" id="3a91e4bb-962b-43de-b914-dc2d3725fd63" to="1cf5efcb-e0fa-49b6-ac38-3a4a3fb86241" type="association">
+        <f20:figure>
+          <f20:line point-list="(189,245)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

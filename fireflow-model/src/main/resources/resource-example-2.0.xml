@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r:resources xmlns:r="http://www.fireflow.org/schema/resource"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fireflow.org/schema/resource ResourceSchema-2.0.xsd">
+	<r:resource display-name="" id="" name=""
+		resource-type="org.fireflow.constants.ProcessInstanceCreator">
+		<r:resolver bean-name=""></r:resolver>
+	</r:resource>
+</r:resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="processes"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/fireflow2/fireflow-common-2.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="libs/fireflow2/fireflow-engine-2.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="libs/fireflow2/fireflow-fpdl20-2.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="libs/fireflow2/fireflow-model-2.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="libs/fireflow2/fireflow-services-2.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="libs/fireflow2/fireflow-simulator-2.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

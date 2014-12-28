@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.fireflow</groupId>
+    <artifactId>fireflow</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>fireflow-springhibernate</artifactId>
+  <properties>
+		<!-- ==================================== -->
+		<!-- ===== Spring,Hibernate,JDBC 版本        === -->
+		<!-- ==================================== -->
+		<spring.version>2.5.6</spring.version>
+		<hibernate.version>3.1.3</hibernate.version> 
+		
+		<!-- spring hibernate 相关的包 -->
+		<asm.version>2.2.3</asm.version>
+		<antlr.version>2.7.6</antlr.version>
+		<aopalliance.version>1.0</aopalliance.version>		
+		<quartz.version>1.6.1</quartz.version>
+		<slf4j.version>1.5.3</slf4j.version>
+
+		<ehcache.version>2.5.6</ehcache.version>
+  </properties>
+  <dependencies>
+		<!-- ==================================== -->
+		<!-- === Spring hibernate jdbc 依赖      ====== -->
+		<!-- ==================================== -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+			<version>${hibernate.version}</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- spring,hibernate相关的包 -->
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm-all</artifactId>
+			<version>${asm.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>antlr</groupId>
+			<artifactId>antlr</artifactId>
+			<version>${antlr.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+			<version>${aopalliance.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.opensymphony.quartz</groupId>
+			<artifactId>quartz</artifactId>
+			<version>${quartz.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>${ehcache.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>compile</scope>
+		</dependency>
+				
+		<dependency>
+			<groupId>org.fireflow</groupId>
+			<artifactId>fireflow-engine</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fireflow</groupId>
+			<artifactId>fireflow-common</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fireflow</groupId>
+			<artifactId>fireflow-fpdl20</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fireflow</groupId>
+			<artifactId>fireflow-services</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fireflow</groupId>
+			<artifactId>fireflow-services-enterprise</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+  </dependencies>
+</project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Bar bar_attr_1=""
+	xmlns:tns="http://www.example.org/UnQualified_Qualified_Schema"
+	xmlns:tns1="http://www.example.org/Qualified_Schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/UnQualified_Qualified_Schema UnQualified_Qualified_Schema.xsd ">
+	<tns1:Person tns1:person_attr1="">
+		<tns1:name>tns1:name</tns1:name>
+		<tns1:sex>tns1:sex</tns1:sex>
+	</tns1:Person>
+	<bar_elem>bar_elem</bar_elem>
+</tns:Bar>

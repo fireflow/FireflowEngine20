@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="自定义分支及汇聚" id="CustomizedRouter" name="CustomizedRouter" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service"/>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="CustomizedRouter.main.StartNode1" id="CustomizedRouter.main" name="main">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}boolean" display-name="x" id="CustomizedRouter.main.x" init-value="true" name="x"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="CustomizedRouter.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="Activity1" id="CustomizedRouter.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1"/>
+        <f20:activity display-name="Activity2" id="CustomizedRouter.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2"/>
+        <f20:activity display-name="Activity3" id="CustomizedRouter.main.Activity3" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity3"/>
+        <f20:activity display-name="Activity4" id="CustomizedRouter.main.Activity4" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity4"/>
+      </f20:activities>
+      <f20:routers>
+        <f20:router display-name="Router1" id="CustomizedRouter.main.Router1" name="Router1">
+          <f20:features>
+            <f20:customized-join-split-feature>
+              <f20:join-evaluator>org.fireflow.pdl.fpdl20.behavior.router.impl.XOrJoinEvaluator</f20:join-evaluator>
+              <f20:split-evaluator>org.fireflow.samples.workflowpattern.CustomizedSplitEvaluator</f20:split-evaluator>
+            </f20:customized-join-split-feature>
+          </f20:features>
+        </f20:router>
+        <f20:router display-name="Router2" id="CustomizedRouter.main.Router2" name="Router2">
+          <f20:features>
+            <f20:customized-join-split-feature>
+              <f20:join-evaluator>org.fireflow.samples.workflowpattern.CustomizedJoinEvaluator</f20:join-evaluator>
+              <f20:split-evaluator>org.fireflow.pdl.fpdl20.behavior.router.impl.OrSplitEvaluator</f20:split-evaluator>
+            </f20:customized-join-split-feature>
+          </f20:features>
+        </f20:router>
+      </f20:routers>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="CustomizedRouter.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="" from="CustomizedRouter.main.StartNode1" id="CustomizedRouter.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="CustomizedRouter.main.Router1"/>
+        <f20:transition display-name="无需计算转移条件" from="CustomizedRouter.main.Router1" id="CustomizedRouter.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="CustomizedRouter.main.Activity1"/>
+        <f20:transition display-name="processVars.x==true" from="CustomizedRouter.main.Router1" id="CustomizedRouter.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="CustomizedRouter.main.Activity2">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[processVars.x==true]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+        <f20:transition display-name="" from="CustomizedRouter.main.Activity2" id="CustomizedRouter.main.Transition4" is-default="false" is-loop="false" name="Transition4" to="CustomizedRouter.main.Activity3"/>
+        <f20:transition display-name="" from="CustomizedRouter.main.Activity3" id="CustomizedRouter.main.Transition5" is-default="false" is-loop="false" name="Transition5" to="CustomizedRouter.main.Router2"/>
+        <f20:transition display-name="Transition6" from="CustomizedRouter.main.Activity1" id="CustomizedRouter.main.Transition6" is-default="false" is-loop="false" name="Transition6" to="CustomizedRouter.main.Router2"/>
+        <f20:transition display-name="" from="CustomizedRouter.main.Router2" id="CustomizedRouter.main.Transition7" is-default="false" is-loop="false" name="Transition7" to="CustomizedRouter.main.Activity4"/>
+        <f20:transition display-name="" from="CustomizedRouter.main.Activity4" id="CustomizedRouter.main.Transition8" is-default="false" is-loop="false" name="Transition8" to="CustomizedRouter.main.EndNode1"/>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" grid-enabled="false" id="a5b8a0a5-3162-4a9c-8f01-f4d0a80b1061" ref="CustomizedRouter.main" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="6edb591f-6ff0-4bde-8637-1c3f200ecc6f" ref="CustomizedRouter.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="38" y="114"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="787b271c-75ea-43d1-b4b4-36801afd43a8" ref="CustomizedRouter.main.Activity1" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="246" y="3">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="8b4676c7-b48f-4ff2-809a-0a04c17a03ea" ref="CustomizedRouter.main.Activity2" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="246" y="195">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="cc6e90f2-6284-4eb2-834e-922d52a627a7" ref="CustomizedRouter.main.Activity3" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="412" y="195">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="1917e091-e603-41ef-945e-336eb40223e4" ref="CustomizedRouter.main.Activity4" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="617" y="94">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="b816e755-9721-41cf-a8ad-92cbe9f33044" ref="CustomizedRouter.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="771" y="114"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="3ea118fb-690f-464d-bd2e-ceb05520dbd1" ref="CustomizedRouter.main.Router1" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="125" y="114"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="9a77c39f-5cf2-433c-9f85-4de5c9951fcd" ref="CustomizedRouter.main.Router2" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="540" y="114"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="c3fcffbf-010c-495e-aafd-58a5bf3325e4" type="comment">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#323232" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[自定义分支逻辑需要实现接口org.fireflow.pdl.fpdl20.behavior.router.SplitEvaluator；
+或者扩展org.fireflow.pdl.fpdl20.behavior.router.AbsSplitEvaluator.protected boolean canBeFired(...)
+
+自定义汇聚逻辑需要实现接口org.fireflow.pdl.fpdl20.behavior.router.JoinEvaluator；
+或者或扩展org.fireflow.pdl.fpdl20.behavior.router.AbsJoinEvaluator.canBeFired(...)]]></f20:label>
+            </f20:content>
+            <f20:bounds height="115" width="577" x="99" y="303">
+              <f20:border-style color="#696969" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#DCDCDC" gradient-style="UL2LR"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="6edb591f-6ff0-4bde-8637-1c3f200ecc6f" id="fb86b297-74dd-472b-94bd-ce5a15916606" ref="CustomizedRouter.main.Transition1" to="3ea118fb-690f-464d-bd2e-ceb05520dbd1" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="3ea118fb-690f-464d-bd2e-ceb05520dbd1" id="fb1e5418-90b7-4b5d-bd61-0f84a7d2e05d" ref="CustomizedRouter.main.Transition2" to="787b271c-75ea-43d1-b4b4-36801afd43a8" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(-8,-12)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="3ea118fb-690f-464d-bd2e-ceb05520dbd1" id="ed956a02-cd6d-4708-a00d-739dbc2f6f48" ref="CustomizedRouter.main.Transition3" to="8b4676c7-b48f-4ff2-809a-0a04c17a03ea" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(3,11)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="8b4676c7-b48f-4ff2-809a-0a04c17a03ea" id="5527b408-53ec-4e71-b0a0-87647171b7d7" ref="CustomizedRouter.main.Transition4" to="cc6e90f2-6284-4eb2-834e-922d52a627a7" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="cc6e90f2-6284-4eb2-834e-922d52a627a7" id="b9b26f54-fcbb-4ed6-8113-c93043e11694" ref="CustomizedRouter.main.Transition5" to="9a77c39f-5cf2-433c-9f85-4de5c9951fcd" type="transition">
+        <f20:figure>
+          <f20:line point-list="(555,231)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="787b271c-75ea-43d1-b4b4-36801afd43a8" id="772e1cbf-e50c-477c-84d7-9d7b19790871" ref="CustomizedRouter.main.Transition6" to="9a77c39f-5cf2-433c-9f85-4de5c9951fcd" type="transition">
+        <f20:figure>
+          <f20:line point-list="(555,39)" titleLabel-position="(-28,-11)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="9a77c39f-5cf2-433c-9f85-4de5c9951fcd" id="dac24d67-b832-48b9-9ffd-3b4b6f2db87c" ref="CustomizedRouter.main.Transition7" to="1917e091-e603-41ef-945e-336eb40223e4" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="1917e091-e603-41ef-945e-336eb40223e4" id="22a45f3c-6fa6-4d0f-87a3-9f1b829ab54a" ref="CustomizedRouter.main.Transition8" to="b816e755-9721-41cf-a8ad-92cbe9f33044" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

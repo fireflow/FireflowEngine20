@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+	targetNamespace="http://www.fireflow.org/schema/workflowprocess"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:s="http://www.fireflow.org/schema/service" xmlns:r="http://www.fireflow.org/schema/resource" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+
+	<import namespace="http://www.fireflow.org/schema/service"
+		schemaLocation="http://www.fireflow.org/schema/service/ServiceSchema-2.0.xsd">
+	</import>
+	<import namespace="http://www.fireflow.org/schema/resource" schemaLocation="http://www.fireflow.org/schema/resource/ResourceSchema-2.0.xsd"></import>
+	<element name="workflow-process" type="f20:workflow-processType"></element>
+
+	<element name="import" type="f20:importType"></element>
+
+
+
+	<element name="start-nodes" type="f20:start-nodesType"></element>
+
+	<element name="start-node" type="f20:start-nodeType"></element>
+
+	<element name="activities" type="f20:activitiesType"></element>
+
+	<element name="activity" type="f20:activityType"></element>
+
+	<element name="end-nodes" type="f20:end-nodesType"></element>
+
+	<element name="end-node" type="f20:end-nodeType"></element>
+
+	<element name="transitions" type="f20:transitionsType"></element>
+
+	<element name="transition" type="f20:transitionType"></element>
+
+	<element name="routers" type="f20:routersType"></element>
+
+	<element name="router" type="f20:routerType"></element>
+
+	<complexType name="workflow-processType">
+		<complexContent>
+			<extension base="f20:workflow-elementType">
+				<sequence>
+					<element ref="f20:import" minOccurs="0"
+						maxOccurs="unbounded">
+					</element>
+					<element ref="s:services" minOccurs="0"
+						maxOccurs="1">
+					</element>
+					<element ref="r:resources" minOccurs="0"
+						maxOccurs="1">
+					</element>
+					<element name="properties"
+						type="f20:propertiesType" minOccurs="0" maxOccurs="1">
+					</element>
+					<element name="duration" type="f20:durationType" minOccurs="0" maxOccurs="1"></element>
+					<element ref="f20:start-nodes" minOccurs="0"
+						maxOccurs="1">
+					</element>
+					<element ref="f20:activities" minOccurs="0"
+						maxOccurs="1">
+					</element>
+					<element ref="f20:routers" minOccurs="0"
+						maxOccurs="1">
+					</element>
+					<element ref="f20:end-nodes" minOccurs="0"
+						maxOccurs="1">
+					</element>
+					<element ref="f20:transitions" minOccurs="0"
+						maxOccurs="1">
+					</element>
+					<element name="event-listeners"
+						type="f20:event-listenersType" minOccurs="0" maxOccurs="1">
+					</element>
+					<element name="extended-attributes"
+						type="f20:extended-attributesType" minOccurs="0" maxOccurs="1">
+					</element>
+				</sequence>
+				<attribute name="entry" type="string" use="required"></attribute>
+				<attribute name="biz-category" type="string" use="optional"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="activitiesType">
+		<sequence>
+			<element ref="f20:activity" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="end-nodesType">
+		<sequence>
+			<element ref="f20:end-node" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="routersType">
+		<sequence>
+			<element ref="f20:router" minOccurs="0" maxOccurs="unbounded"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="start-nodesType">
+		<sequence>
+			<element ref="f20:start-node" minOccurs="0" maxOccurs="unbounded"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="transitionsType">
+		<sequence>
+			<element ref="f20:transition" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="model-elementType">
+		<sequence>
+			<element name="description" type="string" minOccurs="0" maxOccurs="1"></element>
+		</sequence>
+		<attribute name="id" type="string" use="required"></attribute>
+		<attribute name="name" type="string" use="required"></attribute>
+		<attribute name="display-name" type="string" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="workflow-elementType">
+		<complexContent>
+			<extension base="f20:model-elementType"></extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="extended-attributesType">
+		<sequence>
+			<element name="extended-attribute"
+				type="f20:extended-attributeType" minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="extended-attributeType">
+		<attribute name="name" type="string"></attribute>
+		<attribute name="value" type="string"></attribute>
+	</complexType>
+
+	<complexType name="start-nodeType">
+		<complexContent>
+			<extension base="f20:process-nodeType">
+				<sequence>
+					<element name="extended-attibutes"
+						type="f20:extended-attributesType" minOccurs="0" maxOccurs="1">
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="process-nodeType">
+		<complexContent>
+			<extension base="f20:workflow-elementType">
+				<sequence>
+					<element name="decorator" type="f20:decoratorType"
+						minOccurs="0" maxOccurs="1">
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="routerType">
+		<complexContent>
+			<extension base="f20:process-nodeType">
+				<sequence>
+					<element name="extended-attributes"
+						type="f20:extended-attributesType" minOccurs="0" maxOccurs="1">
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="end-nodeType">
+		<complexContent>
+			<extension base="f20:process-nodeType">
+				<sequence>
+					<element name="extended-attributes"
+						type="f20:extended-attributesType" minOccurs="0" maxOccurs="1">
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="transitionType">
+		<complexContent>
+			<extension base="f20:workflow-elementType">
+				<sequence>
+					<element name="condition"
+						type="f20:conditionType" minOccurs="0" maxOccurs="1">
+					</element>
+					<element name="extended-attributes"
+						type="f20:extended-attributesType" minOccurs="0" maxOccurs="1">
+					</element>
+				</sequence>
+				<attribute name="from" type="string" use="required"></attribute>
+				<attribute name="to" type="string" use="required"></attribute>
+				<attribute name="is-loop" type="boolean" use="optional"></attribute>
+				<attribute name="is-default" type="boolean" use="optional"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="expressionType">
+		<sequence>
+			<element name="body" type="string" minOccurs="1" maxOccurs="1"></element>
+		</sequence>
+		<attribute name="language" type="string" use="required"></attribute>
+		<attribute name="name" type="string" use="optional"></attribute>
+		<attribute name="display-name" type="string" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="importType">
+		<complexContent>
+			<extension base="f20:workflow-elementType">
+				<attribute name="type" use="required">
+					<simpleType>
+						<restriction base="string">
+							<enumeration
+								value="org.fireflow.constants.SERVICES_IMPORT">
+							</enumeration>
+							<enumeration
+								value="org.fireflow.constants.RESOURCES_IMPORT">
+							</enumeration>
+						</restriction>
+					</simpleType>
+				</attribute>
+
+				<attribute name="location" type="string" use="required"></attribute>
+
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="activityType">
+		<complexContent>
+			<extension base="f20:process-nodeType">
+				<sequence>
+					<element name="properties" type="f20:propertiesType"
+						minOccurs="0" maxOccurs="1">
+					</element>
+					<element name="duration" type="f20:durationType"
+						minOccurs="0" maxOccurs="1">
+					</element>
+					<element name="service-binding"
+						type="f20:service-bindingType" minOccurs="0" maxOccurs="1">
+					</element>
+					<element name="resource-binding"
+						type="f20:resource-bindingType" minOccurs="0" maxOccurs="1">
+					</element>
+					<element name="event-listeners"
+						type="f20:event-listenersType" minOccurs="0" maxOccurs="1">
+					</element>
+					<element name="extended-attributes"
+						type="f20:extended-attributesType" minOccurs="0" maxOccurs="1">
+					</element>
+				</sequence>
+				<attribute name="priority" type="string"></attribute>
+
+				<attribute name="loop-strategy" type="string"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="durationType">
+		<attribute name="value" type="int" use="required"></attribute>
+		<attribute name="unit" use="required">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="DAY"></enumeration>
+					<enumeration value="MONTH"></enumeration>
+					<enumeration value="YEAR"></enumeration>
+					<enumeration value="HOUR"></enumeration>
+					<enumeration value="MINUTE"></enumeration>
+					<enumeration value="SECOND"></enumeration>
+					<enumeration value="WEEK"></enumeration>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="is-business-time" type="boolean" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="service-bindingType">
+		<sequence>
+			<element name="input-assignments"
+				type="f20:input-assignmentsType" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="output-assignments"
+				type="f20:output-assignmentsType" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="prop-overrides"
+				type="f20:prop-overridesType" minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="service-id" type="string" use="required"></attribute>
+		<attribute name="operation-name" type="string" use="required"></attribute>
+	</complexType>
+
+	<complexType name="resource-bindingType">
+		<sequence>
+			<element name="administrators"
+				type="f20:administratorsType">
+			</element>
+			<element name="potential-owners"
+				type="f20:potential-ownersType">
+			</element>
+			<element name="readers" type="f20:readersType"></element>
+		</sequence>
+		<attribute name="display-name" type="string" use="optional"></attribute>
+		<attribute name="assignment-strategy" type="string" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="input-assignmentsType">
+		<sequence>
+			<element name="input-assignment"
+				type="f20:input-assignmentType" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="output-assignmentsType">
+		<sequence>
+			<element name="output-assignment"
+				type="f20:output-assignmentType" minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="prop-overridesType">
+		<sequence>
+			<element name="prop-override"
+				type="f20:prop-overrideType" minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="input-assignmentType">
+		<sequence>
+			<element name="from" type="f20:assignment-fromType" minOccurs="1" maxOccurs="1"></element>
+			<element name="to" type="string" minOccurs="1" maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="output-assignmentType">
+		<sequence>
+			<element name="from" type="f20:assignment-fromType" minOccurs="1" maxOccurs="1"></element>
+			<element name="to" type="string" minOccurs="1" maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="prop-overrideType">
+		<attribute name="prop-group-name" type="string" use="required"></attribute>
+		<attribute name="prop-name" type="string" use="required"></attribute>
+		<attribute name="value" type="string" use="required"></attribute>
+	</complexType>
+
+	<complexType name="decoratorType">
+		<choice>
+			<element name="activity-decorator" type="string"></element>
+			<element name="throw-compensation-decorator"
+				type="f20:throw-compensation-decoratorType">
+			</element>
+			<element name="throw-fault-decorator"
+				type="f20:throw-fault-decoratorType">
+			</element>
+			<element name="throw-termination-decorator"
+				type="f20:throw-termination-decoratorType">
+			</element>
+			<element name="catch-compensation-decorator"
+				type="f20:catch-compensation-decoratorType">
+			</element>
+			<element name="catch-fault-decorator"
+				type="f20:catch-fault-decoratorType">
+			</element>
+			<element name="timer-start-decorator"
+				type="f20:timer-start-decoratorType">
+			</element>
+			<element name="message-start-decorator" type="string"></element>
+			<element name="normal-end-decorator" type="string"></element>
+			<element name="normal-start-decorator" type="string"></element>
+		</choice>
+	</complexType>
+
+	<complexType name="throw-compensation-decoratorType">
+		<attribute name="compensation-codes" type="string">
+			<annotation>
+				<documentation>逗号分隔的补偿号列表</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+
+	<complexType name="throw-fault-decoratorType">
+		<attribute name="error-code" type="string"></attribute>
+	</complexType>
+
+	<complexType name="throw-termination-decoratorType"></complexType>
+
+	<complexType name="catch-compensation-decoratorType">
+		<attribute name="attached-to-activity" type="string"></attribute>
+		<attribute name="compensation-code" type="string"></attribute>
+	</complexType>
+
+	<complexType name="catch-fault-decoratorType">
+		<attribute name="attached-to-activity" type="string"></attribute>
+		<attribute name="error-code" type="string"></attribute>
+	</complexType>
+
+	<complexType name="timer-start-decoratorType">
+		<all>
+			<element name="start-time"
+				type="f20:start-timeType">
+			</element>
+			<element name="end-time"
+				type="f20:end-timeType">
+			</element>
+			<element name="repeat-count"
+				type="f20:repeat-countType">
+			</element>
+			<element name="repeat-interval"
+				type="f20:repeat-intervalType">
+			</element>
+			<element name="cron" type="f20:cronType"></element>
+		</all>
+		<attribute name="attached-to-activity" type="string" use="optional"></attribute>
+		<attribute name="is-cancel-attached-to-activity"
+			type="boolean" use="optional">
+		</attribute>
+		<attribute name="timer-operation-name" use="required">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="TRIGGERED_ONLY_ONCE"></enumeration>
+					<enumeration value="TRIGGERED_BY_REPEAT_COUNT"></enumeration>
+					<enumeration
+						value="TRIGGERED_BY_STARTTIME_ENDTIME">
+					</enumeration>
+					<enumeration value="TRIGGERED_BY_CRON"></enumeration>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</complexType>
+
+	<complexType name="propertiesType">
+		<sequence>
+			<element name="property" type="f20:propertyType" minOccurs="0" maxOccurs="unbounded"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="propertyType">
+		<complexContent>
+			<extension base="f20:model-elementType">
+				<attribute name="init-value" type="string" use="optional"></attribute>
+				<attribute name="data-pattern" type="string" use="optional"></attribute>
+				<attribute name="data-type" type="string" use="required"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="administratorsType">
+		<sequence>
+			<element name="resource-ref" type="f20:resource-refType"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="resource-refType">
+		<sequence>
+			<element name="parameter-assignments"
+				type="f20:parameter-assignmentsType" minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="resource-id" type="string"></attribute>
+	</complexType>
+
+	<complexType name="parameter-assignmentsType">
+		<sequence>
+			<element name="parameter-assignment"
+				type="f20:parameter-assignmentType" minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="parameter-assignmentType">
+		<sequence>
+			<element name="from" type="f20:assignment-fromType" minOccurs="1" maxOccurs="1"></element>
+			<element name="to" type="string" minOccurs="1" maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="potential-ownersType">
+		<sequence>
+			<element name="resource-ref" type="f20:resource-refType"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="readersType">
+		<sequence>
+			<element name="resource-ref" type="f20:resource-refType"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="event-listenersType">
+		<sequence>
+			<element name="event-listener"
+				type="f20:event-listenerType" minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="event-listenerType">
+		<complexContent>
+			<extension base="f20:model-elementType">
+				<attribute name="biz-category" type="string" use="optional"></attribute>
+				<attribute name="bean-name" type="string" use="required"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="conditionType">
+		<sequence>
+			<element name="expression" type="f20:expressionType"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="start-timeType">
+		<sequence>
+			<element name="expression" type="f20:expressionType" minOccurs="1" maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="end-timeType">
+		<sequence>
+			<element name="expression" type="f20:expressionType" minOccurs="1" maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="repeat-countType">
+		<sequence>
+			<element name="expression" type="f20:expressionType" minOccurs="1" maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="repeat-intervalType">
+		<sequence>
+			<element name="expression" type="f20:expressionType" minOccurs="1" maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="cronType">
+		<sequence>
+			<element name="expression" type="f20:expressionType" minOccurs="1" maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="assignment-fromType">
+		<sequence>
+			<element name="expression" type="f20:expressionType"></element>
+		</sequence>
+	</complexType>
+</schema>

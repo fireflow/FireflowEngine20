@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="fireflowProcessDefinitionLanguageManager"
+		class="org.fireflow.pdl.fpdl.enginemodules.processlanguage.FpdlManager">
+		<property name="processType">
+			<value>FPDL</value>
+		</property>
+
+		<!-- 扩展的引擎模块 -->
+		<property name="engineModules">
+			<map>
+				<entry key="org.fireflow.pvm.translate.Process2PObjectTranslator">
+					<ref bean="fpdlTanslator"/>
+				</entry>
+				
+				<entry
+					key="org.fireflow.engine.modules.instancemanager.ProcessInstanceManager">
+					<bean
+						class="org.fireflow.pdl.fpdl.enginemodules.instancemanager.ProcessInstanceManagerFpdl20Impl" />
+				</entry>
+				<entry
+					key="org.fireflow.engine.modules.instancemanager.ActivityInstanceManager">
+					<bean
+						class="org.fireflow.pdl.fpdl.enginemodules.instancemanager.ActivityInstanceManagerFpdl20Impl" />
+				</entry>
+
+
+				<!-- 工作项管理器 -->
+				<entry key="org.fireflow.engine.modules.workitem.WorkItemManager">
+					<bean class="org.fireflow.pdl.fpdl.enginemodules.workitem.WorkItemManagerFpdl20Impl"></bean>
+				</entry>
+
+			</map>
+		</property>
+	</bean>
+
+	<bean id="fpdlTanslator"
+		class="org.fireflow.pdl.fpdl.enginemodules.Process2PObjectTranslatorFpdl20Impl">
+		<property name="transitionBehavior">
+			<bean class="org.fireflow.pdl.fpdl.behavior.TransitionBehavior"></bean>
+		</property>
+		<property name="startNodeBehavior">
+			<bean class="org.fireflow.pdl.fpdl.behavior.StartNodeBehavior"></bean>
+		</property>
+		<property name="endNodeBehavior">
+			<bean class="org.fireflow.pdl.fpdl.behavior.EndNodeBehavior"></bean>
+		</property>
+		<property name="activityBehavior">
+			<bean class="org.fireflow.pdl.fpdl.behavior.ActivityBehavior"></bean>
+		</property>
+		<property name="routerBehavior">
+			<bean class="org.fireflow.pdl.fpdl.behavior.RouterBehavior"></bean>
+		</property>
+		<property name="subProcessBehavior">
+			<bean class="org.fireflow.pdl.fpdl.behavior.SubProcessBehavior"></bean>
+		</property>
+
+	</bean>
+	
+
+	<bean id="activityInstanceEventBroadcaster"
+		class="org.fireflow.pdl.fpdl.enginemodules.event.ActivityInstanceEventbroadcaster"></bean>
+
+	<bean id="processInstanceEventBroadcaster"
+		class="org.fireflow.pdl.fpdl.enginemodules.event.ProcessInstanceEventBroadcaster"></bean>
+
+	<bean id="workItemEventBroadcaster"
+		class="org.fireflow.pdl.fpdl.enginemodules.event.WorkItemEventBroadcaster"></bean>
+</beans>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<s:services xmlns:s="http://www.fireflow.org/schema/service">
+  <s:service.human biz-category="abc\xyz" display-name="打开XYZ表单" id="Human_service_1" invoker-bean="testInvokerBean" name="Human_service_1" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+    <s:description>This is a human service</s:description>
+    <s:form-url>/xyz.jsp</s:form-url>
+    <s:workitem-subject/>
+    <s:extended-attributes>
+      <s:extended-attribute name="key2" value="value2"/>
+      <s:extended-attribute name="key1" value="value1"/>
+    </s:extended-attributes>
+  </s:service.human>
+  <s:service.human biz-category="abc\xyz" display-name="调用XYZ功能" id="human_service_2" invoker-class="org.fireflow.pdl.fpdl.enginemodules.WorkItemManagerFpdl20Impl" name="human_service_2" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+    <s:description>This is a human service</s:description>
+    <s:workitem-subject/>
+    <s:extended-attributes>
+      <s:extended-attribute name="key2" value="value2"/>
+      <s:extended-attribute name="key1" value="value1"/>
+    </s:extended-attributes>
+  </s:service.human>
+</s:services>

@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<doc title="Nutz核心包" author="zozoh(zozohtnt@gmail.com)">
+	<doc path="nutz_preface.man"/>
+	<doc path="nutz_release_notes.man"/>
+	<doc path="committer"  title="关于源码">
+		<doc path="svn_project.man"/>
+		<doc path="git_project.man"/>
+		<doc path="compile.man"/>
+		<doc path="compile_with_maven.man"/>
+		<doc path="ant.man"/>
+		<doc path="packages.man"/>
+		<doc path="version_naming.man"/>
+		<doc path="coding.man"/>
+		<doc path="be_committer.man"/>
+	</doc>
+	<doc path="dao" title="Dao 手册">
+		<doc path="hello.man"/>
+		<doc path="basic_operations.man"/>
+		<doc path="primary_key.man"/>
+		<doc path="condition.man"/>
+		<doc path="pager.man"/>
+		<doc path="next_prev.man"/>
+		<doc path="view.man"/>
+		<doc path="field_filter.man"/>
+		<doc path="dynamic_table_name.man"/>
+		<doc path="links_one.man"/>
+		<doc path="links_many.man"/>
+		<doc path="links_many_many.man"/>
+		<doc path="customized_sql.man"/>
+		<doc path="transaction.man"/>
+		<doc path="transaction_complex.man"/>
+		<doc path="runner.man"/>
+		<doc path="entity.man"/>
+		<doc path="services.man"/>
+		<doc path="pojo.man"/>
+		<doc path="record.man"/>
+		<doc path="annotations.man"/>
+	</doc>
+	<doc path="ioc"	title="Ioc 手册">
+		<doc path="hello.man"/>
+		<doc path="inner_object.man"/>
+		<doc path="events.man"/>
+		<doc path="injecting.man"/>
+		<doc path="ioc_loader.man"/>
+		<doc path="scope.man"/>
+		<doc path="xml_ioc_loader.man"/>
+		<doc path="loader_annotation.man"/>
+		<doc path="loader_combo.man"/>
+		<doc path="ioc_annos.man"/>
+		<doc path="ioc_properties.man"/>
+	</doc>
+	<doc path="aop" title="Aop 手册">
+		<doc path="aop_solution.man"/>
+		<doc path="aop.man"/>
+		<doc path="aop_json.man"/>
+	</doc>
+	<doc path="mvc"	title="Mvc 手册">
+		<doc path="overview.man"/>
+		<doc path="hello.man"/>
+		<doc path="web_xml.man"/>
+		<doc path="modules.man"/>
+		<doc path="url_mapping.man"/>
+		<doc path="action_chain.man"/>
+		<doc path="http_adaptor.man"/>
+		<doc path="view.man"/>
+		<doc path="with_ioc.man"/>
+		<doc path="localization.man"/>
+		<doc path="action_filter.man"/>
+		<doc path="file_upload.man"/>
+		<doc path="module_of_request.man"/>
+    	<doc path="rest.man"/>
+		<doc path="annotations.man"/>
+		<doc path="session.man"></doc>
+	</doc>
+	<doc path="json" title="Json 手册">
+		<doc path="hello.man"/>
+		<doc path="formater.man"/>
+		<doc path="with_castors.man"/>
+		<doc path="customize.man"/>
+		<doc path="json_book.man"></doc>
+	</doc>
+    	<doc path="el" title="表达式引擎">
+		<doc path="overview.man"></doc>
+	</doc>
+	<doc path="maplist" title="maplist结构">
+	    <doc path="overview.man"></doc>
+	</doc>
+	<doc path="lang" title="甜 Java">
+		<doc path="lang.man"/>
+		<doc path="castors.man"/>
+		<doc path="mirror.man"/>
+		<doc path="segment.man"/>
+		<doc path="filepool.man"/>
+		<doc path="plugin.man"/>
+		<doc path="log.man"/>
+	</doc>
+	<!--doc path="zmole" title="zMole">
+		<doc path="zmole_get_start.man"/>
+	</doc-->
+	<doc path="history" title="版本历史">
+		<doc path="1_b_50.man"/>
+		<doc path="1_b_49.man"/>
+		<doc path="1_b_48.man"/>
+		<doc path="1_b_47.man"/>
+		<doc path="1_b_46.man"/>
+		<doc path="1_b_45.man"/>
+		<doc path="1_b_44.man"/>
+		<doc path="1_b_43.man"/>
+		<doc path="1_b_42.man"/>
+		<doc path="1_b_41.man"/>
+		<doc path="1_b_40.man"/>
+		<doc path="1_b_39.man"/>
+		<doc path="1_b_38.man"/>
+		<doc path="1_b_37.man"/>
+		<doc path="1_b_36.man"/>
+		<doc path="1_b_35.man"/>
+		<doc path="1_b_34.man"/>
+		<doc path="1_a_33.man"/>
+		<doc path="1_a_32.man"/>
+		<doc path="1_a_31.man"/>
+		<doc path="1_a_30.man"/>
+		<doc path="1_a_29.man"/>
+		<doc path="1_a_28.man"/>
+		<doc path="1_a_27.man"/>
+		<doc path="1_a_26.man"/>
+		<doc path="1_a_25.man"/>
+	</doc>
+	<doc path="faq" title="FAQ">
+		<doc path="how_to_pronounce_nutz.man"/>
+		<doc path="use_nutz_without_other_jar.man"/>
+		<doc path="what_aop_can_do.man"/>
+		<doc path="jar_encoding.man"/>
+		<doc path="common_qa_1.man"/>
+	</doc>
+	<doc path="appendix" title="附录">
+		<doc path="case.man"/>
+		<doc path="create_datasource.man"/>
+		<doc path="work_with_maven.man"></doc>
+		<doc path="resources.man"/>
+		<doc path="plugins.man"/>
+	</doc>
+</doc>

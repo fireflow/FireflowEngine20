@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<database>
+	<row id="123">
+		<f name="xm">zhangsan</f>
+		<f name="xb">nan</f>
+		</row>
+	</database>

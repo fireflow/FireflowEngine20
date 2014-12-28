@@ -1,0 +1,2 @@
+1、应该恢复ProcessInstance-ActivityInstance-WorkItem的结构
+2、ActivityInstance只关心流程的执行信息，具体执行的动作交给IServiceExecutor

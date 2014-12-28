@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+<!DOCTYPE vendor [
+  <!ELEMENT vendor (location, contact, product)>
+  <!ELEMENT location ANY>
+  <!ATTLIST location
+      id ID #REQUIRED
+      name CDATA #IMPLIED
+      manager CDATA #IMPLIED
+  >
+  <!ELEMENT contact ANY>
+  <!ELEMENT product ANY>
+]>
+
+<vendor name="fruitco" xmlns:price="priceNS" xmlns="http://test/">
+  <contact>John</contact>
+  <contact name='jack'>Jack</contact>
+  <contact name='jim'>Jim</contact>
+  <contact name='jack'>Jack Black</contact>
+  <location id="100" name="local" manager="">
+    <address>
+      <street>Orchard Road</street>
+    </address>
+    <employeeCount>10</employeeCount>
+  </location>
+
+  <location id="101">
+    Text before address.
+    <address>
+      <street>Tangerine Drive</street>
+      <city>Fruit Market</city>
+    </address>
+    Text after address.
+  </location>
+
+  <product xmlns:value="priceNS">
+     <name xmlns="productNS">Box of oranges</name>
+     We love this product.
+     <!-- We are not buying this product, ever -->
+     <value:amount price:discount="10%" discount="20%">45.95</value:amount>
+     <prix xml:lang="fr">934.99</prix>
+     <price:sale stores="all">
+        <saleEnds>never</saleEnds>
+        <promotion></promotion>
+     </price:sale>
+     <?security do not show anybody ?>
+     <?report average only ?>
+  </product>
+
+  <pos xmlns="temp">
+    <register xmlns="">
+       <number>109</number>
+    </register>
+  </pos>
+
+</vendor>

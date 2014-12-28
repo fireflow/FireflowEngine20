@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/UnQualified_Qualified_Schema"
+	xmlns:tns="http://www.example.org/UnQualified_Qualified_Schema"
+	elementFormDefault="unqualified" xmlns:pref="http://www.example.org/Qualified_Schema" attributeFormDefault="unqualified">
+	<import schemaLocation="Qualified_Schema.xsd" namespace="http://www.example.org/Qualified_Schema"></import>
+
+	<element name="Bar" type="tns:BarType"></element>
+	<element name="Foo" type="pref:PersonType"></element>
+	<complexType name="BarType">
+		<sequence>
+			<element ref="pref:Person"></element>
+			<element name="bar_elem" type="string"></element>
+		</sequence>
+		<attribute name="bar_attr_1" type="string"></attribute>
+	</complexType>
+</schema>

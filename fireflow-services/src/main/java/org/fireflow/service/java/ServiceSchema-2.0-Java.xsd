@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.fireflow.org/schema/service"
+	xmlns:tns="http://www.fireflow.org/schema/service"
+	elementFormDefault="qualified">
+
+	<include schemaLocation="../../../../../../../../fireflow-model/src/main/resources/ServiceSchema-2.0-Core.xsd"></include>
+	
+    <element name="service.java" type="tns:javaServiceType" substitutionGroup="tns:service"></element>
+
+    <complexType name="javaServiceType">
+    	<complexContent>
+    		<extension base="tns:serviceType">
+    			<sequence>
+    				<element name="java-class" type="string" minOccurs="0" maxOccurs="1"></element>
+    				<element name="java-bean" type="string" minOccurs="0" maxOccurs="1"></element>    			
+    				<element ref="tns:interface.java" minOccurs="1" maxOccurs="1"></element>
+    				<element name="extended-attributes" type="tns:extendedAttributesType">
+    				</element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+    
+    
+    <element name="interface.java" type="tns:javaInterfaceType" substitutionGroup="tns:interface"></element>
+    <complexType name="javaInterfaceType">
+    	<complexContent>
+    		<extension base="tns:interfaceType">
+    			<sequence>
+    				<element name="interface-class" type="string" minOccurs="0" maxOccurs="1"></element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+    
+</schema>

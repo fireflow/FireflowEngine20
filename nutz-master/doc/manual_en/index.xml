@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc title="Nutz manual" author="zozoh(zozohtnt@gmail.com)">
+	<doc path="nutz_preface.man"/>
+	<doc path="committer"  title="About the source">
+		<doc path="svn_project.man"/>
+		<doc path="compile.man"/>
+		<doc path="packages.man"/>
+		<doc path="version_naming.man"/>
+		<doc path="coding.man"/>
+		<doc path="be_committer.man"/>
+	</doc>
+	<doc path="mvc"	title="Mvc manual">
+		<doc path="overview.man"/>
+	</doc>
+	<doc path="json" title="Json manual">
+		<doc path="customize.man"/>
+	</doc>
+	<doc path="lang" title="Sweet Java">
+		<doc path="lang.man"/>
+		<doc path="castors.man"/>
+		<doc path="mirror.man"/>
+		<doc path="segment.man"/>
+		<doc path="plugin.man"/>
+		<doc path="log.man"/>
+	</doc>
+	<doc path="zdoc" title="zDoc manual">
+		<doc path="overview.man"/>
+		<doc path="syntax.man"/>
+		<doc path="index_xml.man"/>
+		<doc path="dir_convert.man"/>
+	</doc>
+	<doc path="appendix" title="Appendix">
+		<doc path="create_datasource.man"/>
+		<doc path="plugins.man"/>
+	</doc>
+</doc>

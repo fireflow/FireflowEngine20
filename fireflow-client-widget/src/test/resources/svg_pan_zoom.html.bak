@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+&nbsp; &nbsp;xmlns:dc="http://purl.org/dc/elements/1.1/"
+&nbsp; &nbsp;xmlns:cc="http://creativecommons.org/ns#"
+&nbsp; &nbsp;xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+&nbsp; &nbsp;xmlns:svg="http://www.w3.org/2000/svg"
+&nbsp; &nbsp;xmlns="http://www.w3.org/2000/svg"
+&nbsp; &nbsp;xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+&nbsp; &nbsp;xmlns:xlink="http://www.w3.org/1999/xlink"   <!-- 须添加该命名空间 -->
+&nbsp; &nbsp;width="500"
+&nbsp; &nbsp;height="500"
+&nbsp; &nbsp;id="svg2"
+&nbsp; &nbsp;version="1.1"
+&nbsp; &nbsp;inkscape:version="0.48.1 "
+&nbsp; &nbsp;sodipodi:docname="新建文档 1">
+&nbsp; &nbsp;<script xlink:href="SVGPan.js"/>       <!--所需的js文件-->
+&nbsp; <defs
+&nbsp; &nbsp; &nbsp;id="defs4">
+&nbsp; </defs>
+&nbsp; <metadata id="metadata7">
+&nbsp; &nbsp; <rdf:RDF>
+&nbsp; &nbsp; &nbsp; <cc:Work
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;rdf:about="">
+&nbsp; &nbsp; &nbsp; &nbsp; <dc:format>image/svg+xml</dc:format>
+&nbsp; &nbsp; &nbsp; &nbsp; <dc:type
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+&nbsp; &nbsp; &nbsp; &nbsp; <dc:title></dc:title>
+&nbsp; &nbsp; &nbsp; </cc:Work>
+&nbsp; &nbsp; </rdf:RDF>
+&nbsp; </metadata>
+&nbsp; <g id="layer1"
+&nbsp; &nbsp; &nbsp;transform="translate(0,-552.00215)">   <!--svg所有内容必须在此<g>元素包含下-->
+&nbsp; &nbsp; <g
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:type="inkscape:box3d"
+&nbsp; &nbsp; &nbsp; &nbsp;style="fill:#418942;fill-opacity:1;stroke:none"
+&nbsp; &nbsp; &nbsp; &nbsp;id="g2987"
+&nbsp; &nbsp; &nbsp; &nbsp;inkscape:perspectiveID="#perspective2985"
+&nbsp; &nbsp; &nbsp; &nbsp;inkscape:corner0="0.51860074 : 0.40758425 : 0 : 1"
+&nbsp; &nbsp; &nbsp; &nbsp;inkscape:corner7="0.26291796 : 0.27390523 : 0.25 : 1">
+&nbsp; &nbsp; &nbsp; <path
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;sodipodi:type="inkscape:box3dside"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;id="path2999"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;style="fill:#e9e9ff;fill-rule:evenodd;stroke:none"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inkscape:box3dsidetype="11"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;d="m 175.7047,696.41485 35.83982,-23.62668 0,67.38967 -35.83982,13.8843 z" />
+&nbsp; &nbsp; &nbsp; <path
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;sodipodi:type="inkscape:box3dside"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;id="path2989"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;style="fill:#353564;fill-rule:evenodd;stroke:none"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inkscape:box3dsidetype="6"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;d="m 128.28937,673.39974 0,67.13749 47.41533,13.52491 0,-57.64729 z" />
+&nbsp; &nbsp; &nbsp; <path
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;sodipodi:type="inkscape:box3dside"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;id="path2991"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;style="fill:#4d4d9f;fill-rule:evenodd;stroke:none"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inkscape:box3dsidetype="5"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;d="m 128.28937,673.39974 33.33504,-32.96317 49.92011,32.3516 -35.83982,23.62668 z" />
+&nbsp; &nbsp; &nbsp; <path
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;sodipodi:type="inkscape:box3dside"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;id="path2997"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;style="fill:#afafde;fill-rule:evenodd;stroke:none"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inkscape:box3dsidetype="13"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;d="m 128.28937,740.53723 33.33504,-19.37092 49.92011,19.01153 -35.83982,13.8843 z" />
+&nbsp; &nbsp; &nbsp; <path
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;sodipodi:type="inkscape:box3dside"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;id="path2995"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;style="fill:#d7d7ff;fill-rule:evenodd;stroke:none"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inkscape:box3dsidetype="14"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;d="m 161.62441,640.43657 0,80.72974 49.92011,19.01153 0,-67.38967 z" />
+&nbsp; &nbsp; &nbsp; <path
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;sodipodi:type="inkscape:box3dside"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;id="path2993"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;style="fill:#8686bf;fill-rule:evenodd;stroke:none"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inkscape:box3dsidetype="3"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;d="m 128.28937,673.39974 33.33504,-32.96317 0,80.72974 -33.33504,19.37092 z" />
+&nbsp; &nbsp; </g>
+&nbsp; &nbsp; <rect
+&nbsp; &nbsp; &nbsp; &nbsp;style="fill:#89414c;fill-opacity:1;stroke:none"
+&nbsp; &nbsp; &nbsp; &nbsp;id="rect3001"
+&nbsp; &nbsp; &nbsp; &nbsp;width="108.08632"
+&nbsp; &nbsp; &nbsp; &nbsp;height="87.88327"
+&nbsp; &nbsp; &nbsp; &nbsp;x="84.852814"
+&nbsp; &nbsp; &nbsp; &nbsp;y="791.7428" />
+&nbsp; &nbsp; <path
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:type="arc"
+&nbsp; &nbsp; &nbsp; &nbsp;style="fill:#8bc28b;fill-opacity:1;stroke:none"
+&nbsp; &nbsp; &nbsp; &nbsp;id="path3003"
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:cx="273.24628"
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:cy="237.21524"
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:rx="44.95179"
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:ry="43.941635"
+&nbsp; &nbsp; &nbsp; &nbsp;d="m 318.19807,237.21524 a 44.95179,43.941635 0 1 1 -89.90358,0 44.95179,43.941635 0 1 1 89.90358,0 z"
+&nbsp; &nbsp; &nbsp; &nbsp;transform="translate(14.142136,600.48947)" />
+&nbsp; &nbsp; <path
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:type="star"
+&nbsp; &nbsp; &nbsp; &nbsp;style="fill:#418942;fill-opacity:1;stroke:none"
+&nbsp; &nbsp; &nbsp; &nbsp;id="path3005"
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:sides="5"
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:cx="302.03561"
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:cy="90.238052"
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:r1="66.031837"
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:r2="33.015923"
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:arg1="0.51155613"
+&nbsp; &nbsp; &nbsp; &nbsp;sodipodi:arg2="1.1398747"
+&nbsp; &nbsp; &nbsp; &nbsp;inkscape:flatsided="false"
+&nbsp; &nbsp; &nbsp; &nbsp;inkscape:rounded="0"
+&nbsp; &nbsp; &nbsp; &nbsp;inkscape:randomized="0"
+&nbsp; &nbsp; &nbsp; &nbsp;d="m 359.61431,122.56293 -43.78767,-2.32723 -26.74102,34.75188 -11.3178,-42.3637 L 236.45339,97.930581 273.24627,74.07561 274.45356,30.24277 308.51061,57.863285 350.5712,45.4664 334.82673,86.391789 z"
+&nbsp; &nbsp; &nbsp; &nbsp;transform="translate(38.385798,620.69252)"
+&nbsp; &nbsp; &nbsp; &nbsp;inkscape:transform-center-x="4.0017682"
+&nbsp; &nbsp; &nbsp; &nbsp;inkscape:transform-center-y="2.3771223" />
+&nbsp; </g>
+</svg>

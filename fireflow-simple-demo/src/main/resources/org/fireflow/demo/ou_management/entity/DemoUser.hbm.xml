@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.fireflow.demo.ou_management.entity.DemoUser"
+		table="T_Demo_User">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid" />
+		</id>
+
+		<property name="userId" type="java.lang.String"  update="false">
+			<column length="50" name="USER_ID">
+				<comment>用户Id</comment>
+			</column>
+		</property>
+		<property name="password" type="java.lang.String"  update="false">
+			<column length="50" name="PASSWORD">
+				<comment>密码 </comment>
+			</column>
+		</property>		
+		<property name="name" type="java.lang.String"  update="false">
+			<column length="50" name="NAME">
+				<comment>用户姓名</comment>
+			</column>
+		</property>		
+		<property name="positionId" type="java.lang.String"  update="false">
+			<column length="50" name="POSITION_ID">
+				<comment>职位Id</comment>
+			</column>
+		</property>	
+		<property name="positionName" type="java.lang.String"  update="false">
+			<column length="100" name="POSITION_NAME">
+				<comment>职位名称</comment>
+			</column>
+		</property>		
+		<property name="departmentId" type="java.lang.String"  update="false">
+			<column length="50" name="DEPARTMENT_ID">
+				<comment>职位Id</comment>
+			</column>
+		</property>	
+		<property name="departmentName" type="java.lang.String"  update="false">
+			<column length="100" name="DEPARTMENT_NAME">
+				<comment>职位名称</comment>
+			</column>
+		</property>						
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="test0309_2" id="test0309_2" name="test0309_2" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.java biz-category="" display-name="Java类[CalculatorEx]" id="CalculatorEx" invoker-class="org.fireflow.service.java.JavaInvoker" name="CalculatorEx" parser-class="org.fireflow.service.java.JavaServiceParser" target-namespace="">
+      <s:description><![CDATA[Java类：org.fireflow.test.CalculatorEx]]></s:description>
+      <s:java-class-name>org.fireflow.test.CalculatorEx</s:java-class-name>
+      <s:interface.java>
+        <s:interface-class>org.fireflow.test.ICalculatorEx</s:interface-class>
+      </s:interface.java>
+    </s:service.java>
+  </s:services>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource"/>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="test0309_2.main.StartNode1" id="test0309_2.main" name="main">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="参数a" id="test0309_2.main.a" init-value="" name="a"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="参数b" id="test0309_2.main.b" init-value="" name="b"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="计算结果" id="test0309_2.main.result" init-value="" name="result"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="test0309_2.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="调用Calculator加法操作" id="test0309_2.main.AddActivity" loop-strategy="org.fireflow.constants.REDO" name="AddActivity">
+          <f20:service-binding operation-name="add" service-id="CalculatorEx">
+            <f20:input-assignments>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="流程变量/参数a" language="XPATH" name="a">
+                    <f20:body><![CDATA[processVars/a]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="a" language="XPATH" name="a">
+                    <f20:body><![CDATA[inputs/a]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="流程变量/参数b" language="XPATH" name="b">
+                    <f20:body><![CDATA[processVars/b]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="b" language="XPATH" name="b">
+                    <f20:body><![CDATA[inputs/b]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+            </f20:input-assignments>
+            <f20:output-assignments>
+              <f20:output-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="output_of_add" language="XPATH" name="output_of_add">
+                    <f20:body><![CDATA[outputs/output_of_add]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="流程变量/计算结果" language="XPATH" name="result">
+                    <f20:body><![CDATA[processVars/result]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:output-assignment>
+            </f20:output-assignments>
+          </f20:service-binding>
+          <f20:resource-binding assignment-strategy="org.fireflow.constants.ASSIGN_TO_ANY" display-name=""/>
+        </f20:activity>
+      </f20:activities>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="test0309_2.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="Transition1" from="test0309_2.main.StartNode1" id="test0309_2.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="test0309_2.main.AddActivity"/>
+        <f20:transition display-name="Transition2" from="test0309_2.main.AddActivity" id="test0309_2.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="test0309_2.main.EndNode1"/>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" id="bfad1ac4-d4cd-434d-85cb-4865a596fa2f" ref="test0309_2.main">
+      <f20:node id="8611e600-28fa-4d6d-8331-d27a6d431bf4" ref="test0309_2.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" size="10" text-direction="HORIZANTAL" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="90" y="59">
+              <f20:bounds-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color="#FFFFFF" gradient-style="NONE"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="78d73a66-13f8-49a0-b921-3a168bb3dd2a" ref="test0309_2.main.AddActivity" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" size="12" text-direction="HORIZANTAL" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" size="10" text-direction="HORIZANTAL" weight="BOLD"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="214" y="79">
+              <f20:bounds-style color="#4682B4" line-type="SOLID" radius="11" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color="#F0FFFF" gradient-style="LEFT2RIGHT"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="27903cac-95b4-42b6-b43e-792fa906ddcb" ref="test0309_2.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" size="10" text-direction="HORIZANTAL" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="418" y="89">
+              <f20:bounds-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color="#FFFFFF" gradient-style="NONE"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="8611e600-28fa-4d6d-8331-d27a6d431bf4" id="d47f09ba-f515-4600-9369-d6f8553e10e7" ref="test0309_2.main.Transition1" to="78d73a66-13f8-49a0-b921-3a168bb3dd2a" type="transition">
+        <f20:figure>
+          <f20:line label-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" size="12" text-direction="HORIZANTAL" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:bounds-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="78d73a66-13f8-49a0-b921-3a168bb3dd2a" id="7de9fe29-ee32-4d1c-97f1-07f6ad3e7bf8" ref="test0309_2.main.Transition2" to="27903cac-95b4-42b6-b43e-792fa906ddcb" type="transition">
+        <f20:figure>
+          <f20:line label-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" size="12" text-direction="HORIZANTAL" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:bounds-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

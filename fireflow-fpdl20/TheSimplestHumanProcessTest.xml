@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="TheSimplestHumanProcessTest" id="TheSimplestHumanProcessTest" name="TheSimplestHumanProcessTest" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.human biz-category="" display-name="申请" id="Apply" invoker-class="org.fireflow.pdl.fpdl.enginemodules.WorkItemManagerFpdl20Impl" name="Apply" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+      <s:form-url>abc/zyx2.jsp</s:form-url>
+      <s:workitem-subject>
+        <s:expression language="JEXL">
+          <s:body><![CDATA['请假申请[申请人:'+processVars.applicant+',请假天数:'+processVars.days+']']]></s:body>
+        </s:expression>
+      </s:workitem-subject>
+    </s:service.human>
+  </s:services>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="业务领导" id="Administrators" name="Administrators" resource-type="org.fireflow.constants.Custom">
+      <r:resolver class-name="org.fireflow.pdl.fpdl.test.service.human.CustomerResourceResolver"/>
+      <r:extended-attributes>
+        <r:extended-attribute name="FLAG" value="1"/>
+      </r:extended-attributes>
+    </r:resource>
+    <r:resource display-name="抄送" id="cc" name="cc" resource-type="org.fireflow.constants.Custom">
+      <r:resolver class-name="org.fireflow.pdl.fpdl.test.service.human.CustomerResourceResolver"/>
+      <r:extended-attributes>
+        <r:extended-attribute name="FLAG" value="3"/>
+      </r:extended-attributes>
+    </r:resource>
+    <r:resource display-name="操作者" id="Performers" name="Performers" resource-type="org.fireflow.constants.Custom">
+      <r:resolver class-name="org.fireflow.pdl.fpdl.test.service.human.CustomerResourceResolver"/>
+      <r:extended-attributes>
+        <r:extended-attribute name="FLAG" value="2"/>
+      </r:extended-attributes>
+    </r:resource>
+  </r:resources>
+  <f20:subflows>
+    <f20:subflow display-name="main_flow" duration="3 BUSINESS DAY" entry="TheSimplestHumanProcessTest.main_flow.Start" id="TheSimplestHumanProcessTest.main_flow" name="main_flow">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="applicant" id="TheSimplestHumanProcessTest.main_flow.applicant" init-value="张三" name="applicant"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.Integer" display-name="days" id="TheSimplestHumanProcessTest.days" init-value="2" name="days"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.Integer" display-name="z" id="TheSimplestHumanProcessTest.z" init-value="3" name="z"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="Start" id="TheSimplestHumanProcessTest.main_flow.Start" name="Start">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="Activity1" duration="3 BUSINESS DAY" id="TheSimplestHumanProcessTest.main_flow.Activity1" loop-strategy="org.fireflow.constants.REDO" name="Activity1">
+          <f20:service-binding operation-name="" service-id="Apply"/>
+          <f20:resource-binding assignment-strategy="org.fireflow.constants.ASSIGN_TO_ALL" display-name="审批科">
+            <f20:administrators>
+              <f20:resource-ref resource-id="Administrators"/>
+            </f20:administrators>
+            <f20:potential-owners>
+              <f20:resource-ref resource-id="Performers"/>
+            </f20:potential-owners>
+            <f20:readers>
+              <f20:resource-ref resource-id="cc"/>
+            </f20:readers>
+          </f20:resource-binding>
+        </f20:activity>
+      </f20:activities>
+      <f20:end-nodes>
+        <f20:end-node display-name="End" id="TheSimplestHumanProcessTest.main_flow.End" name="End">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="start2activity" from="TheSimplestHumanProcessTest.main_flow.Start" id="TheSimplestHumanProcessTest.main_flow.start2activity" is-default="false" is-loop="false" name="start2activity" to="TheSimplestHumanProcessTest.main_flow.Activity1"/>
+        <f20:transition display-name="activity2end" from="TheSimplestHumanProcessTest.main_flow.Activity1" id="TheSimplestHumanProcessTest.main_flow.activity2end" is-default="false" is-loop="false" name="activity2end" to="TheSimplestHumanProcessTest.main_flow.End"/>
+      </f20:transitions>
+    </f20:subflow>
+  </f20:subflows>
+  <f20:diagrams/>
+</f20:workflow-process>

@@ -1,0 +1,129 @@
+#title: 事件监听
+#index:0,1
+#author:zozoh(zozohtnt@gmail.com)
+
+--------------------------------------------------------------------------------------------------------
+都有哪些事件
+	Nutz.Ioc 容器有三种事件：
+	
+	 * 对象被创建
+	 * 对象被从容器中取出
+	 * 对象被销毁
+	
+	在这三种时刻，你如果想做一些特殊的操作，比如，当一个数据源被销毁时，你希望能够关闭所有的连接，
+	你可以在 JSON 配置文件中，声明一下，你想监听什么事件，以及怎么监听。
+
+    {*#F00; 注:} 如果你的对象是 "singleton: false"，那么容器创建了对象后就会立即忘记它的存在。因为鬼才知道
+    你打算创建多少份该对象的实例，要是每份实例都记录的话，内存说不定爆了。所以这样的非单例对象，
+    你在 depose 容器的时候，容器是不会调用它的 depose 方法的，即使你在配置文件中声明了它，因为容器根本
+    就不会知道这样的对象曾经存在过。但是 create, fetch 事件还是会被调用到的。
+	
+--------------------------------------------------------------------------------------------------------
+怎么监听
+
+	我们为 Pet 对象增加一个新的属性:
+	
+	{{{
+	public class Pet {
+
+		private int fetchCount;
+		
+		... // 省略其他属性以及 getter 和 setter
+	}}}
+	
+	通过实现一个触发器
+		触发器
+			{{{
+			package nutz.demo.ioc.book;//提醒: 不要把你的类放在缺省包中!!
+
+			import org.nutz.ioc.IocEventTrigger;
+
+			public class OnFetchPet implements IocEventTrigger<Pet> {
+
+				public void trigger(Pet pet) {
+					pet.setFetchCount(pet.getFetchCount() + 1);
+				}
+
+			}
+			}}}
+			
+			IocEventTrigger 接口只有一个方法，当它被调用的时候，就表示某个事件发生了。
+			具体什么事件呢？完全看你在 JSON 配置文件中把这个触发器，声明在哪种事件下面
+		
+		在 JSON 配置文件中声明监听的事件
+			{{{
+			var ioc = {
+				xb : {
+					events : {
+						fetch : 'nutz.demo.ioc.book.OnFetchPet'
+					},
+					fields : {
+						name : 'XiaoBai'
+					}
+				}
+			}
+			}}}
+		
+		调用代码
+			{{{
+			Ioc ioc = new NutIoc(new JsonLoader("nutz/demo/ioc/book/events.js"));
+			Pet pet = ioc.get(Pet.class, "xb");
+			ioc.get(Pet.class, "xb");
+			ioc.get(Pet.class, "xb");
+			System.out.printf("%s be fetch %d times", pet.getName(), pet.getFetchCount());
+			}}}
+		控制台输出
+			{{{
+			XiaoBai be fetch 3 times
+			}}}
+	
+	通过对象自身的一个函数
+		这个函数必须为  public，并且不能有参数
+		
+		为 Pet 对象增加一个函数：
+			{{{
+			public void onFetch() {
+				this.fetchCount++;
+			}
+			}}}
+		
+		在 JSON 配置文件中增加新的对象
+			{{{
+			xh : {
+				events : {
+					fetch : 'onFetch'
+				},
+				fields : {
+					name : 'XiaoHei'
+				}
+			}
+			}}}
+		调用代码
+			{{{
+			Pet xh = ioc.get(Pet.class, "xh");
+			ioc.get(Pet.class, "xh");
+			System.out.printf("%s be fetch %d times\n", xh.getName(), xh.getFetchCount());
+			}}}
+		控制台输出
+			{{{
+			XiaoHei be fetch 2 times
+			}}}
+		
+	
+--------------------------------------------------------------------------------------------------------
+监听其他事件
+	{{{
+	events : {
+		fetch  : ... ,
+		create : ... ,
+		depose : ...
+	}
+	}}}
+	根据需要，你可以选择上述三个事件，为其声明触发器，或者触发函数。
+
+	
+		
+
+	
+	
+	

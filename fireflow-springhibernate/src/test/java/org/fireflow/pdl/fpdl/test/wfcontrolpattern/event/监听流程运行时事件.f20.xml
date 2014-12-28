@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="监听流程运行时事件" id="ListenToProcessEvents" name="ListenToProcessEvents" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.java biz-category="" display-name="Java类[Calculator]" id="Calculator" invoker-class="org.fireflow.service.java.JavaInvoker" name="Calculator" parser-class="org.fireflow.service.java.JavaServiceParser" target-namespace="">
+      <s:description><![CDATA[Java类：org.fireflow.samples.biz.Calculator]]></s:description>
+      <s:java-class-name>org.fireflow.samples.biz.Calculator</s:java-class-name>
+      <s:interface.java>
+        <s:interface-class>org.fireflow.samples.biz.ICalculator</s:interface-class>
+      </s:interface.java>
+    </s:service.java>
+    <s:service.human biz-category="" display-name="请假表单" id="form1" name="form1" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+      <s:form-url>/test.jsp</s:form-url>
+      <s:workitem-subject>
+        <s:expression display-name="工作项主题" language="UNIFIEDJEXL" name="WorkItemSubject">
+          <s:body><![CDATA[请假流程，申请人${processVars.applicant}，请假天数${processVars.days}]]></s:body>
+        </s:expression>
+      </s:workitem-subject>
+      <s:interface.common name="form1">
+        <s:operation name="打开表单：请假表单">
+          <s:inputs/>
+          <s:outputs/>
+        </s:operation>
+      </s:interface.common>
+    </s:service.human>
+  </s:services>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="ListenToProcessEvents.main.StartNode1" id="ListenToProcessEvents.main" name="main">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="申请人" id="ListenToProcessEvents.main.applicant" init-value="张三" name="applicant"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="请假天数" id="ListenToProcessEvents.main.days" init-value="1" name="days"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="ListenToProcessEvents.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="Activity1" id="ListenToProcessEvents.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1">
+          <f20:event-listeners>
+            <f20:event-listener class-name="org.fireflow.engine.modules.instancemanager.event.AbsProcessInstanceEventListener" id="ListenToProcessEvents.main.Activity1.EventListener1366773103967" name="EventListener1366773103967">
+              <f20:description><![CDATA[asdfasdf]]></f20:description>
+            </f20:event-listener>
+          </f20:event-listeners>
+          <f20:workitem_event-listeners>
+            <f20:event-listener bean-name="asdf" id="ListenToProcessEvents.main.Activity1.EventListener1366773089219" name="EventListener1366773089219">
+              <f20:description><![CDATA[asdasdf]]></f20:description>
+            </f20:event-listener>
+          </f20:workitem_event-listeners>
+        </f20:activity>
+        <f20:activity display-name="Activity2" id="ListenToProcessEvents.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2">
+          <f20:service-binding operation-name="打开表单：请假表单" service-id="form1"/>
+          <f20:event-listeners>
+            <f20:event-listener class-name="org.fireflow.samples.event.MyActivityEventListener" id="ListenToProcessEvents.main.Activity2.EventListener1366774825313" name="EventListener1366774825313">
+              <f20:description><![CDATA[测试Activity事件监听器]]></f20:description>
+            </f20:event-listener>
+          </f20:event-listeners>
+          <f20:workitem_event-listeners>
+            <f20:event-listener class-name="org.fireflow.samples.event.MyWorkItemEventListener" id="ListenToProcessEvents.main.Activity2.EventListener1366774849947" name="EventListener1366774849947">
+              <f20:description><![CDATA[测试WorkItem事件监听器]]></f20:description>
+            </f20:event-listener>
+          </f20:workitem_event-listeners>
+        </f20:activity>
+      </f20:activities>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="ListenToProcessEvents.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="" from="ListenToProcessEvents.main.StartNode1" id="ListenToProcessEvents.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="ListenToProcessEvents.main.Activity1"/>
+        <f20:transition display-name="" from="ListenToProcessEvents.main.Activity1" id="ListenToProcessEvents.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="ListenToProcessEvents.main.Activity2"/>
+        <f20:transition display-name="" from="ListenToProcessEvents.main.Activity2" id="ListenToProcessEvents.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="ListenToProcessEvents.main.EndNode1"/>
+      </f20:transitions>
+      <f20:event-listeners>
+        <f20:event-listener class-name="org.fireflow.samples.event.MyProcessEventListener" id="ListenToProcessEvents.main.EventListener1366767073267" name="EventListener1366767073267">
+          <f20:description><![CDATA[流程创建时，设置复杂的流程变量，并打印相关信息；
+流程结束时，打印相关信息。]]></f20:description>
+        </f20:event-listener>
+      </f20:event-listeners>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" grid-enabled="false" id="927a8c44-e013-46e6-977d-d07903791511" ref="ListenToProcessEvents.main" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="9addc66a-f636-4129-8f5d-a0f805f0a672" ref="ListenToProcessEvents.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="36" y="90"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="ae043290-16ad-4496-8313-db8af832919d" ref="ListenToProcessEvents.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="579" y="90"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="aaf33843-d8f4-4e6b-b406-223ac7859a76" ref="ListenToProcessEvents.main.Activity1" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:content>
+              <f20:titleLabel color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="164" y="70">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="79ee8410-a426-432d-9f0c-7c5f698a5f9a" ref="ListenToProcessEvents.main.Activity2" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:content>
+              <f20:titleLabel color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="349" y="70">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="9addc66a-f636-4129-8f5d-a0f805f0a672" id="5b358098-5c8d-40ef-a4aa-d6614b084a53" ref="ListenToProcessEvents.main.Transition1" to="aaf33843-d8f4-4e6b-b406-223ac7859a76" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="aaf33843-d8f4-4e6b-b406-223ac7859a76" id="a1cf1163-5fd9-4832-b508-f4707dbdc284" ref="ListenToProcessEvents.main.Transition2" to="79ee8410-a426-432d-9f0c-7c5f698a5f9a" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="79ee8410-a426-432d-9f0c-7c5f698a5f9a" id="cbba4454-58e1-438e-9230-965ff4a0dd99" ref="ListenToProcessEvents.main.Transition3" to="ae043290-16ad-4496-8313-db8af832919d" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

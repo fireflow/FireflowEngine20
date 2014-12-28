@@ -1,0 +1,66 @@
+/**
+ * Copyright 2007-2010 非也
+ * All rights reserved. 
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation。
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see http://www.gnu.org/licenses. *
+ */
+package org.fireflow.model.binding;
+
+import java.util.List;
+
+import org.fireflow.model.resourcedef.ResourceDef;
+
+/**
+ * 
+ * 
+ * @author 非也
+ * @version 2.0
+ */
+public interface ResourceRef {
+//	public static final String ADMINISTRATOR = "ADMINISTRATOR";
+//	public static final String POTENTIAL_OWNER = "POTENTIAL_OWNER";
+//	public static final String READER = null;
+	
+//	/**
+//	 * 资源所承担的角色名称，取值为
+//	 * ResourceRef.ADMINISTRATOR; ResourceRef.POTENTIAL_OWNER;
+//	 * ResourceRef.READER之一。
+//	 * @return
+//	 */
+//	public String getResourceRole();
+	
+	/**
+	 * 资源的Id
+	 * @return
+	 */
+	public String getResourceId();
+	
+	/**
+	 * 资源对象
+	 * @return
+	 */
+	public ResourceDef getResource();
+	
+	/**
+	 * 资源参数赋值
+	 * @return
+	 */
+//	public List<Assignment> getParameterAssignments();
+	
+	/**
+	 * TODO 是否可以考虑在资源绑定时增加一个过滤表达式，
+	 * 对查询出来的资源进行过滤？
+	 * @return
+	 */
+//	public Expression getFilters();
+}

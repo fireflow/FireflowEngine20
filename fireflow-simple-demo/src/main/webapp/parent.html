@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <body onload="zenmewan()">
+      <iframe id="txtFrame" name="woyun" src="iframe.html"></iframe>
+    </body>
+	<script type="text/javascript">
+	function zenmewan(){
+		alert('inside zenmewan');
+	//总结,  
+	//<1===========>通过ID找子页面就如上面那位说的用:document.getElementById('txtFrame').contentWindow;
+	//contentWindow不能省略,否则你只是拿到了主页面的一个节点,拿不到子页面,为了兼容浏览器尽量要用ID找东西!所以这个得学会!这是通过ID找,通过name的话不用写contentWindow
+	
+	
+	try{
+		alert(document.getElementById('txtFrame').contentDocument);
+		alert(document.getElementById('txtFrame').contentWindow);
+	document.getElementById('txtFrame').contentWindow.iframeTip("wokaoa");
+	}catch(e){
+		alert(e);
+	}
+	alert(document.getElementById('txtFrame').contentWindow.document.getElementById("wokaoa").innerText);
+
+
+	//<2===========>name可以直接用,兼容有待测试,我没firefox不测试了~ 我宁愿用ID! 
+	//window.woyun.iframeTip("wokaoa");
+	//woyun.iframeTip("wokaoa");
+	//document.woyun.iframeTip("wokaoa");
+	//上面是用NAME调用子页方法!要是想从子页里找元素的话,这么写:
+	
+	//alert(woyun.document.getElementById("wokaoa").innerText);
+
+	//也就是说要用到document!
+	//alert(parent.woyun.document.getElementById("wokaoa").innerText);
+	//<3=============>通过name找的话还可以这么写:
+	//alert(frames["woyun"].document.getElementById("wokaoa").innerText);
+	//也就是frames["woyun"]代替woyun;
+	 
+	//<4=========>windows可以省略~   分页面的"parent"可以上升到主页,  主页可以出现parent.不妨碍运行,但是没什么意义!
+
+	//frames["woyun"].iframeTip("wokaoa");
+	//window.frames["woyun"].iframeTip("wokaoa");
+	//parent.frames["woyun"].iframeTip("我靠");
+	//alert(window.woyun.document.getElementById("wokaoa").innerText);
+	//alert(woyun.document.getElementById("wokaoa").innerText);
+
+	}
+
+	//最后,写这个demo注意几点,在写子页的时候我粗心把script代码写在了body前面,结果造成body未加载,怎么看语句都没错误
+	//主页这些测试语句必须用<body onload="zenmewan()">来调用,即使下在了body下面也不行~,因为子页加载太慢,主页加载完了一样还没有加载子页!
+	</script>
+</html>
+
+

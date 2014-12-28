@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Foo foo_aatr_1="" xmlns:tns="http://www.example.org/Unqualified_Schema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Unqualified_Schema Unqualified_Schema.xsd ">
+	<foo_1>foo_1</foo_1>
+	<foo_2>foo_2</foo_2>
+</tns:Foo>

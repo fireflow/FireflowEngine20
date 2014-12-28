@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function changeStyle()
+{
+var x=document.getElementById("myframe");
+var y=(x.contentWindow || x.contentDocument);
+if (y.document)y=y.document;
+y.body.style.backgroundColor="#0000ff";
+}
+</script>
+</head>
+<body>
+
+<iframe id="myframe" src="demo_iframe.htm">
+<p>Your browser does not support iframes.</p>
+</iframe>
+<br><br>
+
+<input type="button" onclick="changeStyle()" value="Change background color">
+
+</body>
+</html>

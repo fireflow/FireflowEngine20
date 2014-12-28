@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="AcceptApproveResult" targetNamespace="http://www.fireflow.org/junit/callbackservice" xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.fireflow.org/junit/callbackservice" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <wsdl:types>
+    <schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.fireflow.org/junit/callbackservice" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.fireflow.org/junit/callbackservice"><complexType name="acceptRequestType"><sequence><element name="id" type="string"/><element name="approveResult" type="string"/></sequence></complexType><element name="acceptRequest" type="tns:acceptRequestType"/><complexType name="acceptResponseType"><sequence><element name="response1" type="string"/><element name="response2" type="string"/></sequence></complexType><element name="acceptResponse" type="tns:acceptResponseType"/></schema>
+  </wsdl:types>
+  <wsdl:message name="acceptRequestMessage">
+    <wsdl:part name="acceptRequest" element="tns:acceptRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="acceptResponseMessage">
+    <wsdl:part name="acceptResponse" element="tns:acceptResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AcceptResult_PortType">
+    <wsdl:operation name="accept">
+      <wsdl:input name="acceptRequest" message="tns:acceptRequestMessage">
+    </wsdl:input>
+      <wsdl:output name="acceptResponse" message="tns:acceptResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AcceptResult_Binding" type="tns:AcceptResult_PortType">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="accept">
+      <wsdl:input name="acceptRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="acceptResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AcceptApproveResult_1">
+    <wsdl:port name="AcceptResult_Port" binding="tns:AcceptResult_Binding">
+      <wsdlsoap:address location="http://127.0.0.1:6666/FireWorkflowServices/AcceptApproveResult_1"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

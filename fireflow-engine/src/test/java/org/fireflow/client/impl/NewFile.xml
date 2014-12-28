@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workflowQuery>
+    <interfaceClass>org.fireflow.engine.entity.runtime.ActivityInstance</interfaceClass>
+    <criterionList>
+        <simpleExp>
+            <property>ActivityInstance.id</property>
+            <operation>=</operation>
+            <value data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String">id-123</value>
+        </simpleExp>
+        <isNotNull field="ActivityInstance.name"/>
+        <in property="ActivityInstance.processType">
+            <values>
+                <item data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String">FPDL20</item>
+                <item data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String">XPDL</item>
+            </values>
+        </in>
+        <between property="ActivityInstance.createdTime">
+            <lo data-type="{http://jcp.org/en/jsr/detail?id=270}java.util.Date" data-pattern="yyyy-MM-dd HH:mm:ss"/>
+            <hi data-type="{http://jcp.org/en/jsr/detail?id=270}java.util.Date" data-pattern="yyyy-MM-dd HH:mm:ss"/>
+        </between>
+        <logicExp operation="and">
+            <simpleExp>
+                <property>ActivityInstance.state</property>
+                <operation>&lt;=</operation>
+                <value data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.Integer">10</value>
+            </simpleExp>
+            <simpleExp>
+                <property>ActivityInstance.nodeId</property>
+                <operation>&lt;&gt;</operation>
+                <value data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.Integer">100</value>
+            </simpleExp>
+        </logicExp>
+    </criterionList>
+    <orderBy asc="true">ActivityInstance.expiredTime</orderBy>
+    <orderBy asc="false">ActivityInstance.processDisplayName</orderBy>
+    <firstResult>0</firstResult>
+    <maxResults>-1</maxResults>
+    <queryFromHistory>false</queryFromHistory>
+</workflowQuery>

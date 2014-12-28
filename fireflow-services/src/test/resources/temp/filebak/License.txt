@@ -1,0 +1,213 @@
+MXGRAPH GENERAL LICENSE STATEMENT AND LIMITED WARRANTY
+IMPORTANT - READ CAREFULLY
+
+This license statement and limited warranty constitutes a legal agreement 
+("License Agreement") between You (either as an individual or a single entity) 
+and JGraph Ltd. for the software product ("Software") identified above, 
+including any software, media, and accompanying on-line or printed 
+documentation. By installing, copying, or otherwise using the
+Software, you are agreeing to be bound by the terms of this Agreement. If you
+do not agree to the terms of this Agreement, you are not authorized to use
+this Software.
+
+
+Definitions:
+
+ "mxGraph" shall mean a programmer's toolkit for building interactive
+ online diagramming applications as originally created by JGraph Ltd
+
+ "Software " shall mean mxGraph, as originally created by
+ JGraph Ltd., which includes the Redistributable Javascript file
+
+ "Licensee" is you, only if you agree to be bound by the terms
+ and conditions set forth in this Agreement.
+
+ "Commercial use" means use by any organisation or 
+ private individual where the use does affords the Licensee any financial 
+ gain. Use of the Software internally within a for-profit organisation 
+ constitutes commercial use.
+ 
+ "Source code" means the commented Javascript files, other than the 
+ Redistributable Javascript file.
+ 
+ "Redistributable Javascript file" means the file named mxClient.js. 
+ It is located in the JavaScript/src/js directory. It is the only file that 
+ may be redistributed.
+ 
+BY INSTALLING, COPYING, OR OTHERWISE USING THE SOFTWARE, YOU AGREE TO BE BOUND 
+BY ALL OF THE TERMS AND CONDITIONS OF THE LICENSE AGREEMENT.
+
+Upon your acceptance of the terms and conditions of the License Agreement, 
+JGraph Ltd. grants you the right to use the Software in the manner provided 
+below. This license is perpetual, no additional payment is required to 
+maintain it, with the exception of you breaking any part of this license, in 
+which case you lose all rights under the license.
+
+You may transfer the rights granted to you under this agreement in and to the 
+Software and documentation on a permanent basis provided you retain no copies, 
+the recipient agrees to the terms of the License Agreement and the total number 
+of developers licensed to use the software, in the case of a company license, 
+does not exceed twice the number of licensed developers at the time of license 
+purchase. Except as provided in the License Agreement, you may not transfer, 
+rent, lease, lend, copy, modify, translate, sublicense, time-share or 
+electronically transmit or receive the Software, media or documentation. When 
+transferring licenses, the whole of the licensed product must be transferred, 
+a multiple license may not be split as part of a transfer.
+
+DEVELOPER LICENSE TERMS
+
+To develop products using the Software, you require a number of development 
+licenses equal to the number of engineers developing the application area 
+that specifically uses the Software. This is the maximum number 
+of such developers over any 1 month sliding window. A development license is 
+not required in order build an application that uses the software.
+
+You may not develop a number of products using mxGraph that exceeds the number 
+of development licenses you own.
+
+Developing an mxGraph based application completely during the evaluation 
+period and claiming to require no development licenses is not permitted. 
+A number of development licenses must be acquired equal to the maximum number 
+of developers of the mxGraph specific parts of the application at any point 
+during evaluation or production.
+
+A Company Developer License may be installed on any number of computers and be 
+used by any number of developers at any time any the condition that those 
+developers are employed by the licensee company, any subsidiary company of the 
+licensee company. JGraph Ltd. grants to you as an organization of individuals, 
+nonexclusive licenses to install and use the Software for the sole purposes of 
+designing, developing and testing application programs which you create. You 
+may install copies of the Software on any number computers throughout the 
+organization for which the license was purchased.
+
+In addition to the right to install the complete software on the specified 
+number of computers, the specified Redistributable Javascript file may also be 
+placed on storage devices for the purposes of version control, automated 
+building and archiving. The entire downloaded Software package may also be 
+archived within the purchasing company organization for backup purposes.
+
+
+ADDITIONAL REDISTRIBUTION TERMS FOR SOFTWARE
+
+JGraph hereby grants to you the worldwide, non exclusive, perpetual right 
+under all intellectual property rights in and to the Software to 
+incorporate the Redistributable Javascript in whole or in part in your 
+offerings and to redistribute the Redistributable Javascript as incorporated 
+to your customers and distributors and resellers.  You may not distribute 
+any program or file which includes, is created from, or otherwise incorporates 
+portions of the Software if such program or file is and the primary purpose 
+of which is to be a general purpose diagramming tool, diagramming component, 
+or is otherwise generally competitive with or a substitute for any JGraph Ltd 
+product. Your mxGraph based application must not only be an online diagramming 
+tool, it must be part of a larger system of which visualization is one 
+element. For example, creating only an online business process modelling 
+web site using mxGraph is not permitted. Creating a business process modelling 
+tool for a specific workflow engine is permitted. You are strongly advised to 
+seek clarification on what is deemed competitive prior to purchase.
+
+JGraph Ltd has two additional products in development. One is a drop-in 
+solution for corporate Intranets to provide a browser based diagramming 
+application. The other is a generic online diagramming web site, providing 
+the same application over the Internet. Your intended application must not be 
+competitive with either of these solutions.
+
+SOURCE CODE
+
+As a separate purchase the human readable, uncompressed version of the 
+JavaScript code is available (referred to as the "Formatted JavaScript").
+
+You may not distribute the Formatted JavaScript under any conditions. 
+Otherwise, if you re-distribute the Software as part of your application, only 
+the Redistributable Javascript file may be so incorporated and/or 
+redistributed. This file is javascript/src/js/mxClient.js. The copyright 
+notice text at the top of the file must remain intact.
+
+All JavaScript Source code provided as example usage of the library, located 
+under the JavaScript/example folder in the distribution, may be used for any 
+purpose and re-distributed without restriction, as long as the copyright 
+notice text remains intact. All source code in languages other than JavaScript 
+in the distribution may also be used for any purpose and re-distributed 
+without restriction, as long as the copyright text remains intact
+
+Any product created should not explicitly expose the mxGraph programming API 
+or advertise the mxGraph API in the product documentation.
+
+
+LIMITED WARRANTY
+
+JGraph Ltd. warrants that the Software, as updated and when properly used, 
+will perform substantially in accordance with the accompanying documentation, 
+and the Software media will be free from defects in materials and workmanship, 
+for a period of ninety (90) days from the date of receipt. Any implied 
+warranties on the Software are limited to ninety (90) days. Some 
+states/jurisdictions do not allow limitations on duration of an implied 
+warranty, so the above limitation may not apply to you.
+
+This Limited Warranty is void if failure of the Software has resulted from 
+accident, abuse, or misapplication. Any replacement Software will be warranted 
+for the remainder of the original warranty period or thirty (30) days, 
+whichever is longer. 
+
+JGraph warrants that as provided the Software does not contain any malicious 
+code inserted to affect the functioning of the Software or any computer that 
+the Software runs on. Any developer using mxGraph must have a broad 
+understanding of security issue relating to web application and must take all 
+reasonable steps at a system level to mitigate those risks.
+
+JGraph warrants that the Software does not infringe any patent, copyright or 
+design secret of any third party. JGraph is not aware of any facts upon which 
+such a claim for infringement could be based.
+
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, JGRAPH LTD. AND ITS 
+SUPPLIERS DISCLAIM ALL OTHER WARRANTIES AND CONDITIONS, EITHER EXPRESS OR 
+IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT, WITH REGARD TO 
+THE SOFTWARE, AND THE PROVISION OF OR FAILURE TO PROVIDE SUPPORT SERVICES. THIS 
+LIMITED WARRANTY GIVES YOU SPECIFIC LEGAL RIGHTS. YOU MAY HAVE OTHERS, WHICH 
+VARY FROM STATE/JURISDICTION TO STATE/JURISDICTION.
+
+LIMITATION OF LIABILITY TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN 
+NO EVENT SHALL JGRAPH LTD. OR ITS SUPPLIERS BE LIABLE FOR ANY SPECIAL, 
+INCIDENTAL, INDIRECT, OR CONSEQUENTIAL DAMAGES WHATSOEVER (INCLUDING, WITHOUT 
+LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS 
+OF BUSINESS INFORMATION, OR ANY OTHER PECUNIARY LOSS) ARISING OUT OF THE USE OF 
+OR INABILITY TO USE THE SOFTWARE PRODUCT OR THE PROVISION OF OR FAILURE TO 
+PROVIDE SUPPORT SERVICES, EVEN IF JGRAPH LTD. HAS BEEN ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGES. BECAUSE SOME STATES AND JURISDICTIONS DO NOT 
+ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY, THE ABOVE LIMITATION MAY NOT 
+APPLY TO YOU.
+
+
+HIGH RISK ACTIVITIES
+
+The Software is not fault-tolerant and is not designed, manufactured or 
+intended for use or resale as on-line control equipment in hazardous 
+environments requiring fail-safe performance, such as in the operation of 
+nuclear facilities, aircraft navigation or communication systems, air traffic 
+control, direct life support machines, manufacturing process control systems, 
+financial trading or weapons systems, in which the failure 
+of the Software could lead directly to death, personal injury, or severe 
+physical or environmental damage ("High Risk Activities"). JGraph Ltd. and
+its suppliers specifically disclaim any express or implied warranty of fitness 
+for High Risk Activities. 
+
+GENERAL PROVISIONS
+
+This License Agreement may only be modified in writing signed by you and
+JGraph Ltd. If any provision of this License Agreement is found void or 
+unenforceable, the remainder will remain valid and enforceable according to its
+terms. If any remedy provided is determined to have failed for its essential
+purpose, all limitations of liability and exclusions of damages set forth in 
+the Limited Warranty shall remain in effect.
+
+GOVERNING LAW AND JURISDICTION
+
+This Agreement shall be subject to and governed by the Law of England and 
+Wales. Any dispute arising out of or in connection with this Agreement shall 
+be exclusively dealt with by the courts of England and Wales. This License 
+Agreement gives you specific legal rights; you may have others which vary from 
+state to state and from country to country. JGraph Ltd. reserves all rights not 
+specifically granted in this License Agreement.
+
+Version 1.02 - 03.09.2010

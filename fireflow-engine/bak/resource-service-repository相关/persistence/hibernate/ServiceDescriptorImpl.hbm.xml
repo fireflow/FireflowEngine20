@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.fireflow.engine.entity.repository.impl.ServiceDescriptorImpl"
+		table="T_FF_DF_SERVICE_DESCRIPTOR">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid" />
+		</id>
+		<property name="serviceId" type="java.lang.String" update="false" unique-key="SVC_DESC_SERVICE_ID">
+			<column length="100" name="SERVICE_ID" not-null="true" />
+		</property>	
+		<property name="name" type="java.lang.String">
+			<column length="100" name="NAME" not-null="true" />
+		</property>
+		<property name="displayName" type="java.lang.String">
+			<column length="128" name="DISPLAY_NAME" />
+		</property>
+		<property name="description" type="java.lang.String">
+			<column length="1024" name="DESCRIPTION" />
+		</property>
+		<property name="bizType" type="java.lang.String">
+			<column length="200" name="BIZ_TYPE" />
+		</property>		
+		
+		<!--  必须要有文件名，便于repository和workspace同步 -->
+		<property name="fileName" type="java.lang.String">
+			<column length="200" name="FILE_NAME" not-null="true"/>
+		</property>			
+		
+		<property name="publishState" type="java.lang.Boolean">
+			<column length="1" name="PUBLISH_STATE" not-null="true" />
+		</property>
+		
+		
+	
+		
+		<property name="ownerDeptId" type="java.lang.String">
+			<column length="100" name="OWNER_DEPT_ID" />
+		</property>			
+		<property name="ownerDeptName" type="java.lang.String">
+			<column length="100" name="OWNER_DEPT_NAME" />
+		</property>	
+		<property name="approver" type="java.lang.String">
+			<column length="100" name="APPROVER" />
+		</property>	
+		<property name="approvedTime" type="java.util.Date">
+			<column name="APPROVED_TIME"/>
+		</property>	
+		
+		<property name="lastEditor" type="java.lang.String">
+			<column length="50" name="LAST_EDITOR" not-null="true"/>
+		</property>			
+		<property name="lastUpdateTime" type="java.util.Date"  generated="always" >
+			<column name="LAST_UPDATE_TIME"  sql-type="timestamp"  default="CURRENT_TIMESTAMP">
+				<comment>最后更新时间</comment>
+			</column>
+		</property>				
+	</class>
+</hibernate-mapping>

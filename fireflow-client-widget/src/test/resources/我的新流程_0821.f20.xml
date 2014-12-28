@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?><f:workflow-process xmlns:f="http://www.fireflow.org/schema/workflowprocess" biz-category="" display-name="我的新流程_0821" id="My_New_Process_0821" name="My_New_Process_0821">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.human biz-category="" display-name="aaa" id="aaa" name="aaa" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+      <s:form-url>/Temp/webapp/Apply.jsp</s:form-url>
+      <s:workitem-subject>
+        <s:expression display-name="工作项主题" language="UNIFIEDJEXL" name="WorkItemSubject">
+          <s:body><![CDATA[asdfsd]]></s:body>
+        </s:expression>
+      </s:workitem-subject>
+      <s:interface.common name="aaa">
+        <s:operation name="打开表单：aaa">
+          <s:inputs>
+            <s:input data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="参数1" name="param1"/>
+          </s:inputs>
+          <s:outputs/>
+        </s:operation>
+      </s:interface.common>
+    </s:service.human>
+    <s:service.java biz-category="" display-name="Java类[Calculator]" id="Calculator" invoker-class="org.fireflow.service.java.JavaInvoker" name="Calculator" parser-class="org.fireflow.service.java.JavaServiceParser" target-namespace="">
+      <s:description><![CDATA[Java类：org.fireflow.test.Calculator]]></s:description>
+      <s:java-class-name>org.fireflow.test.Calculator</s:java-class-name>
+      <s:interface.java>
+        <s:interface-class>org.fireflow.test.ICalculator</s:interface-class>
+      </s:interface.java>
+    </s:service.java>
+  </s:services>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f:sub-processes>
+    <f:sub-process display-name="main" entry="My_New_Process_0821.main.StartNode1" id="My_New_Process_0821.main" name="main">
+      <f:start-nodes>
+        <f:start-node display-name="StartNode1" id="My_New_Process_0821.main.StartNode1" name="StartNode1">
+          <f:features>
+            <f:normal-start-feature/>
+          </f:features>
+        </f:start-node>
+      </f:start-nodes>
+      <f:activities>
+        <f:activity display-name="调用Java类[Calculator]" id="My_New_Process_0821.main.Call_Calculator" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Call_Calculator">
+          <f:service-binding operation-name="add" service-id="Calculator">
+            <f:input-assignments>
+              <f:input-assignment>
+                <f:from>
+                  <f:expression display-name="请编辑该表达式..." language="XPATH" name="EmptyExpression">
+                    <f:body/>
+                  </f:expression>
+                </f:from>
+                <f:to>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="a" language="XPATH" name="a">
+                    <f:body><![CDATA[inputs/a]]></f:body>
+                  </f:expression>
+                </f:to>
+              </f:input-assignment>
+              <f:input-assignment>
+                <f:from>
+                  <f:expression display-name="请编辑该表达式..." language="XPATH" name="EmptyExpression">
+                    <f:body/>
+                  </f:expression>
+                </f:from>
+                <f:to>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="b" language="XPATH" name="b">
+                    <f:body><![CDATA[inputs/b]]></f:body>
+                  </f:expression>
+                </f:to>
+              </f:input-assignment>
+            </f:input-assignments>
+            <f:output-assignments>
+              <f:output-assignment>
+                <f:from>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="output_of_add" language="XPATH" name="output_of_add">
+                    <f:body><![CDATA[outputs/output_of_add]]></f:body>
+                  </f:expression>
+                </f:from>
+                <f:to>
+                  <f:expression display-name="请编辑该表达式..." language="XPATH" name="EmptyExpression">
+                    <f:body/>
+                  </f:expression>
+                </f:to>
+              </f:output-assignment>
+            </f:output-assignments>
+          </f:service-binding>
+        </f:activity>
+        <f:activity display-name="Activity2" id="My_New_Process_0821.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2"/>
+        <f:activity display-name="aaa" id="My_New_Process_0821.main.Call_aaa" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Call_aaa">
+          <f:service-binding operation-name="打开表单：aaa" service-id="aaa">
+            <f:input-assignments>
+              <f:input-assignment>
+                <f:from>
+                  <f:expression display-name="请编辑该表达式..." language="XPATH" name="EmptyExpression">
+                    <f:body/>
+                  </f:expression>
+                </f:from>
+                <f:to>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="param1" language="XPATH" name="param1">
+                    <f:body><![CDATA[inputs/param1]]></f:body>
+                  </f:expression>
+                </f:to>
+              </f:input-assignment>
+            </f:input-assignments>
+          </f:service-binding>
+        </f:activity>
+      </f:activities>
+      <f:end-nodes>
+        <f:end-node display-name="EndNode1" id="My_New_Process_0821.main.EndNode1" name="EndNode1">
+          <f:features>
+            <f:normal-end-feature/>
+          </f:features>
+        </f:end-node>
+      </f:end-nodes>
+      <f:transitions>
+        <f:transition display-name="transition1" from="My_New_Process_0821.main.StartNode1" id="My_New_Process_0821.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="My_New_Process_0821.main.Call_Calculator"/>
+        <f:transition display-name="" from="My_New_Process_0821.main.Call_Calculator" id="My_New_Process_0821.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="My_New_Process_0821.main.Call_aaa"/>
+        <f:transition display-name="" from="My_New_Process_0821.main.Call_aaa" id="My_New_Process_0821.main.Transition4" is-default="false" is-loop="false" name="Transition4" to="My_New_Process_0821.main.Activity2"/>
+        <f:transition display-name="" from="My_New_Process_0821.main.Activity2" id="My_New_Process_0821.main.Transition5" is-default="false" is-loop="false" name="Transition5" to="My_New_Process_0821.main.EndNode1"/>
+      </f:transitions>
+    </f:sub-process>
+  </f:sub-processes>
+  <f:diagrams>
+    <f:diagram direction="H" grid-enabled="false" id="fid_3f449391_f1d9_4b17_821f_17195cae1689" ref="My_New_Process_0821.main" ruler-enabled="false" snap-enabled="true">
+      <f:node id="fid_fdfc2781_d8b5_4a10_8fae_9b93a51b2d55" ref="My_New_Process_0821.main.StartNode1" type="start-node">
+        <f:figure>
+          <f:circle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="32" width="32" x="63" y="54"/>
+          </f:circle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_a7501e75_d394_45c5_b93f_4241cedcd844" ref="My_New_Process_0821.main.EndNode1" type="end-node">
+        <f:figure>
+          <f:circle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="32" width="32" x="503" y="138"/>
+          </f:circle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_80df198d_25aa_49c8_b691_a311e51b0434" ref="My_New_Process_0821.main.Call_Calculator" type="activity">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:content>
+              <f:label color="#191970" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:content>
+            <f:bounds height="82" width="148" x="232" y="116">
+              <f:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f:bounds>
+            <f:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_3a21f17f_d768_4aa0_854a_fc3b2a75a9d9" ref="My_New_Process_0821.main.Activity2" type="activity">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:content>
+              <f:label color="#191970" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:content>
+            <f:bounds height="72" width="108" x="509" y="243">
+              <f:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f:bounds>
+            <f:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_ecfacc04_0401_4ee9_ba39_fa70fdfbed8e" ref="My_New_Process_0821.main.Call_aaa" type="activity">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:content>
+              <f:label color="#191970" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:content>
+            <f:bounds height="72" width="108" x="342" y="243">
+              <f:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f:bounds>
+            <f:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:connector from="fid_fdfc2781_d8b5_4a10_8fae_9b93a51b2d55" id="fid_679a2e10_4d3e_499f_881c_7e3ea8e320bc" ref="My_New_Process_0821.main.Transition1" to="fid_80df198d_25aa_49c8_b691_a311e51b0434" type="transition">
+        <f:figure>
+          <f:line point-list="(78,156)" titleLabel-position="(-2,14)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_80df198d_25aa_49c8_b691_a311e51b0434" id="fid_20b07384_cbdb_45b1_81e7_3eca544fb76b" ref="My_New_Process_0821.main.Transition3" to="fid_ecfacc04_0401_4ee9_ba39_fa70fdfbed8e" type="transition">
+        <f:figure>
+          <f:line point-list="(240,232);(262,278)" titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_ecfacc04_0401_4ee9_ba39_fa70fdfbed8e" id="fid_6b5ad7c5_2bbe_4371_8471_88e8a3b20e37" ref="My_New_Process_0821.main.Transition4" to="fid_3a21f17f_d768_4aa0_854a_fc3b2a75a9d9" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_3a21f17f_d768_4aa0_854a_fc3b2a75a9d9" id="fid_6d04616e_a80d_4b73_82b3_42a4e8e67d7e" ref="My_New_Process_0821.main.Transition5" to="fid_a7501e75_d394_45c5_b93f_4241cedcd844" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+    </f:diagram>
+  </f:diagrams>
+</f:workflow-process>

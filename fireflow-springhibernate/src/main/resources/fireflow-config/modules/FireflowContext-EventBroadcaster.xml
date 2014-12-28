@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="fireflowEventBroadcasterManager"
+		class="org.fireflow.engine.modules.event.impl.EventBroadcasterManagerImpl">
+		<property name="eventBroadcasters">
+			<map>
+				<entry key="org.fireflow.engine.modules.instancemanager.event.ActivityInstanceEvent">
+					<ref bean="activityInstanceEventBroadcaster"/>
+				</entry>
+				<entry key="org.fireflow.engine.modules.instancemanager.event.ProcessInstanceEvent">
+					<ref bean="processInstanceEventBroadcaster"/>
+				</entry>
+				<entry key="org.fireflow.engine.modules.workitem.event.WorkItemEvent">
+					<ref bean="workItemEventBroadcaster"/>
+				</entry>				
+			</map>
+		</property>
+	</bean>
+</beans>

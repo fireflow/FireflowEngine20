@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="HelloWorld" targetNamespace="http://server.hw.demo/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://server.hw.demo/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://server.hw.demo/" xmlns:ns1="http://model.hw.demo/" xmlns:ns2="http://common.model.hw.demo/" xmlns:tns="http://server.hw.demo/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://model.hw.demo/"/>
+  <xs:import namespace="http://common.model.hw.demo/"/>
+  <xs:complexType name="person">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" type="tns:address"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="sex" type="tns:sex"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="address">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="city" type="xs:string"/>
+      <xs:element name="streetNo" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="sex">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MAN"/>
+      <xs:enumeration value="WOMAN"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Exception" type="tns:Exception"/>
+  <xs:element name="sayHi" type="tns:sayHi"/>
+  <xs:complexType name="sayHi">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sayHiResponse" type="tns:sayHiResponse"/>
+  <xs:complexType name="sayHiResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sayHello" type="tns:sayHello"/>
+  <xs:complexType name="sayHello">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:person"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sayHelloResponse" type="tns:sayHelloResponse"/>
+  <xs:complexType name="sayHelloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema targetNamespace="http://model.hw.demo/" version="1.0" xmlns:ns1="http://server.hw.demo/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:import namespace="http://server.hw.demo/"/>
+<xs:element name="address" type="ns1:address"/>
+<xs:element name="person" type="ns1:person"/>
+
+
+</xs:schema>
+<xs:schema targetNamespace="http://common.model.hw.demo/" version="1.0" xmlns:ns1="http://server.hw.demo/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:import namespace="http://server.hw.demo/"/>
+<xs:element name="sex" type="ns1:sex"/>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="sayHi">
+    <wsdl:part element="tns:sayHi" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHelloResponse">
+    <wsdl:part element="tns:sayHelloResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHello">
+    <wsdl:part element="tns:sayHello" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHiResponse">
+    <wsdl:part element="tns:sayHiResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part element="tns:Exception" name="Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HelloWorldPortType">
+    <wsdl:operation name="sayHi">
+      <wsdl:input message="tns:sayHi" name="sayHi">
+    </wsdl:input>
+      <wsdl:output message="tns:sayHiResponse" name="sayHiResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sayHello">
+      <wsdl:input message="tns:sayHello" name="sayHello">
+    </wsdl:input>
+      <wsdl:output message="tns:sayHelloResponse" name="sayHelloResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWorldSoapBinding" type="tns:HelloWorldPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sayHi">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayHi">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHiResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sayHello">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayHello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHelloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWorldService">
+    <wsdl:port binding="tns:HelloWorldSoapBinding" name="HelloWorldPort">
+      <soap:address location="http://localhost:9000/Hello"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

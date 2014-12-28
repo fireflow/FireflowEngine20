@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Bar bar_aatr_1="" xmlns:tns="http://www.example.org/UnQualified_Unqualified_Schema" xmlns:tns1="http://www.example.org/Unqualified_Schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/UnQualified_Unqualified_Schema Unqualified_Unqualified_Schema.xsd ">
+  <bar_1>bar_1</bar_1>
+  <bar_2>bar_2</bar_2>
+  <bar_foo foo_aatr_1="">
+    <foo_1>foo_1</foo_1>
+    <foo_2>foo_2</foo_2>
+  </bar_foo>
+  <tns1:Foo foo_aatr_1="">
+    <foo_1>foo_1</foo_1>
+    <foo_2>foo_2</foo_2>
+  </tns1:Foo>
+  <bar_3>
+    <bar_3_1>bar_3_1</bar_3_1>
+    <tns1:Foo foo_aatr_1="">
+      <foo_1>foo_1</foo_1>
+      <foo_2>foo_2</foo_2>
+    </tns1:Foo>
+  </bar_3>
+</tns:Bar>

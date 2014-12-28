@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Bar1 xmlns:tns="http://www.example.org/Unqualified_Circular_reference1" xmlns:tns1="http://www.example.org/Unqualified_Circular_reference2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Unqualified_Circular_reference1 Unqualified_Circular_reference1.xsd ">
+  <bar1_1>bar1_1</bar1_1>
+  <tns1:Foo>
+    <foo1>foo1</foo1>
+    <foo2>
+      <foo2_1>foo2_1</foo2_1>
+      <tns:Bar2>
+        <bar2_1>bar2_1</bar2_1>
+        <bar2_2>bar2_2</bar2_2>
+      </tns:Bar2>
+    </foo2>
+  </tns1:Foo>
+</tns:Bar1>

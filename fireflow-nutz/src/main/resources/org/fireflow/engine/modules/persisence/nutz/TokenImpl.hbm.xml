@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.fireflow.pvm.kernel.impl.TokenImpl"
+		table="T_FF_RT_TOKEN">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid" />
+		</id>
+
+		<property name="processInstanceId" type="java.lang.String">
+			<column length="50" name="PROCESS_INSTANCE_ID"  />
+		</property>
+		
+		<property name="elementInstanceId" type="java.lang.String">
+			<column length="50" name="ELEMENT_INSTANCE_ID"  />
+		</property>
+
+
+		<!--  -->
+		
+		<property name="businessPermitted" type="java.lang.Boolean">
+			<column name="BUSINESS_PERMITTED" not-null="true" />
+		</property>
+		<property name="value" type="java.lang.Integer">
+			<column name="VALUE" not-null="true" />
+		</property>
+		<property name="stepNumber" type="java.lang.Integer">
+			<column length="4" name="STEP_NUMBER" not-null="true" />
+		</property>
+		<property name="state"
+			type="org.fireflow.engine.modules.persistence.hibernate.TokenStateType">
+			<column length="2" name="STATE" not-null="true" />
+		</property>
+
+		<!--  -->
+		
+		<property name="processId" type="java.lang.String" update="false">
+			<column length="100" name="PROCESS_ID" not-null="true">
+				<comment>流程id</comment>
+			</column>
+		</property>
+		<property name="version" type="java.lang.Integer" update="false">
+			<column length="4" name="VERSION" not-null="true">
+				<comment>流程版本号</comment>
+			</column>
+		</property>
+		<property name="processType" type="java.lang.String" update="false">
+			<column length="100" name="PROCESS_TYPE" not-null="true">
+				<comment>流程类型</comment>
+			</column>
+		</property>
+		<property name="elementId" type="java.lang.String">
+			<column length="200" name="ELEMENT_ID" not-null="true" />
+		</property>
+
+		<!--  -->
+		<property name="operationContextName" type="org.fireflow.engine.modules.persistence.hibernate.OperationContextNameType">
+			<column length="50" name="OPERATION_CTX_NAME" />
+		</property>		
+		<property name="callbackTokenId" type="java.lang.String">
+			<column length="50" name="CALLBACK_TOKEN_ID" />
+		</property>
+		<property name="parentTokenId" type="java.lang.String">
+			<column length="50" name="PARENT_TOKEN_ID" />
+		</property>
+		<property name="fromToken" type="java.lang.String">
+			<column length="50" name="FROM_TOKEN" />
+		</property>	
+		<property name="attachedToToken" type="java.lang.String">
+			<column length="50" name="ATTACHED_TO_TOKEN" />
+		</property>			
+		
+		<property name="nextCompensationToken" type="java.lang.String">
+			<column length="50" name="NEXT_COMPENSATION_TOKEN" />
+		</property>	
+		<property name="compensationCode" type="java.lang.String">
+			<column length="100" name="COMPENSATION_CODE" />
+		</property>		
+		
+		<property name="lastUpdateTime" type="java.util.Date"  generated="always" >
+			<column name="LAST_UPDATE_TIME"  sql-type="timestamp"  default="CURRENT_TIMESTAMP">
+				<comment>最后更新时间</comment>
+			</column>
+		</property>							
+	</class>
+</hibernate-mapping>

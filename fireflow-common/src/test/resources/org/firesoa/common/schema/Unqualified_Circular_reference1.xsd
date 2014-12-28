@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/Unqualified_Circular_reference1"
+	xmlns:tns="http://www.example.org/Unqualified_Circular_reference1"
+	elementFormDefault="unqualified" xmlns:pref="http://www.example.org/Unqualified_Circular_reference2" attributeFormDefault="unqualified">
+
+
+	<import schemaLocation="Unqualified_Circular_reference2.xsd" namespace="http://www.example.org/Unqualified_Circular_reference2"></import>
+	<element name="Bar1" type="tns:Bar1Type"></element>
+
+	<complexType name="Bar1Type">
+		<sequence>
+			<element name="bar1_1" type="string"></element>
+			<element ref="pref:Foo"></element>
+		</sequence>
+	</complexType>
+
+	<element name="Bar2" type="tns:Bar2Type"></element>
+
+	<complexType name="Bar2Type">
+		<sequence>
+			<element name="bar2_1" type="string"></element>
+			<element name="bar2_2" type="string"></element>
+		</sequence>
+	</complexType>
+</schema>

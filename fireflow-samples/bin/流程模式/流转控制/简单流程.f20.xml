@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="GBK"?>
+<f20:workflow-process biz-category="" display-name="&#31616;&#21333;&#27969;&#31243;" id="SimpleWorkflow" name="SimpleWorkflow" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+<s:services xmlns:s="http://www.fireflow.org/schema/service"/>
+<r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+<r:resource display-name="&#27969;&#31243;&#23454;&#20363;&#21019;&#24314;&#32773;" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+<r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+</r:resource>
+</r:resources>
+<f20:sub-processes>
+<f20:sub-process display-name="main" entry="SimpleWorkflow.main.StartNode1" id="SimpleWorkflow.main" name="main">
+<f20:start-nodes>
+<f20:start-node display-name="&#24320;&#22987;" id="SimpleWorkflow.main.StartNode1" name="StartNode1">
+<f20:features>
+<f20:normal-start-feature/>
+</f20:features>
+</f20:start-node>
+</f20:start-nodes>
+<f20:activities>
+<f20:activity display-name="Activity1" id="SimpleWorkflow.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1"/>
+<f20:activity id="SimpleWorkflow.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2"/>
+</f20:activities>
+<f20:end-nodes>
+<f20:end-node display-name="&#32467;&#26463;" id="SimpleWorkflow.main.EndNode1" name="EndNode1">
+<f20:features>
+<f20:normal-end-feature/>
+</f20:features>
+</f20:end-node>
+</f20:end-nodes>
+<f20:transitions>
+<f20:transition display-name="" from="SimpleWorkflow.main.StartNode1" id="SimpleWorkflow.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="SimpleWorkflow.main.Activity1"/>
+<f20:transition display-name="" from="SimpleWorkflow.main.Activity1" id="SimpleWorkflow.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="SimpleWorkflow.main.Activity2"/>
+<f20:transition display-name="" from="SimpleWorkflow.main.Activity2" id="SimpleWorkflow.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="SimpleWorkflow.main.EndNode1"/>
+</f20:transitions>
+</f20:sub-process>
+</f20:sub-processes>
+<f20:diagrams>
+<f20:diagram direction="H" grid-enabled="false" id="b186de99-c285-498c-9824-701940e8622d" ref="SimpleWorkflow.main" ruler-enabled="false" snap-enabled="false">
+<f20:node id="ae25efbf-d4d5-4dae-8c14-9fa18822b66a" ref="SimpleWorkflow.main.StartNode1" type="start-node">
+<f20:figure>
+<f20:circle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="32" width="32" x="109" y="112"/>
+</f20:circle>
+</f20:figure>
+</f20:node>
+<f20:node id="35147caa-9e62-44f8-837d-e7cca433d0c4" ref="SimpleWorkflow.main.EndNode1" type="end-node">
+<f20:figure>
+<f20:circle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="32" width="32" x="610" y="111"/>
+</f20:circle>
+</f20:figure>
+</f20:node>
+<f20:node id="16d69485-0de2-43b7-a77e-b8c4f527980d" ref="SimpleWorkflow.main.Activity1" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="72" width="108" x="246" y="92">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="5534e786-c05e-483a-80aa-8e6bc534083b" ref="SimpleWorkflow.main.Activity2" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="72" width="108" x="424" y="91">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="b617b63b-a7e5-428f-85f5-21626ba8c0c7" type="comment">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#323232" font-style="NORMAL" size="12" text-direction="HORIZANTAL">流程模拟操作提示：
+1、点击“simulator”标签，进入模拟器界面
+2、点击模拟器工具栏上面的“启动模拟器”
+3、待模拟器成功启动后，点击“启动流程”
+4、在模拟器中可以设置断点，在“流程模拟数据视图”中可以观察流程实例数据</f20:label>
+</f20:content>
+<f20:bounds height="117" width="367" x="296" y="214">
+<f20:border-style color="#696969" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#DCDCDC" gradient-style="UL2LR"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:connector from="ae25efbf-d4d5-4dae-8c14-9fa18822b66a" id="4e665e61-3e49-42d5-b746-cb023e81e997" ref="SimpleWorkflow.main.Transition1" to="16d69485-0de2-43b7-a77e-b8c4f527980d" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="16d69485-0de2-43b7-a77e-b8c4f527980d" id="2842ac4e-c896-46ac-b5cf-2ec8541a5fe0" ref="SimpleWorkflow.main.Transition2" to="5534e786-c05e-483a-80aa-8e6bc534083b" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="5534e786-c05e-483a-80aa-8e6bc534083b" id="58eb9954-68c2-4a0b-aef2-679feba9c77d" ref="SimpleWorkflow.main.Transition3" to="35147caa-9e62-44f8-837d-e7cca433d0c4" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+</f20:diagram>
+</f20:diagrams>
+</f20:workflow-process>

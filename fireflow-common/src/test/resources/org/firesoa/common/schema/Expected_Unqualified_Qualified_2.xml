@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Foo tns1:person_attr1=""
+	xmlns:tns="http://www.example.org/UnQualified_Qualified_Schema"
+	xmlns:tns1="http://www.example.org/Qualified_Schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/UnQualified_Qualified_Schema UnQualified_Qualified_Schema.xsd ">
+	<tns1:name>tns1:name</tns1:name>
+	<tns1:sex>tns1:sex</tns1:sex>
+</tns:Foo>

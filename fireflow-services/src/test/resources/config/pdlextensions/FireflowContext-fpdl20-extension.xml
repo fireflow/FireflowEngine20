@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="fpdlLanguage" 
+		class="org.fireflow.engine.context.ProcessDefinitionLanguageExtension">
+		<property name="processType">
+			<value>FPDL20</value>
+		</property>
+		<property name="description">
+			<value>Fire Workflow Process Definition Language 2.0</value>
+		</property>
+		<!-- 扩展的引擎模块 		-->
+		<property name="engineModules">
+			<map>
+				
+				<entry key="org.fireflow.engine.modules.processlanguage.ProcessLanguageManager">
+					<bean class="org.fireflow.service.mock.ProcessLanguageMock"></bean>
+				</entry>
+				 
+				<entry key="org.fireflow.engine.modules.instancemanager.ProcessInstanceManager">
+					<bean class="org.fireflow.service.mock.ProcessInstanceManagerMock"/>
+				</entry>
+				<entry key="org.fireflow.engine.modules.instancemanager.ActivityInstanceManager">
+					<bean class="org.fireflow.service.mock.ActivityInstanceManagerMock"/>
+				</entry>				
+				<!-- 
+				<entry key="org.fireflow.pvm.translate.Process2PObjectTranslator">
+					<bean class="org.fireflow.pdl.fpdl20.enginemodules.Process2PObjectTranslatorFpdl20Impl"/>
+				</entry>
+				 -->
+				<!-- 工作项管理器 -->
+				<entry key="org.fireflow.engine.modules.workitem.WorkItemManager">
+					<bean class="org.fireflow.service.mock.WorkItemManagerMock"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="And汇聚死锁_1" id="AndJoin_lock_1" name="AndJoin_lock_1" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service"/>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="AndJoin_lock_1.main.StartNode1" id="AndJoin_lock_1.main" name="main">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="x" id="AndJoin_lock_1.main.x" init-value="0.5" name="x"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="AndJoin_lock_1.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="Activity1" id="AndJoin_lock_1.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1">
+          <f20:service-binding operation-name="" service-id=""/>
+        </f20:activity>
+        <f20:activity display-name="Activity2" id="AndJoin_lock_1.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2">
+          <f20:service-binding operation-name="" service-id=""/>
+        </f20:activity>
+      </f20:activities>
+      <f20:routers>
+        <f20:router display-name="Router1" id="AndJoin_lock_1.main.Router1" name="Router1">
+          <f20:features>
+            <f20:andjoin-andsplit-feature/>
+          </f20:features>
+        </f20:router>
+      </f20:routers>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="AndJoin_lock_1.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="processVars.x&lt;=0" from="AndJoin_lock_1.main.StartNode1" id="AndJoin_lock_1.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="AndJoin_lock_1.main.Activity1">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[processVars.x<=0]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+        <f20:transition display-name="processVars.x&gt;0" from="AndJoin_lock_1.main.StartNode1" id="AndJoin_lock_1.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="AndJoin_lock_1.main.Activity2">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[processVars.x>0]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+        <f20:transition display-name="" from="AndJoin_lock_1.main.Activity1" id="AndJoin_lock_1.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="AndJoin_lock_1.main.Router1"/>
+        <f20:transition display-name="" from="AndJoin_lock_1.main.Activity2" id="AndJoin_lock_1.main.Transition4" is-default="false" is-loop="false" name="Transition4" to="AndJoin_lock_1.main.Router1"/>
+        <f20:transition display-name="" from="AndJoin_lock_1.main.Router1" id="AndJoin_lock_1.main.Transition5" is-default="false" is-loop="false" name="Transition5" to="AndJoin_lock_1.main.EndNode1"/>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" grid-enabled="false" id="d576822f-5a62-4656-8a3a-63738ae122da" ref="AndJoin_lock_1.main" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="c69f9e04-f09f-4919-9fa6-c1f2429d7cb1" ref="AndJoin_lock_1.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="72" y="117"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="17a88bed-5268-4ff3-a275-a3c6381044d2" ref="AndJoin_lock_1.main.Activity1" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:content>
+              <f20:titleLabel color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="224" y="15">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="b6548c7b-83e5-4fd0-a267-ceca694a595f" ref="AndJoin_lock_1.main.Activity2" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:content>
+              <f20:titleLabel color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="224" y="193">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="a3b2528e-b383-453f-a1b4-87e33fad36c9" ref="AndJoin_lock_1.main.Router1" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:titleLabel color="#ff0000" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="404" y="117"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="d98d993b-08f4-4ea6-9080-d902f52d69de" ref="AndJoin_lock_1.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="514" y="117"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="bb379d44-d34d-4c42-b4c2-25b411f2b44d" type="comment">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:content>
+              <f20:titleLabel color="#323232" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[该流程中，“processVars.x>0”和 “processVars.x<=0”同一时刻只有一个能满足；所以Router1用的并行汇聚条件永远满足不了，造成死锁。
+
+请用模拟器运行，并观察该现象。]]></f20:titleLabel>
+            </f20:content>
+            <f20:bounds height="103" width="280" x="387" y="245">
+              <f20:border-style color="#696969" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#DCDCDC" gradient-style="UL2LR"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="c69f9e04-f09f-4919-9fa6-c1f2429d7cb1" id="8a8b2f9b-515c-470f-a63e-4f6d670436d5" ref="AndJoin_lock_1.main.Transition1" to="17a88bed-5268-4ff3-a275-a3c6381044d2" type="transition">
+        <f20:figure>
+          <f20:line point-list="(123,70)" titleLabel-position="(36,6)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="c69f9e04-f09f-4919-9fa6-c1f2429d7cb1" id="12869e91-7bcb-4e8c-9a51-47b92b9d3fd3" ref="AndJoin_lock_1.main.Transition2" to="b6548c7b-83e5-4fd0-a267-ceca694a595f" type="transition">
+        <f20:figure>
+          <f20:line point-list="(123,203)" titleLabel-position="(29,-9)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="17a88bed-5268-4ff3-a275-a3c6381044d2" id="ba77c02d-48f3-4b32-a27d-aa64a96925b4" ref="AndJoin_lock_1.main.Transition3" to="a3b2528e-b383-453f-a1b4-87e33fad36c9" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="b6548c7b-83e5-4fd0-a267-ceca694a595f" id="4a9817a2-2a9f-493f-a782-e2cde2c9f302" ref="AndJoin_lock_1.main.Transition4" to="a3b2528e-b383-453f-a1b4-87e33fad36c9" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="a3b2528e-b383-453f-a1b4-87e33fad36c9" id="5d35a575-dee8-4bda-8856-aeb3718536d4" ref="AndJoin_lock_1.main.Transition5" to="d98d993b-08f4-4ea6-9080-d902f52d69de" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="bb379d44-d34d-4c42-b4c2-25b411f2b44d" id="933e4ae8-ec6d-424e-8685-c59a2bc401ce" to="a3b2528e-b383-453f-a1b4-87e33fad36c9" type="association">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

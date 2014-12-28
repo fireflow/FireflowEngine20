@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:services xmlns:s="http://www.fireflow.org/schema/service"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fireflow.org/schema/service http://www.fireflow.org/schema/service/ServiceSchema-2.0.xsd">
+	<s:service biz-category="" display-name="" executor="" id=""
+		name="" service-type="">
+		<s:operations>
+			<s:operation>
+				<s:operation-name></s:operation-name>
+				<s:io-specification>
+					<s:inputs>
+						<s:input data-pattern="" data-type="" default-value=""
+							display-name="" name="Name" />
+					</s:inputs>
+					<s:outputs>
+						<s:output data-type="" display-name="" name="Name" />
+					</s:outputs>
+				</s:io-specification>
+			</s:operation>
+		</s:operations>
+		<s:prop-groups>
+			<s:prop-group display-name="" name="">
+				<s:prop display-name="" name="" value="">
+					<s:description></s:description>
+				</s:prop>
+			</s:prop-group>
+		</s:prop-groups>
+	</s:service>
+</s:services>

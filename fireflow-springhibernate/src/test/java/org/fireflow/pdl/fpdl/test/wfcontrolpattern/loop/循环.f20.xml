@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="循环" id="Loop" name="Loop" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.java biz-category="" display-name="Java类[IncreaseX]" id="IncreaseX" invoker-class="org.fireflow.service.java.JavaInvoker" name="IncreaseX" parser-class="org.fireflow.service.java.JavaServiceParser" target-namespace="">
+      <s:description><![CDATA[Java类：org.fireflow.samples.workflowpattern.IncreaseX]]></s:description>
+      <s:java-class-name>org.fireflow.samples.workflowpattern.IncreaseX</s:java-class-name>
+      <s:interface.java>
+        <s:interface-class>org.fireflow.samples.workflowpattern.IncreaseX</s:interface-class>
+      </s:interface.java>
+    </s:service.java>
+  </s:services>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="Loop.main.StartNode1" id="Loop.main" name="main">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}int" display-name="x" id="Loop.main.x" init-value="0" name="x"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="Loop.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="X值增加1" id="Loop.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1">
+          <f20:service-binding operation-name="increaseX" service-id="IncreaseX">
+            <f20:input-assignments>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}org.fireflow.client.WorkflowSession" display-name="Fire workflow Session" language="XPATH" name="workflowSession">
+                    <f20:body><![CDATA[workflowSession]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}org.fireflow.client.WorkflowSession" display-name="session" language="XPATH" name="session">
+                    <f20:body><![CDATA[inputs/session]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}org.fireflow.engine.entity.runtime.ProcessInstance" display-name="当前流程实例" language="XPATH" name="currentProcessInstance">
+                    <f20:body><![CDATA[currentProcessInstance]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}org.fireflow.engine.entity.runtime.ProcessInstance" display-name="processInstance" language="XPATH" name="processInstance">
+                    <f20:body><![CDATA[inputs/processInstance]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+            </f20:input-assignments>
+          </f20:service-binding>
+        </f20:activity>
+      </f20:activities>
+      <f20:routers>
+        <f20:router display-name="Router1" id="Loop.main.Router1" name="Router1">
+          <f20:features>
+            <f20:xorjoin-xorsplit-feature/>
+          </f20:features>
+        </f20:router>
+        <f20:router display-name="Router2" id="Loop.main.Router2" name="Router2">
+          <f20:features>
+            <f20:xorjoin-xorsplit-feature/>
+          </f20:features>
+        </f20:router>
+      </f20:routers>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="Loop.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="" from="Loop.main.StartNode1" id="Loop.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="Loop.main.Router1"/>
+        <f20:transition display-name="" from="Loop.main.Router1" id="Loop.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="Loop.main.Activity1"/>
+        <f20:transition display-name="" from="Loop.main.Activity1" id="Loop.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="Loop.main.Router2">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body/>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+        <f20:transition display-name="x&gt;3" from="Loop.main.Router2" id="Loop.main.Transition4" is-default="false" is-loop="false" name="Transition4" to="Loop.main.EndNode1">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[processVars.x>3]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+        <f20:transition display-name="x&lt;=3" from="Loop.main.Router2" id="Loop.main.Transition5" is-default="false" is-loop="false" name="Transition5" to="Loop.main.Router1">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[processVars.x<=3]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" grid-enabled="false" id="7a7368fd-b61e-4daa-b3e9-2d9a78acf125" ref="Loop.main" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="0a0fe38e-c2e3-4b29-9609-d0b08380e2ab" ref="Loop.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="66" y="145"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="1a949185-2c37-4f98-987d-ddb6b005d12f" ref="Loop.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="613" y="145"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="84bae664-d9b4-4a9d-b13e-3bfd14a945a6" ref="Loop.main.Activity1" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:content>
+              <f20:titleLabel color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="250" y="125">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="256d1790-a5e7-41c9-9d16-7d25b87fb69f" ref="Loop.main.Router1" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="149" y="145"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="3d2774c0-85d6-47ec-a146-758843c0b19a" ref="Loop.main.Router2" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="437" y="145"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="beaa7214-b906-4af4-98e6-3c3a4294f3e5" type="comment">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:content>
+              <f20:titleLabel color="#323232" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[通过两个XOrRouter将循环体包裹起来，便可以实现循环逻辑]]></f20:titleLabel>
+            </f20:content>
+            <f20:bounds height="77" width="200" x="191" y="256">
+              <f20:border-style color="#696969" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#DCDCDC" gradient-style="UL2LR"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="0a0fe38e-c2e3-4b29-9609-d0b08380e2ab" id="b3a55038-af3d-496f-9f67-cb07a081e7d9" ref="Loop.main.Transition1" to="256d1790-a5e7-41c9-9d16-7d25b87fb69f" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="256d1790-a5e7-41c9-9d16-7d25b87fb69f" id="f539c3f2-bc0b-4090-afc2-40105f016d43" ref="Loop.main.Transition2" to="84bae664-d9b4-4a9d-b13e-3bfd14a945a6" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="84bae664-d9b4-4a9d-b13e-3bfd14a945a6" id="a2c7c144-b8d5-4a00-b5d6-224f769afffc" ref="Loop.main.Transition3" to="3d2774c0-85d6-47ec-a146-758843c0b19a" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(-1,-10)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="3d2774c0-85d6-47ec-a146-758843c0b19a" id="4f257c6a-95eb-4340-83f7-d8e321f940f4" ref="Loop.main.Transition4" to="1a949185-2c37-4f98-987d-ddb6b005d12f" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(1,-14)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="3d2774c0-85d6-47ec-a146-758843c0b19a" id="59e8287e-55bc-4417-ba91-889029447b4e" ref="Loop.main.Transition5" to="256d1790-a5e7-41c9-9d16-7d25b87fb69f" type="transition">
+        <f20:figure>
+          <f20:line point-list="(452,56);(165,57)" titleLabel-position="(2,-12)">
+            <f20:title>
+              <f20:titleLabel color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:titleLabel>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

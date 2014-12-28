@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="捕获Java节点异常" id="CathJavaException" name="CathJavaException" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.java biz-category="" display-name="Java类[Calculator]" id="Calculator" invoker-class="org.fireflow.service.java.JavaInvoker" name="Calculator" parser-class="org.fireflow.service.java.JavaServiceParser" target-namespace="">
+      <s:description><![CDATA[Java类：org.fireflow.samples.biz.Calculator]]></s:description>
+      <s:java-class-name>org.fireflow.samples.biz.Calculator</s:java-class-name>
+      <s:interface.java>
+        <s:interface-class>org.fireflow.samples.biz.ICalculator</s:interface-class>
+      </s:interface.java>
+    </s:service.java>
+  </s:services>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="CathJavaException.main.StartNode1" id="CathJavaException.main" name="main">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="x" id="CathJavaException.main.x" init-value="1" name="x"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="y" id="CathJavaException.main.y" init-value="1" name="y"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="CathJavaException.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+        <f20:start-node display-name="CatchException" id="CathJavaException.main.StartNode2" name="StartNode2">
+          <f20:features>
+            <f20:catch-fault-feature attached-to-activity="CathJavaException.main.Call_Calculator" error-code="org.fireflow.samples.biz.CalculatorException"/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="调用Java类[Calculator]" id="CathJavaException.main.Call_Calculator" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Call_Calculator">
+          <f20:service-binding operation-name="divide" service-id="Calculator">
+            <f20:input-assignments>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="流程变量/x" language="XPATH" name="x">
+                    <f20:body><![CDATA[processVars/x]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="a" language="XPATH" name="a">
+                    <f20:body><![CDATA[inputs/a]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="流程变量/y" language="XPATH" name="y">
+                    <f20:body><![CDATA[processVars/y]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="b" language="XPATH" name="b">
+                    <f20:body><![CDATA[inputs/b]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+            </f20:input-assignments>
+          </f20:service-binding>
+        </f20:activity>
+        <f20:activity display-name="Activity2" id="CathJavaException.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2">
+          <f20:service-binding operation-name="" service-id=""/>
+        </f20:activity>
+      </f20:activities>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="CathJavaException.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="" from="CathJavaException.main.StartNode1" id="CathJavaException.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="CathJavaException.main.Call_Calculator"/>
+        <f20:transition display-name="" from="CathJavaException.main.Call_Calculator" id="CathJavaException.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="CathJavaException.main.EndNode1"/>
+        <f20:transition display-name="" from="CathJavaException.main.StartNode2" id="CathJavaException.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="CathJavaException.main.Activity2"/>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" grid-enabled="false" id="6c9d0385-6411-4163-a065-5973e2be854f" ref="CathJavaException.main" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="f1cdfff7-8c5a-462a-9430-9ec1b14fbf1d" ref="CathJavaException.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="115" y="86"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="c38f16e2-5001-458d-8aec-85fb5c88a005" ref="CathJavaException.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="435" y="86"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="080dbcc4-7e30-4cf6-81ed-5ad21588f227" ref="CathJavaException.main.Call_Calculator" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="246" y="64">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+        <f20:node id="518a3c61-370f-4893-be26-a2355be582e2" ref="CathJavaException.main.StartNode2" type="start-node">
+          <f20:figure>
+            <f20:circle>
+              <f20:title>
+                <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:title>
+              <f20:bounds height="32" width="32" x="266" y="165"/>
+            </f20:circle>
+          </f20:figure>
+        </f20:node>
+      </f20:node>
+      <f20:node id="d38c12b4-ae33-4444-82ac-aa715c0c77a1" ref="CathJavaException.main.Activity2" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="397" y="201">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="cf59e7e5-3e22-40a8-84ba-2cd3e131e8ba" type="comment">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#323232" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[调用Calculator.divide(...)，当除数为0时抛出异常，该异常被CatchException节点捕获。
+
+CatchException节点的“特定属性”界面，注册有将被捕获的异常的类全名。]]></f20:label>
+            </f20:content>
+            <f20:bounds height="100" width="306" x="42" y="285">
+              <f20:border-style color="#696969" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#DCDCDC" gradient-style="UL2LR"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="f1cdfff7-8c5a-462a-9430-9ec1b14fbf1d" id="c6278131-bb4b-4761-a059-8d03d42e03c9" ref="CathJavaException.main.Transition1" to="080dbcc4-7e30-4cf6-81ed-5ad21588f227" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="080dbcc4-7e30-4cf6-81ed-5ad21588f227" id="5532617e-b5b5-47d0-9539-1bff7ae1f628" ref="CathJavaException.main.Transition2" to="c38f16e2-5001-458d-8aec-85fb5c88a005" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="518a3c61-370f-4893-be26-a2355be582e2" id="9d8711ea-3af4-4448-aed3-c753134b91d3" ref="CathJavaException.main.Transition3" to="d38c12b4-ae33-4444-82ac-aa715c0c77a1" type="transition">
+        <f20:figure>
+          <f20:line point-list="(294,236)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="cf59e7e5-3e22-40a8-84ba-2cd3e131e8ba" id="90d12c18-de9f-46c3-8381-36fcbe521452" to="518a3c61-370f-4893-be26-a2355be582e2" type="association">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

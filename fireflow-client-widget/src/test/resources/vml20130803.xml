@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div id="procDiagram1_svg_wrapper_div" style="width:100%;height:100%">
+	<v:group coordsize="1068,560"
+		style="position:relative;width:1068px;height:560px;">
+		<v:image
+			src="/fireflow-simple-demo/FireflowClientWidgetServlet/org/fireflow2/designer/swing/resources/obj32/empty_start_event.png"
+			strokecolor="#6482B9" strokeweight="1.0px"
+			style="position:absolute;left:9px;top:218px;width:32px;height:32px;">
+			<v:fill color="#C3D9FF" />
+			<v:stroke />
+		</v:image>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:0px;top:250px;width:50px;height:19px;font-size:11px;font-family:Arial,Helvetica;color:#774400;background:white;">
+					物料到货
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:roundrect arcsize="15.0%" strokecolor="#4682B4"
+			strokeweight="2.0px"
+			style="position:absolute;left:79px;top:202px;width:95px;height:64px;">
+			<v:fill color="#FFFFFF" />
+			<v:stroke />
+		</v:roundrect>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:96px;top:224px;width:61px;height:18px;font-size:10px;font-family:Arial,Helvetica;color:#191970;">
+					库管预入库
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:image
+			src="/fireflow-simple-demo/FireflowClientWidgetServlet/org/fireflow2/designer/swing/resources/obj32/empty_gateway.png"
+			strokecolor="#6482B9" strokeweight="1.0px"
+			style="position:absolute;left:352px;top:218px;width:32px;height:32px;">
+			<v:fill color="#C3D9FF" />
+			<v:stroke />
+		</v:image>
+		<table />
+		<v:roundrect arcsize="15.0%" strokecolor="#4682B4"
+			strokeweight="2.0px"
+			style="position:absolute;left:320px;top:329px;width:95px;height:64px;">
+			<v:fill color="#FFFFFF" />
+			<v:stroke />
+		</v:roundrect>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:353px;top:351px;width:28px;height:18px;font-size:10px;font-family:Arial,Helvetica;color:#ff0000;">
+					免检
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:roundrect arcsize="15.0%" strokecolor="#4682B4"
+			strokeweight="2.0px"
+			style="position:absolute;left:320px;top:82px;width:95px;height:64px;">
+			<v:fill color="#FFFFFF" />
+			<v:stroke />
+		</v:roundrect>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:342px;top:104px;width:50px;height:18px;font-size:10px;font-family:Arial,Helvetica;color:#191970;">
+					通知品管
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:image
+			src="/fireflow-simple-demo/FireflowClientWidgetServlet/org/fireflow2/designer/swing/resources/obj32/empty_gateway.png"
+			strokecolor="#6482B9" strokeweight="1.0px"
+			style="position:absolute;left:818px;top:96px;width:32px;height:32px;">
+			<v:fill color="#C3D9FF" />
+			<v:stroke />
+		</v:image>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:820px;top:128px;width:28px;height:19px;font-size:11px;font-family:Arial,Helvetica;color:#774400;background:white;">
+					判断
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:roundrect arcsize="15.0%" strokecolor="#4682B4"
+			strokeweight="2.0px"
+			style="position:absolute;left:893px;top:202px;width:95px;height:64px;">
+			<v:fill color="#FFFFFF" />
+			<v:stroke />
+		</v:roundrect>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:926px;top:224px;width:28px;height:18px;font-size:10px;font-family:Arial,Helvetica;color:#191970;">
+					入库
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:roundrect arcsize="15.0%" strokecolor="#4682B4"
+			strokeweight="2.0px"
+			style="position:absolute;left:893px;top:19px;width:95px;height:64px;">
+			<v:fill color="#FFFFFF" />
+			<v:stroke />
+		</v:roundrect>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:926px;top:41px;width:28px;height:18px;font-size:10px;font-family:Arial,Helvetica;color:#191970;">
+					退货
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:image
+			src="/fireflow-simple-demo/FireflowClientWidgetServlet/org/fireflow2/designer/swing/resources/obj32/end_none_event.png"
+			strokecolor="#6482B9" strokeweight="1.0px"
+			style="position:absolute;left:1035px;top:218px;width:32px;height:32px;">
+			<v:fill color="#C3D9FF" />
+			<v:stroke />
+		</v:image>
+		<table />
+		<v:roundrect arcsize="15.0%" strokecolor="#4682B4"
+			strokeweight="2.0px"
+			style="position:absolute;left:212px;top:202px;width:95px;height:64px;">
+			<v:fill color="#FFFFFF" />
+			<v:stroke />
+		</v:roundrect>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:234px;top:224px;width:50px;height:18px;font-size:10px;font-family:Arial,Helvetica;color:#191970;">
+					库管分类
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:rect strokecolor="#696969" strokeweight="1.0px"
+			style="position:absolute;left:414px;top:450px;width:597px;height:109px;">
+			<v:fill color="#FFFFFF" />
+			<v:stroke />
+		</v:rect>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="left"
+					style="position:absolute;left:417px;top:453px;width:414px;height:46px;font-size:10px;font-family:Arial,Helvetica;color:#323232;whiteSpace:wrap;">
+					这是一个仓管流程，~~
+					<br />
+					<br />
+					流程中所有元素的外观可以定制，例如“免检”节点及相关的输入输出通过属性界面进行了定制
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:roundrect arcsize="15.0%" strokecolor="#696969"
+			strokeweight="1.0px"
+			style="position:absolute;left:458px;top:0px;width:312px;height:219px;">
+			<v:fill color="#FFFFFF" opacity="0.5" />
+			<v:stroke opacity="0.5" />
+			<v:stroke dashstyle="2 2" />
+		</v:roundrect>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:594px;top:0px;width:40px;height:18px;font-size:10px;font-family:Arial,Helvetica;color:#000000;">
+					group1
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:roundrect arcsize="15.0%" strokecolor="#4682B4"
+			strokeweight="2.0px"
+			style="position:absolute;left:501px;top:140px;width:95px;height:64px;">
+			<v:fill color="#FFFFFF" />
+			<v:stroke />
+		</v:roundrect>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:523px;top:162px;width:50px;height:18px;font-size:10px;font-family:Arial,Helvetica;color:#191970;">
+					选型样品
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:roundrect arcsize="15.0%" strokecolor="#4682B4"
+			strokeweight="2.0px"
+			style="position:absolute;left:632px;top:140px;width:95px;height:64px;">
+			<v:fill color="#FFFFFF" />
+			<v:stroke />
+		</v:roundrect>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:643px;top:162px;width:72px;height:18px;font-size:10px;font-family:Arial,Helvetica;color:#191970;">
+					设计人员验收
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:roundrect arcsize="15.0%" strokecolor="#4682B4"
+			strokeweight="2.0px"
+			style="position:absolute;left:500px;top:32px;width:95px;height:64px;">
+			<v:fill color="#FFFFFF" />
+			<v:stroke />
+		</v:roundrect>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:517px;top:54px;width:61px;height:18px;font-size:10px;font-family:Arial,Helvetica;color:#191970;">
+					定型品供货
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:roundrect arcsize="15.0%" strokecolor="#4682B4"
+			strokeweight="2.0px"
+			style="position:absolute;left:633px;top:33px;width:95px;height:64px;">
+			<v:fill color="#FFFFFF" />
+			<v:stroke />
+		</v:roundrect>
+		<table border="0" cellspacing="0">
+			<tr>
+				<td align="center"
+					style="position:absolute;left:644px;top:55px;width:72px;height:18px;font-size:10px;font-family:Arial,Helvetica;color:#191970;">
+					样品品管验收
+					<br />
+				</td>
+			</tr>
+		</table>
+		<v:shape coordorigin="41 234" coordsize="38 0" filled="false"
+			path="m 41 234 l 79 234" strokecolor="#000000" strokeweight="1.0px"
+			style="position:absolute;left:41px;top:234px;width:38px;height:0px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="368 146" coordsize="0 72" filled="false"
+			path="m 368 218 l 368 146" strokecolor="#000000" strokeweight="1.0px"
+			style="position:absolute;left:368px;top:146px;width:0px;height:72px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="415 64" coordsize="85 20" filled="false"
+			path="m 415 84 l 446 64 l 500 64" strokecolor="#000000" strokeweight="1.0px"
+			style="position:absolute;left:415px;top:64px;width:85px;height:20px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="411 146" coordsize="90 26" filled="false"
+			path="m 411 146 l 447 172 l 501 172" strokecolor="#000000"
+			strokeweight="1.0px"
+			style="position:absolute;left:411px;top:146px;width:90px;height:26px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="595 64" coordsize="38 1" filled="false"
+			path="m 595 64 l 633 65" strokecolor="#000000" strokeweight="1.0px"
+			style="position:absolute;left:595px;top:64px;width:38px;height:1px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="596 172" coordsize="36 0" filled="false"
+			path="m 596 172 l 632 172" strokecolor="#000000" strokeweight="1.0px"
+			style="position:absolute;left:596px;top:172px;width:36px;height:0px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="728 65" coordsize="102 35" filled="false"
+			path="m 728 65 l 817 65 l 830 100" strokecolor="#000000"
+			strokeweight="1.0px"
+			style="position:absolute;left:728px;top:65px;width:102px;height:35px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="727 124" coordsize="103 48" filled="false"
+			path="m 727 172 l 815 172 l 830 124" strokecolor="#000000"
+			strokeweight="1.0px"
+			style="position:absolute;left:727px;top:124px;width:103px;height:48px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="834 50" coordsize="59 46" filled="false"
+			path="m 834 96 l 834 50 l 893 51" strokecolor="#000000" strokeweight="1.0px"
+			style="position:absolute;left:834px;top:50px;width:59px;height:46px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="834 128" coordsize="59 106" filled="false"
+			path="m 834 128 l 834 233 l 893 234" strokecolor="#000000"
+			strokeweight="1.0px"
+			style="position:absolute;left:834px;top:128px;width:59px;height:106px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="988 50" coordsize="63 168" filled="false"
+			path="m 988 51 l 1049 50 l 1051 218" strokecolor="#000000"
+			strokeweight="1.0px"
+			style="position:absolute;left:988px;top:50px;width:63px;height:168px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="988 234" coordsize="47 0" filled="false"
+			path="m 988 234 l 1035 234" strokecolor="#000000" strokeweight="1.0px"
+			style="position:absolute;left:988px;top:234px;width:47px;height:0px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="415 266" coordsize="508 95" filled="false"
+			path="m 415 361 l 871 359 l 923 266" strokecolor="#ff8000"
+			strokeweight="2.0px"
+			style="position:absolute;left:415px;top:266px;width:508px;height:95px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="368 250" coordsize="0 79" filled="false"
+			path="m 368 250 l 368 329" strokecolor="#ff8000" strokeweight="2.0px"
+			style="position:absolute;left:368px;top:250px;width:0px;height:79px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="174 234" coordsize="38 0" filled="false"
+			path="m 174 234 l 212 234" strokecolor="#000000" strokeweight="1.0px"
+			style="position:absolute;left:174px;top:234px;width:38px;height:0px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+		<v:shape coordorigin="307 234" coordsize="45 0" filled="false"
+			path="m 307 234 l 352 234" strokecolor="#000000" strokeweight="1.0px"
+			style="position:absolute;left:307px;top:234px;width:45px;height:0px;">
+			<v:stroke endarrow="block" endarrowlength="medium"
+				endarrowwidth="medium" />
+		</v:shape>
+		<table />
+	</v:group>
+</div>

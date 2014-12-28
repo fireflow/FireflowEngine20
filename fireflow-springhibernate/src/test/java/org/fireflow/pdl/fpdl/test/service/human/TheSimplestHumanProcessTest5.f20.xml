@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="我的新流程6" id="My_New_Process6" name="My_New_Process6" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.human biz-category="" display-name="报销申请" id="BaoxiaoShenQing" name="BaoxiaoShenQing" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+      <s:form-url>/Temp/webapp/Apply.jsp</s:form-url>
+      <s:workitem-subject>
+        <s:expression display-name="工作项主题" language="UNIFIEDJEXL" name="WorkItemSubject">
+          <s:body><![CDATA[差旅报销，申请人${processVars.applicant}，金额${processVars.money}]]></s:body>
+        </s:expression>
+      </s:workitem-subject>
+      <s:interface.common name="BaoxiaoShenQing">
+        <s:operation name="打开表单：报销申请">
+          <s:inputs>
+            <s:input data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="参数1" name="param1"/>
+          </s:inputs>
+          <s:outputs/>
+        </s:operation>
+      </s:interface.common>
+    </s:service.human>
+  </s:services>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="My_New_Process6.main.StartNode1" id="My_New_Process6.main" name="main">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="申请人" id="My_New_Process6.main.applicant" init-value="" name="applicant"/>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="报销金额" id="My_New_Process6.main.money" init-value="" name="money"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="My_New_Process6.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="报销申请" id="My_New_Process6.main.Call_BaoxiaoShenQing" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Call_BaoxiaoShenQing">
+          <f20:service-binding operation-name="打开表单：报销申请" service-id="BaoxiaoShenQing">
+            <f20:input-assignments>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="当前流程实例/流程实例所关联的业务主键" language="XPATH" name="bizId">
+                    <f20:body><![CDATA[currentProcessInstance/bizId]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="param1" language="XPATH" name="param1">
+                    <f20:body><![CDATA[inputs/param1]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+            </f20:input-assignments>
+          </f20:service-binding>
+        </f20:activity>
+      </f20:activities>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="My_New_Process6.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="Transition1" from="My_New_Process6.main.StartNode1" id="My_New_Process6.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="My_New_Process6.main.Call_BaoxiaoShenQing"/>
+        <f20:transition display-name="Transition2" from="My_New_Process6.main.Call_BaoxiaoShenQing" id="My_New_Process6.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="My_New_Process6.main.EndNode1"/>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" id="2bd6dba9-02a6-4054-812e-f10cf0e00e9e" ref="My_New_Process6.main">
+      <f20:node id="b629bae6-85fd-410c-af13-cb5f546cbbda" ref="My_New_Process6.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" size="10" text-direction="HORIZANTAL" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="52" y="34">
+              <f20:bounds-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color="#FFFFFF" gradient-style="NONE"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="928a7138-2b16-470c-8803-d32d17d3f6d0" ref="My_New_Process6.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" size="10" text-direction="HORIZANTAL" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="550" y="107">
+              <f20:bounds-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color="#FFFFFF" gradient-style="NONE"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="1fce3842-5b0a-45d6-8358-159980fde3b3" ref="My_New_Process6.main.Call_BaoxiaoShenQing" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" size="12" text-direction="HORIZANTAL" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" size="10" text-direction="HORIZANTAL" weight="BOLD"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="178" y="125">
+              <f20:bounds-style color="#4682B4" line-type="SOLID" radius="11" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color="#F0FFFF" gradient-style="LEFT2RIGHT"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="b629bae6-85fd-410c-af13-cb5f546cbbda" id="7e0f4ea6-89e7-4fae-a87b-b6e8a1abc011" ref="My_New_Process6.main.Transition1" to="1fce3842-5b0a-45d6-8358-159980fde3b3" type="transition">
+        <f20:figure>
+          <f20:line label-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" size="12" text-direction="HORIZANTAL" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:bounds-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="1fce3842-5b0a-45d6-8358-159980fde3b3" id="29f7522b-7ce1-4c28-8d78-fd26d0f8e0dc" ref="My_New_Process6.main.Transition2" to="928a7138-2b16-470c-8803-d32d17d3f6d0" type="transition">
+        <f20:figure>
+          <f20:line label-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" size="12" text-direction="HORIZANTAL" weight="NORMAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:bounds-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

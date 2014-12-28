@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>
+                    classpath:/datasource.properties
+                </value>
+            </list>
+        </property>
+    </bean>
+	<bean id="MyDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/firejunit?useUnicode=true&amp;characterEncoding=utf8&amp;generateSimpleParameterMetadata=true" />
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+
+	<bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor"
+		lazy-init="true" />
+	<bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler"
+		lazy-init="true">
+		<property name="nativeJdbcExtractor" ref="nativeJdbcExtractor" />
+	</bean>
+	
+	<bean id="defaultLobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler">
+	
+	</bean>
+	<bean id="MyHibernateSessionFactory" name="hibernateSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="MyDataSource" />
+		</property>
+		 
+		<property name="lobHandler">
+			<ref bean="defaultLobHandler"/> 
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<!-- 
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				 -->
+				<prop key="hibernate.show_sql">true</prop>
+				<!--
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				
+				  
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				-->
+			</props>
+		</property>
+
+	</bean>
+
+	<bean id="hTransactionManager" name="springTransactionManager" 
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="MyHibernateSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="transactionTemplate" name="springTransactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager">
+			<ref bean="hTransactionManager" />
+		</property>
+
+	</bean>
+
+</beans>

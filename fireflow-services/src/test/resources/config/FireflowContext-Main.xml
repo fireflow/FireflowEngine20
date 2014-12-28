@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<import resource="modules/FireflowContext-PVM.xml"/>
+	<import resource="modules/FireflowContext-Persistence.xml"/>
+	<import resource="modules/FireflowContext-CalendarAndSchedule.xml"/>
+	<import resource="modules/FireflowContext-BeanFactory.xml"/>
+	<import resource="modules/FireflowContext-Service.xml"/>
+	<import resource="modules/FireflowContext-LoadStrategy.xml"/>
+	<import resource="modules/FireflowContext-OUSystemConnector.xml"/>
+				
+	<import resource="pdlextensions/FireflowContext-fpdl20-extension.xml"/>
+	
+	<bean id="runtimeContext" class="org.fireflow.engine.context.RuntimeContext"
+		init-method="initialize">
+
+		<!-- 装载缺省的引擎模块 -->
+		<property name="defaultEngineModules">
+			<map>
+				<!-- 流程虚拟机 -->
+				<entry key="org.fireflow.pvm.kernel.KernelManager">
+					<ref bean="kernelManager"/>
+				</entry>
+				
+				<!-- 缺省的存储策略 -->
+				<entry key="org.fireflow.engine.modules.persistence.PersistenceService">
+					<ref bean="hibernatePersistenceService"/>
+				</entry>
+				
+				<!-- 缺省的流程装载策略 -->
+				<entry key="org.fireflow.engine.modules.loadstrategy.ProcessLoadStrategy">
+					<ref bean="processLoadStrategy"/>
+				</entry>
+				
+				<!-- 日历模块 -->
+				<entry key="org.fireflow.engine.modules.calendar.CalendarService">
+					<ref bean="calendarService"/>
+				</entry>	
+				
+				<!-- BeanFactory -->
+				<entry key="org.fireflow.engine.modules.beanfactory.BeanFactory">
+					<ref bean="beanFactory"/>
+				</entry>	
+				
+				<!-- 调度模块 -->		
+				<entry key="org.fireflow.engine.modules.schedule.Scheduler">
+					<ref bean="scheduler"/>
+				</entry>	
+				
+				<entry key="org.fireflow.engine.modules.ousystem.OUSystemConnector">
+					<ref bean="ouSystemConnector"/>
+				</entry>
+				
+				<!-- 服务注册表 -->
+				<!-- 
+				<entry key="org.fireflow.engine.service.ServiceRegistry">
+					<ref bean="serviceRegistry"/>
+				</entry>
+				 -->
+				 				
+			</map>
+		</property>
+		
+		<!-- 装载特定语言的扩展 -->
+		<property name="processDefinitionLanguageExtensions">
+			<list>
+				<ref bean="fpdlLanguage"/>
+			</list>			
+		</property>
+	</bean>
+</beans>

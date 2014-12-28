@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.fireflow.org/schema/resource/20" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:r="http://www.fireflow.org/schema/resource/20">
+
+    <element name="resources" type="r:resourcesType"></element>
+
+    <element name="resource" type="r:resourceType"></element>
+
+    <complexType name="resourcesType">
+    	<sequence>
+    		<element ref="r:resource" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="resourceType">
+    	<sequence>
+    		<element ref="r:resolver" minOccurs="0" maxOccurs="1"></element>
+    	</sequence>
+    	<attribute name="id" type="string" use="required"></attribute>
+    	<attribute name="name" type="string" use="required"></attribute>
+    	<attribute name="display-name" type="string"></attribute>
+    	<attribute name="resource-type">
+    		<simpleType>
+    			<restriction base="string">
+    				<enumeration value="org.fireflow.constants.ProcessInstanceCreator"></enumeration>
+    				<enumeration value="org.fireflow.constants.ActivityInstancePerformer"></enumeration>
+    				<enumeration value="org.fireflow.constants.VariableImplication"></enumeration>
+    				<enumeration value="org.fireflow.constants.User"></enumeration>
+    				<enumeration value="org.fireflow.constants.Role"></enumeration>
+    				<enumeration value="org.fireflow.constants.Group"></enumeration>
+    				<enumeration value="org.fireflow.constants.Department"></enumeration>
+    				<enumeration value="org.fireflow.constants.Custom"></enumeration>
+    				<enumeration value="org.fireflow.constants.System"></enumeration>
+    			</restriction>
+    		</simpleType>
+    	</attribute>
+    </complexType>
+
+    <element name="resolver" type="r:resolverType"></element>
+
+    <complexType name="resolverType">
+        <annotation>
+        	<documentation>
+        		流程系统获取资源解析器（ResourceResolver 实例）的方案如下：
+        		首先，如果bean-name不为空，则通过bean-name从ioc容器获得该ResourceResolver bean；
+        		否则，如果class-name不为空，则实例化该class作为ResourceResolver 实例；
+        		最后，如果上述属性都为空，则通过resourcedef的resource type获得ResourceResolver 实例。
+        	</documentation>
+    	</annotation>
+    	<attribute name="bean-name" type="string" use="required">
+    		<annotation>
+    			<documentation>
+    				资源解析器的bean	name。
+    			</documentation>
+    		</annotation>
+    	</attribute>
+    	<attribute name="class-name" type="string">
+    	    <annotation>
+    			<documentation>
+    				资源解析器的class name。
+    			</documentation>
+    		</annotation>
+    	</attribute>
+    </complexType>
+
+</schema>

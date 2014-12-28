@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.fireflow.demo.common.entity.CommonApprovalInfo"
+		table="T_Demo_CommonApprovalInfo">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid" />
+		</id>
+
+		<property name="bizId" type="java.lang.String"  update="false">
+			<column length="50" name="BIZ_ID">
+				<comment>业务主键</comment>
+			</column>
+		</property>
+
+		<property name="stepName" type="java.lang.String" >
+			<column length="150" name="STEP_NAME">
+				<comment>步骤名称</comment>
+			</column>
+		</property>	
+
+		<property name="bizSubject" type="java.lang.String">
+			<column length="1024" name="BIZ_SUBJECT">
+				<comment>业务主题</comment>
+			</column>
+		</property>		
+		<property name="approver" type="java.lang.String" >
+			<column length="50" name="APPROVER">
+				<comment>审批人</comment>
+			</column>
+		</property>		
+		<property name="decision" type="java.lang.Integer">
+			<column name="DECISION">
+				<comment>审批决定</comment>
+			</column>
+		</property>		
+		<property name="detailInfo" type="java.lang.String" >
+			<column length="1024" name="DETAIL_INFO">
+				<comment>详细信息</comment>
+			</column>
+		</property>		
+		<property name="operationTime" type="java.util.Date" >
+			<column name="OPERATION_TIME">
+				<comment>审批时间</comment>
+			</column>
+		</property>	
+		<property name="lastUpdateTime" type="java.util.Date" >
+			<column name="LAST_UPDATE_TIME"   sql-type="timestamp"  default="CURRENT_TIMESTAMP">
+				<comment>最后更新时间</comment>
+			</column>
+		</property>														
+	</class>
+	
+</hibernate-mapping>

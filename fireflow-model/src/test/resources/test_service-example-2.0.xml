@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:services xmlns:s="http://www.fireflow.org/schema/service"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fireflow.org/schema/service http://www.fireflow.org/schema/service/ServiceSchema-2.0.xsd">
+	<s:service biz-category="test1S" display-name="test1S" executor="test1S" id="test1S"
+		name="test1S" service-type="HUMAN">
+		<s:operations>
+			<s:operation>
+				<s:operation-name>test1O</s:operation-name>
+				<s:io-specification>
+					<s:inputs>
+						<s:input data-pattern="test1IN" data-type="test1IN" default-value="test1In"
+							display-name="test1In" name="test1In" />
+					</s:inputs>
+					<s:outputs>
+						<s:output data-type="test1Out" display-name="test1Out" name="test1Out" />
+					</s:outputs>
+				</s:io-specification>
+			</s:operation>
+		</s:operations>
+		<s:prop-groups>
+			<s:prop-group display-name="test1PG" name="test1PG">
+				<s:prop display-name="test1P" name="test1P" value="test1P">
+					<s:description></s:description>
+				</s:prop>
+			</s:prop-group>
+		</s:prop-groups>
+	</s:service>
+		<s:service biz-category="test2S" display-name="test2S" executor="test2S" id="test2S"
+		name="test2S" service-type="test2S">
+		<s:operations>
+			<s:operation>
+				<s:operation-name>test2O</s:operation-name>
+				<s:io-specification>
+					<s:inputs>
+						<s:input data-pattern="test2IN" data-type="test2IN" default-value="test2IN"
+							display-name="test2IN" name="test2IN" />
+					</s:inputs>
+					<s:outputs>
+						<s:output data-type="test2OUT" display-name="test2OUT" name="test2OUT" />
+					</s:outputs>
+				</s:io-specification>
+			</s:operation>
+		</s:operations>
+		<s:prop-groups>
+			<s:prop-group display-name="test2PG" name="test2PG">
+				<s:prop display-name="test2P" name="test2P" value="test2P">
+					<s:description></s:description>
+				</s:prop>
+			</s:prop-group>
+		</s:prop-groups>
+	</s:service>
+</s:services>

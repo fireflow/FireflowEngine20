@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="GBK"?><f20:workflow-process xmlns:f20="http://www.fireflow.org/schema/workflowprocess" biz-category="" display-name="复杂参数传递的Java调用" id="ComplexJavaService_1" name="ComplexJavaService_1">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service"/>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="ComplexJavaService_1.main.StartNode1" id="ComplexJavaService_1.main" name="main">
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="ComplexJavaService_1.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="Activity1" id="ComplexJavaService_1.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1"/>
+      </f20:activities>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="ComplexJavaService_1.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="" from="ComplexJavaService_1.main.StartNode1" id="ComplexJavaService_1.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="ComplexJavaService_1.main.Activity1"/>
+        <f20:transition display-name="" from="ComplexJavaService_1.main.Activity1" id="ComplexJavaService_1.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="ComplexJavaService_1.main.EndNode1"/>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" grid-enabled="false" id="a4fd9551-7041-4236-a19c-e8f4a01d21f6" ref="ComplexJavaService_1.main" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="0ad8bbac-794a-49a9-8d53-b8da914158ac" ref="ComplexJavaService_1.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="89" y="47"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="6137ad8d-a60a-4be7-b89a-e4a5bfda7b61" ref="ComplexJavaService_1.main.Activity1" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="199" y="111">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="9c90e3e8-fc60-44d7-b71c-d07357421363" ref="ComplexJavaService_1.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="341" y="33"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="0ad8bbac-794a-49a9-8d53-b8da914158ac" id="d2492474-6949-4963-ad1e-6058d7006ddd" ref="ComplexJavaService_1.main.Transition1" to="6137ad8d-a60a-4be7-b89a-e4a5bfda7b61" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="6137ad8d-a60a-4be7-b89a-e4a5bfda7b61" id="aa119568-2a6e-4792-afaa-3836874fc44c" ref="ComplexJavaService_1.main.Transition2" to="9c90e3e8-fc60-44d7-b71c-d07357421363" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

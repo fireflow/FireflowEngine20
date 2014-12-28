@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.fireflow.engine.entity.runtime.impl.AbsWorkItem"
+		table="T_FF_RT_WORKITEM">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid" />
+		</id>
+
+		<discriminator column="WORKITEM_TYPE" type="string"
+			length="100" />
+
+		<property name="workItemName" type="java.lang.String" update="false">
+			<column length="150" name="WORKITEM_NAME">
+				<comment>工作项名称</comment>
+			</column>
+		</property>
+		<property name="subject" type="java.lang.String" update="false">
+			<column length="256" name="SUBJECT">
+				<comment>工作项简要描述</comment>
+			</column>
+		</property>
+
+		<property name="state"
+			type="org.fireflow.engine.modules.persistence.hibernate.WorkItemStateType">
+			<column length="2" name="STATE" not-null="true">
+				<comment>状态</comment>
+			</column>
+		</property>
+		<property name="createdTime" type="java.util.Date" update="false">
+			<column name="CREATED_TIME" not-null="true">
+				<comment>创建时间</comment>
+			</column>
+		</property>
+
+		<property name="claimedTime" type="java.util.Date">
+			<column name="CLAIMED_TIME">
+				<comment>签收时间</comment>
+			</column>
+		</property>
+		<property name="endTime" type="java.util.Date">
+			<column name="END_TIME">
+				<comment>结束时间</comment>
+			</column>
+		</property>
+
+		<property name="expiredTime" type="java.util.Date">
+			<column name="EXPIRED_TIME">
+				<comment>过期时间</comment>
+			</column>
+		</property>
+
+
+		<property name="ownerId" type="java.lang.String" index="WORKITEM_OWNER_ID"
+			update="false">
+			<column length="100" name="OWNER_ID">
+				<comment>执行者Id</comment>
+			</column>
+		</property>
+		<property name="ownerName" type="java.lang.String" update="false">
+			<column length="100" name="OWNER_NAME">
+				<comment>执行者姓名</comment>
+			</column>
+		</property>
+		<property name="ownerDeptId" type="java.lang.String" update="false">
+			<column length="100" name="OWNER_DEPT_ID">
+				<comment>执行者所在部门Id</comment>
+			</column>
+		</property>
+		<property name="ownerDeptName" type="java.lang.String"
+			update="false">
+			<column length="200" name="OWNER_DEPT_NAME">
+				<comment>执行者所在部门名称</comment>
+			</column>
+		</property>
+		<property name="actionUrl" type="java.lang.String" update="false">
+			<column length="512" name="ACTION_URL">
+				<comment>业务表单地址</comment>
+			</column>
+		</property>
+		<property name="mobileActionUrl" type="java.lang.String"
+			update="false">
+			<column length="512" name="MOBILE_ACTION_URL">
+				<comment>移动终端表单地址</comment>
+			</column>
+		</property>
+		<property name="originalSystemName" type="java.lang.String"
+			update="false">
+			<column length="150" name="ORIGINAL_SYSTEM_NAME">
+				<comment>产生该工作项的业务系统</comment>
+			</column>
+		</property>
+		<property name="bizId" type="java.lang.String" update="false">
+			<column length="150" name="BIZ_ID">
+				<comment>业务单据号</comment>
+			</column>
+		</property>
+		<property name="note" type="java.lang.String">
+			<column length="300" name="NOTE">
+				<comment>审批详细意见或者备注信息</comment>
+			</column>
+		</property>
+
+		<property name="remoteWorkItemId" type="java.lang.String"  not-null="false">
+			<column name="REMOTE_WORKITEM_ID">
+				<comment>工作项在原系统中的id</comment>
+			</column>
+		</property>
+
+		<property name="ownerType" type="java.lang.String" update="false" not-null="false">
+			<column length="200" name="OWNER_TYPE">
+				<comment>所有者类型</comment>
+			</column>
+		</property>
+
+		<property name="assignmentStrategy"
+			type="org.fireflow.engine.modules.persistence.hibernate.AssignmentStrategyType"
+			update="false" not-null="false">
+			<column length="100" name="ASSIGNMENT_STRATEGY">
+				<comment>WorkItem分配策略,取值ALL,ANY</comment>
+			</column>
+		</property>
+
+		<property name="responsiblePersonId" type="java.lang.String"
+			update="false" not-null="false">
+			<column length="100" name="RESPONSIBLE_PERSON_ID">
+				<comment>责任人Id</comment>
+			</column>
+		</property>
+		<property name="responsiblePersonName" type="java.lang.String"
+			update="false" not-null="false">
+			<column length="100" name="RESPONSIBLE_PERSON_NAME">
+				<comment>责任人姓名</comment>
+			</column>
+		</property>
+		<property name="responsiblePersonDeptId" type="java.lang.String"
+			update="false" not-null="false">
+			<column length="100" name="RESPONSIBLE_PERSON_DEPT_ID">
+				<comment>责任人所在部门Id</comment>
+			</column>
+		</property>
+		<property name="responsiblePersonDeptName" type="java.lang.String"
+			update="false" not-null="false">
+			<column length="100" name="RESPONSIBLE_PERSON_DEPT_NAME">
+				<comment>责任人所在部门名称</comment>
+			</column>
+		</property>
+
+		<!-- -->
+		<property name="reassignType" type="java.lang.String" not-null="false">
+			<column length="100" name="REASSIGN_TYPE">
+				<comment>加签类型</comment>
+			</column>
+		</property>
+
+
+		<property name="parentWorkItemId" type="java.lang.String" not-null="false">
+			<column length="50" name="PARENT_WORKITEM_ID">
+				<comment></comment>
+			</column>
+		</property>
+
+		<!-- -->
+		<property name="attachmentId" type="java.lang.String" not-null="false">
+			<column length="50" name="ATTACHMENT_ID">
+				<comment>附件信息id</comment>
+			</column>
+		</property>
+		<property name="attachmentType" type="java.lang.String" not-null="false">
+			<column length="150" name="ATTACHMENT_TYPE">
+				<comment>附件信息类型，具体含义由业务系统结石</comment>
+			</column>
+		</property>
+
+		<!-- ///////////// 下面是冗余数据，为查询方便 ///////////////////////////// -->
+		<property name="procInstCreatorId" type="java.lang.String"
+			update="false" not-null="false">
+			<column length="100" name="PROC_INST_CREATOR_ID">
+				<comment>流程发起者Id</comment>
+			</column>
+		</property>		
+		<property name="procInstCreatorName" type="java.lang.String"
+			update="false" not-null="false">
+			<column length="100" name="PROC_INST_CREATOR_NAME">
+				<comment>流程发起者姓名</comment>
+			</column>
+		</property>
+
+		<property name="processId" type="java.lang.String" update="false" not-null="false">
+			<column length="50" name="PROCESS_ID">
+				<comment>流程Id</comment>
+			</column>
+		</property>
+		<property name="version" type="java.lang.Integer" update="false" not-null="false">
+			<column name="VERSION">
+				<comment>流程版本</comment>
+			</column>
+		</property>
+		<property name="processType" type="java.lang.String" update="false" not-null="false">
+			<column length="50" name="PROCESS_TYPE">
+				<comment>流程类型</comment>
+			</column>
+		</property>
+		<property name="subProcessId" type="java.lang.String" update="false"  not-null="false">
+			<column length="50" name="SUB_PROCESS_ID">
+				<comment>子流程Id</comment>
+			</column>
+		</property>
+		<property name="activityId" type="java.lang.String" update="false">
+			<column length="50" name="ACTIVITY_ID">
+				<comment>活动Id</comment>
+			</column>
+		</property>
+		<property name="processInstanceId" type="java.lang.String"
+			update="false"  not-null="false">
+			<column length="50" name="PROCESS_INSTANCE_ID">
+				<comment>流程实例Id</comment>
+			</column>
+		</property>
+		<property name="stepNumber" type="java.lang.Integer" update="false" not-null="false">
+			<column name="STEP_NUMBER">
+				<comment>步骤号</comment>
+			</column>
+		</property>
+
+		<many-to-one cascade="save-update"
+			class="org.fireflow.engine.entity.runtime.impl.ActivityInstanceImpl"
+			column="ACTIVITY_INSTANCE_ID" fetch="join" lazy="false" name="activityInstance"
+			update="false" not-null="false" />
+
+		<property name="lastUpdateTime" type="java.util.Date"
+			generated="always">
+			<column name="LAST_UPDATE_TIME" sql-type="timestamp" default="CURRENT_TIMESTAMP">
+				<comment>最后更新时间</comment>
+			</column>
+		</property>
+
+
+		<!-- ============================== -->
+		<!-- Remote WorkItem -->
+		<!-- ============================== -->
+		<subclass name="org.fireflow.engine.entity.runtime.impl.RemoteWorkItemImpl"
+			discriminator-value="org.fireflow.constants.workitem_type.REMOTE_WORKITEM">
+
+		</subclass>
+
+		<subclass name="org.fireflow.engine.entity.runtime.impl.LocalWorkItemImpl"
+			discriminator-value="org.fireflow.constants.workitem_type.LOCAL_WORKITEM">
+
+		</subclass>
+	</class>
+</hibernate-mapping>

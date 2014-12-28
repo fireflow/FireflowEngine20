@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="GBK"?>
+<f20:workflow-process biz-category="" display-name="Or&#20998;&#25903;Or&#27719;&#32858;" id="OrSplit_OrJoin" name="OrSplit_OrJoin" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+<s:services xmlns:s="http://www.fireflow.org/schema/service">
+<s:service.human biz-category="" display-name="&#34920;&#21333;1" id="form1" name="form1" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+<s:form-url>/test.jsp</s:form-url>
+<s:workitem-subject>
+<s:expression display-name="&#24037;&#20316;&#39033;&#20027;&#39064;" language="UNIFIEDJEXL" name="WorkItemSubject">
+<s:body><![CDATA[测试用人工活动]]></s:body>
+</s:expression>
+</s:workitem-subject>
+<s:interface.common name="form1">
+<s:operation name="&#25171;&#24320;&#34920;&#21333;&#65306;&#34920;&#21333;1">
+<s:inputs/>
+<s:outputs/>
+</s:operation>
+</s:interface.common>
+</s:service.human>
+</s:services>
+<r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+<r:resource display-name="&#27969;&#31243;&#23454;&#20363;&#21019;&#24314;&#32773;" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+<r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+</r:resource>
+</r:resources>
+<f20:sub-processes>
+<f20:sub-process display-name="main" entry="OrSplit_OrJoin.main.StartNode1" id="OrSplit_OrJoin.main" name="main">
+<f20:properties>
+<f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="x" id="OrSplit_OrJoin.main.x" init-value="a" name="x"/>
+</f20:properties>
+<f20:start-nodes>
+<f20:start-node display-name="StartNode1" id="OrSplit_OrJoin.main.StartNode1" name="StartNode1">
+<f20:features>
+<f20:normal-start-feature/>
+</f20:features>
+</f20:start-node>
+</f20:start-nodes>
+<f20:activities>
+<f20:activity display-name="Activity1" id="OrSplit_OrJoin.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1">
+<f20:service-binding operation-name="&#25171;&#24320;&#34920;&#21333;&#65306;&#34920;&#21333;1" service-id="form1"/>
+<f20:resource-binding assignment-strategy="org.fireflow.constants.assignment_strategy.ASSIGN_TO_ANY" display-name="">
+<f20:potential-owners>
+<f20:resource-ref resource-id="PROCESS_INSTANCE_CREATOR"/>
+</f20:potential-owners>
+</f20:resource-binding>
+</f20:activity>
+<f20:activity display-name="Activity2" id="OrSplit_OrJoin.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2"/>
+<f20:activity display-name="Activity3" id="OrSplit_OrJoin.main.Activity3" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity3"/>
+<f20:activity display-name="Activity4" id="OrSplit_OrJoin.main.Activity4" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity4"/>
+</f20:activities>
+<f20:routers>
+<f20:router display-name="Router1" id="OrSplit_OrJoin.main.Router1" name="Router1">
+<f20:features>
+<f20:orjoin-orsplit-feature/>
+</f20:features>
+</f20:router>
+<f20:router display-name="Router2" id="OrSplit_OrJoin.main.Router2" name="Router2">
+<f20:features>
+<f20:orjoin-orsplit-feature/>
+</f20:features>
+</f20:router>
+</f20:routers>
+<f20:end-nodes>
+<f20:end-node display-name="EndNode1" id="OrSplit_OrJoin.main.EndNode1" name="EndNode1">
+<f20:features>
+<f20:normal-end-feature/>
+</f20:features>
+</f20:end-node>
+</f20:end-nodes>
+<f20:transitions>
+<f20:transition display-name="" from="OrSplit_OrJoin.main.StartNode1" id="OrSplit_OrJoin.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="OrSplit_OrJoin.main.Router1"/>
+<f20:transition display-name="processVars.x.equals('a')" from="OrSplit_OrJoin.main.Router1" id="OrSplit_OrJoin.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="OrSplit_OrJoin.main.Activity1">
+<f20:condition>
+<f20:expression language="JEXL">
+<f20:body><![CDATA[processVars.x.equals('a')]]></f20:body>
+</f20:expression>
+</f20:condition>
+</f20:transition>
+<f20:transition display-name="processVars.x.equals('a') || processVars.x.equals('b')" from="OrSplit_OrJoin.main.Router1" id="OrSplit_OrJoin.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="OrSplit_OrJoin.main.Activity2">
+<f20:condition>
+<f20:expression language="JEXL">
+<f20:body><![CDATA[processVars.x.equals('a') || processVars.x.equals('b')]]></f20:body>
+</f20:expression>
+</f20:condition>
+</f20:transition>
+<f20:transition display-name="" from="OrSplit_OrJoin.main.Activity2" id="OrSplit_OrJoin.main.Transition4" is-default="false" is-loop="false" name="Transition4" to="OrSplit_OrJoin.main.Router2"/>
+<f20:transition display-name="" from="OrSplit_OrJoin.main.Activity1" id="OrSplit_OrJoin.main.Transition5" is-default="false" is-loop="false" name="Transition5" to="OrSplit_OrJoin.main.Activity3"/>
+<f20:transition display-name="" from="OrSplit_OrJoin.main.Activity3" id="OrSplit_OrJoin.main.Transition6" is-default="false" is-loop="false" name="Transition6" to="OrSplit_OrJoin.main.Router2"/>
+<f20:transition display-name="" from="OrSplit_OrJoin.main.Router2" id="OrSplit_OrJoin.main.Transition7" is-default="false" is-loop="false" name="Transition7" to="OrSplit_OrJoin.main.Activity4"/>
+<f20:transition display-name="" from="OrSplit_OrJoin.main.Activity4" id="OrSplit_OrJoin.main.Transition8" is-default="false" is-loop="false" name="Transition8" to="OrSplit_OrJoin.main.EndNode1"/>
+</f20:transitions>
+</f20:sub-process>
+</f20:sub-processes>
+<f20:diagrams>
+<f20:diagram direction="H" grid-enabled="true" id="896c280e-20bc-4ba9-bc30-5cbfd3a791bc" ref="OrSplit_OrJoin.main" ruler-enabled="false" snap-enabled="true">
+<f20:node id="148ce241-ae13-44f7-b5f9-c741e1ee6e92" ref="OrSplit_OrJoin.main.StartNode1" type="start-node">
+<f20:figure>
+<f20:circle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="32" width="32" x="30" y="120"/>
+</f20:circle>
+</f20:figure>
+</f20:node>
+<f20:node id="dc9fa799-2b9d-4c9f-b131-cef35742a2bb" ref="OrSplit_OrJoin.main.Router1" type="router">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="32" width="32" x="111" y="120"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="5a3398bb-364a-437e-984f-43722c58417a" ref="OrSplit_OrJoin.main.Activity1" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="72" width="108" x="288" y="32">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="d75b3fc3-aed1-48a3-a29f-12386386e708" ref="OrSplit_OrJoin.main.Activity2" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="72" width="108" x="288" y="240">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="145a434c-0d10-4fd4-a8c4-d0446677deae" ref="OrSplit_OrJoin.main.Activity3" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="72" width="108" x="420" y="32">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="a6eaaaf0-c6e2-41c4-a19b-7461c2771b4b" ref="OrSplit_OrJoin.main.Router2" type="router">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="32" width="32" x="546" y="120"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="67011030-3f9e-4848-9f3a-c1b6a2fef584" ref="OrSplit_OrJoin.main.Activity4" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="72" width="108" x="623" y="100">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="41f2697a-1fcf-40dd-84fc-8f33d279d5ad" ref="OrSplit_OrJoin.main.EndNode1" type="end-node">
+<f20:figure>
+<f20:circle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="32" width="32" x="769" y="120"/>
+</f20:circle>
+</f20:figure>
+</f20:node>
+<f20:connector from="148ce241-ae13-44f7-b5f9-c741e1ee6e92" id="c4344077-176d-4ed4-b31b-352d10478e49" ref="OrSplit_OrJoin.main.Transition1" to="dc9fa799-2b9d-4c9f-b131-cef35742a2bb" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="dc9fa799-2b9d-4c9f-b131-cef35742a2bb" id="8b0a17b9-b4d7-4d11-bfb6-6ad93502cb02" ref="OrSplit_OrJoin.main.Transition2" to="5a3398bb-364a-437e-984f-43722c58417a" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="dc9fa799-2b9d-4c9f-b131-cef35742a2bb" id="ca0b353d-6099-4f6d-a339-ac729aeecf5e" ref="OrSplit_OrJoin.main.Transition3" to="d75b3fc3-aed1-48a3-a29f-12386386e708" type="transition">
+<f20:figure>
+<f20:line point-list="(126,276)" titleLabel-position="(87,-50)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="d75b3fc3-aed1-48a3-a29f-12386386e708" id="d7de0355-2b64-4fc9-bbc4-fdf8fbd14ea2" ref="OrSplit_OrJoin.main.Transition4" to="a6eaaaf0-c6e2-41c4-a19b-7461c2771b4b" type="transition">
+<f20:figure>
+<f20:line point-list="(561,276)" titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="5a3398bb-364a-437e-984f-43722c58417a" id="c5aae3e8-b468-4d4f-9dd7-1618b40a9ade" ref="OrSplit_OrJoin.main.Transition5" to="145a434c-0d10-4fd4-a8c4-d0446677deae" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="145a434c-0d10-4fd4-a8c4-d0446677deae" id="4c9fde4e-a3ef-4c12-9242-ce504a89f325" ref="OrSplit_OrJoin.main.Transition6" to="a6eaaaf0-c6e2-41c4-a19b-7461c2771b4b" type="transition">
+<f20:figure>
+<f20:line point-list="(562,68)" titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="a6eaaaf0-c6e2-41c4-a19b-7461c2771b4b" id="c737ace8-3c55-4a6b-bdae-c04e7430dbda" ref="OrSplit_OrJoin.main.Transition7" to="67011030-3f9e-4848-9f3a-c1b6a2fef584" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="67011030-3f9e-4848-9f3a-c1b6a2fef584" id="a96c225f-d354-4a31-ada9-76fa52c03e16" ref="OrSplit_OrJoin.main.Transition8" to="41f2697a-1fcf-40dd-84fc-8f33d279d5ad" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+</f20:diagram>
+</f20:diagrams>
+</f20:workflow-process>

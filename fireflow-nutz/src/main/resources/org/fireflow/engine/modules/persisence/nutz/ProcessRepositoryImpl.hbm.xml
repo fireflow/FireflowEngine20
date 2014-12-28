@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class dynamic-update="true"
+		name="org.fireflow.engine.entity.repository.impl.ProcessRepositoryImpl" table="T_FF_DF_PROCESS_REPOSITORY"
+		polymorphism="explicit">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid.hex">
+			</generator>
+		</id>
+		<property name="processId" type="java.lang.String">
+			<column length="100" name="PROCESS_ID" not-null="true" />
+		</property>
+		<property name="processType" type="java.lang.String">
+			<column length="100" name="PROCESS_TYPE" not-null="true" />
+		</property>			
+		<property name="version" type="java.lang.Integer">
+			<column length="4" name="VERSION" not-null="true" />
+		</property>
+					
+		<property name="name" type="java.lang.String">
+			<column length="100" name="NAME" not-null="true" />
+		</property>
+		<property name="displayName" type="java.lang.String">
+			<column length="128" name="DISPLAY_NAME" />
+		</property>
+		<property name="description" type="java.lang.String">
+			<column length="1024" name="DESCRIPTION" />
+		</property>
+		<property name="packageId" type="java.lang.String">
+			<column length="256" name="PACKAGE_ID" />
+		</property>	
+		
+		<!--  必须要有文件名，便于repository和workspace同步 -->
+		<!-- 
+		<property name="fileName" type="java.lang.String">
+			<column length="200" name="FILE_NAME" not-null="true"/>
+		</property>				
+		 -->
+		 
+		 
+		<property name="publishState" type="java.lang.Boolean">
+			<column length="1" name="PUBLISH_STATE" not-null="true" />
+		</property>
+		<property name="validDateFrom" type="java.util.Date" >
+			<column name="VALID_DATE_FROM">
+				<comment>有效期始</comment>
+			</column>
+		</property>
+		<property name="validDateTo" type="java.util.Date" >
+			<column name="VALID_DATE_TO">
+				<comment>有效期止</comment>
+			</column>
+		</property>
+		<property name="timerStart" type="java.lang.Boolean">
+			<column length="1" name="IS_TIMER_START"  />
+		</property>
+		
+		<property name="hasCallbackService" type="java.lang.Boolean">
+			<column length="1" name="HAS_CALLBACK_SERVICE"  />
+		</property>		
+
+		
+		<property name="ownerId" type="java.lang.String">
+			<column length="100" name="OWNER_ID" />
+		</property>			
+		<property name="ownerName" type="java.lang.String">
+			<column length="100" name="OWNER_NAME" />
+		</property>	
+		<property name="approver" type="java.lang.String">
+			<column length="100" name="APPROVER" />
+		</property>	
+		<property name="approvedTime" type="java.util.Date">
+			<column name="APPROVED_TIME"/>
+		</property>		
+		
+		<property name="lastEditor" type="java.lang.String">
+			<column length="50" name="LAST_EDITOR" not-null="true"/>
+		</property>				
+		<property name="lastUpdateTime" type="java.util.Date"  generated="always" >
+			<column name="LAST_UPDATE_TIME"  sql-type="timestamp"  default="CURRENT_TIMESTAMP">
+				<comment>最后更新时间</comment>
+			</column>
+		</property>	
+		<property name="updateLog" type="java.lang.String">
+			<column length="1024" name="UPDATE_LOG" />
+		</property>		
+		<property name="processContent"
+			type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<column name="PROCESS_CONTENT" />
+		</property>			
+		
+		
+	</class>
+</hibernate-mapping>
+

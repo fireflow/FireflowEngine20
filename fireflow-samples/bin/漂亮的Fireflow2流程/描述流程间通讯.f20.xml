@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="GBK"?>
+<f20:workflow-process biz-category="" display-name="&#25551;&#36848;&#27969;&#31243;&#38388;&#36890;&#35759;" id="complex_process" name="complex_process" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+<s:services xmlns:s="http://www.fireflow.org/schema/service"/>
+<r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+<r:resource display-name="&#27969;&#31243;&#23454;&#20363;&#21019;&#24314;&#32773;" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+<r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+</r:resource>
+</r:resources>
+<f20:sub-processes>
+<f20:sub-process display-name="main" id="complex_process.main" name="main">
+<f20:start-nodes>
+<f20:start-node display-name="StartNode1" id="complex_process.main.StartNode1" name="StartNode1">
+<f20:features>
+<f20:normal-start-feature/>
+</f20:features>
+</f20:start-node>
+<f20:start-node display-name="&#25910;&#21040;&#35746;&#21333;" id="complex_process.main.StartNode2" name="StartNode2">
+<f20:features>
+<f20:webservice-start-feature/>
+</f20:features>
+</f20:start-node>
+</f20:start-nodes>
+<f20:activities>
+<f20:activity display-name="&#36873;&#25321;&#27604;&#33832;" id="complex_process.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1"/>
+<f20:activity display-name="&#35746;&#36141;&#27604;&#33832;" id="complex_process.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2"/>
+<f20:activity display-name="&#20184;&#27454;" id="complex_process.main.Activity3" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity3"/>
+<f20:activity display-name="&#21507;&#27604;&#33832;" id="complex_process.main.Activity4" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity4"/>
+<f20:activity display-name="&#31561;&#24453;" id="complex_process.main.Activity5" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity5"/>
+<f20:activity display-name="&#21046;&#20316;&#27604;&#33832;" id="complex_process.main.Activity6" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity6"/>
+<f20:activity display-name="&#36890;&#30693;&#25910;&#36135;" id="complex_process.main.Activity7" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity7"/>
+<f20:activity display-name="&#36865;&#36135;&#19978;&#38376;" id="complex_process.main.Activity8" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity8"/>
+<f20:activity display-name="&#25910;&#27454;" id="complex_process.main.Activity9" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity9"/>
+</f20:activities>
+<f20:end-nodes>
+<f20:end-node display-name="EndNode1" id="complex_process.main.EndNode1" name="EndNode1">
+<f20:features>
+<f20:normal-end-feature/>
+</f20:features>
+</f20:end-node>
+<f20:end-node display-name="EndNode2" id="complex_process.main.EndNode2" name="EndNode2">
+<f20:features>
+<f20:normal-end-feature/>
+</f20:features>
+</f20:end-node>
+</f20:end-nodes>
+<f20:transitions>
+<f20:transition display-name="" from="complex_process.main.StartNode1" id="complex_process.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="complex_process.main.Activity1"/>
+<f20:transition display-name="" from="complex_process.main.Activity1" id="complex_process.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="complex_process.main.Activity2"/>
+<f20:transition display-name="" from="complex_process.main.Activity3" id="complex_process.main.Transition4" is-default="false" is-loop="false" name="Transition4" to="complex_process.main.Activity4"/>
+<f20:transition display-name="" from="complex_process.main.Activity4" id="complex_process.main.Transition5" is-default="false" is-loop="false" name="Transition5" to="complex_process.main.EndNode1"/>
+<f20:transition display-name="" from="complex_process.main.Activity2" id="complex_process.main.Transition6" is-default="false" is-loop="false" name="Transition6" to="complex_process.main.Activity5"/>
+<f20:transition display-name="" from="complex_process.main.Activity5" id="complex_process.main.Transition7" is-default="false" is-loop="false" name="Transition7" to="complex_process.main.Activity3"/>
+<f20:transition display-name="" from="complex_process.main.StartNode2" id="complex_process.main.Transition8" is-default="false" is-loop="false" name="Transition8" to="complex_process.main.Activity6"/>
+<f20:transition display-name="" from="complex_process.main.Activity6" id="complex_process.main.Transition9" is-default="false" is-loop="false" name="Transition9" to="complex_process.main.Activity7"/>
+<f20:transition display-name="" from="complex_process.main.Activity7" id="complex_process.main.Transition10" is-default="false" is-loop="false" name="Transition10" to="complex_process.main.Activity8"/>
+<f20:transition display-name="" from="complex_process.main.Activity8" id="complex_process.main.Transition11" is-default="false" is-loop="false" name="Transition11" to="complex_process.main.Activity9"/>
+<f20:transition display-name="" from="complex_process.main.Activity9" id="complex_process.main.Transition12" is-default="false" is-loop="false" name="Transition12" to="complex_process.main.EndNode2"/>
+</f20:transitions>
+</f20:sub-process>
+</f20:sub-processes>
+<f20:diagrams>
+<f20:diagram direction="H" grid-enabled="false" id="565d863e-5992-496d-8eb0-98265e9a21e4" ref="complex_process.main" ruler-enabled="false" snap-enabled="true">
+<f20:node id="3745a358-5c12-4419-b5dc-485cd6a93af7" type="pool">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL">顾客</f20:label>
+</f20:title>
+<f20:bounds height="205" width="898" x="75" y="55">
+<f20:border-style color="#696969" line-type="SOLID" radius="0" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#FFFFFF" gradient-style="NONE"/>
+</f20:rectangle>
+</f20:figure>
+<f20:node id="313feadd-96d7-43af-9d28-c0564d075585" type="lane">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"></f20:label>
+</f20:title>
+<f20:bounds height="203" width="864" x="0" y="0">
+<f20:border-style color="#696969" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#FFFFFF" gradient-style="NONE"/>
+</f20:rectangle>
+</f20:figure>
+<f20:node id="2f5402a1-8946-4b9d-925a-c4eb53ee451e" ref="complex_process.main.StartNode1" type="start-node">
+<f20:figure>
+<f20:circle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="32" width="32" x="27" y="69"/>
+</f20:circle>
+</f20:figure>
+</f20:node>
+<f20:node id="d8716f4d-a512-4eaa-b1cd-54025ff71308" ref="complex_process.main.Activity1" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="64" width="86" x="94" y="53">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="f1c2aac6-1cc3-4cf1-81d8-75df5e00fb63" ref="complex_process.main.Activity2" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="64" width="86" x="231" y="53">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="db4017d4-e089-432b-a067-9f88bb4bab5e" ref="complex_process.main.Activity3" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="64" width="86" x="517" y="53">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="b5d2e4e1-fe01-4888-8a9b-dbe2df1ad33d" ref="complex_process.main.Activity4" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="64" width="86" x="638" y="53">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="e008b456-b794-4043-a564-2b886f9d889c" ref="complex_process.main.EndNode1" type="end-node">
+<f20:figure>
+<f20:circle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="32" width="32" x="772" y="69"/>
+</f20:circle>
+</f20:figure>
+</f20:node>
+<f20:node id="c17e8081-0583-4d1d-b212-8106eb39bd82" ref="complex_process.main.Activity5" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="64" width="86" x="382" y="53">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+</f20:node>
+</f20:node>
+<f20:node id="32e0a604-923e-4d85-a572-7302cde7dde1" type="pool">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL">比萨店</f20:label>
+</f20:title>
+<f20:bounds height="178" width="909" x="75" y="332">
+<f20:border-style color="#696969" line-type="SOLID" radius="0" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#FFFFFF" gradient-style="NONE"/>
+</f20:rectangle>
+</f20:figure>
+<f20:node id="518b6ad5-8e55-4bcc-bef1-df4f7bf84065" type="lane">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"></f20:label>
+</f20:title>
+<f20:bounds height="176" width="875" x="0" y="0">
+<f20:border-style color="#696969" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#FFFFFF" gradient-style="NONE"/>
+</f20:rectangle>
+</f20:figure>
+<f20:node id="1ddf22ed-e785-49c8-9e8d-cb993a2c6404" ref="complex_process.main.StartNode2" type="start-node">
+<f20:figure>
+<f20:circle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="32" width="32" x="30" y="73"/>
+</f20:circle>
+</f20:figure>
+</f20:node>
+<f20:node id="7d790ebe-ebc8-4750-a762-061c1e7ebe1e" ref="complex_process.main.Activity6" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="64" width="86" x="99" y="57">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="43139d40-afcf-4075-9771-7b19654422b8" ref="complex_process.main.Activity7" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="72" width="108" x="240" y="53">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="856889f1-4a2a-4dfd-b247-8795beedfa95" ref="complex_process.main.Activity8" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="72" width="108" x="400" y="53">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="366aaca0-52a6-4f17-9592-ab52ba6ea664" ref="complex_process.main.Activity9" type="activity">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:content>
+<f20:bounds height="72" width="108" x="574" y="53">
+<f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:node id="b6c7a21a-eb1a-4190-b34c-ae8ce811a567" ref="complex_process.main.EndNode2" type="end-node">
+<f20:figure>
+<f20:circle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="32" width="32" x="761" y="73"/>
+</f20:circle>
+</f20:figure>
+</f20:node>
+</f20:node>
+</f20:node>
+<f20:node id="df03769c-7be4-4f92-a6a6-8f372bcd7ccc" type="comment">
+<f20:figure>
+<f20:rectangle>
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:content>
+<f20:label color="#ff0080" font-style="NORMAL" size="12" text-direction="HORIZANTAL">这种跨越多个Pool的流程一般情况下是“不可执行流程”，仅用于描述业务。</f20:label>
+</f20:content>
+<f20:bounds height="75" width="282" x="673" y="528">
+<f20:border-style color="#696969" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+<f20:fulfil-style color1="#FFFFFF" color2="#DCDCDC" gradient-style="UL2LR"/>
+</f20:rectangle>
+</f20:figure>
+</f20:node>
+<f20:connector from="2f5402a1-8946-4b9d-925a-c4eb53ee451e" id="82f618b7-0a5c-4922-9265-1c5ed29ed26a" ref="complex_process.main.Transition1" to="d8716f4d-a512-4eaa-b1cd-54025ff71308" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="d8716f4d-a512-4eaa-b1cd-54025ff71308" id="94bf1eef-fa02-41fb-8abd-612fc9564efc" ref="complex_process.main.Transition2" to="f1c2aac6-1cc3-4cf1-81d8-75df5e00fb63" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="db4017d4-e089-432b-a067-9f88bb4bab5e" id="37981b7e-ce5c-42b0-abe2-3b7f75b6df11" ref="complex_process.main.Transition4" to="b5d2e4e1-fe01-4888-8a9b-dbe2df1ad33d" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="b5d2e4e1-fe01-4888-8a9b-dbe2df1ad33d" id="a1ed16b6-7477-421c-a611-074f049aa284" ref="complex_process.main.Transition5" to="e008b456-b794-4043-a564-2b886f9d889c" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="f1c2aac6-1cc3-4cf1-81d8-75df5e00fb63" id="18d044a5-6adc-4864-8fb6-d4580d304755" ref="complex_process.main.Transition6" to="c17e8081-0583-4d1d-b212-8106eb39bd82" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="c17e8081-0583-4d1d-b212-8106eb39bd82" id="dbdb9e55-bab6-40fd-9583-cbaedb4c2cb6" ref="complex_process.main.Transition7" to="db4017d4-e089-432b-a067-9f88bb4bab5e" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="1ddf22ed-e785-49c8-9e8d-cb993a2c6404" id="f6acb2e3-9769-4029-b605-a2e449b17c90" ref="complex_process.main.Transition8" to="7d790ebe-ebc8-4750-a762-061c1e7ebe1e" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="7d790ebe-ebc8-4750-a762-061c1e7ebe1e" id="42e3c895-d347-4aeb-9f75-6a54ac9c7cef" ref="complex_process.main.Transition9" to="43139d40-afcf-4075-9771-7b19654422b8" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="43139d40-afcf-4075-9771-7b19654422b8" id="60de4ddb-bdca-41c2-a76a-183e6676269d" ref="complex_process.main.Transition10" to="856889f1-4a2a-4dfd-b247-8795beedfa95" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="856889f1-4a2a-4dfd-b247-8795beedfa95" id="effb681b-6354-446e-96a6-9b91f652cabc" ref="complex_process.main.Transition11" to="366aaca0-52a6-4f17-9592-ab52ba6ea664" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="366aaca0-52a6-4f17-9592-ab52ba6ea664" id="bb16720b-aa2d-4f5d-84fb-05b667558b45" ref="complex_process.main.Transition12" to="b6c7a21a-eb1a-4190-b34c-ae8ce811a567" type="transition">
+<f20:figure>
+<f20:line titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="f1c2aac6-1cc3-4cf1-81d8-75df5e00fb63" id="4898d3cf-52bf-4b4a-b00f-1fc8e729c7d7" to="1ddf22ed-e785-49c8-9e8d-cb993a2c6404" type="messgeflow">
+<f20:figure>
+<f20:line point-list="(410,234);(185,315)" titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#8000ff" line-type="SOLID" radius="0" thick="2"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="43139d40-afcf-4075-9771-7b19654422b8" id="024555cb-ad51-448c-bfa5-21739eec05b7" to="c17e8081-0583-4d1d-b212-8106eb39bd82" type="messgeflow">
+<f20:figure>
+<f20:line point-list="(434,316);(562,230)" titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#8000ff" line-type="SOLID" radius="0" thick="2"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="856889f1-4a2a-4dfd-b247-8795beedfa95" id="3631d273-f266-4bc2-8387-195c02bc2065" to="db4017d4-e089-432b-a067-9f88bb4bab5e" type="messgeflow">
+<f20:figure>
+<f20:line point-list="(593,311);(698,228)" titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#8000ff" line-type="SOLID" radius="0" thick="2"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+<f20:connector from="db4017d4-e089-432b-a067-9f88bb4bab5e" id="43cdfe1d-e21e-4017-a7b7-fc4123142227" to="366aaca0-52a6-4f17-9592-ab52ba6ea664" type="messgeflow">
+<f20:figure>
+<f20:line point-list="(766,232)" titleLabel-position="(0,0)">
+<f20:title>
+<f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+</f20:title>
+<f20:bounds height="10" width="10" x="0" y="0">
+<f20:border-style color="#8000ff" line-type="SOLID" radius="0" thick="2"/>
+</f20:bounds>
+</f20:line>
+</f20:figure>
+</f20:connector>
+</f20:diagram>
+</f20:diagrams>
+</f20:workflow-process>

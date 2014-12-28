@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.fireflow.engine.entity.runtime.impl.ScheduleJobImpl"
+		table="T_FF_RT_SCHEDULE">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid" />
+		</id>
+		
+		<property name="name" type="java.lang.String" update="false">
+			<column length="100" name="NAME" not-null="true">
+				<comment>名称</comment>
+			</column>
+		</property>
+		<property name="displayName" type="java.lang.String" update="false">
+			<column length="128" name="DISPLAY_NAME">
+				<comment>中文名称</comment>
+			</column>
+		</property>
+				
+		<property name="createdTime" type="java.util.Date" update="false">
+			<column name="CREATED_TIME" not-null="true">
+				<comment>创建时间</comment>
+			</column>
+		</property>
+		
+		<property name="triggeredTimes" type="java.lang.Integer">
+			<column length="4" name="TRIGGERED_TIMES"  >
+				<comment>触发次数</comment>
+			</column>
+		</property>
+		
+		<property name="latestTriggeredTime" type="java.util.Date" >
+			<column name="LATEST_TRIGGERED_TIME" >
+				<comment>最后一次触发时间</comment>
+			</column>
+		</property>
+		
+		<!--  -->
+				
+		
+		<property name="triggerType" type="java.lang.String">
+			<column length="50" name="TRIGGER_TYPE" not-null="true" />
+		</property>
+		
+		<property name="triggerExpression" type="java.lang.String">
+			<column length="50" name="TRIGGER_EXPRESSION" not-null="true" />
+		</property>
+
+		<property name="endTime" type="java.util.Date" >
+			<column name="END_TIME" >
+				<comment>终止时间</comment>
+			</column>
+		</property>
+		<!--  -->
+		
+		<property name="state" type="org.fireflow.engine.modules.persistence.hibernate.ScheduleJobStateType">
+			<column length="2" name="STATE" not-null="true">
+				<comment>状态</comment>
+			</column>
+		</property>
+		
+		<property name="createNewProcessInstance" type="java.lang.Boolean">
+			<column  name="CREATE_NEW_PROCESS_INSTANCE"  >
+				<comment>是否创建流程实例</comment>
+			</column>
+		</property>
+		<!--  -->
+		
+		<property name="processId" type="java.lang.String" update="false">
+			<column length="100" name="PROCESS_ID" not-null="true">
+				<comment>流程id</comment>
+			</column>
+		</property>
+		<property name="version" type="java.lang.Integer" update="false">
+			<column length="4" name="VERSION" not-null="true">
+				<comment>流程版本号</comment>
+			</column>
+		</property>
+		<property name="processType" type="java.lang.String" update="false">
+			<column length="100" name="PROCESS_TYPE" not-null="true">
+				<comment>流程类型</comment>
+			</column>
+		</property>
+		<property name="cancelAttachedToActivity" type="java.lang.Boolean" update="false">
+			<column length="100" name="CANCEL_ATTACHED_TO_ACTIVITY" not-null="true">
+				<comment>是否将所依附的活动实例关闭</comment>
+			</column>
+		</property>	
+		<property name="note" type="java.lang.String" >
+			<column length="200" name="NOTE" >
+				<comment>备注</comment>
+			</column>
+		</property>
+		
+		<property name="lastUpdateTime" type="java.util.Date"  generated="always" >
+			<column name="LAST_UPDATE_TIME"  sql-type="timestamp"  default="CURRENT_TIMESTAMP">
+				<comment>最后更新时间</comment>
+			</column>
+		</property>			
+		<many-to-one cascade="save-update" class="org.fireflow.engine.entity.runtime.impl.ActivityInstanceImpl" column="ACTIVITY_INSTANCE_ID" fetch="join" lazy="false" name="activityInstance"  update="false"/>		
+	</class>
+</hibernate-mapping>

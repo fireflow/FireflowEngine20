@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><f:workflow-process xmlns:f="http://www.fireflow.org/schema/workflowprocess" display-name="我的新流程" id="My_New_Process" name="My_New_Process" package-id="main.java.processes">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service"/>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f:sub-processes>
+    <f:sub-process display-name="main" entry="My_New_Process.main.StartNode1" id="My_New_Process.main" name="main">
+      <f:properties>
+        <f:property data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="DataField1" id="My_New_Process.main.DataField1" init-value="" name="DataField1"/>
+      </f:properties>
+      <f:start-nodes>
+        <f:start-node display-name="StartNode1" id="My_New_Process.main.StartNode1" name="StartNode1">
+          <f:features>
+            <f:normal-start-feature/>
+          </f:features>
+        </f:start-node>
+      </f:start-nodes>
+      <f:activities>
+        <f:activity display-name="Activity1" id="My_New_Process.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1"/>
+      </f:activities>
+      <f:end-nodes/>
+      <f:transitions>
+        <f:transition display-name="" from="My_New_Process.main.StartNode1" id="My_New_Process.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="My_New_Process.main.Activity1"/>
+      </f:transitions>
+    </f:sub-process>
+  </f:sub-processes>
+  <f:diagrams>
+    <f:diagram direction="H" grid-enabled="false" id="fid_fab1f545_94cd_40a7_83cc_1dc84d1edb24" ref="My_New_Process.main" ruler-enabled="false" snap-enabled="true">
+      <f:node id="fid_57e5c6b2_16b3_4be4_b279_eb14892ad1d4" ref="My_New_Process.main.StartNode1" type="start-node">
+        <f:figure>
+          <f:circle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="32" width="32" x="92" y="47"/>
+          </f:circle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_999fadfc_ac9c_420b_97ab_51a39657e3cd" ref="My_New_Process.main.Activity1" type="activity">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:content>
+              <f:label color="#191970" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:content>
+            <f:bounds height="72" width="108" x="393" y="66">
+              <f:border-style color="#4682B4" line-type="SOLID" radius="5" thick="2"/>
+            </f:bounds>
+            <f:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:connector from="fid_57e5c6b2_16b3_4be4_b279_eb14892ad1d4" id="fid_0dc248b7_1d5a_4faf_af12_f03aa57d4847" ref="My_New_Process.main.Transition1" to="fid_999fadfc_ac9c_420b_97ab_51a39657e3cd" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+    </f:diagram>
+  </f:diagrams>
+</f:workflow-process>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/Qualified_Schema"
+	xmlns:tns="http://www.example.org/Qualified_Schema" elementFormDefault="qualified" attributeFormDefault="qualified">
+
+	<element name="Person" type="tns:PersonType"></element>
+
+	<complexType name="PersonType">
+		<sequence>
+			<element name="name" type="string"></element>
+			<element name="sex" type="string"></element>
+		</sequence>
+		<attribute name="person_attr1" type="string"></attribute>
+	</complexType>
+
+</schema>

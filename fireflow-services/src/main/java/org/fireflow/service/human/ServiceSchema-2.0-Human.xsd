@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.fireflow.org/schema/service"
+	xmlns:tns="http://www.fireflow.org/schema/service"
+	elementFormDefault="qualified">
+	<include schemaLocation="../../../../../../../../fireflow-model/src/main/resources/ServiceSchema-2.0-Core.xsd"></include>
+    
+    <element name="service.human" type="tns:humanServiceType" substitutionGroup="tns:service"></element>
+    <complexType name="humanServiceType">
+    	<complexContent>
+    		<extension base="tns:serviceType">
+    			<sequence>
+    				<element name="form-url" type="string"></element>
+
+                    <element name="workitem-subject" type="tns:workitem-subjectType"></element>
+                    <element name="extended-attributes"
+    					type="tns:extendedAttributesType">
+    				</element>
+    			</sequence>
+    		</extension>
+    	</complexContent>
+    </complexType>
+    
+
+    <complexType name="workitem-subjectType">
+    	<sequence>
+    		<element name="expression" type="tns:expressionType"></element>
+    	</sequence>
+    </complexType>
+</schema>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<import resource="classpath:fireflow-config/FireflowContext-Main.xml" />
+	<import resource="applicationContext-fireflow-extension.xml"/>
+
+    <bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>
+                    classpath*:datasource.properties
+                </value>
+            </list>
+        </property>
+    </bean>
+	<bean id="demoDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+
+	<bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor"
+		lazy-init="true" />
+	<bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler"
+		lazy-init="true">
+		<property name="nativeJdbcExtractor" ref="nativeJdbcExtractor" />
+	</bean>
+	
+	<bean id="defaultLobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler">
+	
+	</bean>
+	<bean id="demoHibernateSessionFactory" 
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="demoDataSource" />
+		</property>
+		 
+		<property name="lobHandler">
+			<ref bean="defaultLobHandler"/> 
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<!-- 
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				 -->
+				<prop key="hibernate.show_sql">true</prop>
+				<!--
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				
+				 --> 
+				 <!-- 
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+ 					 -->
+			</props>
+		</property>
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:/org/fireflow/engine/modules/persistence/hibernate/*.hbm.xml</value>
+				<value>classpath:/org/fireflow/demo/biztrip/entity/*.hbm.xml</value>
+				<value>classpath:/org/fireflow/demo/common/entity/*.hbm.xml</value>
+				<value>classpath:/org/fireflow/demo/ou_management/entity/*.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="demoTransactionManager" 
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="demoHibernateSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="demoTransactionTemplate"  class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager">
+			<ref bean="demoTransactionManager" />
+		</property>
+
+	</bean>
+
+	<bean id="demoUserDao" name="demoUserDao"
+		class="org.fireflow.demo.ou_management.dao.DemoUserDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="demoHibernateSessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="demoDepartmentDao" name="demoDepartmentDao"
+		class="org.fireflow.demo.ou_management.dao.DemoDepartmentDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="demoHibernateSessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="businessTripBasicInfoDao" name="businessTripBasicInfoDao"
+		class="org.fireflow.demo.biztrip.dao.BusinessTripBasicInfoDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="demoHibernateSessionFactory" />
+		</property>
+	</bean>	
+	<bean id="commonApprovalInfoDao" name="commonApprovalInfoDao"
+		class="org.fireflow.demo.common.dao.CommonApprovalInfoDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="demoHibernateSessionFactory" />
+		</property>
+	</bean>		
+</beans>

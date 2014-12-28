@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="AcceptApproveResult" targetNamespace="http://www.fireflow.org/junit/callbackservice" xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.fireflow.org/junit/callbackservice" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <wsdl:message name="acceptRequestMessage">
+    <wsdl:part name="idPart" type="xsd:string">
+    </wsdl:part>
+    <wsdl:part name="approveResultPart" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="acceptResponseMessage">
+    <wsdl:part name="resp1Part" type="xsd:string">
+    </wsdl:part>
+    <wsdl:part name="resp2Part" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AcceptResult_PortType">
+    <wsdl:operation name="accept">
+      <wsdl:input name="acceptRequest" message="tns:acceptRequestMessage">
+    </wsdl:input>
+      <wsdl:output name="acceptResponse" message="tns:acceptResponseMessage">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AcceptResult_Binding" type="tns:AcceptResult_PortType">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="accept">
+      <wsdl:input name="acceptRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="acceptResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AcceptApproveResult_1">
+    <wsdl:port name="AcceptResult_Port" binding="tns:AcceptResult_Binding">
+      <wsdlsoap:address location="http://127.0.0.1:6666/FireWorkflowServices/AcceptApproveResult_1"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

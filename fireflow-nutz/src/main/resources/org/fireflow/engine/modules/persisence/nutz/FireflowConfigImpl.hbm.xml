@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.fireflow.engine.entity.config.impl.FireflowConfigImpl"
+		table="T_FF_CFG_FIREFLOW_CONFIG">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid" />
+		</id>
+		
+		<property name="configId" type="java.lang.String" index="IDX_CONFIG_ID" unique="true" update="false">
+			<column length="100" name="CONFIG_ID" not-null="true"/>
+		</property>	
+		
+		<property name="configName" type="java.lang.String">
+			<column length="100" name="CONFIG_NAME" not-null="true"/>
+		</property>			
+		<property name="configValue" type="java.lang.String">
+			<column length="1000" name="CONFIG_VALUE" not-null="true"/>
+		</property>				
+		<property name="description" type="java.lang.String">
+			<column length="1000" name="DESCRIPTION"/>
+		</property>			
+		<property name="categoryId" type="java.lang.String" index="IDX_CATEGORY_ID" update="false">
+			<column length="100" name="CATEGORY_ID" />
+		</property>	
+		
+		<property name="parentConfigId" type="java.lang.String">
+			<column length="100" name="PARENT_CONFIG_ID" />
+		</property>				
+		
+		<property name="lastEditor" type="java.lang.String">
+			<column length="50" name="LAST_EDITOR" not-null="true"/>
+		</property>		
+		<property name="lastUpdateTime" type="java.util.Date"  generated="always" >
+			<column name="LAST_UPDATE_TIME"  sql-type="timestamp"  default="CURRENT_TIMESTAMP">
+				<comment>最后更新时间</comment>
+			</column>
+		</property>	
+	</class>
+</hibernate-mapping>

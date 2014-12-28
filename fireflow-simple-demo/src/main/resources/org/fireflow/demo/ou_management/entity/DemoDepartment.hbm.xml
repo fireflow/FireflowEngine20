@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.fireflow.demo.ou_management.entity.DemoDepartment"
+		table="T_Demo_Department">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid" />
+		</id>
+
+		<property name="departmentId" type="java.lang.String"  update="false">
+			<column length="50" name="DEPARTMENT_ID">
+				<comment>部门Id</comment>
+			</column>
+		</property>
+		<property name="departmentName" type="java.lang.String">
+			<column length="150" name="DEPARTMENT_NAME">
+				<comment>部门名称</comment>
+			</column>
+		</property>		
+		<property name="parentDepartmentId" type="java.lang.String"  update="false">
+			<column length="50" name="PARENT_DEPARTMENT_ID">
+				<comment>上级部门Id</comment>
+			</column>
+		</property>		
+	</class>
+</hibernate-mapping>

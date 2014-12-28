@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="serviceRegistry"
+		class="org.fireflow.engine.service.ServiceRegistryImpl">
+		<property name="serviceExecutors">
+			<list>
+				<ref bean="humanServiceExecutor"/>
+				<bean class="org.fireflow.service.java.JavaExecutor"></bean>
+				<bean class="org.fireflow.service.callback.CallbackExecutor"></bean>
+				<bean class="org.fireflow.service.timmer.TimerExecutor"></bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="humanServiceExecutor" class="org.fireflow.service.human.HumanServiceExecutor">
+		<property name="assignmentHandler">
+			<bean class="org.fireflow.service.human.impl.DefaultAssignmentHandler"></bean>
+		</property>
+	</bean>
+</beans>

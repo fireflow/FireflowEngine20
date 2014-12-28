@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<f20:workflow-process biz-category="" display-name="异常抛出与捕获_1" id="CatchFault_1" name="CatchFault_1" xmlns:f20="http://www.fireflow.org/schema/workflowprocess">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.call biz-category="" display-name="抛出异常的子流程@异常抛出与捕获_1" id="Call_ThrowFaultSubProcess" invoker-class="org.fireflow.service.call.CallServiceInvoker" name="Call_ThrowFaultSubProcess" parser-class="org.fireflow.service.call.CallServiceParser" target-namespace="">
+      <s:interface.call_service name="call_subprocess_interface"/>
+      <s:process-id>CatchFault_1</s:process-id>
+      <s:subprocess-id>CatchFault_1.ThrowFaultSubProcess</s:subprocess-id>
+      <s:process-version>0</s:process-version>
+    </s:service.call>
+  </s:services>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+  </r:resources>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="CatchFault_1.main.StartNode1" id="CatchFault_1.main" name="main">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="x" id="CatchFault_1.main.x" init-value="0" name="x"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="CatchFault_1.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+        <f20:start-node display-name="捕获异常[FAULT_01]" id="CatchFault_1.main.StartNode2" name="StartNode2">
+          <f20:features>
+            <f20:catch-fault-feature attached-to-activity="CatchFault_1.main.Activity1" error-code="FAULT_01"/>
+          </f20:features>
+        </f20:start-node>
+        <f20:start-node display-name="捕获异常FAULT02_03" id="CatchFault_1.main.StartNode3" name="StartNode3">
+          <f20:features>
+            <f20:catch-fault-feature attached-to-activity="CatchFault_1.main.Activity1" error-code="FAULT_02;FAULT_03"/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="Activity1" id="CatchFault_1.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1">
+          <f20:service-binding operation-name="call_subprocess" service-id="Call_ThrowFaultSubProcess">
+            <f20:input-assignments>
+              <f20:input-assignment>
+                <f20:from>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="流程变量/x" language="XPATH" name="x">
+                    <f20:body><![CDATA[processVars/x]]></f20:body>
+                  </f20:expression>
+                </f20:from>
+                <f20:to>
+                  <f20:expression data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="x" language="XPATH" name="x">
+                    <f20:body><![CDATA[inputs/x]]></f20:body>
+                  </f20:expression>
+                </f20:to>
+              </f20:input-assignment>
+            </f20:input-assignments>
+          </f20:service-binding>
+        </f20:activity>
+        <f20:activity display-name="异常处理" id="CatchFault_1.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2"/>
+        <f20:activity display-name="Activity3" id="CatchFault_1.main.Activity3" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity3"/>
+      </f20:activities>
+      <f20:end-nodes>
+        <f20:end-node display-name="EndNode1" id="CatchFault_1.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="" from="CatchFault_1.main.StartNode1" id="CatchFault_1.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="CatchFault_1.main.Activity1"/>
+        <f20:transition display-name="" from="CatchFault_1.main.Activity1" id="CatchFault_1.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="CatchFault_1.main.EndNode1"/>
+        <f20:transition display-name="" from="CatchFault_1.main.StartNode2" id="CatchFault_1.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="CatchFault_1.main.Activity2"/>
+        <f20:transition display-name="" from="CatchFault_1.main.StartNode3" id="CatchFault_1.main.Transition4" is-default="false" is-loop="false" name="Transition4" to="CatchFault_1.main.Activity3"/>
+      </f20:transitions>
+    </f20:sub-process>
+    <f20:sub-process display-name="抛出异常的子流程" entry="CatchFault_1.ThrowFaultSubProcess.StartNode1" id="CatchFault_1.ThrowFaultSubProcess" name="ThrowFaultSubProcess">
+      <f20:properties>
+        <f20:property data-type="{http://jcp.org/en/jsr/detail?id=270}float" display-name="x" id="CatchFault_1.ThrowFaultSubProcess.x" init-value="0" name="x"/>
+      </f20:properties>
+      <f20:start-nodes>
+        <f20:start-node display-name="StartNode1" id="CatchFault_1.ThrowFaultSubProcess.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="Activity2" id="CatchFault_1.ThrowFaultSubProcess.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2"/>
+        <f20:activity display-name="Activity3" id="CatchFault_1.ThrowFaultSubProcess.Activity3" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity3"/>
+        <f20:activity display-name="Activity4" id="CatchFault_1.ThrowFaultSubProcess.Activity4" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity4"/>
+      </f20:activities>
+      <f20:routers>
+        <f20:router display-name="Router1" id="CatchFault_1.ThrowFaultSubProcess.Router1" name="Router1">
+          <f20:features>
+            <f20:xorjoin-xorsplit-feature/>
+          </f20:features>
+        </f20:router>
+      </f20:routers>
+      <f20:end-nodes>
+        <f20:end-node display-name="抛出异常[FAULT_01]" id="CatchFault_1.ThrowFaultSubProcess.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:throw-fault-feature error-code="FAULT_01"/>
+          </f20:features>
+        </f20:end-node>
+        <f20:end-node display-name="抛出异常[FAULT_02]" id="CatchFault_1.ThrowFaultSubProcess.EndNode2" name="EndNode2">
+          <f20:features>
+            <f20:throw-fault-feature error-code="FAULT_02"/>
+          </f20:features>
+        </f20:end-node>
+        <f20:end-node display-name="抛出异常[FAULT_03]" id="CatchFault_1.ThrowFaultSubProcess.EndNode3" name="EndNode3">
+          <f20:features>
+            <f20:throw-fault-feature error-code="FAULT_03"/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="" from="CatchFault_1.ThrowFaultSubProcess.StartNode1" id="CatchFault_1.ThrowFaultSubProcess.Transition3" is-default="false" is-loop="false" name="Transition3" to="CatchFault_1.ThrowFaultSubProcess.Router1"/>
+        <f20:transition display-name="x&gt;0" from="CatchFault_1.ThrowFaultSubProcess.Router1" id="CatchFault_1.ThrowFaultSubProcess.Transition5" is-default="false" is-loop="false" name="Transition5" to="CatchFault_1.ThrowFaultSubProcess.Activity2">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[processVars.x>0]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+        <f20:transition display-name="x&lt;0" from="CatchFault_1.ThrowFaultSubProcess.Router1" id="CatchFault_1.ThrowFaultSubProcess.Transition6" is-default="false" is-loop="false" name="Transition6" to="CatchFault_1.ThrowFaultSubProcess.Activity3">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[processVars.x<0]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+        <f20:transition display-name="" from="CatchFault_1.ThrowFaultSubProcess.Activity2" id="CatchFault_1.ThrowFaultSubProcess.Transition7" is-default="false" is-loop="false" name="Transition7" to="CatchFault_1.ThrowFaultSubProcess.EndNode2"/>
+        <f20:transition display-name="" from="CatchFault_1.ThrowFaultSubProcess.Activity3" id="CatchFault_1.ThrowFaultSubProcess.Transition8" is-default="false" is-loop="false" name="Transition8" to="CatchFault_1.ThrowFaultSubProcess.EndNode3"/>
+        <f20:transition display-name="x==0" from="CatchFault_1.ThrowFaultSubProcess.Router1" id="CatchFault_1.ThrowFaultSubProcess.Transition9" is-default="false" is-loop="false" name="Transition9" to="CatchFault_1.ThrowFaultSubProcess.Activity4">
+          <f20:condition>
+            <f20:expression language="JEXL">
+              <f20:body><![CDATA[processVars.x==0]]></f20:body>
+            </f20:expression>
+          </f20:condition>
+        </f20:transition>
+        <f20:transition display-name="" from="CatchFault_1.ThrowFaultSubProcess.Activity4" id="CatchFault_1.ThrowFaultSubProcess.Transition10" is-default="false" is-loop="false" name="Transition10" to="CatchFault_1.ThrowFaultSubProcess.EndNode1"/>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" grid-enabled="false" id="13f33f7c-244a-42b3-8ddf-922e646941c1" ref="CatchFault_1.main" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="199a9829-958d-4a3a-9be9-acf7226ccc6c" ref="CatchFault_1.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="66" y="110"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="a7b51269-7350-4fde-91f6-d9226d7c56e1" ref="CatchFault_1.main.Activity1" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="252" x="160" y="90">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+        <f20:node id="333d64a2-b970-491e-b99f-f56474e271e2" ref="CatchFault_1.main.StartNode2" type="start-node">
+          <f20:figure>
+            <f20:circle>
+              <f20:title>
+                <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:title>
+              <f20:bounds height="32" width="32" x="233" y="123"/>
+            </f20:circle>
+          </f20:figure>
+        </f20:node>
+        <f20:node id="778b2635-adb4-4faa-afcb-92456a22a557" ref="CatchFault_1.main.StartNode3" type="start-node">
+          <f20:figure>
+            <f20:circle>
+              <f20:title>
+                <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:title>
+              <f20:bounds height="32" width="32" x="346" y="142"/>
+            </f20:circle>
+          </f20:figure>
+        </f20:node>
+      </f20:node>
+      <f20:node id="3372c130-1ec8-4003-8cd3-099f2c7222c4" ref="CatchFault_1.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="485" y="110"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="08ad0901-fcbb-4638-95e4-9dab46e8e2c1" ref="CatchFault_1.main.Activity2" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="53" y="240">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="fcd19620-fc75-498b-ae0f-79fdc488258f" ref="CatchFault_1.main.Activity3" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="437" y="240">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="199a9829-958d-4a3a-9be9-acf7226ccc6c" id="d8a17386-ef0a-4e55-823e-9d4ab4d0e9ad" ref="CatchFault_1.main.Transition1" to="a7b51269-7350-4fde-91f6-d9226d7c56e1" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="a7b51269-7350-4fde-91f6-d9226d7c56e1" id="4c72a52b-754e-4de7-aba5-5990e4ca1e23" ref="CatchFault_1.main.Transition2" to="3372c130-1ec8-4003-8cd3-099f2c7222c4" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="333d64a2-b970-491e-b99f-f56474e271e2" id="be18312d-9682-48fe-bf35-d8323acce7bf" ref="CatchFault_1.main.Transition3" to="08ad0901-fcbb-4638-95e4-9dab46e8e2c1" type="transition">
+        <f20:figure>
+          <f20:line point-list="(218,275)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="778b2635-adb4-4faa-afcb-92456a22a557" id="f0b84dbd-a455-420f-8d3e-9ecdfa706fce" ref="CatchFault_1.main.Transition4" to="fcd19620-fc75-498b-ae0f-79fdc488258f" type="transition">
+        <f20:figure>
+          <f20:line point-list="(346,277)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+    <f20:diagram direction="H" grid-enabled="false" id="250a96b8-b1be-4500-a79b-5e0a5586c5e7" ref="CatchFault_1.ThrowFaultSubProcess" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="8374f1ca-19ec-4171-8acb-b628bed8b09e" ref="CatchFault_1.ThrowFaultSubProcess.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="28" y="191"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="e43ee9d2-ad5e-4264-bf4a-f3ddc8e5d9ec" ref="CatchFault_1.ThrowFaultSubProcess.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="480" y="85"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="2447a319-410d-4024-b3e8-4764aa606b6e" ref="CatchFault_1.ThrowFaultSubProcess.Router1" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="128" y="191"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="632b0b2c-f5bf-476e-b1ba-01c82bedbf48" ref="CatchFault_1.ThrowFaultSubProcess.Activity2" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="275" y="171">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="f14bbe3b-0b1b-4d84-8f94-dccb0f95252c" ref="CatchFault_1.ThrowFaultSubProcess.Activity3" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="275" y="277">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="e2723b39-6b5a-4e11-a65a-36459acb3e72" ref="CatchFault_1.ThrowFaultSubProcess.EndNode2" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="480" y="191"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="6726ec76-af0b-439b-b6f2-f1cd510bf5c5" ref="CatchFault_1.ThrowFaultSubProcess.EndNode3" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="480" y="299"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="708f5255-22d7-4401-bcfa-0ffc1f954bb2" ref="CatchFault_1.ThrowFaultSubProcess.Activity4" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="72" width="108" x="268" y="63">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="8374f1ca-19ec-4171-8acb-b628bed8b09e" id="b7b65164-017f-4d77-9674-72f81fe1e031" ref="CatchFault_1.ThrowFaultSubProcess.Transition3" to="2447a319-410d-4024-b3e8-4764aa606b6e" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="2447a319-410d-4024-b3e8-4764aa606b6e" id="fb2a838f-bc47-4fa9-9cde-c2526c8e7e9c" ref="CatchFault_1.ThrowFaultSubProcess.Transition5" to="632b0b2c-f5bf-476e-b1ba-01c82bedbf48" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="2447a319-410d-4024-b3e8-4764aa606b6e" id="4deb203b-878d-404b-a8af-14c7e79f512f" ref="CatchFault_1.ThrowFaultSubProcess.Transition6" to="f14bbe3b-0b1b-4d84-8f94-dccb0f95252c" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="632b0b2c-f5bf-476e-b1ba-01c82bedbf48" id="90bc84c0-5586-4598-975c-739d7321340a" ref="CatchFault_1.ThrowFaultSubProcess.Transition7" to="e2723b39-6b5a-4e11-a65a-36459acb3e72" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="f14bbe3b-0b1b-4d84-8f94-dccb0f95252c" id="0090cdac-2bc0-4771-bfc8-da34fe7c9e09" ref="CatchFault_1.ThrowFaultSubProcess.Transition8" to="6726ec76-af0b-439b-b6f2-f1cd510bf5c5" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="2447a319-410d-4024-b3e8-4764aa606b6e" id="140c17de-95a8-4fd1-8802-52b54dc290e6" ref="CatchFault_1.ThrowFaultSubProcess.Transition9" to="708f5255-22d7-4401-bcfa-0ffc1f954bb2" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="708f5255-22d7-4401-bcfa-0ffc1f954bb2" id="529d7815-1f8b-49f5-8bb4-dff1f26bfbfe" ref="CatchFault_1.ThrowFaultSubProcess.Transition10" to="e43ee9d2-ad5e-4264-bf4a-f3ddc8e5d9ec" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

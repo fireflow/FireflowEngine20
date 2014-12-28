@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="GBK"?><f20:workflow-process xmlns:f20="http://www.fireflow.org/schema/workflowprocess/20" biz-category="" display-name="自定义流程外观" id="My_New_Process_1" name="My_New_Process_1">
+  <s:services xmlns:s="http://www.fireflow.org/schema/service/20"/>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource/20"/>
+  <f20:sub-processes>
+    <f20:sub-process display-name="main" entry="My_New_Process_1.main.StartNode1" id="My_New_Process_1.main" name="main">
+      <f20:start-nodes>
+        <f20:start-node display-name="物料到货" id="My_New_Process_1.main.StartNode1" name="StartNode1">
+          <f20:features>
+            <f20:normal-start-feature/>
+          </f20:features>
+        </f20:start-node>
+      </f20:start-nodes>
+      <f20:activities>
+        <f20:activity display-name="库管预入库" id="My_New_Process_1.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1"/>
+        <f20:activity display-name="免检" id="My_New_Process_1.main.Activity2" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity2"/>
+        <f20:activity display-name="通知品管" id="My_New_Process_1.main.Activity4" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity4"/>
+        <f20:activity display-name="选型样品" id="My_New_Process_1.main.Activity5" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity5"/>
+        <f20:activity display-name="定型品供货" id="My_New_Process_1.main.Activity6" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity6"/>
+        <f20:activity display-name="设计人员验收" id="My_New_Process_1.main.Activity7" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity7"/>
+        <f20:activity display-name="样品品管验收" id="My_New_Process_1.main.Activity8" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity8"/>
+        <f20:activity display-name="入库" id="My_New_Process_1.main.Activity9" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity9"/>
+        <f20:activity display-name="退货" id="My_New_Process_1.main.Activity10" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity10"/>
+        <f20:activity display-name="库管分类" id="My_New_Process_1.main.Activity11" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity11"/>
+      </f20:activities>
+      <f20:routers>
+        <f20:router id="My_New_Process_1.main.Router1" name="Router1">
+          <f20:features>
+            <f20:default-router-feature/>
+          </f20:features>
+        </f20:router>
+        <f20:router display-name="判断" id="My_New_Process_1.main.Router2" name="Router2">
+          <f20:features>
+            <f20:default-router-feature/>
+          </f20:features>
+        </f20:router>
+      </f20:routers>
+      <f20:end-nodes>
+        <f20:end-node id="My_New_Process_1.main.EndNode1" name="EndNode1">
+          <f20:features>
+            <f20:normal-end-feature/>
+          </f20:features>
+        </f20:end-node>
+      </f20:end-nodes>
+      <f20:transitions>
+        <f20:transition display-name="" from="My_New_Process_1.main.StartNode1" id="My_New_Process_1.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="My_New_Process_1.main.Activity1"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Router1" id="My_New_Process_1.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="My_New_Process_1.main.Activity4"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Activity4" id="My_New_Process_1.main.Transition4" is-default="false" is-loop="false" name="Transition4" to="My_New_Process_1.main.Activity6"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Activity4" id="My_New_Process_1.main.Transition5" is-default="false" is-loop="false" name="Transition5" to="My_New_Process_1.main.Activity5"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Activity6" id="My_New_Process_1.main.Transition7" is-default="false" is-loop="false" name="Transition7" to="My_New_Process_1.main.Activity8"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Activity5" id="My_New_Process_1.main.Transition8" is-default="false" is-loop="false" name="Transition8" to="My_New_Process_1.main.Activity7"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Activity8" id="My_New_Process_1.main.Transition9" is-default="false" is-loop="false" name="Transition9" to="My_New_Process_1.main.Router2"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Activity7" id="My_New_Process_1.main.Transition10" is-default="false" is-loop="false" name="Transition10" to="My_New_Process_1.main.Router2"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Router2" id="My_New_Process_1.main.Transition11" is-default="false" is-loop="false" name="Transition11" to="My_New_Process_1.main.Activity10"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Router2" id="My_New_Process_1.main.Transition12" is-default="false" is-loop="false" name="Transition12" to="My_New_Process_1.main.Activity9"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Activity10" id="My_New_Process_1.main.Transition13" is-default="false" is-loop="false" name="Transition13" to="My_New_Process_1.main.EndNode1"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Activity9" id="My_New_Process_1.main.Transition14" is-default="false" is-loop="false" name="Transition14" to="My_New_Process_1.main.EndNode1"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Activity2" id="My_New_Process_1.main.Transition15" is-default="false" is-loop="false" name="Transition15" to="My_New_Process_1.main.Activity9"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Router1" id="My_New_Process_1.main.Transition16" is-default="false" is-loop="false" name="Transition16" to="My_New_Process_1.main.Activity2"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Activity1" id="My_New_Process_1.main.Transition18" is-default="false" is-loop="false" name="Transition18" to="My_New_Process_1.main.Activity11"/>
+        <f20:transition display-name="" from="My_New_Process_1.main.Activity11" id="My_New_Process_1.main.Transition19" is-default="false" is-loop="false" name="Transition19" to="My_New_Process_1.main.Router1"/>
+      </f20:transitions>
+    </f20:sub-process>
+  </f20:sub-processes>
+  <f20:diagrams>
+    <f20:diagram direction="H" grid-enabled="false" id="e40093fd-509c-4470-8a99-6e6065d06030" ref="My_New_Process_1.main" ruler-enabled="false" snap-enabled="true">
+      <f20:node id="27acdfd7-e636-4e37-8476-2d9e761baf93" type="group">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[group1]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"/>
+            </f20:content>
+            <f20:bounds height="219" width="312" x="466" y="6">
+              <f20:border-style color="#696969" line-type="DASHED" radius="11" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#ff80c0" gradient-style="T2D"/>
+          </f20:rectangle>
+        </f20:figure>
+        <f20:node id="fbe9eea6-d238-4470-8cbf-e6a63d03c6c8" ref="My_New_Process_1.main.Activity5" type="activity">
+          <f20:figure>
+            <f20:rectangle>
+              <f20:title>
+                <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:title>
+              <f20:content>
+                <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:content>
+              <f20:bounds height="64" width="95" x="43" y="120">
+                <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+              </f20:bounds>
+              <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+            </f20:rectangle>
+          </f20:figure>
+        </f20:node>
+        <f20:node id="0a637f20-678c-4222-88f4-b2b658f2de3d" ref="My_New_Process_1.main.Activity7" type="activity">
+          <f20:figure>
+            <f20:rectangle>
+              <f20:title>
+                <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:title>
+              <f20:content>
+                <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:content>
+              <f20:bounds height="64" width="95" x="174" y="120">
+                <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+              </f20:bounds>
+              <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+            </f20:rectangle>
+          </f20:figure>
+        </f20:node>
+        <f20:node id="dfa125b5-6d46-4fc6-9c6c-e2c14785c780" ref="My_New_Process_1.main.Activity6" type="activity">
+          <f20:figure>
+            <f20:rectangle>
+              <f20:title>
+                <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:title>
+              <f20:content>
+                <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:content>
+              <f20:bounds height="64" width="95" x="42" y="12">
+                <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+              </f20:bounds>
+              <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+            </f20:rectangle>
+          </f20:figure>
+        </f20:node>
+        <f20:node id="6f88a125-fa1b-48d2-8ed8-abdad4e895e5" ref="My_New_Process_1.main.Activity8" type="activity">
+          <f20:figure>
+            <f20:rectangle>
+              <f20:title>
+                <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:title>
+              <f20:content>
+                <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+              </f20:content>
+              <f20:bounds height="64" width="95" x="175" y="13">
+                <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+              </f20:bounds>
+              <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+            </f20:rectangle>
+          </f20:figure>
+        </f20:node>
+      </f20:node>
+      <f20:node id="c4b1ddc1-d444-4591-b5a0-382c8d9bce2a" ref="My_New_Process_1.main.StartNode1" type="start-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="17" y="224"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="bcc90445-ff74-4fb6-ade0-5b620f808e7d" ref="My_New_Process_1.main.Activity1" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="64" width="95" x="87" y="208">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="4acd5da1-9447-4914-bdab-635860323f02" ref="My_New_Process_1.main.Router1" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="360" y="224"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="cbbee82f-2e96-45b8-86ed-9e1f93185688" ref="My_New_Process_1.main.Activity2" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#ff0000" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="64" width="95" x="328" y="335">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#00ffff" gradient-style="UL2LR"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="4f66ab05-9d1b-44df-a49c-5f020765fd58" ref="My_New_Process_1.main.Activity4" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="64" width="95" x="328" y="88">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="1b10597f-43f8-41fd-b258-228a029966c5" ref="My_New_Process_1.main.Router2" type="router">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="826" y="102"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="9aec88d5-1e28-4231-9299-d0cc84b1bcfa" ref="My_New_Process_1.main.Activity9" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="64" width="95" x="901" y="208">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="1a4138e4-5a38-4be6-a693-9074d3a95398" ref="My_New_Process_1.main.Activity10" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="64" width="95" x="901" y="25">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="0d6b6278-7043-4467-9134-6dea9b36f139" ref="My_New_Process_1.main.EndNode1" type="end-node">
+        <f20:figure>
+          <f20:circle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="32" width="32" x="1043" y="224"/>
+          </f20:circle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="da451ced-7de9-4de3-b05b-4ab8bd282a0a" ref="My_New_Process_1.main.Activity11" type="activity">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#191970" font-style="BOLD" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:content>
+            <f20:bounds height="64" width="95" x="220" y="208">
+              <f20:border-style color="#4682B4" line-type="SOLID" radius="10" thick="2"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:node id="b904b5c1-b6ab-4ebe-ab2f-dd32400b4cff" type="comment">
+        <f20:figure>
+          <f20:rectangle>
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:content>
+              <f20:label color="#323232" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[这是一个仓管流程，~~
+
+流程中所有元素的外观可以定制，例如“免检”节点及相关的输入输出通过属性界面进行了定制]]></f20:label>
+            </f20:content>
+            <f20:bounds height="109" width="597" x="422" y="456">
+              <f20:border-style color="#696969" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+            <f20:fulfil-style color1="#FFFFFF" color2="#DCDCDC" gradient-style="UL2LR"/>
+          </f20:rectangle>
+        </f20:figure>
+      </f20:node>
+      <f20:connector from="c4b1ddc1-d444-4591-b5a0-382c8d9bce2a" id="b2705add-e25d-4bb7-b18f-f5f00c91a8a4" ref="My_New_Process_1.main.Transition1" to="bcc90445-ff74-4fb6-ade0-5b620f808e7d" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(3,21)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="4acd5da1-9447-4914-bdab-635860323f02" id="70ecf2cd-31f7-4888-bf2a-909039b94e5d" ref="My_New_Process_1.main.Transition3" to="4f66ab05-9d1b-44df-a49c-5f020765fd58" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,7)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="4f66ab05-9d1b-44df-a49c-5f020765fd58" id="990bd321-e9fd-4cfa-bebf-da62e5d43501" ref="My_New_Process_1.main.Transition4" to="dfa125b5-6d46-4fc6-9c6c-e2c14785c780" type="transition">
+        <f20:figure>
+          <f20:line point-list="(454,70)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="4f66ab05-9d1b-44df-a49c-5f020765fd58" id="721ed793-0d67-4b18-89fb-eab944d96086" ref="My_New_Process_1.main.Transition5" to="fbe9eea6-d238-4470-8cbf-e6a63d03c6c8" type="transition">
+        <f20:figure>
+          <f20:line point-list="(455,178)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="dfa125b5-6d46-4fc6-9c6c-e2c14785c780" id="330ece4d-639d-43c8-9d6a-d5f4836e0415" ref="My_New_Process_1.main.Transition7" to="6f88a125-fa1b-48d2-8ed8-abdad4e895e5" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,15)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="fbe9eea6-d238-4470-8cbf-e6a63d03c6c8" id="8a12cf15-5b34-40f5-952e-8a240e5513d5" ref="My_New_Process_1.main.Transition8" to="0a637f20-678c-4222-88f4-b2b658f2de3d" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,12)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="6f88a125-fa1b-48d2-8ed8-abdad4e895e5" id="11d74cce-6221-42e9-a61a-023352eb81d1" ref="My_New_Process_1.main.Transition9" to="1b10597f-43f8-41fd-b258-228a029966c5" type="transition">
+        <f20:figure>
+          <f20:line point-list="(825,71)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="0a637f20-678c-4222-88f4-b2b658f2de3d" id="97f686da-9162-4090-ae63-e94c4bd7d855" ref="My_New_Process_1.main.Transition10" to="1b10597f-43f8-41fd-b258-228a029966c5" type="transition">
+        <f20:figure>
+          <f20:line point-list="(823,178)" titleLabel-position="(0,19)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="1b10597f-43f8-41fd-b258-228a029966c5" id="e9364f9c-cc2e-4090-b13a-9f37dba345ad" ref="My_New_Process_1.main.Transition11" to="1a4138e4-5a38-4be6-a693-9074d3a95398" type="transition">
+        <f20:figure>
+          <f20:line point-list="(842,56)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="1b10597f-43f8-41fd-b258-228a029966c5" id="9d44c0cd-62b6-4d6e-bd5e-fa60f87d93f2" ref="My_New_Process_1.main.Transition12" to="9aec88d5-1e28-4231-9299-d0cc84b1bcfa" type="transition">
+        <f20:figure>
+          <f20:line point-list="(842,239)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="1a4138e4-5a38-4be6-a693-9074d3a95398" id="da0b9f20-21aa-410c-911f-6e4606491e10" ref="My_New_Process_1.main.Transition13" to="0d6b6278-7043-4467-9134-6dea9b36f139" type="transition">
+        <f20:figure>
+          <f20:line point-list="(1057,56)" titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="9aec88d5-1e28-4231-9299-d0cc84b1bcfa" id="24e60ab2-3398-42f7-93a5-a5045ccd1840" ref="My_New_Process_1.main.Transition14" to="0d6b6278-7043-4467-9134-6dea9b36f139" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,-2)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="cbbee82f-2e96-45b8-86ed-9e1f93185688" id="eb0ba0a5-f574-4ef0-9cb3-22bd0a13aaf8" ref="My_New_Process_1.main.Transition15" to="9aec88d5-1e28-4231-9299-d0cc84b1bcfa" type="transition">
+        <f20:figure>
+          <f20:line point-list="(879,365)" titleLabel-position="(-125,7)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#ff8000" line-type="SOLID" radius="0" thick="2"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="4acd5da1-9447-4914-bdab-635860323f02" id="97a56ce7-98db-4109-89a4-dd70d13bf156" ref="My_New_Process_1.main.Transition16" to="cbbee82f-2e96-45b8-86ed-9e1f93185688" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#ff8000" line-type="SOLID" radius="0" thick="2"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="bcc90445-ff74-4fb6-ade0-5b620f808e7d" id="64cafbb8-4b9f-4913-ac0e-e065256c7388" ref="My_New_Process_1.main.Transition18" to="da451ced-7de9-4de3-b05b-4ab8bd282a0a" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+      <f20:connector from="da451ced-7de9-4de3-b05b-4ab8bd282a0a" id="3e80ed87-3cad-4673-bc2d-98d081861f5a" ref="My_New_Process_1.main.Transition19" to="4acd5da1-9447-4914-bdab-635860323f02" type="transition">
+        <f20:figure>
+          <f20:line titleLabel-position="(0,0)">
+            <f20:title>
+              <f20:label color="#000000" font-style="NORMAL" size="10" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f20:label>
+            </f20:title>
+            <f20:bounds height="10" width="10" x="0" y="0">
+              <f20:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f20:bounds>
+          </f20:line>
+        </f20:figure>
+      </f20:connector>
+    </f20:diagram>
+  </f20:diagrams>
+</f20:workflow-process>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="hibernatePersistenceService"
+		class="org.fireflow.engine.modules.persistence.hibernate.PersistenceServiceHibernateImpl">
+		<property name="sessionFactory">
+			<ref bean="hibernateSessionFactory"/>
+		</property>
+		<property name="tokenPersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.TokenPersisterHibernateImpl">
+			</bean>
+		</property>
+		<property name="activityInstancePersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ActivityInstancePersisterHibernateImpl">		
+			</bean>
+		</property>
+		<property name="processInstancePersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ProcessInstancePersisterHibernateImpl">		
+			</bean>
+		</property>
+		<property name="variablePersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.VariablePersisterHibernateImpl">		
+			</bean>
+		</property>		
+		<property name="scheduleJobPersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ScheduleJobPersisterHibernateImpl">		
+			</bean>
+		</property>
+		<property name="processPersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ProcessPersisterHibernateImpl">			
+			</bean>
+		</property>
+		
+		<property name="workItemPersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.WorkItemPersisterHibernateImpl">
+			
+			</bean>
+		</property>			
+		
+		<property name="reassignConfigPersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ReassignConfigPersisterHibernateImpl">
+		
+			</bean>
+		</property>	
+		
+		<property name="fireflowConfigPersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.FireflowConfigPersisterHibernateImpl">
+		
+			</bean>
+		</property>			
+		
+		<!-- Resource Persister and Service Persister -->	
+		<!-- 20140106 resource repository和service repository被取消 -->
+		<!-- 
+		<property name="resourcePersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ResourcePersisterHibernateImpl">
+		
+			</bean>
+		</property>			 
+		 
+		<property name="servicePersister">
+			<bean class="org.fireflow.engine.modules.persistence.hibernate.ServicePersisterHibernateImpl">
+		
+			</bean>
+		</property>		
+		 -->	
+		
+	</bean>	
+</beans>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r:resources xmlns:r="http://www.fireflow.org/schema/resource"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fireflow.org/schema/resource http://www.fireflow.org/schema/resource/ResourceSchema-2.0.xsd">
+	<r:resource id="org.fireflow.constants.ProcessInstanceCreator"
+		display-name="流程创建者" name="ProcessInstanceCreator"
+		resource-type="org.fireflow.constants.ProcessInstanceCreator">
+		<r:resolver
+			bean-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver">
+		</r:resolver>
+	</r:resource>
+	
+	<r:resource id="org.fireflow.constants.ActivityInstancePerformer"
+		display-name="活动实例执行者" name="ActivityInstancePerformer"
+		resource-type="org.fireflow.constants.ActivityInstancePerformer">
+		<r:resolver
+			bean-name="org.fireflow.engine.resource.impl.ActivityInstancePerformerResolver">
+			<r:parameters>
+				<r:parameter data-type="java.lang.String"
+					display-name="活动Id" name="referencedActivityId" />
+			</r:parameters>
+		</r:resolver>
+	</r:resource>
+	<r:resource id="org.fireflow.constants.VariableImplication"
+		display-name="流程变量所指的用户" name="VariableImplication"
+		resource-type="org.fireflow.constants.VariableImplication">
+		<r:resolver
+			bean-name="org.fireflow.engine.resource.impl.VariableImplicationResolver">
+			<r:parameters>
+				<r:parameter data-type="java.lang.String"
+					display-name="流程变量名" name="variableName" />
+			</r:parameters>
+		</r:resolver>
+	</r:resource>	
+</r:resources>

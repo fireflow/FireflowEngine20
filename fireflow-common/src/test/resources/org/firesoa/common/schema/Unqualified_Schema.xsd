@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/Unqualified_Schema" xmlns:tns="http://www.example.org/Unqualified_Schema" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+
+    <element name="Foo" type="tns:FooType"></element>
+    
+    <complexType name="FooType">
+    	<sequence>
+    		<element name="foo_1" type="string"></element>
+    		<element name="foo_2" type="string"></element>
+    	</sequence>
+    	<attribute name="foo_aatr_1" type="string"></attribute>
+    </complexType>
+</schema>

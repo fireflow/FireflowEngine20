@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="HelloWorldService" targetNamespace="http://servicemock.webservice.service.fireflow.org/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://servicemock.webservice.service.fireflow.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://servicemock.webservice.service.fireflow.org/" xmlns:tns="http://servicemock.webservice.service.fireflow.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="sayHello" type="tns:sayHello"/>
+  <xs:element name="sayHelloResponse" type="tns:sayHelloResponse"/>
+  <xs:complexType name="sayHello">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="person" type="tns:person"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="person">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" type="tns:address"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="sex" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="address">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cityName" type="xs:string"/>
+      <xs:element minOccurs="0" name="streetName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sayHelloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Exception" type="tns:Exception"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="Exception">
+    <wsdl:part element="tns:Exception" name="Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHelloResponse">
+    <wsdl:part element="tns:sayHelloResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHello">
+    <wsdl:part element="tns:sayHello" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HelloWorld">
+    <wsdl:operation name="sayHello">
+      <wsdl:input message="tns:sayHello" name="sayHello">
+    </wsdl:input>
+      <wsdl:output message="tns:sayHelloResponse" name="sayHelloResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWorldServiceSoapBinding" type="tns:HelloWorld">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sayHello">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayHello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHelloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWorldService">
+    <wsdl:port binding="tns:HelloWorldServiceSoapBinding" name="HelloWorldPort">
+      <soap:address location="http://localhost:2000/HelloWorld"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

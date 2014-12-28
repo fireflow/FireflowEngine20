@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="fireflowDefaultCalendarService"
+		class="org.fireflow.engine.modules.calendar.impl.CalendarServiceDefaultImpl">
+
+	</bean>
+	<bean id="fireflowScheduler"
+		class="org.fireflow.engine.modules.schedule.impl.SchedulerSpringQuartzImpl">
+		<property name="quartzScheduler">
+			<ref bean="springQuartzInFireflow"/>
+		</property>
+	</bean>
+		
+	<bean id="springQuartzInFireflow" lazy-init="false" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="taskExecutor">
+			<bean class="org.springframework.scheduling.quartz.SimpleThreadPoolTaskExecutor">
+				<property name="makeThreadsDaemons" value="true" />
+				<property name="threadCount" value="5" />
+				<property name="threadNamePrefix" value="simpleThreadPoolTaskExecutor" />
+				<property name="waitForJobsToCompleteOnShutdown" value="true" />
+			</bean>
+		</property>
+	</bean>  		
+</beans>
