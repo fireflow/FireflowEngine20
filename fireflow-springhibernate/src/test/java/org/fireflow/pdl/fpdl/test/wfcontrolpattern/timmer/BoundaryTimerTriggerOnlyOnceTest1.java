@@ -334,7 +334,7 @@ public class BoundaryTimerTriggerOnlyOnceTest1 extends FireWorkflowJunitEnvirome
 		
 		//验证ScheduleJob的状态
 		WorkflowQuery<ScheduleJob> q4ScheduleJob = session.createWorkflowQuery(ScheduleJob.class);
-		q4ScheduleJob .add(Restrictions.eq(ScheduleJobProperty.ACTIVITY_INSTANCE_$_ID, timerStartActInst.getId()));
+		q4ScheduleJob .add(Restrictions.eq(ScheduleJobProperty.ACTIVITY_INSTANCE_ID, timerStartActInst.getId()));
 		ScheduleJob scheduleJob = q4ScheduleJob.unique();
 		Assert.assertNotNull(scheduleJob);
 		Assert.assertEquals(ScheduleJobState.RUNNING, scheduleJob.getState());

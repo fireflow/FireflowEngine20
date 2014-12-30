@@ -754,7 +754,7 @@ public class WorkflowOperationServlet extends HttpServlet {
 			.createWorkflowSession(fireContext, u);
 		
 		WorkflowQuery<WorkItem> query = workflowSession.createWorkflowQuery(WorkItem.class);
-		query.add(Restrictions.eq(WorkItemProperty.PROC_INST_CREATOR_ID, u.getId()))
+		query.add(Restrictions.eq(WorkItemProperty.PROCINST_CREATOR_ID, u.getId()))
 			.add(Restrictions.lt(WorkItemProperty.STATE, WorkItemState.DELIMITER))
 		.addOrder(Order.desc(WorkItemProperty.CREATED_TIME));
 		

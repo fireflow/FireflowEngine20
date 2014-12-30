@@ -36,8 +36,8 @@ public enum WorkItemProperty implements EntityProperty {
 	SUBJECT("subject"),
 	STATE("state"),
 	
-	CREATED_TIME("claimedTime"),
-	CLAIMED_TIME("startedTime"),
+	CREATED_TIME("createdTime"),
+	CLAIMED_TIME("claimedTime"),
 	END_TIME("endTime"),
 	EXPIRED_TIME("expiredTime"),
 	
@@ -70,20 +70,19 @@ public enum WorkItemProperty implements EntityProperty {
 	ATTACHMENT_ID("attachmentId"),
 	ATTACHMENT_TYPE("attachmentType"),
 	
-	PROC_INST_CREATOR_NAME("procInstCreatorName"),
-	PROC_INST_CREATOR_ID("procInstCreatorId"),
+	PROCINST_CREATOR_NAME("procInstCreatorName"),
+	PROCINST_CREATOR_ID("procInstCreatorId"),
+	PROcINST_CREATED_TIME("procInstCreatedTime"),
 	PROCESSS_ID("processId"),
 	PROCESS_TYPE("processType"),
 	VERSION("version"),
-	SUB_PROCESS_ID("subProcessId"),
+	SUBPROCESS_ID("subProcessId"),
 	ACTIVITY_ID("activityId"),	
 	PROCESS_INSTANCE_ID("processInstanceId"),
 	STEP_NUMBER("stepNumber"),
 	
-	ACTIVITY_INSTANCE_$_ID("activityInstance.id"), 
+	ACTIVITY_INSTANCE_ID("activityInstanceId"), 
 
-	ACTIVITY_INSTANCE_$_SUSPENDED("activityInstance.suspended"),
-	
 	;
 	
 	

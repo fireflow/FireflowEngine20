@@ -21,6 +21,8 @@ import java.util.List;
 
 import org.fireflow.client.WorkflowQuery;
 import org.fireflow.engine.entity.WorkflowEntity;
+import org.fireflow.engine.entity.runtime.ScheduleJob;
+import org.fireflow.engine.entity.runtime.WorkItem;
 import org.fireflow.engine.modules.persistence.PersistenceService;
 import org.fireflow.engine.modules.persistence.Persister;
 import org.hibernate.Criteria;
@@ -59,6 +61,7 @@ public abstract class AbsPersisterHibernateImpl // extends HibernateDaoSupport
 					public Object doInHibernate(Session session)
 							throws HibernateException, SQLException {
 						Criteria criteria = session.createCriteria(entityClass);
+
 						if (isConnectToActivityInstance(q)){
 							criteria.createAlias("activityInstance", "activityInstance");
 						}
@@ -82,13 +85,20 @@ public abstract class AbsPersisterHibernateImpl // extends HibernateDaoSupport
 							}
 						}
 						
-						if (q.getFirstResult()>=0){
-							criteria.setFirstResult(q.getFirstResult());
+
+						if (q.getPageNumber()>0){
+							int pageSize = q.DEFAULT_PAGE_SIZE;
+							if (q.getPageSize()>0){
+								pageSize = q.getPageSize();
+							}
+							int first = (q.getPageNumber()-1)*pageSize;
+							
+							criteria.setFirstResult(first);//从0开始计数；
+							
+							criteria.setMaxResults(pageSize);
 						}
 						
-						if (q.getMaxResults()>0){
-							criteria.setMaxResults(q.getMaxResults());
-						}
+
 
 						return criteria.list();
 					}
@@ -145,7 +155,7 @@ public abstract class AbsPersisterHibernateImpl // extends HibernateDaoSupport
 	/* (non-Javadoc)
 	 * @see org.fireflow.engine.persistence.Persister#find(java.lang.Class, java.lang.String)
 	 */
-	public <T extends WorkflowEntity> T find(Class<T> entityClz, String entityId) {
+	public <T extends WorkflowEntity> T fetch(Class<T> entityClz, String entityId) {
 		if (entityId==null || entityId.trim().equals(""))return null;
 		Class clz = this.getEntityClass4Runtime(entityClz);
 		Object obj = null;
@@ -183,6 +193,7 @@ public abstract class AbsPersisterHibernateImpl // extends HibernateDaoSupport
 	}
 	
 	private boolean isConnectToActivityInstance(WorkflowQuery q){
+		/*
 		List<org.fireflow.client.query.Criterion> criterionList = q.getAllCriterions();
 		if (criterionList!=null){
 			for (org.fireflow.client.query.Criterion c : criterionList){
@@ -198,6 +209,13 @@ public abstract class AbsPersisterHibernateImpl // extends HibernateDaoSupport
 					return true;
 				}
 			}
+		}
+		return false;
+		*/
+		Class entityClass = q.getEntityClass();
+		
+		if (entityClass.isAssignableFrom(WorkItem.class) || entityClass.isAssignableFrom(ScheduleJob.class)) {
+			return true;
 		}
 		return false;
 	}

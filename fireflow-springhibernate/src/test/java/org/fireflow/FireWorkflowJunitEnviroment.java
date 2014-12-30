@@ -174,15 +174,15 @@ public abstract class FireWorkflowJunitEnviroment{
 						Order.asc(WorkItemProperty.PROCESSS_ID))
 				.addOrder(
 						Order.asc(WorkItemProperty.PROCESS_INSTANCE_ID))
-				.addOrder(Order.asc(WorkItemProperty.ACTIVITY_INSTANCE_$_ID));
+				.addOrder(Order.asc(WorkItemProperty.ACTIVITY_INSTANCE_ID));
 		List<WorkItem> workItemList = q4WorkItem.list();
 
 		WorkflowQuery<ScheduleJob> q4ScheduleJob = session.createWorkflowQuery(
 				ScheduleJob.class);
 		q4ScheduleJob
-				.addOrder(Order.asc(ScheduleJobProperty.PROCESS_ID))
-				.addOrder(
-						Order.asc(ScheduleJobProperty.ACTIVITY_INSTANCE_$_STEP_NUMBER));
+				.addOrder(Order.asc(ScheduleJobProperty.PROCESS_ID));
+//				.addOrder(
+//						Order.asc(ScheduleJobProperty.ACTIVITY_INSTANCE_STEP_NUMBER));
 		List<ScheduleJob> jobList = q4ScheduleJob.list();
 
 		// //////////////////////////////////////////////////////////////////////////////////////////

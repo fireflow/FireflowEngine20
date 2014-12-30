@@ -158,7 +158,7 @@ public class TokenPersisterHibernateImpl extends AbsPersisterHibernateImpl
 		if (pid==null || pid.trim().equals("")){
 			return null;
 		}
-		return this.find(TokenImpl.class, pid);
+		return this.fetch(TokenImpl.class, pid);
 	}
 
 	/* (non-Javadoc)

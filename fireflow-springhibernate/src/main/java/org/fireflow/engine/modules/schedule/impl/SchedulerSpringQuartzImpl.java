@@ -318,8 +318,8 @@ public class SchedulerSpringQuartzImpl  extends AbsScheduler implements Transact
 					
 					//将所依附的activity实例关闭
 					if (scheduleJob.isCancelAttachedToActivity()){
-						Token thisToken = tokenPersister.find(Token.class, activityInstance.getTokenId());
-						Token attachedToToken = tokenPersister.find(Token.class,thisToken.getAttachedToToken()==null?"":thisToken.getAttachedToToken());
+						Token thisToken = tokenPersister.fetch(Token.class, activityInstance.getTokenId());
+						Token attachedToToken = tokenPersister.fetch(Token.class,thisToken.getAttachedToToken()==null?"":thisToken.getAttachedToToken());
 						if (attachedToToken!=null && attachedToToken.getState().getValue()<TokenState.DELIMITER.getValue()){
 							KernelManager kernelManager = ctx.getEngineModule(KernelManager.class, attachedToToken.getProcessType());
 							

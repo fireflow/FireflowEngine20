@@ -63,7 +63,7 @@ public abstract class AbsJoinEvaluator implements JoinEvaluator {
 
 		// 1、通过elementInstanceId判断是否已经被执行
 		if (multiEnteringTransitions) {
-			Token tokenFromDB = tokenPersister.find(Token.class, current_token_for_router.getId());
+			Token tokenFromDB = tokenPersister.fetch(Token.class, current_token_for_router.getId());
 			if (tokenFromDB.getElementInstanceId() != null
 					&& !tokenFromDB.getElementInstanceId().trim().equals("")) {
 				// 说明已经执行过

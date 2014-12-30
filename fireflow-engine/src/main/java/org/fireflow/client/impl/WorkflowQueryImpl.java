@@ -60,11 +60,11 @@ public class WorkflowQueryImpl<T extends WorkflowEntity> implements WorkflowQuer
 	@XmlElement(name="orderBy")
 	List<Order> orders = new ArrayList<Order>();
 	
-	@XmlElement(name="firstResult")
-	int firstResult = 0;
+	@XmlElement(name="pageNumber")
+	int pageNumber = -1;//表示查询所有
 	
-	@XmlElement(name="maxResults")
-	int maxResults = -1;//表示查询所有
+	@XmlElement(name="pageSize")
+	int pageSize = -1;//表示查询所有
 	
 	@XmlElement(name="queryFromHistory")
 	boolean queryFromHistory = false;
@@ -123,15 +123,15 @@ public class WorkflowQueryImpl<T extends WorkflowEntity> implements WorkflowQuer
 	/* (non-Javadoc)
 	 * @see org.fireflow.engine.WorkflowQuery#getFirstResult()
 	 */
-	public int getFirstResult() {
-		return this.firstResult;
+	public int getPageNumber() {
+		return this.pageNumber;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.fireflow.engine.WorkflowQuery#getMaxResults()
 	 */
-	public int getMaxResults() {
-		return this.maxResults;
+	public int getPageSize() {
+		return this.pageSize;
 	}
 
 	/* (non-Javadoc)
@@ -155,8 +155,8 @@ public class WorkflowQueryImpl<T extends WorkflowEntity> implements WorkflowQuer
 	public WorkflowQuery<T> reset() {
 		this.criterions.clear();
 		this.orders.clear();
-		this.firstResult=0;
-		this.maxResults=-1;
+		this.pageNumber=0;
+		this.pageSize=-1;
 		this.queryFromHistory = false;
 		return this;
 	}
@@ -164,16 +164,16 @@ public class WorkflowQueryImpl<T extends WorkflowEntity> implements WorkflowQuer
 	/* (non-Javadoc)
 	 * @see org.fireflow.engine.WorkflowQuery#setFirstResult(int)
 	 */
-	public WorkflowQuery<T> setFirstResult(int rowNum) {
-		this.firstResult = rowNum;
+	public WorkflowQuery<T> setPageNumber(int rowNum) {
+		this.pageNumber = rowNum;
 		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.fireflow.engine.WorkflowQuery#setMaxResults(int)
 	 */
-	public WorkflowQuery<T> setMaxResults(int size) {
-		this.maxResults = size;
+	public WorkflowQuery<T> setPageSize(int size) {
+		this.pageSize = size;
 		return this;
 	}
 
@@ -189,14 +189,14 @@ public class WorkflowQueryImpl<T extends WorkflowEntity> implements WorkflowQuer
 	 * @see org.fireflow.engine.WorkflowQuery#unique()
 	 */
 	public T unique() {
-		int oldMaxResult = this.maxResults;
-		this.maxResults = 1;
+		int oldMaxResult = this.pageSize;
+		this.pageSize = 1;
 		List<T> entities = this.queryDelegate.executeQueryList(this);
 		if (entities!=null && entities.size()>0){
-			this.maxResults = oldMaxResult;
+			this.pageSize = oldMaxResult;
 			return entities.get(0);
 		}
-		this.maxResults = oldMaxResult;
+		this.pageSize = oldMaxResult;
 		return null;
 	}
 

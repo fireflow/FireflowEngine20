@@ -41,7 +41,7 @@ public class ProcessPersisterClassPathImpl implements ProcessPersister {
 	/* (non-Javadoc)
 	 * @see org.fireflow.engine.modules.persistence.Persister#find(java.lang.Class, java.lang.String)
 	 */
-	public <T extends WorkflowEntity> T find(Class<T> entityClz, String entityId) {
+	public <T extends WorkflowEntity> T fetch(Class<T> entityClz, String entityId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

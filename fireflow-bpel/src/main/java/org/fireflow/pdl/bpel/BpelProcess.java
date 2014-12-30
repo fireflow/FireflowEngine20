@@ -158,7 +158,7 @@ public class BpelProcess implements WorkflowBehavior{
 		ProcessInstancePersister procInstPersistenceService = persistenceStrategy.getProcessInstancePersister();
 		
 		CalendarService calendarService = ctx.getEngineModule(CalendarService.class,BpelConstants.PROCESS_TYPE);
-		ProcessInstance procInst = procInstPersistenceService.find(ProcessInstance.class, token.getElementInstanceId());
+		ProcessInstance procInst = procInstPersistenceService.fetch(ProcessInstance.class, token.getElementInstanceId());
 		
 		ProcessInstanceState state = ProcessInstanceState.valueOf(token.getState().name());
 		((ProcessInstanceImpl)procInst).setState(state);

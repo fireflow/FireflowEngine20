@@ -37,8 +37,8 @@ import org.fireflow.engine.entity.repository.ProcessKey;
 import org.fireflow.engine.modules.ousystem.impl.FireWorkflowSystem;
 import org.fireflow.pdl.fpdl.misc.FpdlConstants;
 import org.firesoa.common.util.Utils;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+//import org.springframework.context.ApplicationContext;
+//import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
@@ -63,14 +63,8 @@ public class GetProcessDefsHandler implements ActionHandler {
 		if (processType==null || processType.trim().equals("")){
 			processType = FpdlConstants.PROCESS_TYPE_FPDL20;
 		}
-		RuntimeContext runtimeContext = null;
-		ServletContext sc = req.getSession().getServletContext();
-		ApplicationContext ac2 = WebApplicationContextUtils.getWebApplicationContext(sc);
-		if (ac2!=null){
-			runtimeContext = (RuntimeContext)ac2.getBean(RuntimeContext.Fireflow_Runtime_Context_Name);
-		}else{
-			throw new ServletException("Fire workflow必须要Spring支持，但是，在当前web系统中无法获得ApplicationContext值");
-		}
+		RuntimeContext runtimeContext = RuntimeContext.getInstance();
+
 		
 		FireWorkflowSystem user = FireWorkflowSystem.getInstance();
 		WorkflowSession session = WorkflowSessionFactory.createWorkflowSession(runtimeContext, user);

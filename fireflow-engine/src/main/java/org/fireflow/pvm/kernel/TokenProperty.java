@@ -43,7 +43,8 @@ public enum TokenProperty implements EntityProperty{
 	ELEMENT_ID("elementId"),
 	OPERATION_CONTEXT_NAME("operationContextName"),
 	CALLBACK_TOKEN_ID("callbackTokenId"),
-	PARENT_TOKEN_ID("parentTokenId")
+	PARENT_TOKEN_ID("parentTokenId"),
+	ATTACHED_TO_TOKEN("attachedToToken")
 	;
 	private String propertyName = null;
 	private TokenProperty(String propertyName){

@@ -175,7 +175,7 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 	 */
 	public void abortWorkfItemOfTheSameActInst(WorkflowSession currentSession,ActivityInstance actInst){
 		WorkflowQuery query = currentSession.createWorkflowQuery(WorkItem.class);
-		query.add(Restrictions.eq(WorkItemProperty.ACTIVITY_INSTANCE_$_ID, actInst.getId()));
+		query.add(Restrictions.eq(WorkItemProperty.ACTIVITY_INSTANCE_ID, actInst.getId()));
 		List<WorkItem> workItemList = query.list();
 		
 		Object thisActivity = null;
@@ -541,7 +541,7 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 				if (assignmentStrategy == null
 						|| assignmentStrategy.equals(
 								WorkItemAssignmentStrategy.ASSIGN_TO_ANY)) {
-					WorkItem parentWorkItem = workItemPersister.find(WorkItem.class, workItemToBeCompleted.getParentWorkItemId());
+					WorkItem parentWorkItem = workItemPersister.fetch(WorkItem.class, workItemToBeCompleted.getParentWorkItemId());
 					WorkItem newParentWi = this.cloneWorkItem(parentWorkItem, calendarService);
 					workItemPersister.saveOrUpdate(newParentWi);
 				} else {
@@ -558,7 +558,7 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 						}
 					}
 					if(canReturnToParentWorkItem){
-						WorkItem parentWorkItem = workItemPersister.find(WorkItem.class, workItemToBeCompleted.getParentWorkItemId());
+						WorkItem parentWorkItem = workItemPersister.fetch(WorkItem.class, workItemToBeCompleted.getParentWorkItemId());
 						WorkItem newParentWi = this.cloneWorkItem(parentWorkItem, calendarService);
 						workItemPersister.saveOrUpdate(newParentWi);
 					}

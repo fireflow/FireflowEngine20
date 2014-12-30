@@ -114,7 +114,7 @@ public class HumanServiceInvokerTest  extends AbsTestContext {
 		WorkflowStatement stmt = session.createWorkflowStatement();
 		WorkflowQuery<WorkItem> query =  session.createWorkflowQuery(WorkItem.class);
 		final WorkItem wi = query.add(Restrictions.eq(WorkItemProperty.OWNER_ID, "zhangsan"))
-						.add(Restrictions.eq(WorkItemProperty.ACTIVITY_INSTANCE_$_ID, actInst.getId()))
+						.add(Restrictions.eq(WorkItemProperty.ACTIVITY_INSTANCE_ID, actInst.getId()))
 						.unique();
 		Assert.assertNotNull(wi);
 		Assert.assertEquals(WorkItemState.INITIALIZED, wi.getState());
@@ -125,7 +125,7 @@ public class HumanServiceInvokerTest  extends AbsTestContext {
 		
 		query.reset();
 		WorkItem wi2 = query.add(Restrictions.eq(WorkItemProperty.OWNER_ID, "Mgr_C"))
-						.add(Restrictions.eq(WorkItemProperty.ACTIVITY_INSTANCE_$_ID, actInst.getId()))
+						.add(Restrictions.eq(WorkItemProperty.ACTIVITY_INSTANCE_ID, actInst.getId()))
 						.unique();
 		Assert.assertNotNull(wi2);
 		Assert.assertEquals(WorkItemState.READONLY, wi2.getState());
@@ -147,7 +147,7 @@ public class HumanServiceInvokerTest  extends AbsTestContext {
 		
 
 		query.reset();
-		query.add(Restrictions.eq(WorkItemProperty.ACTIVITY_INSTANCE_$_ID, actInst.getId()));
+		query.add(Restrictions.eq(WorkItemProperty.ACTIVITY_INSTANCE_ID, actInst.getId()));
 		int workItemCount = query.count();		
 		Assert.assertEquals(3, workItemCount);//两个抄送workitem,一个待处理workitem
 		

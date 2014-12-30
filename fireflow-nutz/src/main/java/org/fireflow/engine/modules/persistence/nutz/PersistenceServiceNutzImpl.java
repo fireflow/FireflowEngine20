@@ -7,14 +7,14 @@ import org.nutz.dao.impl.NutDao;
 
 public class PersistenceServiceNutzImpl extends PersistenceServiceDefaultImpl
 		implements PersistenceService, EngineModule {
-	private NutDao nutzDao = null;
+	NutDao dao = null;
 
-	public NutDao getNutzDao() {
-		return nutzDao;
+	public NutDao getDao() {
+		return dao;
 	}
 
-	public void setNutzDao(NutDao nutzDao) {
-		this.nutzDao = nutzDao;
+	public void setDao(NutDao dao) {
+		this.dao = dao;
 	}
 	
 	

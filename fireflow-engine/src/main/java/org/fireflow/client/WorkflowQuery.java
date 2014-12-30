@@ -28,6 +28,7 @@ import org.fireflow.engine.entity.WorkflowEntity;
  * @version 2.0
  */
 public interface WorkflowQuery<T extends WorkflowEntity> {
+	public static final int DEFAULT_PAGE_SIZE=20;//
 	/**
 	 * 返回结果集
 	 * @return
@@ -63,21 +64,31 @@ public interface WorkflowQuery<T extends WorkflowEntity> {
 	 */
 	public WorkflowQuery<T> setQueryFromHistory(boolean b);
 	public boolean isQueryFromHistory();
+
 	
 	/**
-	 * 设置第一行的位置，从0开始
+	 * 结果集页号，从1开始
 	 * @param rowNum
 	 */
-	public WorkflowQuery<T> setFirstResult(int rowNum);
-	
-	public int getFirstResult();
+	public WorkflowQuery<T> setPageNumber(int pageNumber);
 	
 	/**
-	 * 设置返回的记录数，-1表示没有限制
+	 * 结果集页号，从1开始，
+	 * @return
+	 */
+	public int getPageNumber();
+	
+	/**
+	 * 每页的记录数；
 	 * @param size
 	 */
-	public WorkflowQuery<T> setMaxResults(int size);
-	public int getMaxResults();
+	public WorkflowQuery<T> setPageSize(int size);
+	
+	/**
+	 * 每页的记录数，-1表示没有限制
+	 * @return
+	 */
+	public int getPageSize();
 	
 	public WorkflowQuery<T> add(Criterion criterion);
 	

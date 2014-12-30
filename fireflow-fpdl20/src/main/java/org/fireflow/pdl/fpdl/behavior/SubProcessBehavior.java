@@ -149,7 +149,7 @@ public class SubProcessBehavior implements WorkflowBehavior {
 		ProcessInstance oldProcInst = sessionLocal.getCurrentProcessInstance();
 		ProcessInstance procInst = oldProcInst;
 		if (oldProcInst==null || !oldProcInst.getId().equals(token.getElementInstanceId())){
-			procInst = procInstPersistenceService.find(ProcessInstance.class, token.getElementInstanceId());
+			procInst = procInstPersistenceService.fetch(ProcessInstance.class, token.getElementInstanceId());
 			
 		}
 		

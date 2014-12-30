@@ -34,7 +34,7 @@ public interface Persister {
 	 * @param entityId
 	 * @return
 	 */
-	public <T extends WorkflowEntity> T find(Class<T> entityClz,String entityId);
+	public <T extends WorkflowEntity> T fetch(Class<T> entityClz,String entityId);
 	
 	public <T extends WorkflowEntity> List<T> list(WorkflowQuery<T> q);
 	public <T extends WorkflowEntity> int count(WorkflowQuery<T> q);

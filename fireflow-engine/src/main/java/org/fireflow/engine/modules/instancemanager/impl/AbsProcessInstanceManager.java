@@ -76,7 +76,7 @@ public abstract class AbsProcessInstanceManager  extends AbsEngineModule impleme
 
 		ProcessInstance processInstance = (ProcessInstance)localSession.getCurrentProcessInstance();
 		if (processInstance==null || !processInstanceId.equals(processInstance.getId())){
-			processInstance = procInstPersistenceService.find(ProcessInstance.class, processInstanceId);
+			processInstance = procInstPersistenceService.fetch(ProcessInstance.class, processInstanceId);
 			((WorkflowSessionLocalImpl)session).setCurrentProcessInstance(processInstance);
 		}
 		

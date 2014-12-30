@@ -142,14 +142,14 @@ public class StartNodeBehavior extends AbsSynchronizerBehavior implements
 			if (oldProcInst == null
 					|| !oldProcInst.getId()
 							.equals(token.getProcessInstanceId())) {
-				ProcessInstance procInst = processInstancePersister.find(
+				ProcessInstance procInst = processInstancePersister.fetch(
 						ProcessInstance.class, token.getProcessInstanceId());
 				((WorkflowSessionLocalImpl) session)
 						.setCurrentProcessInstance(procInst);
 			}
 			if (oldActInst == null
 					|| !oldActInst.getId().equals(token.getElementInstanceId())) {
-				ActivityInstance actInst = actInstPersistenceService.find(
+				ActivityInstance actInst = actInstPersistenceService.fetch(
 						ActivityInstance.class, token.getElementInstanceId());
 				((WorkflowSessionLocalImpl) session)
 						.setCurrentActivityInstance(actInst);

@@ -44,8 +44,8 @@ import org.fireflow.pdl.fpdl.diagram.Diagram;
 import org.fireflow.pdl.fpdl.misc.FpdlConstants;
 import org.fireflow.pdl.fpdl.process.SubProcess;
 import org.fireflow.pdl.fpdl.process.WorkflowProcess;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+//import org.springframework.context.ApplicationContext;
+//import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
@@ -374,11 +374,9 @@ public class ProcessDiagramTag extends AbsClientWidget {
 			if (this.rtCtxBeanName==null || rtCtxBeanName.trim().equals("")){
 				rtCtxBeanName = RuntimeContext.Fireflow_Runtime_Context_Name;
 			}
-			ServletContext sc = pageContext.getServletContext();
-			ApplicationContext ac2 = WebApplicationContextUtils.getWebApplicationContext(sc);
-			if (ac2!=null){
-				runtimeContext = (RuntimeContext)ac2.getBean(rtCtxBeanName);
-			}
+
+			runtimeContext = RuntimeContext.getInstance();
+
 		}
 		
 		this.workflowProcess = loadWorkflowProcess(runtimeContext,this.processId,this.version);

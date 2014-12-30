@@ -29,6 +29,23 @@ import org.fireflow.engine.entity.WorkflowEntity;
  * @version 2.0
  */
 public enum ReassignConfigProperty  implements EntityProperty {
+	PROCESS_ID("processId"),
+	ROCESS_NAME("processName"),
+	PROCESS_DISPLAY_NAME("processDisplayName"),
+	PROCESS_TYPE("processType"),
+	ACTIVITY_ID("activityId"),
+	ACTIVITY_NAME("activityName"),
+	ACTIVITY_DISPLAY_NAME("activityDisplayName"),
+	GRANTOR_ID("grantorId"),
+	GRANTOR_NAME("grantorName"),
+	GRANTOR_DEPT_ID("grantorDeptId"),
+	GRANTOR_DEPT_NAME("grantorDeptName"),
+	AGENT_ID("agentId"),
+	AGENT_NAME("agentName"),
+	AGENT_TYPE("agentType"),
+	START_TIME("startTime"),
+	END_TIME("endTime"),
+	ALIVE("alive")
 	;
 
 	String propertyName = null;

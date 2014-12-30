@@ -47,16 +47,16 @@ public enum ScheduleJobProperty implements EntityProperty {
 	CREATE_NEW_PROCESS_INSTANCE("createNewProcessInstance"),
 	NOTE("note"),
 	
-	ACTIVITY_INSTANCE_$_ID("activityInstance.id"), 
-	ACTIVITY_INSTANCE_$_PROCESSINSTANCE_ID(	"activityInstance.processInstanceId"),
-	ACTIVITY_INSTANCE_$_BIZ_ID(	"activityInstance.bizId"), 
-	ACTIVITY_INSTANCE_$_ACTIVITY_ID("activityInstance.activityId"),
-
-	ACTIVITY_INSTANCE_$_SUSPENDED("activityInstance.suspended"),
-
-	ACTIVITY_INSTANCE_$_PROCESS_NAME("activityInstance.processName"),
-	ACTIVITY_INSTANCE_$_PROCESS_DISPLAY_NAME("activityInstance.processDisplayName"),
-	ACTIVITY_INSTANCE_$_STEP_NUMBER("activityInstance.stepNumber");
+	ACTIVITY_INSTANCE_ID("activityInstanceId");
+//	ACTIVITY_INSTANCE_$_PROCESSINSTANCE_ID(	"activityInstance.processInstanceId"),
+//	ACTIVITY_INSTANCE_$_BIZ_ID(	"activityInstance.bizId"), 
+//	ACTIVITY_INSTANCE_$_ACTIVITY_ID("activityInstance.activityId"),
+//
+//	ACTIVITY_INSTANCE_$_SUSPENDED("activityInstance.suspended"),
+//
+//	ACTIVITY_INSTANCE_$_PROCESS_NAME("activityInstance.processName"),
+//	ACTIVITY_INSTANCE_$_PROCESS_DISPLAY_NAME("activityInstance.processDisplayName"),
+//	ACTIVITY_INSTANCE_$_STEP_NUMBER("activityInstance.stepNumber");
 	
 	private String propertyName = null;
 	private ScheduleJobProperty(String propertyName){

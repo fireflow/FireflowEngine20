@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
@@ -39,6 +40,14 @@ import org.fireflow.pvm.kernel.KernelException;
  *
  */
 public class RuntimeContext {
+	private static RuntimeContext instance = null;
+	
+	public static RuntimeContext getInstance(){
+		if (instance==null){
+			instance = new RuntimeContext();
+		}
+		return instance;
+	}
 	/**
 	 * FPDL2.0缺省需要Spring作为容器，该常量定义transaction template的名字
 	 */
@@ -79,7 +88,7 @@ public class RuntimeContext {
     private String defaultScript = "JEXL";//缺省的脚本语言
     private String defaultProcessType="FPDL";//缺省的流程类型
     
-    public RuntimeContext() {
+    private RuntimeContext() {
     }
 
 

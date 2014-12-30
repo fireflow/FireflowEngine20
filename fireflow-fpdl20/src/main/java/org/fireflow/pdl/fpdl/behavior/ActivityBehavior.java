@@ -142,11 +142,11 @@ public class ActivityBehavior extends AbsNodeBehavior implements WorkflowBehavio
 		ProcessInstancePersister processInstancePersister = persistenceStrategy.getProcessInstancePersister();
 		
 		if (oldProcInst==null || !oldProcInst.getId().equals(token.getProcessInstanceId())){
-			ProcessInstance procInst = processInstancePersister.find(ProcessInstance.class, token.getProcessInstanceId());
+			ProcessInstance procInst = processInstancePersister.fetch(ProcessInstance.class, token.getProcessInstanceId());
 			((WorkflowSessionLocalImpl)session).setCurrentProcessInstance(procInst);
 		}
 		if (oldActInst==null || !oldActInst.getId().equals(token.getElementInstanceId())){
-			ActivityInstance actInst = actInstPersistenceService.find(ActivityInstance.class, token.getElementInstanceId());
+			ActivityInstance actInst = actInstPersistenceService.fetch(ActivityInstance.class, token.getElementInstanceId());
 			((WorkflowSessionLocalImpl)session).setCurrentActivityInstance(actInst);
 		}
 		
@@ -229,11 +229,11 @@ public class ActivityBehavior extends AbsNodeBehavior implements WorkflowBehavio
 		ProcessInstancePersister processInstancePersister = persistenceStrategy.getProcessInstancePersister();
 		
 		if (oldProcInst==null || !oldProcInst.getId().equals(token.getProcessInstanceId())){
-			ProcessInstance procInst = processInstancePersister.find(ProcessInstance.class, token.getProcessInstanceId());
+			ProcessInstance procInst = processInstancePersister.fetch(ProcessInstance.class, token.getProcessInstanceId());
 			((WorkflowSessionLocalImpl)session).setCurrentProcessInstance(procInst);
 		}
 		if (oldActInst==null || !oldActInst.getId().equals(token.getElementInstanceId())){
-			ActivityInstance actInst = actInstPersistenceService.find(ActivityInstance.class, token.getElementInstanceId());
+			ActivityInstance actInst = actInstPersistenceService.fetch(ActivityInstance.class, token.getElementInstanceId());
 			((WorkflowSessionLocalImpl)session).setCurrentActivityInstance(actInst);
 		}
 		
@@ -300,7 +300,7 @@ public class ActivityBehavior extends AbsNodeBehavior implements WorkflowBehavio
 		ActivityInstance oldActInst = sessionLocalImpl.getCurrentActivityInstance();
 		ActivityInstance activityInstance = oldActInst;
 		if (oldActInst==null || !oldActInst.getId().equals(token.getElementInstanceId())){
-			activityInstance = actInstPersistenceService.find(ActivityInstance.class, token.getElementInstanceId());
+			activityInstance = actInstPersistenceService.fetch(ActivityInstance.class, token.getElementInstanceId());
 			((WorkflowSessionLocalImpl)session).setCurrentActivityInstance(activityInstance);
 		}
 		ActivityInstanceManager activityInstanceMgr = ctx.getEngineModule(ActivityInstanceManager.class, token.getProcessType());

@@ -313,7 +313,7 @@ public class KernelManagerImpl  extends AbsEngineModule implements KernelManager
 		PersistenceService persistenceStrategy = this.runtimeContext.getEngineModule(PersistenceService.class, processType);
 		TokenPersister tokenPersistenceService = persistenceStrategy.getTokenPersister();
 
-		return tokenPersistenceService.find(Token.class, tokenId);
+		return tokenPersistenceService.fetch(Token.class, tokenId);
 	}
 	
 	public Token getTokenByElementInstanceId(String elementInstanceId,String processType){

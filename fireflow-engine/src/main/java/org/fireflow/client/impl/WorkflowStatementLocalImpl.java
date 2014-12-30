@@ -523,7 +523,7 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 		WorkItemPersister workItemPersister = persistenceService
 				.getWorkItemPersister();
 
-		WorkItem workItem = workItemPersister.find(WorkItem.class, workItemId);
+		WorkItem workItem = workItemPersister.fetch(WorkItem.class, workItemId);
 
 		return claimWorkItem(workItem);
 	}
@@ -584,7 +584,7 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 		WorkItemPersister workItemPersister = persistenceService
 				.getWorkItemPersister();
 
-		WorkItem wi = workItemPersister.find(WorkItem.class, workItemId);
+		WorkItem wi = workItemPersister.fetch(WorkItem.class, workItemId);
 
 		if (wi == null)
 			throw new InvalidOperationException(
@@ -641,7 +641,7 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 		WorkItemPersister workItemPersister = persistenceService
 				.getWorkItemPersister();
 
-		WorkItem workItem = workItemPersister.find(WorkItem.class, workItemId);
+		WorkItem workItem = workItemPersister.fetch(WorkItem.class, workItemId);
 
 		if (workItem == null)
 			throw new InvalidOperationException(
@@ -684,7 +684,7 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 		WorkItemPersister workItemPersister = persistenceService
 				.getWorkItemPersister();
 
-		WorkItem wi = workItemPersister.find(WorkItem.class, workItemId);
+		WorkItem wi = workItemPersister.fetch(WorkItem.class, workItemId);
 
 		if (wi == null)
 			throw new InvalidOperationException(
@@ -754,7 +754,7 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 		WorkItemPersister workItemPersister = persistenceService
 				.getWorkItemPersister();
 
-		WorkItem wi = workItemPersister.find(WorkItem.class, workItemId);
+		WorkItem wi = workItemPersister.fetch(WorkItem.class, workItemId);
 
 		if (wi == null)
 			throw new InvalidOperationException(
@@ -815,7 +815,7 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 		WorkItemPersister workItemPersister = persistenceService
 				.getWorkItemPersister();
 
-		WorkItem wi = workItemPersister.find(WorkItem.class, workItemId);
+		WorkItem wi = workItemPersister.fetch(WorkItem.class, workItemId);
 
 		if (dynamicAssignmentHandler == null) {
 			throw new NullPointerException(
@@ -1290,7 +1290,7 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 	public <T extends WorkflowEntity> T getEntity(String entityId,
 			Class<T> entityClass) {
 		Persister persister = this.getPersister(entityClass);
-		return persister.find(entityClass, entityId);
+		return persister.fetch(entityClass, entityId);
 	}
 
 	public Object getWorkflowProcess(ProcessKey key)

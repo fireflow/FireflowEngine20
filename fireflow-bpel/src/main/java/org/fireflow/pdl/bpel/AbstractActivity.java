@@ -167,7 +167,7 @@ public abstract class AbstractActivity implements BpelActivity {
 
 		CalendarService calendarService = ctx.getEngineModule(
 				CalendarService.class, BpelConstants.PROCESS_TYPE);
-		ActivityInstance activityInstance = actInstPersistenceService.find(
+		ActivityInstance activityInstance = actInstPersistenceService.fetch(
 				ActivityInstance.class, token.getElementInstanceId());
 
 		ActivityInstanceState state = ActivityInstanceState.valueOf(token

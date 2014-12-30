@@ -53,7 +53,7 @@ public class XPathTest {
         ExpressionImpl exp = new ExpressionImpl();
         exp.setBody(expressionStr);
         exp.setLanguage(ScriptLanguages.JEXL.name());
-        Object obj = ScriptEngineHelper.evaluateExpression(new RuntimeContext(), exp, jc);
+        Object obj = ScriptEngineHelper.evaluateExpression(RuntimeContext.getInstance(), exp, jc);
 
         Assert.assertEquals(name, obj);
         System.out.println("Xpath:getValue('foo/name')="+obj);
@@ -62,7 +62,7 @@ public class XPathTest {
         ExpressionImpl exp1 = new ExpressionImpl();
         exp1.setBody(expressionStr1);
         exp1.setLanguage(ScriptLanguages.JEXL.name());
-        Object obj1 = ScriptEngineHelper.evaluateExpression(new RuntimeContext(), exp1, jc);
+        Object obj1 = ScriptEngineHelper.evaluateExpression(RuntimeContext.getInstance(), exp1, jc);
 
         Assert.assertEquals(name, obj1);
         System.out.println("Xpath:getValue('/foo/name')="+obj1);
@@ -71,7 +71,7 @@ public class XPathTest {
         ExpressionImpl exp2 = new ExpressionImpl();
         exp2.setBody(expressionStr2);
         exp2.setLanguage(ScriptLanguages.JEXL.name());
-        Object obj2 = ScriptEngineHelper.evaluateExpression(new RuntimeContext(), exp2, jc);
+        Object obj2 = ScriptEngineHelper.evaluateExpression(RuntimeContext.getInstance(), exp2, jc);
         System.out.println("DateUtil:format(now,'yyyy-MM-dd')="+obj2);
         
         
