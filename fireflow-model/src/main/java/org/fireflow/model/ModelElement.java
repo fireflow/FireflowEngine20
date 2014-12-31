@@ -20,12 +20,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 工作流元素的抽象接口，工作流元素主要包括:<br/>
- * 1)业务流程 WorkflowProcess，这是顶层元素<br/>
- * 2)任务(Task)<br/>
- * 3)开始节点(StartNode)、结束节点(EndNode)、同步器(Synchronizer)、环节(Activity)<br/>
- * 4)转移(Transition)和循环(Loop)<br/>
- * 5)流程数据项(DataField)<br/>
+ * 工作流元素的抽象接口，工作流元素主要包括:<br>
+ * 1)业务流程 WorkflowProcess，这是顶层元素<br>
+ * 2)任务(Task)<br>
+ * 3)开始节点(StartNode)、结束节点(EndNode)、同步器(Synchronizer)、环节(Activity)<br>
+ * 4)转移(Transition)和循环(Loop)<br>
+ * 5)流程数据项(DataField)<br>
  * 
  * @author 非也,nychen2000@163.com
  * 

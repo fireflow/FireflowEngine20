@@ -20,7 +20,7 @@ import org.fireflow.client.WorkflowSession;
 import org.fireflow.pvm.pdllogic.WorkflowBehavior;
 
 /**
- * 可执行过程语言的最顶层对象，类似于Java语言中的Object对象。<br/>
+ * 可执行过程语言的最顶层对象，类似于Java语言中的Object对象。<br>
  * 任何一个流程语言的语言元素在执行时，都映射成某种ProcessObject对象。
  * @author 非也
  * @version 2.0

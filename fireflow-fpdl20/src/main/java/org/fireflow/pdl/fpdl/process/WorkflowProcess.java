@@ -28,9 +28,9 @@ import org.fireflow.pdl.fpdl.diagram.Diagram;
 
 
 /**
- * 业务过程。<br/>
+ * 业务过程。<br>
  * 这是Fire workflow 模型的最顶层元素，一个业务过程可以包含多个工作流程，也可以调用外部的业务过程。
- * <br/>
+ * <br>
  * @author 非也,nychen2000@163.com
  * 
  */
@@ -108,7 +108,7 @@ public interface WorkflowProcess extends ModelElement{
 	public void deleteSubProcess(String subProcessId);
 	
 	/**
-	 * 获得流程所有的subprocesss，包括引入的外部流程的main_flow。<br/>
+	 * 获得流程所有的subprocesss，包括引入的外部流程的main_flow。<br>
 	 * 注意：暂不启用对WorkflowProcess的引用，因为容易发生循环引用，导致死锁。故注释掉该方法。
 	 * @return
 	 */

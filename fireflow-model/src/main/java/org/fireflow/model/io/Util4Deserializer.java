@@ -50,7 +50,8 @@ public class Util4Deserializer {
     			Node node = nodeList.item(i);
     			if (node.getNodeType()==Node.ELEMENT_NODE 
     					&& equalStrings(node.getNamespaceURI(),qName.getNamespaceURI())
-    					&& equalStrings(node.getLocalName(),qName.getLocalPart())){
+    					&& (equalStrings(node.getLocalName(),qName.getLocalPart()) || 						
+    							equalStrings(node.getNodeName(),qName.getLocalPart()))	){
     				return (Element)node;
     			}
     		}
@@ -82,7 +83,8 @@ public class Util4Deserializer {
         	for (int i=0;i<length;i++){
         		Node node = nodeList.item(i);        		
     			if (node.getNodeType()==Node.ELEMENT_NODE && equalStrings(node.getNamespaceURI(),qName.getNamespaceURI())
-    					&& equalStrings(node.getLocalName(),qName.getLocalPart())){
+    					&& (equalStrings(node.getLocalName(),qName.getLocalPart()) || 						
+    							equalStrings(node.getNodeName(),qName.getLocalPart()))	){
     				result.add((Element)node);
     			}
         	}

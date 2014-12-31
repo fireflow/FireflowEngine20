@@ -182,7 +182,7 @@ public abstract class FireWorkflowJunitEnviroment{
 		q4ScheduleJob
 				.addOrder(Order.asc(ScheduleJobProperty.PROCESS_ID));
 //				.addOrder(
-//						Order.asc(ScheduleJobProperty.ACTIVITY_INSTANCE_STEP_NUMBER));
+//						Order.asc(ScheduleJobProperty.ACTIVITY_INSTANCE_$_STEP_NUMBER));
 		List<ScheduleJob> jobList = q4ScheduleJob.list();
 
 		// //////////////////////////////////////////////////////////////////////////////////////////
@@ -312,7 +312,7 @@ public abstract class FireWorkflowJunitEnviroment{
 			System.out.print(workItem.getId());
 			System.out.print("\t\t");
 			if (workItem instanceof LocalWorkItem){
-				System.out.print(((LocalWorkItem)workItem).getActivityInstance().getId());
+				System.out.print(((LocalWorkItem)workItem).getActivityInstanceId());
 			}else{
 				System.out.print("--");
 			}

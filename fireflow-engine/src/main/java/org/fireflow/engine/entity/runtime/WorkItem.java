@@ -21,7 +21,7 @@ import java.util.Date;
 import org.fireflow.engine.entity.WorkflowEntity;
 
 /**
- * 工作项对象。<br/><br>
+ * 工作项对象。<br>br>
  *
  * @author 非也,nychen2000@163.com
  *
@@ -106,8 +106,7 @@ public interface WorkItem extends WorkflowEntity{
     public String getOwnerDeptName();
     
 	/**
-	 * 处理该工作项的URL<br/>
-	 * 
+	 * 处理该工作项的URL<<br>	 * 
 	 * @return
 	 */
 	public String getActionUrl();
@@ -141,8 +140,7 @@ public interface WorkItem extends WorkflowEntity{
     public void setNote(String note);
     
 	/**
-	 * work item 类型，取值为RemoteWorkItem.WORKITEM_TYPE_LOCAL和RemoteWorkItem.WORKITEM_TYPE_REMOTE。<br/>
-	 * WORKITEM_TYPE_LOCAL表示本地WorkItem，WORKITEM_TYPE_REMOTE表示远程workitem.
+	 * work item 类型，取值为RemoteWorkItem.WORKITEM_TYPE_LOCAL和RemoteWorkItem.WORKITEM_TYPE_REMOTE。<b<br> * WORKITEM_TYPE_LOCAL表示本地WorkItem，WORKITEM_TYPE_REMOTE表示远程workitem.
 	 */
 	public String getWorkItemType();
 }

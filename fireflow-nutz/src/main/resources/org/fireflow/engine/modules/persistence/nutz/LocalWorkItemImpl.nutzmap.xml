@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
-	<class name="org.fireflow.engine.entity.runtime.impl.AbsWorkItem"
+<nutz-mapping>
+	<class name="org.fireflow.engine.entity.runtime.impl.LocalWorkItemImpl"
 		table="T_FF_RT_WORKITEM">
 		<id name="id" type="java.lang.String">
 			<column length="50" name="ID" />
@@ -23,7 +22,7 @@
 		</property>
 
 		<property name="state"
-			type="org.fireflow.engine.modules.persistence.hibernate.WorkItemStateType">
+			adaptor="org.fireflow.engine.entity.nutz.WorkItemStateValueAdaptor">
 			<column length="2" name="STATE" not-null="true">
 				<comment>状态</comment>
 			</column>
@@ -115,7 +114,7 @@
 		</property>
 
 		<property name="assignmentStrategy"
-			type="org.fireflow.engine.modules.persistence.hibernate.AssignmentStrategyType"
+			adaptor="org.fireflow.engine.entity.nutz.AssignmentStrategyValueAdaptor"
 			update="false" not-null="false">
 			<column length="100" name="ASSIGNMENT_STRATEGY">
 				<comment>WorkItem分配策略,取值ALL,ANY</comment>
@@ -237,17 +236,5 @@
 		</property>
 
 
-		<!-- ============================== -->
-		<!-- Remote WorkItem -->
-		<!-- ============================== -->
-		<subclass name="org.fireflow.engine.entity.runtime.impl.RemoteWorkItemImpl"
-			discriminator-value="org.fireflow.constants.workitem_type.REMOTE_WORKITEM">
-
-		</subclass>
-
-		<subclass name="org.fireflow.engine.entity.runtime.impl.LocalWorkItemImpl"
-			discriminator-value="org.fireflow.constants.workitem_type.LOCAL_WORKITEM">
-
-		</subclass>
 	</class>
-</hibernate-mapping>
+</nutz-mapping>

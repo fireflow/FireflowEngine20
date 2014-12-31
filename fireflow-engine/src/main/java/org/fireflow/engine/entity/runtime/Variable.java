@@ -66,7 +66,7 @@ public interface  Variable extends WorkflowEntity,Message{
 	/////////////////////////////////////////////////////////////
 	
 	/**
-	 * 如果变量是若干Schema文件组成的复杂schema，则该字段存储主文件名称。<br/>
+	 * 如果变量是若干Schema文件组成的复杂schema，则该字段存储主文件名称。<br>
 	 * 
 	 * @return
 	 */

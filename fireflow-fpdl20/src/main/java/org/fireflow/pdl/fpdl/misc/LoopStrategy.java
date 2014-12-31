@@ -16,8 +16,8 @@ public enum LoopStrategy {
     SKIP("org.fireflow.constants.loop_strategy.SKIP"),
 
     /**
-     * 循环的情况下，任务分配指示之三：无<br/>
-     * 对于Tool类型和Subflow类型的task会重新执行一遍，和REDO效果一样的。<br/>
+     * 循环的情况下，任务分配指示之三：无<br>
+     * 对于Tool类型和Subflow类型的task会重新执行一遍，和REDO效果一样的。<br>
      * 对于Form类型的Task，重新执行一遍，且工作流引擎仍然调用Performer属性的AssignmentHandler分配任务
      */
     NONE("org.fireflow.constants.loop_strategy.NONE");

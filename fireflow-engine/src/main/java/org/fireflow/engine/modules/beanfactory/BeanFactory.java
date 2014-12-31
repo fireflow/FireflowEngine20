@@ -19,11 +19,8 @@ package org.fireflow.engine.modules.beanfactory;
 import org.fireflow.engine.context.EngineModule;
 
 /**
- * Engine把创建bean实例的工作委派给该服务。<br/>
- * Engine在如下情况下需要获得相关Bean的实例(未全部枚举)。<br/>
- * 1)Tool类型的Task,Engine通过该服务获得ApplicationHandler的实例然后调用其方法
- * IApplicationHandler.execute(ITaskInstance taskInstace)<br/>
- * 2)Engine在触发事件时，需要获得相关Listener的实例
+ * Engine把创建bean实例的工作委派给该服务。<br> * Engine在如下情况下需要获得相关Bean的实例(未全部枚举)。<<br>* 1)Tool类型的Task,Engine通过该服务获得ApplicationHandler的实例然后调用其方法
+ * IApplicationHandler.execute(ITaskInstance taskInstace)<b<br> 2)Engine在触发事件时，需要获得相关Listener的实例
  * 3)在分配工作项的时候需要获得IAssignmentHandler的实例。
  * @author 非也,nychen2000@163.com
  */

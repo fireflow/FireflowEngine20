@@ -36,9 +36,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * 使用XML做为Ioc配置文件 <br/>
- * 限制: <br/>
- * <li>必须是良构的XML文件 <li> <li>obj必须定义type,当前实现中IocObject是共享的 <li>
+ * 使用XML做为Ioc配置文件 <br>
+ * 限制: <<br> * <li>必须是良构的XML文件 <li> <li>obj必须定义type,当前实现中IocObject是共享的 <li>
  * 
  * @author wendal(wendal1985@gmail.com)
  * @version 2.0
@@ -57,8 +56,7 @@ public class XmlIocLoader implements IocLoader {
     protected static final String TAG_FACTORY = "factory";
 
     /**
-     * 仅用于标示内部obj的id,内部obj声明的id将被忽略 <br/>
-     * 该设计基于内部obj也可以使用继承顶层的obj
+     * 仅用于标示内部obj的id,内部obj声明的id将被忽略 <b<br>    * 该设计基于内部obj也可以使用继承顶层的obj
      */
     private static int innerId;
 

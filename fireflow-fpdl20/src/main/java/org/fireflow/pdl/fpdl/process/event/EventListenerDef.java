@@ -4,7 +4,7 @@ import org.fireflow.model.ModelElement;
 
 public interface EventListenerDef extends ModelElement{
 	/**
-	 * 业务类别。<br/>
+	 * 业务类别。<br>
 	 * 例如："户政业务/户口迁入"
 	 * @return
 	 */

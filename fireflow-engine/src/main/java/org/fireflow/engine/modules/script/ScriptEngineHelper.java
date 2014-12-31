@@ -39,6 +39,7 @@ import org.fireflow.engine.entity.runtime.ActivityInstance;
 import org.fireflow.engine.entity.runtime.ProcessInstance;
 import org.fireflow.engine.exception.InvalidOperationException;
 import org.fireflow.engine.invocation.Message;
+import org.fireflow.engine.modules.persistence.PersistenceService;
 import org.fireflow.engine.modules.script.functions.DateTimeUtil;
 import org.fireflow.engine.modules.script.functions.JexlContext4Fireflow;
 import org.fireflow.engine.modules.script.functions.XPath;
@@ -174,6 +175,26 @@ public class ScriptEngineHelper {
 				activityInstance);
 		Map<String, Object> varValues = processInstance
 				.getVariableValues(session);
+		
+		PersistenceService p = runtimeContext.getDefaultEngineModule(PersistenceService.class);
+		Iterator<String> keyIt = varValues.keySet().iterator();	
+
+		while(keyIt.hasNext()){
+			String key = keyIt.next();
+			Object value = varValues.get(key);
+			if (value!=null && (value instanceof BusinessObjectWrapper)){
+				BusinessObjectWrapper wrapper = (BusinessObjectWrapper)value;
+				try{
+					Object v = wrapper.resolveBusinessObject(runtimeContext, processInstance, p);
+					varValues.put(key, v);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+			}
+		}
+		
+		
 		engineScope
 				.put(ScriptContextVariableNames.PROCESS_VARIABLES, varValues);
 
@@ -182,6 +203,23 @@ public class ScriptEngineHelper {
 					.getVariableValues(session);
 			engineScope.put(ScriptContextVariableNames.ACTIVITY_VARIABLES,
 					varValues2);
+			
+			Iterator<String> keyIt2 = varValues2.keySet().iterator();	
+
+			while(keyIt2.hasNext()){
+				String key = keyIt2.next();
+				Object value = varValues2.get(key);
+				if (value!=null && (value instanceof BusinessObjectWrapper)){
+					BusinessObjectWrapper wrapper = (BusinessObjectWrapper)value;
+					try{
+						Object v = wrapper.resolveBusinessObject(runtimeContext, processInstance, p);
+						varValues2.put(key, v);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+					
+				}
+			}
 		}
 
 		engineScope.put(ScriptContextVariableNames.SESSION_ATTRIBUTES,

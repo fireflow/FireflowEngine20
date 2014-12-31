@@ -26,8 +26,7 @@ import org.fireflow.engine.entity.runtime.Variable;
  */
 public interface VariablePersister extends Persister {
 	/**
-	 * 根据流程变量的名称返回该流程变量。<br/><br/>
-	 * 
+	 * 根据流程变量的名称返回该流程变量。<br><br>	 * 
 	 * 流程变量可以是流程实例级别的，也可以是活动实例级别的，
 	 * 所以scopeId可以是ProcessInstanceId,也可以是ActivityInstanceId
 	 * @param scopeId
@@ -37,8 +36,7 @@ public interface VariablePersister extends Persister {
 	public Variable findVariable(String scopeId,String name);
 	
 	/**
-	 * 根据scopeId返回属于该scope的所有流程变量。<br/><br/>
-	 * 
+	 * 根据scopeId返回属于该scope的所有流程变量。<b<br><br>* 
 	 * 流程变量可以是流程实例级别的，也可以是活动实例级别的，
 	 * 所以scopeId可以是ProcessInstanceId,也可以是ActivityInstanceId
 	 * @param scopeId

@@ -18,8 +18,7 @@ package org.fireflow.engine.context;
 
 
 /**
- * 在没有spring环境下构建RuntimeContext实例。<br/>
- * (暂未实现)
+ * 在没有spring环境下构建RuntimeContext实例。<br> * (暂未实现)
  * @author chennieyun
  */
 public class RuntimeContextFactory {

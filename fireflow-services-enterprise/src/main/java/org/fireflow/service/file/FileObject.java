@@ -51,12 +51,8 @@ public interface FileObject {
 	public String getCharset();
 	
 	/**
-	 * 最后一次修改时间。该时间是从 Unix epoch time（即 1970-01-01T00:00:00Z ISO 8601）到某一时间点的毫秒数。<br/>
-	 * 例如，在Java系统中用(new java.util.Date()).getTime()则可以获得该时间值<br/>
-	 * 将.net系统中的某一时间点转换成本系统的计时法，请使用如下方法：<br/>
-	 * return Decimal.ToInt64(Decimal.Divide(DateTime.Now.Ticks - new DateTime(1970, 1, 1, 8, 0, 0).Ticks, 10000))<br/>
-	 * 或者<br/>
-	 * return Decimal.ToInt64(Decimal.Divide(DateTime.UtcNow.Ticks - 621355968000000000, 10000));
+	 * 最后一次修改时间。该时间是从 Unix epoch time（即 1970-01-01T00:00:00Z ISO 8601）到某一时间点的毫秒数。<br>
+	 * 例如，在Java系统中用(new java.util.Date()).getTime()则可以获得该时间值<<br>	 * 将.net系统中的某一时间点转换成本系统的计时法，请使用如下方法：<b<br> * return Decimal.ToInt64(Decimal.Divide(DateTime.Now.Ticks - new DateTime(1970, 1, 1, 8, 0, 0).Ticks, 10000))<br<br>* 或者<br><br> return Decimal.ToInt64(Decimal.Divide(DateTime.UtcNow.Ticks - 621355968000000000, 10000));
 	 * @return
 	 */
 	public long getLastModified();

@@ -35,26 +35,21 @@ public interface LocalWorkItem extends WorkItem{
     
     /**
      * 所有者类型，取值为USER,ROLE,DEPARTMENT,GROUP；
-     * 即org.fireflow.model.resourcedef.ResourceType的部分枚举值。<br/>
-     * 该字段备用，便于日后工作项“后期绑定”的实现<br/>
-     * 目前，该字段的值固定为"USER"(即org.fireflow.model.resourcedef.ResourceType.USER)
+     * 即org.fireflow.model.resourcedef.ResourceType的部分枚举值。<br>
+     * 该字段备用，便于日后工作项“后期绑定”的实现<<br>     * 目前，该字段的值固定为"USER"(即org.fireflow.model.resourcedef.ResourceType.USER)
      * @return
      */
     public String getOwnerType();
 
     /**
-     * 责任人Id<br/>
-     * 当张三将工作委托给李四时，李四仅仅是代理完成该工作，张三仍然需要对该工作负责。此字段用于存储张三的id。<br/>
-     * 在执行WorkflowStatement.reassignWorkItemTo(...)时，将产生该字段的值。
+     * 责任人Id<b<br>    * 当张三将工作委托给李四时，李四仅仅是代理完成该工作，张三仍然需要对该工作负责。此字段用于存储张三的id。<br<br>   * 在执行WorkflowStatement.reassignWorkItemTo(...)时，将产生该字段的值。
      * @return
      */
     public String getResponsiblePersonId();
     
     
     /**
-     * 责任人姓名<br/>
-     * 当张三将工作委托给李四时，李四仅仅是代理完成该工作，张三仍然需要对该工作负责。此字段用于存储张三的姓名。<br/>
-     * 在执行WorkflowStatement.reassignWorkItemTo(...)时，将产生该字段的值。
+     * 责任人姓名<br><br>  * 当张三将工作委托给李四时，李四仅仅是代理完成该工作，张三仍然需要对该工作负责。此字段用于存储张三的姓名。<br><br> * 在执行WorkflowStatement.reassignWorkItemTo(...)时，将产生该字段的值。
      * @return
      */
     public String getResponsiblePersonName();
@@ -62,16 +57,16 @@ public interface LocalWorkItem extends WorkItem{
     
     /**
      * 责任人部门Id
-     * 当张三将工作委托给李四时，李四仅仅是代理完成该工作，张三仍然需要对该工作负责。此字段用于存储张三所属部门的id。<br/>
-     * 在执行WorkflowStatement.reassignWorkItemTo(...)时，将产生该字段的值。
+     * 当张三将工作委托给李四时，李四仅仅是代理完成该工作，张三仍然需要对该工作负责。此字段用于存储张三所属部门的id。<br>
+<br>* 在执行WorkflowStatement.reassignWorkItemTo(...)时，将产生该字段的值。
      * @return
      */
     public String getResponsiblePersonDeptId();
     
     /**
      * 责任人部门名称
-     * 当张三将工作委托给李四时，李四仅仅是代理完成该工作，张三仍然需要对该工作负责。此字段用于存储张三所属部门的名称。<br/>
-     * 在执行WorkflowStatement.reassignWorkItemTo(...)时，将产生该字段的值。 
+     * 当张三将工作委托给李四时，李四仅仅是代理完成该工作，张三仍然需要对该工作负责。此字段用于存储张三所属部门的名称。<br>
+ <br> 在执行WorkflowStatement.reassignWorkItemTo(...)时，将产生该字段的值。 
      * @return
      */
     public String getResponsiblePersonDeptName();
@@ -85,8 +80,8 @@ public interface LocalWorkItem extends WorkItem{
     public void setAttachmentId(String attachementId);
     
     /**
-     * 附件的类型信息，具体内涵由业务系统解释。<br/>
-     * 例如：如果业务系统审批已经不是集中存储在一张表里面，此字段也可以用于
+     * 附件的类型信息，具体内涵由业务系统解释。<br>
+  <br>例如：如果业务系统审批已经不是集中存储在一张表里面，此字段也可以用于
      * 存储审批意见（或者附件信息）表的表名。
      * @return
      */

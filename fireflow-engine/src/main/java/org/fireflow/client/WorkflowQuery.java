@@ -68,7 +68,7 @@ public interface WorkflowQuery<T extends WorkflowEntity> {
 	
 	/**
 	 * 结果集页号，从1开始
-	 * @param rowNum
+	 * @param pageNumber
 	 */
 	public WorkflowQuery<T> setPageNumber(int pageNumber);
 	

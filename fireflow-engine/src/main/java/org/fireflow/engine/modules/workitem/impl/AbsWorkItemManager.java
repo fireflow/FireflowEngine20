@@ -125,7 +125,7 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 	
 	
 	/**
-	 * 默认的规则是：只要activityInstance有活动的workItem则不能够停止。<br/>
+	 * 默认的规则是：只要activityInstance有活动的workItem则不能够停止。<br>
 	 * 可以定制该方法，以实现“按百分比决定活动是否结束”的业务需求。
 	 */
 	public int determineActivityCloseStrategy(WorkflowSession session,ActivityInstance activityInstance, Object theActivity, ServiceBinding serviceBinding){

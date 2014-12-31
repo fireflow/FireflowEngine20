@@ -179,7 +179,7 @@ public class BaseEnviroment4Junit {
 				.addOrder(Order.asc(ScheduleJobProperty.PROCESS_ID));
 //				.addOrder(
 //						Order
-//								.asc(ScheduleJobProperty.STEP_NUMBER));
+//								.asc(ScheduleJobProperty.ACTIVITY_INSTANCE_$_STEP_NUMBER));
 		List<ScheduleJob> jobList = q4ScheduleJob.list();
 
 		// //////////////////////////////////////////////////////////////////////////////////////////
@@ -306,8 +306,8 @@ public class BaseEnviroment4Junit {
 			System.out.print("\t\t");
 			System.out.print(workItem.getId());
 			System.out.print("\t\t");
-			ActivityInstance actInst = ((AbsWorkItem)workItem).getActivityInstance();
-			System.out.print(actInst==null?actInst.getId():"-");
+			String actInstId = ((AbsWorkItem)workItem).getActivityInstanceId();
+			System.out.print(actInstId==null?actInstId:"-");
 			System.out.println();
 		}
 

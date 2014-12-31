@@ -8,24 +8,6 @@ import org.fireflow.model.servicedef.ServiceDef;
 
 /**
  * 
- * 	<ServiceBinding>
- * 		<!--
- *      <service/>
- *      -->  
- * 		<ref service="Approve_XX" operation="">
- * 		  <IOMapping>
- * 			<InputAssignments>
- * 				<InputAssignment from="an_expression" to="the_input_name">
- * 			<InputAssignments>
- * 			<OutputAssignments>
- * 				<OutputAssignment from="an_expression" to="the_process_property_name">
- * 			<OutputAssignments> 
- * 		  </IOMapping>
- *      </ref>
- * 		<PropOverrides>
- * 			<PropOverride propGroupName="" propName="" value="">
- * 		</PropOverrides>
- * 	</ServiceBinding>
  * 
  * @author 非也
  * @version 2.0

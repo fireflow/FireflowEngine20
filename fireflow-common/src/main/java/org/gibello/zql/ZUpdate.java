@@ -92,7 +92,7 @@ public class ZUpdate implements ZStatement {
    * WARNING: This method will work only if column/value pairs have been
    * inserted using addColumnUpdate() - otherwise it is not possible to guess
    * what the right order is, and null will be returned.
-   * @param num The column index (starting from 1).
+   * @param index The column index (starting from 1).
    * @return a ZExp, like a ZConstant representing a value, or a more complex
    * SQL expression.
    */
@@ -108,7 +108,7 @@ public class ZUpdate implements ZStatement {
    * WARNING: This method will work only if column/value pairs have been
    * inserted using addColumnUpdate() - otherwise it is not possible to guess
    * what the right order is, and null will be returned.
-   * @param num The column index (starting from 1).
+   * @param index The column index (starting from 1).
    * @return The corresponding column name.
    */
   public String getColumnUpdateName(int index) {

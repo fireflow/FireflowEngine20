@@ -52,11 +52,8 @@ public interface TokenPersister extends Persister {
 	public int countAliveToken(String processInstanceId,String nodeId,OperationContextName operationContextName);
 	
 	/**
-	 * Sibling判断标准<br/>
-	 * 1)同一流程实例；<br/>
-	 * 2)处于同一个个节点上；<br/>
-	 * 3)opreationContext相同<br/>
-	 * 4)处于活动状态，即state<delimiter。
+	 * Sibling判断标准<br>
+	 * 1)同一流程实例；<<br>	 * 2)处于同一个个节点上；<b<br> * 3)opreationContext相同<br<br>* 4)处于活动状态，即state<delimiter。
 	 * @param token
 	 * @return
 	 */

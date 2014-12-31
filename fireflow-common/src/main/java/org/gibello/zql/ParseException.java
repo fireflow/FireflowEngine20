@@ -21,8 +21,7 @@ public class ParseException extends Exception {
    * this constructor was used to create this object.
    * This constructor calls its super class with the empty string
    * to force the "toString" method of parent class "Throwable" to
-   * print the error message in the form:
-   *     ParseException: <result of getMessage>
+   * print the error message in the form:ParseException: result of getMessage
    */
   public ParseException(Token currentTokenVal,
                         int[][] expectedTokenSequencesVal,

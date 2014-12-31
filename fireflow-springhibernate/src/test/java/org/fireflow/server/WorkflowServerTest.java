@@ -72,7 +72,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 
 /**
- * 本测试主要是通过一个简单的人工活动测试WorkflowServer远程接口，主要包括：<br/>
+ * 本测试主要是通过一个简单的人工活动测试WorkflowServer远程接口，主要包括：<br>
  * 1、发布流程定义的接口
  * 2、创建并启动流程实例的接口
  * 3、工作项相关的接口

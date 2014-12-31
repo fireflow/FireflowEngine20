@@ -82,7 +82,7 @@ public class JAXBUtil {
 	/**
 	 * 根据JAXB-2.2规范产生POJO的xsd QName
 	 * 
-	 * @return
+	 * @return 返回QName
 	 */
 	public static QName generatePojoQname(Class pojoClass) throws Exception {
 		if (pojoClass == null) {

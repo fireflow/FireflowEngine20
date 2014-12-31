@@ -35,9 +35,8 @@ import org.fireflow.engine.modules.ousystem.impl.UserImpl;
  */
 public class WorkflowUtil {
 	/**
-	 * 从业务系统当前用户转换为工作流用户。<br/>
-	 * 有两种方案可以实现该需求：1、业务系统中的用户对象（如DemoUser）实现org.fireflow.engine.modules.ousystem.User<br/>
-	 * 2、将业务系统中的用户对象组装成org.fireflow.engine.modules.ousystem.impl.UserImpl返回，如本函数。
+	 * 从业务系统当前用户转换为工作流用户。<br>
+	 * 有两种方案可以实现该需求：1、业务系统中的用户对象（如DemoUser）实现org.fireflow.engine.modules.ousystem.User<<br>	 * 2、将业务系统中的用户对象组装成org.fireflow.engine.modules.ousystem.impl.UserImpl返回，如本函数。
 	 * 
 	 * @param session
 	 * @return

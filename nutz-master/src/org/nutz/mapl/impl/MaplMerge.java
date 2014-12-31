@@ -16,9 +16,7 @@ public class MaplMerge {
         return new MaplMerge().mergeItems(objs);
     }
     /**
-     * 转换器中间对象合并器<br/>
-     * 合并 {@link Mapl} 中定义的中间结构.<br/>
-     * 规则:<br>
+     * 转换器中间对象合并器<br>     * 合并 {@link Mapl} 中定义的中间结构.<<br>    * 规则:<br>
      * <ul>
      * <li>普通对象, 保存为List, 但是要去掉重复.
      * <li>合并 map , 如果 key 值相同, 那么后一个值覆盖前面的值.递归合并

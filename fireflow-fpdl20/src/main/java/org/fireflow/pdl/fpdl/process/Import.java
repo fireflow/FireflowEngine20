@@ -31,7 +31,7 @@ public interface Import {
 	
 	/**
 	 * import的类型，取值为Import.PROCESS_IMPORT，Import.SERVICES_IMPORT，
-	 * 或者Import.RESOURCES_IMPORT，Import.XSD_IMPORT<br/>
+	 * 或者Import.RESOURCES_IMPORT，Import.XSD_IMPORT<br>
 	 * 2.0暂时仅启用Import.PROCESS_IMPORT
 	 * @return
 	 */
@@ -66,7 +66,7 @@ public interface Import {
 	public void setDisplayName(String dispNm);
 	
 	/**
-	 * 返回import文件中的内容，如果import type为ProcessImport.SERVICES_IMPORT，则返回List<Service>;<br/>
+	 * 返回import文件中的内容，如果import type为ProcessImport.SERVICES_IMPORT，则返回List<Service>;<br>
 	 * 如果import type为ProcessImport.RESOURCES_IMPORT，则返回List<Resource>；
 	 * @return
 	 */

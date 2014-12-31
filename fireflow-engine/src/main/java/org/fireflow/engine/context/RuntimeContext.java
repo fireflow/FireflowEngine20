@@ -31,10 +31,9 @@ import org.fireflow.engine.modules.processlanguage.ProcessLanguageManager;
 import org.fireflow.pvm.kernel.KernelException;
 
 /**
- * RuntimeContext是Fire workflow Engine的总线。所有的服务都挂接在这个总线上，并通过这个总线获取。<br/>
+ * RuntimeContext是Fire workflow Engine的总线。所有的服务都挂接在这个总线上，并通过这个总线获取。<br>
  * RuntimeContext也是业务代码调用工作流引擎的入口，通过runtimeContext.getWorkflowSession()获得IWorkflowSession 对象，
- * 然后通过IWorkflowSession调用各种工作流实例对象及其API。<br/>
- * 
+ * 然后通过IWorkflowSession调用各种工作流实例对象及其API。<<br> * 
  * context管理的各种服务
  * @author 非也,nychen2000@163.com
  *

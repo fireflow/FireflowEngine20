@@ -24,24 +24,7 @@ import org.fireflow.model.data.Input;
 
 /**
  * 
- * <Resources>
- * 	<Resource id="org.fireflow.model.resourcedef.PROCESS_INSTANCE_CREATOR" name="Process Creator"
- *  	displayName="流程创建者" type="ProcessInstanceCreator" pid="">
- *   	<Resolver bean="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver">
- *   	</Resolver>
- * 	</Resource>
- * 	<Resource id="dept_research" name="dept_research"
- *  	displayName="研发部" type="Department" pid="">
- *   	<Resolver bean="org.fireflow.engine.resource.impl.DepartmentResolver">
- *   	</Resolver>
- * 	</Resource>
- * 	<Resource id="role_manager" name="role_manager"
- *  	displayName="部门经理" type="Role" pid="">
- *   	<Resolver bean="#RoleResolver">
- *   	</Resolver>
- * 	</Resource>
- * </Resources>
- * 
+
  * @author 非也
  * @version 2.0
  */
@@ -57,17 +40,7 @@ public interface ResourceDef extends ModelElement{
 	
 	public void setResourceType(ResourceType type);
 	
-	/**
-	 * resource的值，具体含义由ResourceType决定。<br/>
-	 * 当resourceType为USER时，表示用户Id;<br/>
-	 * 当resourceType为ROLE时，表示RoleId;<br/>
-	 * 当resourceType为Group时，表示GroupId;<br/>
-	 * 当resourceType为Department时，表示DepartmentId;<br/>
-	 * 当resourceType为PROCESS_INSTANCE_CREATOR时，表示processId;<br/>
-	 * 当resourceType为ACTIVITY_INSTANCE_PERFORMER时，表示activityId;<br/>
-	 * 当resourceType为VARIABLE_IMPLICATION时，表示变量的名字.
-	 * @return
-	 */
+
 	public String getValue();
 	
 	public void setValue(String value);

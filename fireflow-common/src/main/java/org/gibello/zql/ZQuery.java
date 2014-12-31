@@ -107,7 +107,7 @@ public class ZQuery implements ZStatement, ZExp {
 
   /**
    * Get the ORDER BY clause
-   * @param v A vector of ZOrderBy objects
+   * 
    */
   public Vector getOrderBy() { return orderby_; }
 

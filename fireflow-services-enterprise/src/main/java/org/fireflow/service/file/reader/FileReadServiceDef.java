@@ -34,10 +34,8 @@ public class FileReadServiceDef extends AbstractServiceDef implements ServiceDef
 	private String bakupDirectory = null;
 	
 	/**
-	 * 读取之后的策略，null或者空字符串表示什么都不做。<br/>
-	 * 当该值等于DELETE_AFTER_READING时，表示读取完毕后删除源文件；<br/>
-	 * 当该值等于RENAME_AFTER_READING时，表示读取完毕后改源文件名字；尾缀变成“.read”；<br/>
-	 * 当该值等于REMOVE_AFTER_READING时，表示读取完毕后源文件被转移到bakupDirectory；
+	 * 读取之后的策略，null或者空字符串表示什么都不做。<br>
+	 * 当该值等于DELETE_AFTER_READING时，表示读取完毕后删除源文件；<<br>	 * 当该值等于RENAME_AFTER_READING时，表示读取完毕后改源文件名字；尾缀变成“.read”；<b<br> * 当该值等于REMOVE_AFTER_READING时，表示读取完毕后源文件被转移到bakupDirectory；
 	 */
 	private String strategyAfterReading = "";
 	

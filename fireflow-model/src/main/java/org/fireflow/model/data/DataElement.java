@@ -17,7 +17,7 @@ public interface DataElement {
 	public void setDisplayName(String displayName);
 	
 	/**
-	 * 数据类型，数据类型必须是一个QName；<br/>
+	 * 数据类型，数据类型必须是一个QName；<br>
 	 * 对于Java类型，写作java:javax.lang.Integer；
 	 * XSD数据类型可以写作如, xsd:string; 
 	 * @return

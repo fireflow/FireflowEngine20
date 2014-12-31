@@ -23,7 +23,7 @@ import java.util.* ;
 /**
  * ZExpression: an SQL Expression
  * An SQL expression is an operator and one or more operands 
- * Example: a AND b AND c -> operator = AND, operands = (a, b, c)
+ * Example: a AND b AND c   operator = AND, operands = (a, b, c)
  */
 public class ZExpression implements ZExp {
 
@@ -112,7 +112,7 @@ public class ZExpression implements ZExp {
 
   /**
    * String form of the current expression (reverse polish notation).
-   * Example: a > 1 AND b = 2 -> (AND (> a 1) (= b 2))
+   * Example: a 》 1 AND b = 2 -》 (AND (》 a 1) (= b 2))
    * @return The current expression in reverse polish notation (a String)
    */
   public String toReversePolish() {

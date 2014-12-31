@@ -32,10 +32,8 @@ public interface ServiceInvoker {
 
 	
 	/**
-	 * ActivityInstanceManager调用该方法决定activityInstance是否可以结束。返回值是：<br/>
-	 * ServiceInvoker.CLOSE_ACTIVITY：该值表示activityInstance可以被关闭，并启动后续活动；<br/>
-	 * ServiceInvoker.WAITING_FOR_CLOSE：该值表示activityInstance继续保持Runing状态<br/>
-	 * ServiceInvoker.START_NEXT_AND_WAITING_FOR_CLOSE：该值表示启动后续活动，但是当前activityInstance继续保持Running状态。
+	 * ActivityInstanceManager调用该方法决定activityInstance是否可以结束。返回值是：<br>
+	 * ServiceInvoker.CLOSE_ACTIVITY：该值表示activityInstance可以被关闭，并启动后续活动；<<br>	 * ServiceInvoker.WAITING_FOR_CLOSE：该值表示activityInstance继续保持Runing状态<b<br> * ServiceInvoker.START_NEXT_AND_WAITING_FOR_CLOSE：该值表示启动后续活动，但是当前activityInstance继续保持Running状态。
 	 * 
 	 * @param session
 	 * @param activityInstance

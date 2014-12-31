@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 
 /**
  * 
- * 解析Class类文件，获取方法的参数名。<br/>
+ * 解析Class类文件，获取方法的参数名。<br>
  * 本类来自于spring的org.springframework.core.ParameterNameDiscoverer
  * @author 非也 www.firesoa.com
  * 

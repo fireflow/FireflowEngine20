@@ -34,7 +34,7 @@ public interface Actor extends Serializable {
 	public String getProperty(String propertyName);
 	public Properties getProperties();
 	/**
-	 * 对于User、Group类型类型的对象，返回的是departmentId;<br/>
+	 * 对于User、Group类型类型的对象，返回的是departmentId;<br>
 	 * 其他类型的对象返回的是其父对象的Id
 	 * @return
 	 */

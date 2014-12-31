@@ -37,19 +37,14 @@ public interface ScheduleJob extends WorkflowEntity{
 	
 	
 	/**
-	 * 获得触发器类型，合法的返回值是：CRON , STARTTIME_ENDTIME_INTERVAL ,STARTTIME_REPEATCOUNT_INTERVAL;<br/>
-	 * CRON：cron表达式<br/>
-	 * STARTTIME_ENDTIME_INTERVAL：指定开始时间，结束时间和间隔时间<br/>
-	 * STARTTIME_REPEATCOUNT_INTERVAL：指定开始时间，重复次数，时间间隔<br/>
-	 * @return
+	 * 获得触发器类型，合法的返回值是：CRON , STARTTIME_ENDTIME_INTERVAL ,STARTTIME_REPEATCOUNT_INTERVAL;<br>
+	 * CRON：cron表达式<<br>	 * STARTTIME_ENDTIME_INTERVAL：指定开始时间，结束时间和间隔时间<b<br> * STARTTIME_REPEATCOUNT_INTERVAL：指定开始时间，重复次数，时间间隔<br<br>* @return
 	 */
 	public String getTriggerType();
 	
 	/**
-	 * 如果TriggerType=Cron，则该值是cron表达式，<br/>
-	 * 如果TriggerType=STARTTIME_ENDTIME_INTERVAL，则该值的格式是：startTime|endTime|interval<br/>
-	 * 如果TriggerType=STARTTIME_REPEATCOUNT_INTERVAL，则该值格式是：startTime|repeatCount|interval<br/>
-	 * 触发器表达式
+	 * 如果TriggerType=Cron，则该值是cron表达式，<br><br> 如果TriggerType=STARTTIME_ENDTIME_INTERVAL，则该值的格式是：startTime|endTime|interval<br><br>如果TriggerType=STARTTIME_REPEATCOUNT_INTERVAL，则该值格式是：startTime|repeatCount|interval<br>
+<br>发器表达式
 	 * @return
 	 */
 	public String getTriggerExpression();

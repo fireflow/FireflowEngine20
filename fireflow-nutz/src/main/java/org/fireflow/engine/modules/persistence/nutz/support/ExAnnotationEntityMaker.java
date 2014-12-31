@@ -1,7 +1,8 @@
 package org.fireflow.engine.modules.persistence.nutz.support;
 
 import java.io.InputStream;
-import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,6 @@ import org.fireflow.model.io.Util4Deserializer;
 import org.nutz.dao.entity.Entity;
 import org.nutz.dao.entity.MappingField;
 import org.nutz.dao.entity.annotation.ColType;
-import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.impl.EntityHolder;
 import org.nutz.dao.impl.entity.AnnotationEntityMaker;
 import org.nutz.dao.impl.entity.NutEntity;
@@ -24,8 +24,8 @@ import org.nutz.dao.jdbc.Jdbcs;
 import org.nutz.dao.jdbc.ValueAdaptor;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Strings;
-import org.nutz.lang.eject.EjectByField;
-import org.nutz.lang.inject.InjectByField;
+import org.nutz.lang.eject.EjectByGetter;
+import org.nutz.lang.inject.InjectBySetter;
 import org.nutz.lang.segment.CharSegment;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
@@ -40,6 +40,27 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
 	private static final String ELM_PROPERTY = "property";
 	
 	public static final String FIREFLOW_ENTITY_PKG_PREFIX = "org.fireflow.engine.entity";
+	
+	private static List<String> allMappingFiles = new ArrayList<String>();
+	static {
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/ActivityInstanceHistory.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/ActivityInstanceImpl.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/FireflowConfigImpl.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/LocalWorkItemImpl.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/ProcessDescriptor.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/ProcessInstanceHistory.nutzmp.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/ProcessInstanceImpl.nutzmp.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/ProcessRepositoryImpl.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/ReassignConfigImpl.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/RemoteWorkItemImpl.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/ScheduleJobHistory.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/ScheduleJobImpl.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/TokenHistory.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/TokenImpl.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/VariableHistory.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/VariableImpl.nutzmap.xml");
+		allMappingFiles.add("/org/fireflow/engine/modules/persistence/nutz/WorkItemHistory.nutzmap.xml");
+	}
 	
 	private Map<Class,Element> classDefinitionsMap = new HashMap<Class,Element>();
 
@@ -72,6 +93,7 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
 			Element classElm = classDefinitionsMap.get(type);
 			if (classElm!=null){
 				Entity<T> result = makeEntity(type,classElm);
+				return result;
 			}
 		}
 		return super.make(type);
@@ -106,6 +128,9 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
 	         */
 	        String tableName = classElm.getAttribute("table");
 	        String viewName = classElm.getAttribute("view");
+	        if (viewName==null || viewName.trim().equals("")){
+	        	viewName = tableName;
+	        }
 	        en.setTableName(tableName);
 	        en.setViewName(viewName);
 
@@ -148,7 +173,7 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
 	        	
 	        }
 	        
-	        List<Element> propertyElms =  Util4Deserializer.children(classElm, "property");
+	        List<Element> propertyElms =  Util4Deserializer.children(classElm, ELM_PROPERTY);
 	        for (Element elm : propertyElms){
 	        	MappingField mf = createMappingField(en,type,elm,false,false);
 	        	en.addMappingField(mf);
@@ -163,19 +188,38 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
 		NutMappingField ef = new NutMappingField(en);
 		
     	String fieldName = fieldElm.getAttribute("name");
-    	Field field;
+    	String s = null;
+    	if (fieldName.length()>1){
+    		s = fieldName.substring(0, 1).toUpperCase()+fieldName.substring(1);
+    	}else{
+    		s = fieldName.toUpperCase();
+    	}
+    	String setterName = "set"+s;
+    	String getterName = "get"+s;
+    	Method setter = null;
+    	Method getter = null;
+    	
+//    	Field field;
 		try {
-			field = type.getField(fieldName);
-		} catch (NoSuchFieldException e1) {
-			throw new RuntimeException(e1);
-		} catch (SecurityException e1) {
+			Method[] allMethods = type.getMethods();
+			for (Method m : allMethods){
+				if(m.getName().equals(setterName)){
+					setter = m;
+				}else if (m.getName().equals(getterName)){
+					getter = m;
+				}
+			}
+		}  catch (SecurityException e1) {
 			throw new RuntimeException(e1);
 		}
     	Element columnElem = Util4Deserializer.child(fieldElm,"column");
     	
         // 字段的 Java 名称
         ef.setName(fieldName);
-        ef.setType(field.getGenericType());
+        if (getter!=null){
+        	ef.setType(getter.getGenericReturnType());
+        }
+        
 
         // 字段的数据库名
         if (null == columnElem || Strings.isBlank(columnElem.getAttribute("name")))
@@ -232,11 +276,7 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
 //                ef.setAsCompositePk();
 //        }
 
-        // 默认值
-        if (columnElem!=null ){
-            if (null != columnElem.getAttribute("default") )
-                ef.setDefaultValue(new CharSegment(columnElem.getAttribute("default")));
-        }
+
 
 
         // 只读
@@ -290,6 +330,20 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
         	if (update!=null){
         		ef.setUpdate(Boolean.parseBoolean(update));
         	}
+        	
+            // 默认值
+            if (columnElem!=null ){
+            	String defaultValue = columnElem.getAttribute("default");
+                if (null != null  ){
+                	if (defaultValue.equals("CURRENT_TIMESTAMP")){
+                		ef.setUpdate(false);//mysql 数据库自动设值
+                		ef.setInsert(false);//mysql 数据库自动设值
+                	}else{
+                		ef.setDefaultValue(new CharSegment(defaultValue));
+                	}
+                }
+                    
+            }
             
         }
         // 猜测字段类型
@@ -305,6 +359,7 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
         	try {
         		Class clz = Class.forName(adaptorClzName);
 				ValueAdaptor adaptor = (ValueAdaptor)clz.newInstance();
+				ef.setAdaptor(adaptor);
 			} catch (InstantiationException e) {
 				throw new RuntimeException(e);
 			} catch (IllegalAccessException e) {
@@ -316,23 +371,47 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
         
 
         // 输入输出
-        ef.setInjecting(new InjectByField(field));
-        ef.setEjecting(new EjectByField(field));
+        ef.setInjecting(new InjectBySetter(setter));
+        ef.setEjecting(new EjectByGetter(getter));
         
         return ef;
 	}
 
+	public static void main(String[] args){
+//		File f = new File("C:/Users/SX-7F-01-006/git/FireflowEngine20/fireflow-nutz/src/main/resources/org/fireflow/engine/modules/persisence/nutz");
+//		File[] allxmls = f.listFiles();
+//		for (File x :allxmls){
+//			System.out.println("allMappingFiles.add(\"/org/fireflow/engine/modules/persistence/nutz/"+x.getName()+"\");");
+//		}
+		System.out.println("Begin~~~~~~~~~~~~~~~~~~~~~~~~");
+		ExAnnotationEntityMaker maker = new ExAnnotationEntityMaker(null,null,null);
+		System.out.println("end!!!");
+		
+	}
+	
 	/**
 	 * 加载所有的映射文件
 	 */
 	protected void init()throws Exception{		
-		InputStream instream = ExAnnotationEntityMaker.class.getResourceAsStream("/org/fireflow/engine/modules/persistence/nutz/ProcessInstanceImpl.nutzmp.xml");
-		
 		DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-
-		Document document = docBuilder.parse(instream);
 		
-		parseClassElment(document);
+		for (String fileName : allMappingFiles){
+			try{
+				InputStream instream = ExAnnotationEntityMaker.class.getResourceAsStream(fileName);
+
+
+				Document document = docBuilder.parse(instream);
+				
+				parseClassElment(document);
+				
+				instream.close();
+			}catch(Throwable t){
+				t.printStackTrace();
+				throw new RuntimeException(t);
+			}
+
+		}
+
 	}
 	protected void parseClassElment(Document document) throws ClassNotFoundException{
 		Element nutzMappingElm = document.getDocumentElement();

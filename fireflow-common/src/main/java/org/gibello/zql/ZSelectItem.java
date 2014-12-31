@@ -68,14 +68,14 @@ public class ZSelectItem extends ZAliasedName {
 
   /**
    * @return true if this item is an SQL expression, false if not.
-   * (Example: SELECT a+b, c FROM num; -> a+b is an expression, not c)
+   * (Example: SELECT a+b, c FROM num;  a+b is an expression, not c)
    */
   public boolean isExpression() { return (expression_ != null && expression_ instanceof ZExpression); }
 
   /**
    * Initialize an aggregate function on this item
    * (generally SUM, AVG, MAX, MIN)
-   * Example: SELECT AVG(age) FROM people; -> The aggregate function is AVG.
+   * Example: SELECT AVG(age) FROM people;  The aggregate function is AVG.
    * @param a The name of the aggregate function
    * (a String, like SUM, AVG, MAX, MIN)
    */
@@ -85,7 +85,7 @@ public class ZSelectItem extends ZAliasedName {
    * If this item is an aggregate function, return the function name.
    * @return The name of an aggregate function (generally SUM, AVG, MAX, MIN),
    * or null if there's no aggregate.
-   * Example: SELECT name, AVG(age) FROM people; -> null for the "name" item,
+   * Example: SELECT name, AVG(age) FROM people;  null for the "name" item,
    * and "AVG" for the "AVG(age)" item.
    */
   public String getAggregate() { return aggregate_; }

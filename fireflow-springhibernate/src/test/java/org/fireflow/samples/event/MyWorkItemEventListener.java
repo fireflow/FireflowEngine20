@@ -21,7 +21,7 @@ public class MyWorkItemEventListener extends AbsWorkItemEventListener {
 	}
 
 	@Override
-	protected void onWorkItemCreated(WorkItemEvent e) {
+	protected void afterWorkItemCreated(WorkItemEvent e) {
 		WorkItem workItem = e.getSource();
 		Activity activity = (Activity)e.getWorkflowElement();
 		System.out.println("~~调用事件MyWorkItemEventListener.onWorkItemCreated(...)");

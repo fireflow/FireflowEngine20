@@ -38,7 +38,7 @@ public class WorkflowServer {
 	private static final Log log = LogFactory.getLog(WorkflowServer.class);
 	
     /**
-     * 是否以发布WorkflowEngineService这个Webservice，让流程引擎接受远程调用。<br/>
+     * 是否以发布WorkflowEngineService这个Webservice，让流程引擎接受远程调用。<br>
      * 
      * WebService的地址由org.fireflow.engine.modules.environment.Environment.getWebserviceContextPath()决定。
      * 

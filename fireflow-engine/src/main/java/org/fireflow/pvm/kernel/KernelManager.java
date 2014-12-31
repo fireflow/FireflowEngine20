@@ -120,7 +120,7 @@ public interface KernelManager extends EngineModule{
 
 	
 	/**
-	 * 找出需要执行补偿操作的子节点。<br/>
+	 * 找出需要执行补偿操作的子节点。<br>
 	 * @param token
 	 * @return
 	 */

@@ -25,7 +25,7 @@ import org.fireflow.engine.exception.EngineException;
 public interface ActivityInstanceEventListener {
 	/**
 	 * 响活动程实例的事件。通过e.getEventType来判断事件的类型。
-	 * 流程实例有两种事件：<br/>
+	 * 流程实例有两种事件：<br>
 	 * @param e 活动实例事件
 	 * @throws EngineException
 	 */

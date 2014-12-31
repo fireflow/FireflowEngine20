@@ -68,7 +68,6 @@ public class JavaInterfaceDef extends AbstractInterfaceDef implements InterfaceD
 	
 	/**
 	 * 解析接口类，构建Operations列表
-	 * @throws ClassNotFoundException 
 	 */
 	public static List<OperationDef> resolveInterfaceClass(String className)  {
 		List<OperationDef> operations = new ArrayList<OperationDef>();
