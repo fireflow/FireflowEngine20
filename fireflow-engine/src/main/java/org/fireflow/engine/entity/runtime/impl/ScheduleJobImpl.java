@@ -24,7 +24,6 @@ import javax.xml.bind.annotation.XmlType;
 
 import org.fireflow.engine.entity.runtime.ActivityInstance;
 import org.fireflow.engine.entity.runtime.ScheduleJob;
-import org.nutz.dao.entity.annotation.Table;
 
 /**
  * 
@@ -35,7 +34,7 @@ import org.nutz.dao.entity.annotation.Table;
 @XmlRootElement(name="scheduleJob")
 @XmlType(name="scheduleJobType")
 @XmlAccessorType(XmlAccessType.FIELD)
-@Table("T_FF_RT_SCHEDULE")
+//@Table("T_FF_RT_SCHEDULE")
 public class ScheduleJobImpl extends AbsScheduleJob implements ScheduleJob{
 	@XmlElementRef
 	protected ActivityInstanceImpl activityInstance;

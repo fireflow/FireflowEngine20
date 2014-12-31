@@ -36,6 +36,7 @@ import org.fireflow.engine.entity.runtime.WorkItemProperty;
 import org.fireflow.engine.entity.runtime.WorkItemState;
 import org.fireflow.engine.entity.runtime.impl.AbsActivityInstance;
 import org.fireflow.engine.entity.runtime.impl.AbsWorkItem;
+import org.fireflow.engine.entity.runtime.impl.ActivityInstanceImpl;
 import org.fireflow.engine.entity.runtime.impl.LocalWorkItemImpl;
 import org.fireflow.engine.exception.EngineException;
 import org.fireflow.engine.exception.InvalidOperationException;
@@ -151,14 +152,17 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 	protected void abortWorkItem(WorkflowSession currentSession,WorkItem wi,Object thisActivity){
 		LocalWorkItemImpl workItem = (LocalWorkItemImpl)wi;
 		if (wi.getState().getValue()>WorkItemState.DELIMITER.getValue())return;
-		RuntimeContext rtCtx = ((WorkflowSessionLocalImpl)currentSession).getRuntimeContext();
 		
-		ActivityInstance activityInstance = workItem.getActivityInstance();
+		RuntimeContext rtCtx = ((WorkflowSessionLocalImpl)currentSession).getRuntimeContext();
+		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, workItem.getProcessType());
+
+		ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
+		
+		ActivityInstance activityInstance = actInstPersister.fetch(ActivityInstanceImpl.class,workItem.getActivityInstanceId());
 		String processType = "";
 		if (activityInstance!=null){
 			processType = activityInstance.getProcessType();
 		}
-		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, processType);
 
 		WorkItemPersister persister = persistenceService.getWorkItemPersister();
 		((LocalWorkItemImpl)workItem).setState(WorkItemState.ABORTED);
@@ -199,7 +203,10 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 	public WorkItem claimWorkItem(WorkflowSession currentSession,WorkItem wi){
 		RuntimeContext rtCtx = ((WorkflowSessionLocalImpl)currentSession).getRuntimeContext();
 		LocalWorkItemImpl workItem = (LocalWorkItemImpl)wi;
-		ActivityInstance activityInstance = workItem.getActivityInstance();
+		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, workItem.getProcessType());
+		ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
+		
+		ActivityInstance activityInstance = actInstPersister.fetch(ActivityInstanceImpl.class, workItem.getActivityInstanceId());
 		
 		WorkflowStatement __statement = currentSession.createWorkflowStatement();
 		Object thisActivity = null;
@@ -211,7 +218,7 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 		//这个事件估计没有什么实际意义
 		this.fireWorkItemEvent(currentSession, workItem, thisActivity, WorkItemEventTrigger.BEFORE_WORKITEM_CLAIMED);
 		
-		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, activityInstance.getProcessType());
+		
 		CalendarService calendarService = rtCtx.getEngineModule(CalendarService.class, activityInstance.getProcessType());
 		
 		ActivityInstancePersister activityInstancePersister = persistenceService.getActivityInstancePersister();
@@ -245,11 +252,13 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 
 	public WorkItem disclaimWorkItem(WorkflowSession currentSession,
 			WorkItem wi)throws InvalidOperationException{
-		RuntimeContext rtCtx = ((WorkflowSessionLocalImpl)currentSession).getRuntimeContext();
-		
 		LocalWorkItemImpl workItemToBeDisclaimed = (LocalWorkItemImpl)wi;
+		RuntimeContext rtCtx = ((WorkflowSessionLocalImpl)currentSession).getRuntimeContext();
+		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, workItemToBeDisclaimed.getProcessType());
+
+		ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
 		
-		ActivityInstance thisActivityInstance = workItemToBeDisclaimed.getActivityInstance();	
+		ActivityInstance thisActivityInstance = actInstPersister.fetch(ActivityInstanceImpl.class, workItemToBeDisclaimed.getActivityInstanceId());	
 		ProcessInstance thisProcessInstance = thisActivityInstance.getProcessInstance(currentSession);
 		((WorkflowSessionLocalImpl)currentSession).setCurrentProcessInstance(thisProcessInstance);
 		
@@ -257,7 +266,6 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 		
 		ProcessKey pKey = new ProcessKey(thisActivityInstance.getProcessId(),thisActivityInstance.getVersion(),thisActivityInstance.getProcessType());
 
-		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, thisActivityInstance.getProcessType());
 		CalendarService calendarService = rtCtx.getEngineModule(CalendarService.class, thisActivityInstance.getProcessType());
 		ProcessLanguageManager processService = rtCtx.getEngineModule(ProcessLanguageManager.class, thisActivityInstance.getProcessType());
 		
@@ -310,18 +318,19 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 	 */
 	public WorkItem completeWorkItemAndJumpTo(WorkflowSession currentSession,
 			WorkItem wi, String targetActivityId) throws InvalidOperationException{
+		LocalWorkItemImpl workItemToBeCompleted = (LocalWorkItemImpl)wi;
 		WorkflowSessionLocalImpl localSession = (WorkflowSessionLocalImpl)currentSession;
 		RuntimeContext rtCtx = ((WorkflowSessionLocalImpl)currentSession).getRuntimeContext();
-		
-		LocalWorkItemImpl workItemToBeCompleted = (LocalWorkItemImpl)wi;
-		ActivityInstance thisActivityInstance = workItemToBeCompleted.getActivityInstance();
-
-		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, thisActivityInstance.getProcessType());
-		CalendarService calendarService = rtCtx.getEngineModule(CalendarService.class,  thisActivityInstance.getProcessType());
-		ActivityInstanceManager activityInstanceManager = rtCtx.getEngineModule(ActivityInstanceManager.class, thisActivityInstance.getProcessType());
+		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, workItemToBeCompleted.getProcessType());
+		CalendarService calendarService = rtCtx.getEngineModule(CalendarService.class,  workItemToBeCompleted.getProcessType());
+		ActivityInstanceManager activityInstanceManager = rtCtx.getEngineModule(ActivityInstanceManager.class, workItemToBeCompleted.getProcessType());
 		
 		WorkItemPersister workItemPersister = persistenceService.getWorkItemPersister();
-		
+		ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
+
+		ActivityInstance thisActivityInstance = actInstPersister.fetch(ActivityInstanceImpl.class, workItemToBeCompleted.getActivityInstanceId());
+
+				
 		if (workItemToBeCompleted.getParentWorkItemId() != null && !workItemToBeCompleted.getParentWorkItemId().trim().equals("")
 				&& !workItemToBeCompleted.getParentWorkItemId().trim().equals(
 						WorkItem.NO_PARENT_WORKITEM)) {
@@ -335,7 +344,7 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 
 					List<WorkItem> workItemsWithSameParent = workItemPersister
 							.findWorkItemsForActivityInstance(workItemToBeCompleted
-									.getActivityInstance().getId(), workItemToBeCompleted
+									.getActivityInstanceId(), workItemToBeCompleted
 									.getParentWorkItemId());
 					
 					for(WorkItem wiTmp : workItemsWithSameParent){
@@ -396,15 +405,24 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
     	
     	LocalWorkItemImpl workItemToBeReassign = (LocalWorkItemImpl)wi;
     	
-		ActivityInstance thisActivityInstance = workItemToBeReassign.getActivityInstance();
+		RuntimeContext rtCtx = ((WorkflowSessionLocalImpl)currentSession).getRuntimeContext();
+		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, workItemToBeReassign.getProcessType());
+		WorkItemPersister workItemPersister = persistenceService.getWorkItemPersister();
+
+		ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
+		
+
+    	
+    	String thisActInstId = workItemToBeReassign.getActivityInstanceId();
+    	
+		ActivityInstance thisActivityInstance = actInstPersister.fetch(ActivityInstanceImpl.class, thisActInstId);
+		
+		
 		ProcessInstance thisProcessInstance = thisActivityInstance.getProcessInstance(currentSession);
 
 		((WorkflowSessionLocalImpl)currentSession).setCurrentActivityInstance(thisActivityInstance);
 		((WorkflowSessionLocalImpl)currentSession).setCurrentProcessInstance(thisProcessInstance);
 		
-		RuntimeContext rtCtx = ((WorkflowSessionLocalImpl)currentSession).getRuntimeContext();
-		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, thisActivityInstance.getProcessType());
-		WorkItemPersister workItemPersister = persistenceService.getWorkItemPersister();
 
 		List<WorkItem> result = assignmentHandler.assign(currentSession, thisActivityInstance, this, 
 				theActivity, serviceBinding, resourceBinding);
@@ -465,22 +483,27 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 	 */
 	public WorkItem completeWorkItem(WorkflowSession currentSession,
 			WorkItem wi) throws InvalidOperationException {
-		RuntimeContext rtCtx = ((WorkflowSessionLocalImpl)currentSession).getRuntimeContext();
-		
 		LocalWorkItemImpl workItemToBeCompleted = (LocalWorkItemImpl)wi;
 		
-		ActivityInstance thisActivityInstance = workItemToBeCompleted.getActivityInstance();
+		RuntimeContext rtCtx = ((WorkflowSessionLocalImpl)currentSession).getRuntimeContext();
+		
+		ActivityInstanceManager actInstMgr = rtCtx.getEngineModule(ActivityInstanceManager.class, workItemToBeCompleted.getProcessType());
+		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, workItemToBeCompleted.getProcessType());
+		CalendarService calendarService = rtCtx.getEngineModule(CalendarService.class,  workItemToBeCompleted.getProcessType());
+		
+		WorkItemPersister workItemPersister = persistenceService.getWorkItemPersister();
+		ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
+
+
+		
+		ActivityInstance thisActivityInstance = actInstPersister.fetch(ActivityInstanceImpl.class, workItemToBeCompleted.getActivityInstanceId());
 
 		ProcessInstance thisProcessInstance = thisActivityInstance.getProcessInstance(currentSession);
 		
 		((WorkflowSessionLocalImpl)currentSession).setCurrentProcessInstance(thisProcessInstance);
 		((WorkflowSessionLocalImpl)currentSession).setCurrentActivityInstance(thisActivityInstance);
 		
-		ActivityInstanceManager actInstMgr = rtCtx.getEngineModule(ActivityInstanceManager.class, thisActivityInstance.getProcessType());
-		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, thisActivityInstance.getProcessType());
-		CalendarService calendarService = rtCtx.getEngineModule(CalendarService.class,  thisActivityInstance.getProcessType());
-		
-		WorkItemPersister workItemPersister = persistenceService.getWorkItemPersister();
+
 		
 		((AbsWorkItem)workItemToBeCompleted).setState(WorkItemState.COMPLETED);
 		((AbsWorkItem)workItemToBeCompleted).setEndTime(calendarService.getSysDate());
@@ -520,7 +543,7 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 				} else {
 					List<WorkItem> workItemsWithSameParent = workItemPersister
 							.findWorkItemsForActivityInstance(workItemToBeCompleted
-									.getActivityInstance().getId(), workItemToBeCompleted
+									.getActivityInstanceId(), workItemToBeCompleted
 									.getParentWorkItemId());
 					boolean canCompleteActivityInstance = true;
 					for(WorkItem wiTmp : workItemsWithSameParent){
@@ -547,7 +570,7 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 				} else {
 					List<WorkItem> workItemsWithSameParent = workItemPersister
 							.findWorkItemsForActivityInstance(workItemToBeCompleted
-									.getActivityInstance().getId(), workItemToBeCompleted
+									.getActivityInstanceId(), workItemToBeCompleted
 									.getParentWorkItemId());
 					
 					boolean canReturnToParentWorkItem = true;

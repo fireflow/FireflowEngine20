@@ -36,7 +36,7 @@ import org.fireflow.engine.modules.ousystem.User;
 public interface WorkflowSession extends Serializable {
 	public static final String CURRENT_PROCESS_INSTANCE = "CURRENT_PROCESS_INSTANCE";
 	public static final String CURRENT_ACTIVITY_INSTANCE = "CURRENT_ACTIVITY_INSTANCE";
-//	public static final String LATEST_CREATED_WORKITEMS = "LATEST_CREATED_WORKITEMS";
+
 	/**
 	 * 唯一标示一个session
 	 */

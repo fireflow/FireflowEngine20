@@ -24,7 +24,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import org.fireflow.engine.entity.runtime.ProcessInstance;
-import org.nutz.dao.entity.annotation.Table;
 
 /**
  * @author 非也
@@ -34,7 +33,7 @@ import org.nutz.dao.entity.annotation.Table;
 @XmlType(name="processInstanceHistoryType")
 @XmlAccessorType(XmlAccessType.FIELD)
 
-@Table("T_FF_HIS_PROCESS_INSTANCE")
+//@Table("T_FF_HIS_PROCESS_INSTANCE")
 public class ProcessInstanceHistory extends AbsProcessInstance implements
 		ProcessInstance, Serializable {
 

@@ -17,6 +17,8 @@
  */
 package org.fireflow.engine.entity.runtime;
 
+import java.util.Date;
+
 import org.fireflow.model.resourcedef.WorkItemAssignmentStrategy;
 
 /**
@@ -92,13 +94,13 @@ public interface LocalWorkItem extends WorkItem{
     
     public void setAttachmentType(String type);
     
-
+    public String getActivityInstanceId(); 
     
     /**
      * 返回任务实例
      * @return
      */
-    public ActivityInstance getActivityInstance();
+//    public ActivityInstance getActivityInstance();
 
     /**
      * 委派(加签)操作中父工作项Id
@@ -128,6 +130,8 @@ public interface LocalWorkItem extends WorkItem{
 	public String getProcInstCreatorName();
 
 	public String getProcInstCreatorId();
+	
+	public Date getProcInstCreatedTime();
 	
 	/**
 	 * 执行步骤号，便于查询排序，等于对应的activityInstance的stepNumber

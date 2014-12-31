@@ -28,8 +28,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.fireflow.engine.entity.AbsWorkflowEntity;
 import org.fireflow.engine.entity.config.ReassignConfig;
 import org.fireflow.server.support.DateTimeXmlAdapter;
-import org.nutz.dao.entity.annotation.Column;
-import org.nutz.dao.entity.annotation.Table;
 
 /**
  * 
@@ -41,76 +39,76 @@ import org.nutz.dao.entity.annotation.Table;
 @XmlType(name="reassignConfigType")
 @XmlAccessorType(XmlAccessType.FIELD)
 
-@Table("T_FF_CFG_REASSIGN_CONFIG")
+//@Table("T_FF_CFG_REASSIGN_CONFIG")
 public class ReassignConfigImpl extends AbsWorkflowEntity implements ReassignConfig{
 	@XmlElement(name="processId")
-	@Column("PROCESS_ID")
+//	@Column("PROCESS_ID")
 	protected String processId;
 	
 	@XmlElement(name="processName")
-	@Column("ROCESS_NAME")
+//	@Column("ROCESS_NAME")
 	protected String processName;
 	
 	@XmlElement(name="processDisplayName")
-	@Column("PROCESS_DISPLAY_NAME")
+//	@Column("PROCESS_DISPLAY_NAME")
 	protected String processDisplayName;
 	
 	@XmlElement(name="processType")
-	@Column("PROCESS_TYPE")
+//	@Column("PROCESS_TYPE")
 	protected String processType;
 	
 	@XmlElement(name="activityId")
-	@Column("ACTIVITY_ID")
+//	@Column("ACTIVITY_ID")
 	protected String activityId;
 	
 	@XmlElement(name="activityName")
-	@Column("ACTIVITY_NAME")
+//	@Column("ACTIVITY_NAME")
 	protected String activityName ;
 	
 	@XmlElement(name="activityDisplayName")
-	@Column("ACTIVITY_DISPLAY_NAME")
+//	@Column("ACTIVITY_DISPLAY_NAME")
 	protected String activityDisplayName;
 	
 	@XmlElement(name="grantorId")
-	@Column("GRANTOR_ID")
+//	@Column("GRANTOR_ID")
 	protected String grantorId;
 	
 	@XmlElement(name="grantorName")
-	@Column("GRANTOR_NAME")
+//	@Column("GRANTOR_NAME")
 	protected String grantorName;
 	
 	@XmlElement(name="grantorDeptId")
-	@Column("GRANTOR_DEPT_ID")
+//	@Column("GRANTOR_DEPT_ID")
 	protected String grantorDeptId;
 	
 	@XmlElement(name="grantorDeptName")
-	@Column("GRANTOR_DEPT_NAME")
+//	@Column("GRANTOR_DEPT_NAME")
 	protected String grantorDeptName;
 	
 	@XmlElement(name="agentId")
-	@Column("AGENT_ID")
+//	@Column("AGENT_ID")
 	protected String agentId;
 	
 	@XmlElement(name="agentName")
-	@Column("AGENT_NAME")
+//	@Column("AGENT_NAME")
 	protected String agentName;
 	
 	@XmlElement(name="agentType")
-	@Column("AGENT_TYPE")
+//	@Column("AGENT_TYPE")
 	protected String agentType;
 	
 	@XmlElement(name="startTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
-	@Column("START_TIME")
+//	@Column("START_TIME")
 	protected Date startTime;
 	
 	@XmlElement(name="endTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
-	@Column("END_TIME")
+//	@Column("END_TIME")
 	protected Date endTime;
 	
 	@XmlElement(name="alive")
-	@Column("ALIVE")
+//	@Column("ALIVE")
 	protected Boolean alive;
 	
 

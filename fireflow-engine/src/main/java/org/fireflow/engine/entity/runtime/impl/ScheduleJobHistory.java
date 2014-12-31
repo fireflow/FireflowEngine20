@@ -23,7 +23,6 @@ import javax.xml.bind.annotation.XmlType;
 
 import org.fireflow.engine.entity.runtime.ActivityInstance;
 import org.fireflow.engine.entity.runtime.ScheduleJob;
-import org.nutz.dao.entity.annotation.Table;
 
 /**
  * 
@@ -34,7 +33,7 @@ import org.nutz.dao.entity.annotation.Table;
 @XmlRootElement(name="scheduleJobHistory")
 @XmlType(name="scheduleJobHistoryType")
 @XmlAccessorType(XmlAccessType.FIELD)
-@Table("T_FF_HIS_SCHEDULE")
+//@Table("T_FF_HIS_SCHEDULE")
 public class ScheduleJobHistory extends AbsScheduleJob implements ScheduleJob {
 	
 	//TODO 此处为何还需要activityInstanceId属性？

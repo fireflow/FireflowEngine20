@@ -27,13 +27,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.namespace.QName;
 
 import org.fireflow.engine.entity.AbsWorkflowEntity;
-import org.fireflow.engine.entity.nutz.QNameValueAdaptor;
-import org.fireflow.engine.entity.nutz.VariableHeaderValueAdaptor;
-import org.fireflow.engine.entity.nutz.VariablePayloadValueAdaptor;
 import org.fireflow.engine.entity.runtime.Variable;
 import org.fireflow.server.support.ObjectXmlAdapter;
 import org.fireflow.server.support.PropertiesXmlAdapter;
-import org.nutz.dao.entity.annotation.Column;
 
 /**
  * @author 非也
@@ -44,21 +40,21 @@ import org.nutz.dao.entity.annotation.Column;
 @XmlSeeAlso({VariableImpl.class,VariableHistory.class})
 public abstract class AbsVariable extends AbsWorkflowEntity implements Variable {
 	@XmlElement(name="scopeId")
-	@Column("SCOPE_ID")
+//	@Column("SCOPE_ID")
 	protected String scopeId  = null;
 	
 	@XmlElement(name="name")
-	@Column("NAME")
+//	@Column("NAME")
 	protected String name = null;
 	
 	@XmlElement(name="headers")
-	@Column(value="HEADERS",adaptor=VariableHeaderValueAdaptor.class)
+//	@Column(value="HEADERS",adaptor=VariableHeaderValueAdaptor.class)
 	@XmlJavaTypeAdapter(PropertiesXmlAdapter.class)
 	protected Properties headers = new Properties();
 	
 	@XmlElement(name="dataType")
-	//@XmlJavaTypeAdapter(QNameXmlAdapter.class)//QName有缺省的映射
-	@Column(value="DATA_TYPE",adaptor=QNameValueAdaptor.class)
+//	@XmlJavaTypeAdapter(QNameXmlAdapter.class)//QName有缺省的映射，此处不需要
+//	@Column(value="DATA_TYPE",adaptor=QNameValueAdaptor.class)
 	protected QName dataType = null;
 //	String javaClassName = null;
 
@@ -69,23 +65,23 @@ public abstract class AbsVariable extends AbsWorkflowEntity implements Variable 
 //	Map<String,String> schemas = null;
 	@XmlElement(name="payload")
 	@XmlJavaTypeAdapter(ObjectXmlAdapter.class)
-	@Column(value="PAYLOAD",adaptor=VariablePayloadValueAdaptor.class)
+//	@Column(value="PAYLOAD",adaptor=VariablePayloadValueAdaptor.class)
 	protected Object payload = null;
 	
 	@XmlElement(name="processElementId")
-	@Column("PROCESS_ELEMENT_ID")
+//	@Column("PROCESS_ELEMENT_ID")
 	protected String processElementId = null;
 	
 	@XmlElement(name="processId")
-	@Column("PROCESS_ID")
+//	@Column("PROCESS_ID")
 	protected String processId = null;
 	
 	@XmlElement(name="version")
-	@Column("VERSION")
+//	@Column("VERSION")
 	protected Integer version = null;
 	
 	@XmlElement(name="processType")
-	@Column("PROCESS_TYPE")
+//	@Column("PROCESS_TYPE")
 	protected String processType = null;
 	
 	public String getScopeId() {

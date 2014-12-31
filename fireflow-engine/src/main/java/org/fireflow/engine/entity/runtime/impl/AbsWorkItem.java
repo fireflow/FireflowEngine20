@@ -21,13 +21,12 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.fireflow.engine.entity.AbsWorkflowEntity;
-import org.fireflow.engine.entity.runtime.ActivityInstance;
+import org.fireflow.engine.entity.runtime.RemoteWorkItem;
 import org.fireflow.engine.entity.runtime.WorkItem;
 import org.fireflow.engine.entity.runtime.WorkItemState;
 import org.fireflow.model.resourcedef.WorkItemAssignmentStrategy;
@@ -42,26 +41,31 @@ import org.fireflow.server.support.DateTimeXmlAdapter;
 @XmlType(name="absWorkItemType")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso({LocalWorkItemImpl.class,RemoteWorkItemImpl.class,WorkItemHistory.class})
-public  class AbsWorkItem extends AbsWorkflowEntity implements WorkItem{
+public abstract class AbsWorkItem extends AbsWorkflowEntity implements WorkItem{
 	/**
 	 * work item 类型，LOCAL表示本地WorkItem，REMOTE表示远程workitem，NOT_FF表示非FF workitem；，如果为远程workitem则需要应用到workflowEngineLocation
 	 */
 	@XmlElement(name="workItemType")
+//	@Column("WORKITEM_TYPE")
+//	@ColDefine(width=256)
 	protected String workItemType = WORKITEM_TYPE_LOCAL;//是否为远程workitem
 	
 	/**
 	 * 等于activityInstance.displayName
 	 */
 	@XmlElement(name="workItemName")
+//	@Column("WORKITEM_NAME")
 	protected String workItemName = null;
 	
 	/**
 	 * 工作项摘要
 	 */
 	@XmlElement(name="subject")
+//	@Column("SUBJECT")
 	protected String subject = null;//
 	
 	@XmlElement(name="state")
+//	@Column(value="STATE",adaptor=WorkItemStateValueAdaptor.class)
 	protected WorkItemState state = WorkItemState.INITIALIZED;
 	
 	/**
@@ -69,6 +73,7 @@ public  class AbsWorkItem extends AbsWorkflowEntity implements WorkItem{
 	 */
 	@XmlElement(name="createdTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
+//	@Column("CREATED_TIME")
 	protected Date createdTime;
 	
 
@@ -77,10 +82,12 @@ public  class AbsWorkItem extends AbsWorkflowEntity implements WorkItem{
      */
 	@XmlElement(name="claimedTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
+//	@Column("CLAIMED_TIME")
 	protected Date claimedTime;
 	
 	@XmlElement(name="endTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
+//	@Column("END_TIME")
 	protected Date endTime;
 	
 	/**
@@ -88,36 +95,45 @@ public  class AbsWorkItem extends AbsWorkflowEntity implements WorkItem{
 	 */
 	@XmlElement(name="expiredTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
+//	@Column("EXPIRED_TIME")
 	protected Date expiredTime;
 	
 	@XmlElement(name="ownerId")
+//	@Column("OWNER_ID")
 	protected String ownerId;
 	
 	@XmlElement(name="ownerName")
+//	@Column("OWNER_NAME")
 	protected String ownerName;
 	
 	@XmlElement(name="ownerDeptId")
+//	@Column("OWNER_DETP_ID")
 	protected String ownerDeptId;
 	
 	@XmlElement(name="ownerDeptName")
+//	@Column("OWNER_DETP_NAME")
 	protected String ownerDeptName;
 	
 	/**
 	 * 表单Url
 	 */
 	@XmlElement(name="actionUrl")
+//	@Column("ACTION_URL")
 	protected String actionUrl;
 	
 	@XmlElement(name="mobileActionUrl")
+//	@Column("MOBILE_ACTION_URL")
 	protected String mobileActionUrl;
 	
 	/**
 	 * 产生该工作项的业务系统名称
 	 */
 	@XmlElement(name="originalSystemName")
+//	@Column("ORIGINAL_SYSTEM_NAME")
 	protected String originalSystemName = null;
 	
 	@XmlElement(name="bizId")
+//	@Column("BIZ_ID")
 	protected String bizId = null;
 	
 	@XmlElement(name="note")
@@ -127,43 +143,55 @@ public  class AbsWorkItem extends AbsWorkflowEntity implements WorkItem{
 	 * 工作项在原业务系统的Id
 	 */
 	@XmlElement(name="remoteWorkItemId")
+//	@Column("REMOTE_WORKITEM_ID")
 	protected String remoteWorkItemId = null;
 
 	@XmlElement(name="ownerType")
+//	@Column("OWNER_TYPE")
 	protected String ownerType;
 
 	@XmlElement(name="assignmentStrategy")
+//	@Column(value="ASSIGNMENT_STRATEGY",adaptor=AssignmentStrategyValueAdaptor.class)
+//	@ColDefine(width=256)
     protected WorkItemAssignmentStrategy assignmentStrategy = WorkItemAssignmentStrategy.ASSIGN_TO_ANY;
 	
 	@XmlElement(name="responsiblePersonId")
+//	@Column("RESPONSIBLE_PERSON_ID")
 	protected String responsiblePersonId;
 	
 	@XmlElement(name="responsiblePersonName")
+//	@Column("RESPONSIBLE_PERSON_NAME")
 	protected String responsiblePersonName;
 	
 	@XmlElement(name="responsiblePersonOrgId")
+//	@Column("RESPONSIBLE_PERSON_DEPT_ID")
 	protected String responsiblePersonOrgId;
 	
 	@XmlElement(name="responsiblePersonOrgName")
+//	@Column("RESPONSIBLE_PERSON_DEPT_NAME")
 	protected String responsiblePersonOrgName;	
 
 	
 	@XmlElement(name="reassignType")
+//	@Column("REASSIGN_TYPE")
 	protected String reassignType;
 	
 	@XmlElement(name="parentWorkItemId")
+//	@Column("PARENT_WORKITEM_ID")
 	protected String parentWorkItemId = WorkItem.NO_PARENT_WORKITEM;
 
 	@XmlElement(name="attachmentId")
+//	@Column("ATTACHMENT_ID")
 	protected String attachmentId;
 	
 	@XmlElement(name="attachmentType")
+//	@Column("ATTACHMENT_TYPE")
 	protected String attachmentType;
 	
 	
-	@XmlElementRef
-	protected AbsActivityInstance activityInstance;
-	
+	@XmlElement(name="activityInstanceId")
+//	@Column("ACTIVITY_INSTANCE_ID")
+	protected String activityInstanceId = null;
 	
 	
     //////////////////////////////////////
@@ -173,33 +201,54 @@ public  class AbsWorkItem extends AbsWorkflowEntity implements WorkItem{
 	 * 流程创建者的姓名。
 	 */
 	@XmlElement(name="procInstCreatorName")
+//	@Column("PROCINST_CREATOR_NAME")
 	protected String procInstCreatorName = null;
 	
 	@XmlElement(name="procInstCreatorId")
+//	@Column("PROCINST_CREATOR_ID")
 	protected String procInstCreatorId = null;
 	
+	@XmlElement(name="procInstCreatedTime")
+//	@Column("PROCINST_CREATED_TIME")
+	protected Date procInstCreatedTime = null;
+	
 	@XmlElement(name="processId")
+//	@Column("PROCESS_ID")
     protected String processId = null;
 	
 	@XmlElement(name="version")
+//	@Column("VERSION")
     protected int version = 0;
 	
 	@XmlElement(name="processType")
+//	@Column("PROCESS_TYPE")
     protected String processType = null;
 	
 	@XmlElement(name="subProcessId")
+//	@Column("SUBPROCESS_ID")
     protected String subProcessId = null;
 	
 	@XmlElement(name="processInstanceId")
+//	@Column("PROCESS_INSTANCE_ID")
     protected String processInstanceId = null;
 	
 	@XmlElement(name="activityId")
+//	@Column("ACTIVITY_ID")
     protected String activityId = null;
 	
 	@XmlElement(name="stepNumber")
+//	@Column("STEP_NUMBER")
     protected int stepNumber = -1;
     
     
+
+	public Date getProcInstCreatedTime() {
+		return procInstCreatedTime;
+	}
+
+	public void setProcInstCreatedTime(Date procInstCreatedTime) {
+		this.procInstCreatedTime = procInstCreatedTime;
+	}
 
 	/**
 	 * @return the state
@@ -635,35 +684,35 @@ public  class AbsWorkItem extends AbsWorkflowEntity implements WorkItem{
 	public void setProcInstCreatorId(String procInstCreatorId) {
 		this.procInstCreatorId = procInstCreatorId;
 	}
+    public String getActivityInstanceId(){
+    	return this.activityInstanceId;
+    }
+    public void setActivityInstanceId(String actInstId){
+    	this.activityInstanceId = actInstId;
+    }
+//	/**
+//	 * @return the activityInstance
+//	 */
+//	public abstract ActivityInstance getActivityInstance();
+//
+//	
+//	/**
+//	 * @param activityInstance the activityInstance to set
+//	 */
+//	public abstract void setActivityInstance(ActivityInstance activityInstance);
 
-	/**
-	 * @return the activityInstance
-	 */
-	public ActivityInstance getActivityInstance() {
-		return activityInstance;
-	}
-
-	
-	/**
-	 * @param activityInstance the activityInstance to set
-	 */
-	public void setActivityInstance(ActivityInstance activityInstance) {
-		this.activityInstance = (AbsActivityInstance)activityInstance;
-	}
-
-	public WorkItem clone(){
+	public Object clone(){
 		AbsWorkItem wi = null;
+		
 		if (this instanceof LocalWorkItemImpl){
 			wi = new LocalWorkItemImpl();
-		}
-		else if (this instanceof RemoteWorkItemImpl){
-			wi = new RemoteWorkItemImpl();
-		}
-		else if (this instanceof WorkItemHistory){
+		}else if (this instanceof WorkItemHistory){
 			wi = new WorkItemHistory();
-		}else {
-			return null;
-		}
+		}else if (this instanceof RemoteWorkItem){
+			wi = new RemoteWorkItemImpl();
+		}else return null;
+		
+		
 		wi.setWorkItemType(this.workItemType);
 		wi.setWorkItemName(this.workItemName);
 		wi.setSubject(this.subject);
@@ -713,8 +762,11 @@ public  class AbsWorkItem extends AbsWorkflowEntity implements WorkItem{
 		wi.setActivityId(activityId);
 		wi.setStepNumber(this.stepNumber);
 		
-		wi.setActivityInstance(this.activityInstance);
+		wi.setActivityInstanceId(this.activityInstanceId);
+//		wi.setActivityInstance(this.activityInstance);
+		wi.setProcInstCreatedTime(this.procInstCreatedTime);
 		
 		return wi;
 	}
+
 }

@@ -6,7 +6,8 @@ import java.util.ResourceBundle;
 import org.fireflow.engine.modules.event.EventTrigger;
 
 public enum WorkItemEventTrigger implements EventTrigger{
-	ON_WORKITEM_CREATED,
+	BEFORE_WORKITEM_CREATED,
+	AFTER_WORKITEM_CREATED,
 	BEFORE_WORKITEM_CLAIMED,
 	AFTER_WORKITEM_CLAIMED,
 	AFTER_WORKITEM_END

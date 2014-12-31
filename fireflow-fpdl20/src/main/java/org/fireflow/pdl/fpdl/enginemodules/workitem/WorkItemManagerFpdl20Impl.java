@@ -19,7 +19,6 @@ package org.fireflow.pdl.fpdl.enginemodules.workitem;
 
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.script.ScriptException;
 
@@ -144,7 +143,9 @@ public class WorkItemManagerFpdl20Impl extends AbsWorkItemManager {
 					formUrl = formUrl + "?"+queryStr.toString();
 				}
 			}
-
+			
+			//TODO 是否要将WorkItemId固定追加在url末尾？
+			//注：此处无法将workItemId追加在url末尾，因为此时workItem还未保存，id属性还为空
 		}
 		wi.setActionUrl(formUrl);
 		wi.setBizId(activityInstance.getBizId());
@@ -180,6 +181,7 @@ public class WorkItemManagerFpdl20Impl extends AbsWorkItemManager {
 		
 		wi.setProcInstCreatorId(processInstance.getCreatorId());
 		wi.setProcInstCreatorName(processInstance.getCreatorName());
+		wi.setProcInstCreatedTime(processInstance.getCreatedTime());
 		wi.setProcessId(processInstance.getProcessId());
 		wi.setSubProcessId(processInstance.getSubProcessId());
 		wi.setProcessType(processInstance.getProcessType());
@@ -188,13 +190,17 @@ public class WorkItemManagerFpdl20Impl extends AbsWorkItemManager {
 		wi.setProcessInstanceId(processInstance.getId());
 		wi.setStepNumber(activityInstance.getStepNumber());
 		
-		wi.setActivityInstance(activityInstance);
+		wi.setActivityInstanceId(activityInstance.getId());
+		
+		// 发布事件
+		this.fireWorkItemEvent(currentSession, wi, theActivity,
+				WorkItemEventTrigger.BEFORE_WORKITEM_CREATED);
 		
 		workItemPersister.saveOrUpdate(wi);
 
 		// 发布事件
 		this.fireWorkItemEvent(currentSession, wi, theActivity,
-				WorkItemEventTrigger.ON_WORKITEM_CREATED);
+				WorkItemEventTrigger.AFTER_WORKITEM_CREATED);
 		return wi;
 	}
 

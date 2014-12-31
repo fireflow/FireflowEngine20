@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
-	<class dynamic-update="true"
-		name="org.fireflow.engine.entity.repository.impl.ProcessDescriptorImpl" table="T_FF_DF_PROCESS_REPOSITORY">
+<nutz-mapping>
+	<class name="org.fireflow.engine.entity.repository.impl.ProcessDescriptorImpl" table="T_FF_DF_PROCESS_REPOSITORY">
 		<id name="id" type="java.lang.String">
 			<column length="50" name="ID" />
-			<generator class="uuid.hex">
-			</generator>
 		</id>
 		<property name="processId" type="java.lang.String">
 			<column length="100" name="PROCESS_ID" not-null="true" />
@@ -85,4 +81,4 @@
 			<column length="1024" name="UPDATE_LOG" />
 		</property>
 	</class>
-</hibernate-mapping>
+</nutz-mapping>

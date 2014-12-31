@@ -30,8 +30,11 @@ public abstract class AbsWorkItemEventListener implements WorkItemEventListener 
 	 */
 	final public void onWorkItemEventFired(WorkItemEvent e) {
 		WorkItemEventTrigger type = e.getEventTrigger();
-		if (type.equals(WorkItemEventTrigger.ON_WORKITEM_CREATED)){
-			this.onWorkItemCreated(e);
+		if (type.equals(WorkItemEventTrigger.BEFORE_WORKITEM_CREATED)){
+			this.beforeWorkItemCreated(e);
+		}
+		if (type.equals(WorkItemEventTrigger.AFTER_WORKITEM_CREATED)){
+			this.afterWorkItemCreated(e);
 		}
 
 		else if (type.equals(WorkItemEventTrigger.AFTER_WORKITEM_END)){
@@ -44,8 +47,12 @@ public abstract class AbsWorkItemEventListener implements WorkItemEventListener 
 			beforeWorkItemClaimed(e);
 		}
 	}
+	
+	protected void beforeWorkItemCreated(WorkItemEvent e){
+		
+	}
 
-	protected void onWorkItemCreated(WorkItemEvent e){
+	protected void afterWorkItemCreated(WorkItemEvent e){
 		
 	}
 	

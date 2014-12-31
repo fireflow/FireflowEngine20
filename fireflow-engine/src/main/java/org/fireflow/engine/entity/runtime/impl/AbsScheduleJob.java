@@ -21,18 +21,14 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.fireflow.engine.entity.AbsWorkflowEntity;
-import org.fireflow.engine.entity.nutz.ScheduleJobStateValueAdaptor;
-import org.fireflow.engine.entity.runtime.ActivityInstance;
 import org.fireflow.engine.entity.runtime.ScheduleJob;
 import org.fireflow.engine.entity.runtime.ScheduleJobState;
 import org.fireflow.server.support.DateTimeXmlAdapter;
-import org.nutz.dao.entity.annotation.Column;
 
 /**
  * 
@@ -45,68 +41,68 @@ import org.nutz.dao.entity.annotation.Column;
 @XmlSeeAlso({ScheduleJobImpl.class,ScheduleJobHistory.class})
 public abstract class AbsScheduleJob extends AbsWorkflowEntity implements ScheduleJob{
 	@XmlElement(name="name")
-	@Column("NAME")
+//	@Column("NAME")
 	protected String name = null;
 	
 	@XmlElement(name="displayName")
-	@Column("DISPLAY_NAME")
+//	@Column("DISPLAY_NAME")
 	protected String displayName = null;
 	
 	@XmlElement(name="createdTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
-	@Column("CREATED_TIME")
+//	@Column("CREATED_TIME")
 	protected Date createdTime;
 	
 	@XmlElement(name="triggeredTimes")
-	@Column("TRIGGED_TIMES")
+//	@Column("TRIGGED_TIMES")
 	protected Integer triggeredTimes = 0;
 	
 	@XmlElement(name="latestTriggeredTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
-	@Column("LATEST_TRIGGERED_TIME")
+//	@Column("LATEST_TRIGGERED_TIME")
 	protected Date latestTriggeredTime = null;
 	
 	@XmlElement(name="triggerType")
-	@Column("TRIGGER_TYPE")
+//	@Column("TRIGGER_TYPE")
 	protected String triggerType;
 	
 	@XmlElement(name="triggerExpression")
-	@Column("TRIGGER_EXPRESSION")
+//	@Column("TRIGGER_EXPRESSION")
 	protected String triggerExpression;
 	
 	@XmlElement(name="endTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
-	@Column("END_TIME")
+//	@Column("END_TIME")
 	protected Date endTime;
 
 	@XmlElement(name="state")
-	@Column(value="STATE",adaptor = ScheduleJobStateValueAdaptor.class)
+//	@Column(value="STATE",adaptor = ScheduleJobStateValueAdaptor.class)
 	protected ScheduleJobState state = ScheduleJobState.RUNNING;
 	
 
 	
 	@XmlElement(name="processId")
-	@Column("PROCESS_ID")
+//	@Column("PROCESS_ID")
 	protected String processId;
 	
 	@XmlElement(name="processType")
-	@Column("PROCESS_TYPE")
+//	@Column("PROCESS_TYPE")
 	protected String processType;
 	
 	@XmlElement(name="version")
-	@Column("VERSION")
+//	@Column("VERSION")
 	protected Integer version;
 	
 	@XmlElement(name="createNewProcessInstance")
-	@Column("CREATE_NEW_PROCESS_INSTANCE")
+//	@Column("CREATE_NEW_PROCESS_INSTANCE")
 	protected Boolean createNewProcessInstance = false;
 	
 	@XmlElement(name="cancelAttachedToActivity")
-	@Column("CANCEL_ATTACHED_TO_ACTIVITY")
+//	@Column("CANCEL_ATTACHED_TO_ACTIVITY")
 	protected Boolean cancelAttachedToActivity=false;
 	
 	@XmlElement(name="note")
-	@Column("NOTE")
+//	@Column("NOTE")
 	protected String note;
 	
 	

@@ -18,7 +18,6 @@
 package org.fireflow.engine.entity.config;
 
 import org.fireflow.engine.entity.WorkflowEntity;
-import org.nutz.dao.entity.annotation.Table;
 
 /**
  * FireWorkflow引擎设置参数

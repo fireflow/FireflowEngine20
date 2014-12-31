@@ -21,8 +21,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.nutz.dao.entity.annotation.Table;
-
 // Generated Feb 23, 2008 12:04:21 AM by Hibernate Tools 3.2.0.b9
 
 /**
@@ -32,7 +30,7 @@ import org.nutz.dao.entity.annotation.Table;
 @XmlRootElement(name="activityInstance")
 @XmlType(name="activityInstanceType")
 @XmlAccessorType(XmlAccessType.FIELD)
-@Table("T_FF_RT_ACTIVITY_INSTANCE")
+//@Table("T_FF_RT_ACTIVITY_INSTANCE")
 public class ActivityInstanceImpl extends AbsActivityInstance implements java.io.Serializable {
 
  

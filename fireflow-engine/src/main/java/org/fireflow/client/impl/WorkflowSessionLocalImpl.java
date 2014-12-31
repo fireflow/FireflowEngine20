@@ -64,7 +64,7 @@ public class WorkflowSessionLocalImpl implements WorkflowSession,RuntimeContextA
 	protected Map<String,AssignmentHandler> dynamicAssignmentHandlers = new HashMap<String,AssignmentHandler>();
 	
 	@XmlTransient
-	protected List<WorkItem> latestCreatedWorkItems = new ArrayList<WorkItem>();
+	protected List<WorkItem> newWorkItemsForCurrentUser = new ArrayList<WorkItem>();
 	
 	@XmlTransient
 	protected RuntimeContext context = null;
@@ -157,16 +157,11 @@ public class WorkflowSessionLocalImpl implements WorkflowSession,RuntimeContextA
 	/* (non-Javadoc)
 	 * @see org.fireflow.engine.WorkflowSession#getLatestCreatedWorkItems()
 	 */
-	public List<WorkItem> getLatestCreatedWorkItems() {
+	public List<WorkItem> getNewWorkItemsForCurrentUser() {
 		
-		return latestCreatedWorkItems;
+		return newWorkItemsForCurrentUser;
 	}
-	
-	public void setLatestCreatedWorkItems(List<WorkItem> workItems){
-		if (workItems!=null){
-			latestCreatedWorkItems.addAll(workItems);
-		}
-	}
+
 
 	/* (non-Javadoc)
 	 * @see org.fireflow.engine.WorkflowSession#putAllAttributes(java.util.Map)

@@ -59,7 +59,7 @@
 				<comment>业务类别名称</comment>
 			</column>
 		</property>			
-		<property name="state" type="org.fireflow.engine.modules.persistence.hibernate.ProcessInstanceStateType">
+		<property name="state" adaptor="org.fireflow.engine.entity.nutz.ProcessInstanceStateValueAdaptor">
 			<column length="2" name="STATE" not-null="true">
 				<comment>流程实例状态</comment>
 			</column>

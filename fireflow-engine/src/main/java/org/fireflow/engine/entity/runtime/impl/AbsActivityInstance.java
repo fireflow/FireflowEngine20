@@ -31,7 +31,6 @@ import org.fireflow.client.WorkflowSession;
 import org.fireflow.client.WorkflowStatement;
 import org.fireflow.client.impl.WorkflowStatementLocalImpl;
 import org.fireflow.engine.entity.AbsWorkflowEntity;
-import org.fireflow.engine.entity.nutz.ActivityInstanceStateValueAdaptor;
 import org.fireflow.engine.entity.repository.ProcessKey;
 import org.fireflow.engine.entity.runtime.ActivityInstance;
 import org.fireflow.engine.entity.runtime.ActivityInstanceState;
@@ -39,7 +38,6 @@ import org.fireflow.engine.entity.runtime.ProcessInstance;
 import org.fireflow.engine.exception.InvalidOperationException;
 import org.fireflow.model.InvalidModelException;
 import org.fireflow.server.support.DateTimeXmlAdapter;
-import org.nutz.dao.entity.annotation.Column;
 
 
 /**
@@ -51,145 +49,145 @@ import org.nutz.dao.entity.annotation.Column;
 @XmlSeeAlso({ActivityInstanceImpl.class,ActivityInstanceHistory.class})
 public abstract class AbsActivityInstance extends AbsWorkflowEntity implements ActivityInstance {
 	@XmlElement(name="procInstCreatorId")
-	@Column("PROCINST_CREATOR_ID")
+//	@Column("PROCINST_CREATOR_ID")
 	protected String procInstCreatorId = null;
 	
 	@XmlElement(name="procInstCreatorName")
-	@Column("PROCINST_CREATOR_NAME")
+//	@Column("PROCINST_CREATOR_NAME")
 	protected String procInstCreatorName = null;
 	
 	@XmlElement(name="procInstCreatedTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
-	@Column("PROCINST_CREATED_TIME")
+//	@Column("PROCINST_CREATED_TIME")
 	protected Date procInstCreatedTime = null;
 	
 	@XmlElement(name="name")
-	@Column("NAME")
+//	@Column("NAME")
 	protected String name = null;
 	
 	@XmlElement(name="displayName")
-	@Column("DISPLAY_NAME")
+//	@Column("DISPLAY_NAME")
 	protected String displayName = null;
 	
 	@XmlElement(name="nodeId")
-	@Column("NODE_ID")
+//	@Column("NODE_ID")
 	protected String nodeId = null;
     
 	@XmlElement(name="processId")
-	@Column("PROCESS_ID")
+//	@Column("PROCESS_ID")
 	protected String processId = null;
 	
 	@XmlElement(name="version")
-	@Column("VERSION")
+//	@Column("VERSION")
 	protected Integer version = null;
 	
 	@XmlElement(name="processType")
-	@Column("PROCESS_TYPE")
+//	@Column("PROCESS_TYPE")
 	protected String processType = null;   
 	
 	@XmlElement(name="subProcessId")
-	@Column("SUBPROCESS_ID")
+//	@Column("SUBPROCESS_ID")
 	protected String subProcessId = null;
 	
 	@XmlElement(name="processName")
-	@Column("PROCESS_NAME")
+//	@Column("PROCESS_NAME")
 	protected String processName = null;
 	
 	@XmlElement(name="processDisplayName")
-	@Column("PROCESS_DISPLAY_NAME")
+//	@Column("PROCESS_DISPLAY_NAME")
 	protected String processDisplayName = null;
 	
 	@XmlElement(name="subProcessName")
-	@Column("SUBPROCESS_NAME")
+//	@Column("SUBPROCESS_NAME")
 	protected String subProcessName = null;
 	
 	@XmlElement(name="subProcessDisplayName")
-	@Column("SUBPROCESS_DISPLAY_NAME")
+//	@Column("SUBPROCESS_DISPLAY_NAME")
 	protected String subProcessDisplayName= null;
 	
 	
 	@XmlElement(name="bizType")
-	@Column("BIZ_TYPE")
+//	@Column("BIZ_TYPE")
 	protected String bizType = null;
 	
 	@XmlElement(name="serviceId")
-	@Column("SERVICE_ID")
+//	@Column("SERVICE_ID")
 	protected String serviceId = null;
 	
 	@XmlElement(name="serviceVersion")
-	@Column("SERVICE_VERSION")
+//	@Column("SERVICE_VERSION")
 	protected String serviceVersion = null;
 	
 	@XmlElement(name="serviceType")
-	@Column("SERVICE_TYPE")
+//	@Column("SERVICE_TYPE")
 	protected String serviceType = null;
     
 	@XmlElement(name="bizId")
-	@Column("BIZ_ID")
+//	@Column("BIZ_ID")
 	protected String bizId = null;
 	
 	@XmlElement(name="subBizId")
-	@Column("SUB_BIZ_ID")
+//	@Column("SUB_BIZ_ID")
 	protected String subBizId = null;
 
 	@XmlElement(name="state")
-	@Column(value="STATE",adaptor=ActivityInstanceStateValueAdaptor.class)
+//	@Column(value="STATE",adaptor=ActivityInstanceStateValueAdaptor.class)
 	protected ActivityInstanceState state = ActivityInstanceState.INITIALIZED;
 	
 	@XmlElement(name="suspended")
-	@Column("SUSPENDED")
+//	@Column("SUSPENDED")
 	protected Boolean suspended = Boolean.FALSE;
 	
 	@XmlElement(name="createdTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
-	@Column("CREATED_TIME")
+//	@Column("CREATED_TIME")
 	protected Date createdTime = null;
 	
 	@XmlElement(name="startedTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
-	@Column("STARTED_TIME")
+//	@Column("STARTED_TIME")
 	protected Date startedTime = null;
 	
 	@XmlElement(name="expiredTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
-	@Column("EXPIRED_TIME")
+//	@Column("EXPIRED_TIME")
 	protected Date expiredTime = null;
 	
 	@XmlElement(name="endTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
-	@Column("END_TIME")
+//	@Column("END_TIME")
 	protected Date endTime = null;
 
 	@XmlElement(name="processInstanceId")
-	@Column("PROCESSINSTANCE_ID")
+//	@Column("PROCESSINSTANCE_ID")
 	protected String processInstanceId = null;
 	
 	@XmlElement(name="parentScopeId")
-	@Column("PARENT_SCOPE_ID")
+//	@Column("PARENT_SCOPE_ID")
 	protected String parentScopeId = null;
 	
 	@XmlElement(name="tokenId")
-	@Column("TOKEN_ID")
+//	@Column("TOKEN_ID")
 	protected String tokenId = null;
 	
 	@XmlElement(name="stepNumber")
-	@Column("STEP_NUMBER")
+//	@Column("STEP_NUMBER")
 	protected Integer stepNumber = null;    
 
 	@XmlElement(name="targetActivityId")
-	@Column("TARGET_ACTIVITY_ID")
+//	@Column("TARGET_ACTIVITY_ID")
 	protected String targetActivityId = null;
 	
 	@XmlElement(name="fromActivityId")
-	@Column("FROM_ACTIVITY_ID")
+//	@Column("FROM_ACTIVITY_ID")
 	protected String fromActivityId = null;
 	
 	@XmlElement(name="canBeWithdrawn")
-	@Column("CAN_BE_WITHDRAWN")
+//	@Column("CAN_BE_WITHDRAWN")
 	protected Boolean canBeWithdrawn = true;
 
 	@XmlElement(name="note")
-	@Column("NOTE")
+//	@Column("NOTE")
 	protected String note = null;
 
 

@@ -42,9 +42,6 @@ import org.fireflow.engine.entity.runtime.impl.WorkItemHistory;
 import org.fireflow.pvm.kernel.impl.TokenHistory;
 import org.fireflow.pvm.kernel.impl.TokenImpl;
 import org.fireflow.server.support.DateTimeXmlAdapter;
-import org.nutz.dao.entity.annotation.Column;
-import org.nutz.dao.entity.annotation.Name;
-import org.nutz.dao.entity.annotation.Readonly;
 
 /**
  *
@@ -63,13 +60,13 @@ import org.nutz.dao.entity.annotation.Readonly;
 	ReassignConfigImpl.class,FireflowConfigImpl.class})
 public abstract class AbsWorkflowEntity implements WorkflowEntity {
 	@XmlElement(name="entityId")
-	@Name()
+//	@Name() //nutz标注，已解耦
 	protected String id = null;
 	
 	@XmlElement(name="lastUpdateTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
-	@Column("LAST_UPDATE_TIME")
-	@Readonly
+//	@Column("LAST_UPDATE_TIME") //nutz标注，已解耦
+//	@Readonly
 	protected Date lastUpdateTime = null;
 	
 	/* (non-Javadoc)

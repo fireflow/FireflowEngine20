@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
+<nutz-mapping>
 	<class name="org.fireflow.engine.entity.runtime.impl.WorkItemHistory"
 		table="T_FF_HIS_WORKITEM">
 		<id name="id" type="java.lang.String">
@@ -227,9 +226,7 @@
 				<comment>步骤号</comment>
 			</column>
 		</property>
-		<many-to-one cascade="save-update" class="org.fireflow.engine.entity.runtime.impl.ActivityInstanceHistory" 
-			column="ACTIVITY_INSTANCE_ID" fetch="join" lazy="false" name="activityInstance" 
-			update="false" not-null="false"/> 
+
 		<property name="lastUpdateTime" type="java.util.Date"
 			generated="always">
 			<column name="LAST_UPDATE_TIME" sql-type="timestamp" default="CURRENT_TIMESTAMP">
@@ -237,6 +234,5 @@
 			</column>
 		</property>
 
-
 	</class>
-</hibernate-mapping>
+</nutz-mapping>

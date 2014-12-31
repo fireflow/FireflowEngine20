@@ -50,9 +50,9 @@ import org.fireflow.engine.entity.runtime.ScheduleJob;
 import org.fireflow.engine.entity.runtime.Scope;
 import org.fireflow.engine.entity.runtime.Variable;
 import org.fireflow.engine.entity.runtime.WorkItem;
-import org.fireflow.engine.entity.runtime.WorkItemProperty;
 import org.fireflow.engine.entity.runtime.WorkItemState;
 import org.fireflow.engine.entity.runtime.impl.AbsVariable;
+import org.fireflow.engine.entity.runtime.impl.ActivityInstanceImpl;
 import org.fireflow.engine.entity.runtime.impl.ProcessInstanceHistory;
 import org.fireflow.engine.entity.runtime.impl.VariableImpl;
 import org.fireflow.engine.exception.EngineException;
@@ -65,6 +65,7 @@ import org.fireflow.engine.modules.instancemanager.ActivityInstanceManager;
 import org.fireflow.engine.modules.instancemanager.ProcessInstanceManager;
 import org.fireflow.engine.modules.loadstrategy.ProcessLoadStrategy;
 import org.fireflow.engine.modules.ousystem.User;
+import org.fireflow.engine.modules.persistence.ActivityInstancePersister;
 import org.fireflow.engine.modules.persistence.PersistenceService;
 import org.fireflow.engine.modules.persistence.Persister;
 import org.fireflow.engine.modules.persistence.ProcessPersister;
@@ -152,8 +153,8 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 	 * @see
 	 * org.fireflow.engine.api.WorkflowStatement#getLatestCreatedWorkItems()
 	 */
-	public List<WorkItem> getLatestCreatedWorkItems() {
-		return this.session.getLatestCreatedWorkItems();
+	public List<WorkItem> getNewWorkItemsForCurrentUser() {
+		return this.session.getNewWorkItemsForCurrentUser();
 	}
 
 	/*
@@ -550,8 +551,12 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 		
 		LocalWorkItem workItem = (LocalWorkItem)wi;
 
-		ActivityInstance activityInstance = (ActivityInstance) workItem
-				.getActivityInstance();
+		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, workItem.getProcessType());
+
+		ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
+		
+		ActivityInstance activityInstance = actInstPersister.fetch(ActivityInstanceImpl.class, workItem
+				.getActivityInstanceId());
 
 		if (activityInstance.getState().getValue() != ActivityInstanceState.INITIALIZED
 				.getValue()
@@ -598,8 +603,10 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 		
 		LocalWorkItem workItem = (LocalWorkItem)wi;
 
-		ActivityInstance activityInstance = (ActivityInstance) workItem
-				.getActivityInstance();
+		ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
+		
+		ActivityInstance activityInstance = actInstPersister.fetch(ActivityInstanceImpl.class, workItem
+				.getActivityInstanceId());
 		if (workItem.getState().getValue() != WorkItemState.RUNNING.getValue()) {
 
 			throw new InvalidOperationException(
@@ -695,8 +702,11 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 
 		}
 		LocalWorkItem workItem = (LocalWorkItem)wi;
-		ActivityInstance activityInstance = (ActivityInstance) workItem
-				.getActivityInstance();
+
+		ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
+		
+		ActivityInstance activityInstance = actInstPersister.fetch(ActivityInstanceImpl.class, workItem
+				.getActivityInstanceId());
 		if (workItem.getState().getValue() != WorkItemState.RUNNING.getValue()) {
 
 			throw new InvalidOperationException(
@@ -767,9 +777,11 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 		}
 		
 		LocalWorkItem workItem = (LocalWorkItem)wi;
+
+		ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
 		
-		ActivityInstance activityInstance = (ActivityInstance) workItem
-				.getActivityInstance();
+		ActivityInstance activityInstance = actInstPersister.fetch(ActivityInstanceImpl.class, workItem
+				.getActivityInstanceId());
 		if (workItem.getState().getValue() != WorkItemState.RUNNING.getValue()) {
 
 			throw new InvalidOperationException(
@@ -833,9 +845,11 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 		}
 		
 		LocalWorkItem workItem = (LocalWorkItem)wi;
+
+		ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
 		
-		ActivityInstance activityInstance = (ActivityInstance) workItem
-				.getActivityInstance();
+		ActivityInstance activityInstance = actInstPersister.fetch(ActivityInstanceImpl.class, workItem
+				.getActivityInstanceId());
 		if (workItem.getState().getValue() != WorkItemState.RUNNING.getValue()) {
 
 			throw new InvalidOperationException(
@@ -907,7 +921,7 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 
 		ProcessDescriptor descriptor = null;
 		descriptor = createNewProcessDescriptor(ctx,process);
-		
+		((ProcessDescriptorImpl)descriptor).setVersion(version);
 		if(version>0){//做更新操作，先查询楚原有的ProcessDescriptor，如果没有，仍然做插入操作。
 			ProcessDescriptor oldDescriptor = processPersister.findProcessDescriptorByProcessKey(
 					new ProcessKey(descriptor.getProcessId(),version,processType));
@@ -920,8 +934,6 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 				((ProcessDescriptorImpl) oldDescriptor).setLastUpdateTime(calendarService.getSysDate());
 				
 				descriptor = oldDescriptor;//覆盖已有的流程
-			}else{
-				((ProcessDescriptorImpl) descriptor).setVersion(version);//插入指定版本的流程
 			}
 		}
 		
@@ -1352,7 +1364,7 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 	private void resetSession(WorkflowSessionLocalImpl session) {
 		session.setCurrentActivityInstance(null);
 		session.setCurrentProcessInstance(null);
-		session.setLatestCreatedWorkItems(null);
+		session.getNewWorkItemsForCurrentUser().clear();
 	}
 
 	/*

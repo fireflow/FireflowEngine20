@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
-	<class name="org.fireflow.pvm.kernel.impl.TokenHistory"
-		table="T_FF_HIS_TOKEN">
+<nutz-mapping>
+	<class name="org.fireflow.pvm.kernel.impl.TokenImpl"
+		table="T_FF_RT_TOKEN">
 		<id name="id" type="java.lang.String">
 			<column length="50" name="ID" />
 			<generator class="uuid" />
 		</id>
 
 		<property name="processInstanceId" type="java.lang.String">
-			<column length="50" name="PROCESS_INSTANCE_ID" not-null="true" />
+			<column length="50" name="PROCESS_INSTANCE_ID"  />
 		</property>
 		
 		<property name="elementInstanceId" type="java.lang.String">
-			<column length="50" name="ELEMENT_INSTANCE_ID" not-null="true" />
+			<column length="50" name="ELEMENT_INSTANCE_ID"  />
 		</property>
 
 
@@ -29,7 +28,7 @@
 			<column length="4" name="STEP_NUMBER" not-null="true" />
 		</property>
 		<property name="state"
-			type="org.fireflow.engine.modules.persistence.hibernate.TokenStateType">
+			adaptor="org.fireflow.engine.entity.nutz.TokenStateValueAdaptor">
 			<column length="2" name="STATE" not-null="true" />
 		</property>
 
@@ -57,7 +56,7 @@
 		<!--  -->
 		<property name="operationContextName" type="org.fireflow.engine.modules.persistence.hibernate.OperationContextNameType">
 			<column length="50" name="OPERATION_CTX_NAME" />
-		</property>			
+		</property>		
 		<property name="callbackTokenId" type="java.lang.String">
 			<column length="50" name="CALLBACK_TOKEN_ID" />
 		</property>
@@ -66,10 +65,11 @@
 		</property>
 		<property name="fromToken" type="java.lang.String">
 			<column length="50" name="FROM_TOKEN" />
-		</property>		
+		</property>	
 		<property name="attachedToToken" type="java.lang.String">
 			<column length="50" name="ATTACHED_TO_TOKEN" />
 		</property>			
+		
 		<property name="nextCompensationToken" type="java.lang.String">
 			<column length="50" name="NEXT_COMPENSATION_TOKEN" />
 		</property>	
@@ -81,6 +81,6 @@
 			<column name="LAST_UPDATE_TIME"  sql-type="timestamp"  default="CURRENT_TIMESTAMP">
 				<comment>最后更新时间</comment>
 			</column>
-		</property>						
+		</property>							
 	</class>
-</hibernate-mapping>
+</nutz-mapping>

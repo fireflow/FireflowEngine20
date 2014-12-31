@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
-	<class dynamic-update="true"
-		name="org.fireflow.engine.entity.repository.impl.ProcessRepositoryImpl" table="T_FF_DF_PROCESS_REPOSITORY"
+<nutz-mapping>
+	<class name="org.fireflow.engine.entity.repository.impl.ProcessRepositoryImpl" table="T_FF_DF_PROCESS_REPOSITORY"
 		polymorphism="explicit">
 		<id name="id" type="java.lang.String">
 			<column length="50" name="ID" />
@@ -93,5 +91,5 @@
 		
 		
 	</class>
-</hibernate-mapping>
+</nutz-mapping>
 

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
+<nutz-mapping>
 	<class name="org.fireflow.engine.entity.runtime.impl.ProcessInstanceHistory" table="T_FF_HIS_PROCESS_INSTANCE">
 		<id name="id" type="java.lang.String">
 			<column length="50" name="ID" />
-			<generator class="uuid" />
 		</id>
 		<property name="bizId" type="java.lang.String">
 			<column length="100" name="BIZ_ID" >
@@ -61,7 +59,7 @@
 				<comment>业务类别名称</comment>
 			</column>
 		</property>				
-		<property name="state" type="org.fireflow.engine.modules.persistence.hibernate.ProcessInstanceStateType">
+		<property name="state" adaptor="org.fireflow.engine.entity.nutz.ProcessInstanceStateValueAdaptor">
 			<column length="2" name="STATE" not-null="true">
 				<comment>流程实例状态</comment>
 			</column>
@@ -150,4 +148,4 @@
 		</property>			
 	</class>
 
-</hibernate-mapping>
+</nutz-mapping>

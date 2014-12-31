@@ -21,8 +21,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.nutz.dao.entity.annotation.Table;
-
 /**
  * @author 非也
  * @version 2.0
@@ -30,7 +28,7 @@ import org.nutz.dao.entity.annotation.Table;
 @XmlRootElement(name="variableHistory")
 @XmlType(name="variableHistoryType")
 @XmlAccessorType(XmlAccessType.FIELD)
-@Table("T_FF_HIS_VARIABLE")
+//@Table("T_FF_HIS_VARIABLE")
 public class VariableHistory extends AbsVariable {
 
 }

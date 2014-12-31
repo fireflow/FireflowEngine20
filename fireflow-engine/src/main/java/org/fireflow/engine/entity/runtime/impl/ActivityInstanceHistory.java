@@ -23,8 +23,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.nutz.dao.entity.annotation.Table;
-
 /**
  * @author 非也
  * @version 2.0
@@ -33,7 +31,7 @@ import org.nutz.dao.entity.annotation.Table;
 @XmlType(name="activityInstanceHistoryType")
 @XmlAccessorType(XmlAccessType.FIELD)
 
-@Table("T_FF_HIS_ACTIVITY_INSTANCE")
+//@Table("T_FF_HIS_ACTIVITY_INSTANCE")
 public class ActivityInstanceHistory extends AbsActivityInstance implements
 		Serializable {
 

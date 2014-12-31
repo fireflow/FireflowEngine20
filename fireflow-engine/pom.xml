@@ -24,12 +24,7 @@
 			<artifactId>fireflow-model</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.nutz</groupId>
-			<artifactId>nutz</artifactId>
-			<version>1.b.51.fireflow-SNAPSHOT</version>
-		</dependency>		
+			
 	</dependencies>
 	
 	<build>

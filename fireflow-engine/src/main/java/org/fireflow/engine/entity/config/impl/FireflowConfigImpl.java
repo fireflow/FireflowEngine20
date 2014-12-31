@@ -25,10 +25,6 @@ import javax.xml.bind.annotation.XmlType;
 
 import org.fireflow.engine.entity.AbsWorkflowEntity;
 import org.fireflow.engine.entity.config.FireflowConfig;
-import org.nutz.dao.entity.annotation.Column;
-import org.nutz.dao.entity.annotation.Index;
-import org.nutz.dao.entity.annotation.Table;
-import org.nutz.dao.entity.annotation.TableIndexes;
 
 /**
  *
@@ -40,36 +36,36 @@ import org.nutz.dao.entity.annotation.TableIndexes;
 @XmlType(name="fireflowConfigType")
 @XmlAccessorType(XmlAccessType.FIELD)
 
-@Table("T_FF_CFG_FIREFLOW_CONFIG")
-@TableIndexes({@Index(name="IDX_CONFIG_ID",fields={"CONFIG_ID"}),
-				@Index(name="IDX_CATEGORY_ID",fields={"CATEGORY_ID"},unique=false)})
+//@Table("T_FF_CFG_FIREFLOW_CONFIG")//nutz标注，已解耦
+//@TableIndexes({@Index(name="IDX_CONFIG_ID",fields={"CONFIG_ID"}),
+//				@Index(name="IDX_CATEGORY_ID",fields={"CATEGORY_ID"},unique=false)})
 public class FireflowConfigImpl extends AbsWorkflowEntity implements FireflowConfig{
 	@XmlElement(name="configId")
-	@Column("CONFIG_ID")
+//	@Column("CONFIG_ID")
 	private String configId;
 	
 	@XmlElement(name="configName")
-	@Column("CONFIG_NAME")
+//	@Column("CONFIG_NAME")
 	private String configName;
 	
 	@XmlElement(name="configValue")
-	@Column("CONFIG_VALUE")
+//	@Column("CONFIG_VALUE")
 	private String configValue;
 	
 	@XmlElement(name="description")
-	@Column("DESCRIPTION")
+//	@Column("DESCRIPTION")
 	private String description;
 	
 	@XmlElement(name="categoryId")
-	@Column("CATEGORY_ID")
+//	@Column("CATEGORY_ID")
 	private String categoryId;
 	
 	@XmlElement(name="parentConfigId")
-	@Column("PARENT_CONFIG_ID")
+//	@Column("PARENT_CONFIG_ID")
 	private String parentConfigId;
 	
 	@XmlElement(name="lastEditor")
-	@Column("LAST_EDITOR")
+//	@Column("LAST_EDITOR")
 	private String lastEditor;
 	
 	public String getConfigId() {
