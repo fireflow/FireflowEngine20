@@ -119,7 +119,7 @@ public class HumanServiceInvokerTest  extends AbsTestContext {
 		Assert.assertNotNull(wi);
 		Assert.assertEquals(WorkItemState.INITIALIZED, wi.getState());
 		Assert.assertEquals("/xyz.jsp", wi.getActionUrl());
-		Assert.assertNotNull(((LocalWorkItem)wi).getActivityInstance());
+		Assert.assertNotNull(((LocalWorkItem)wi).getActivityInstanceId());
 		Assert.assertNotNull(wi.getCreatedTime());
 		Assert.assertEquals(WorkItemAssignmentStrategy.ASSIGN_TO_ANY, ((LocalWorkItem)wi).getAssignmentStrategy());
 		
@@ -237,7 +237,7 @@ public class HumanServiceInvokerTest  extends AbsTestContext {
 		Assert.assertNotNull(wi);
 		Assert.assertEquals(WorkItemState.INITIALIZED, wi.getState());
 		Assert.assertEquals("/xyz.jsp", wi.getActionUrl());
-		Assert.assertNotNull(((LocalWorkItem)wi).getActivityInstance());
+		Assert.assertNotNull(((LocalWorkItem)wi).getActivityInstanceId());
 		Assert.assertNotNull(wi.getCreatedTime());
 		Assert.assertEquals(WorkItemAssignmentStrategy.ASSIGN_TO_ANY, ((LocalWorkItem)wi).getAssignmentStrategy());
 		
@@ -361,7 +361,7 @@ public class HumanServiceInvokerTest  extends AbsTestContext {
 		Assert.assertNotNull(wi);
 		Assert.assertEquals(WorkItemState.INITIALIZED, wi.getState());
 		Assert.assertEquals("/xyz.jsp", wi.getActionUrl());
-		Assert.assertNotNull(((LocalWorkItem)wi).getActivityInstance());
+		Assert.assertNotNull(((LocalWorkItem)wi).getActivityInstanceId());
 		Assert.assertNotNull(wi.getCreatedTime());
 		Assert.assertEquals(WorkItemAssignmentStrategy.ASSIGN_TO_ANY, ((LocalWorkItem)wi).getAssignmentStrategy());
 		

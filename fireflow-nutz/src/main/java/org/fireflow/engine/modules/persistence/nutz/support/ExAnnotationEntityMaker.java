@@ -2,15 +2,18 @@ package org.fireflow.engine.modules.persistence.nutz.support;
 
 import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.sql.DataSource;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.fireflow.engine.entity.runtime.impl.ProcessInstanceImpl;
 import org.fireflow.model.io.Util4Deserializer;
 import org.nutz.dao.entity.Entity;
 import org.nutz.dao.entity.MappingField;
@@ -29,6 +32,7 @@ import org.nutz.lang.inject.InjectBySetter;
 import org.nutz.lang.segment.CharSegment;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
+import org.nutz.trans.Trans;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -39,7 +43,7 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
 	private static final String ELM_CLASS = "class";
 	private static final String ELM_PROPERTY = "property";
 	
-	public static final String FIREFLOW_ENTITY_PKG_PREFIX = "org.fireflow.engine.entity";
+	public static final String FIREFLOW_ENTITY_PKG_PREFIX = "org.fireflow";
 	
 	private static List<String> allMappingFiles = new ArrayList<String>();
 	static {
@@ -117,7 +121,7 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
 	         * 获取实体的扩展描述
 	         */
 	        // 全局
-	        if (null != expert.getConf()) {
+	        if (expert!=null && null != expert.getConf()) {
 	            for (String key : expert.getConf().keySet())
 	                en.getMetas().put(key, expert.getConf().get(key));
 	        }
@@ -161,6 +165,18 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
 //
 //	        en.setHasColumnComment(hasColumnComment);
 	        
+	        //读取复合主键
+	        String pkFieldStrs = classElm.getAttribute("pk");
+	        List<String> pkFields = new ArrayList<String>();
+	        if (pkFieldStrs!=null && !pkFieldStrs.trim().equals("")){
+	        	StringTokenizer tokenizer = new StringTokenizer(pkFieldStrs,",");
+	        	while(tokenizer.hasMoreTokens()){
+	        		String tk = tokenizer.nextToken();
+	        		pkFields.add(tk);
+	        	}
+	        }
+	        
+	        
 	        /*
 	         * 循环获取实体字段
 	         */
@@ -168,26 +184,84 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
 	        Element idElm = Util4Deserializer.child(classElm, "id");
 	        if (idElm!=null){
 	        	
-	        	MappingField mf = createMappingField(en,type,idElm,false,true);
+	        	MappingField mf = createMappingField(en,type,idElm,false,true,pkFields);
 	        	en.addMappingField(mf);
 	        	
 	        }
 	        
 	        List<Element> propertyElms =  Util4Deserializer.children(classElm, ELM_PROPERTY);
 	        for (Element elm : propertyElms){
-	        	MappingField mf = createMappingField(en,type,elm,false,false);
+	        	MappingField mf = createMappingField(en,type,elm,false,false,pkFields);
 	        	en.addMappingField(mf);
 	        }
-	        holder.set(en); // 保存一下，这样别的实体映射到这里时会用的到
+	        if (holder!=null){
+	        	holder.set(en); // 保存一下，这样别的实体映射到这里时会用的到
+	        }
+	        
+	        
+	        try {
+				/*
+				 * 解析所有关联字段
+				 */
+//				// 一对一 '@One'
+//				for (LinkInfo li : ones) {
+//				    en.addLinkField(new OneLinkField(en, holder, li));
+//				}
+//				// 一对多 '@Many'
+//				for (LinkInfo li : manys) {
+//				    en.addLinkField(new ManyLinkField(en, holder, li));
+//				}
+//				// 多对多 '@ManyMany'
+//				for (LinkInfo li : manymanys) {
+//				    en.addLinkField(new ManyManyLinkField(en, holder, li));
+//				}
+				// 检查复合主键
+				en.checkCompositeFields(pkFields.toArray(new String[pkFields.size()]));
+
+				/*
+				 * 交付给 expert 来检查一下数据库一致性
+				 */
+				if (null != datasource && null != expert) {
+					_my_checkupEntityFieldsWithDatabase(en);
+				}
+
+
+			} catch (RuntimeException e) {
+				holder.remove(en);
+				throw e;
+			} catch (Throwable e) {
+				holder.remove(en);
+				throw Lang.wrapThrow(e);
+			}
+   
 	        return en;
 	}
 	
- 
+    private void _my_checkupEntityFieldsWithDatabase(NutEntity<?> en) {
+        Connection conn = null;
+        try {
+            conn = Trans.getConnectionAuto(datasource);
+            expert.setupEntityField(conn, en);
+        }
+        catch (Exception e) {
+            if (log.isDebugEnabled())
+                log.debugf("Fail to setup '%s'(%s) by DB, because: (%s)'%s'",
+                           en.getType().getName(),
+                           en.getTableName(),
+                           e.getClass().getName(),
+                           e.getMessage());
+        }
+        finally {
+            Trans.closeConnectionAuto(conn);
+        }
+    }
 	
-	private MappingField createMappingField(Entity en,Class type,Element fieldElm, boolean isId,boolean isName){
+	private MappingField createMappingField(Entity en,Class type,Element fieldElm, boolean isId,boolean isName,List<String> pkFields){
 		NutMappingField ef = new NutMappingField(en);
 		
     	String fieldName = fieldElm.getAttribute("name");
+    	
+    	
     	String s = null;
     	if (fieldName.length()>1){
     		s = fieldName.substring(0, 1).toUpperCase()+fieldName.substring(1);
@@ -196,6 +270,7 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
     	}
     	String setterName = "set"+s;
     	String getterName = "get"+s;
+    	String getterName2 = "is"+s;
     	Method setter = null;
     	Method getter = null;
     	
@@ -205,7 +280,7 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
 			for (Method m : allMethods){
 				if(m.getName().equals(setterName)){
 					setter = m;
-				}else if (m.getName().equals(getterName)){
+				}else if (m.getName().equals(getterName) || m.getName().equals(getterName2)){
 					getter = m;
 				}
 			}
@@ -243,6 +318,7 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
             }
         }
 
+        //处理主键
 
         // Id 字段
         if (isId) {
@@ -253,6 +329,10 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
         if (isName) {
             ef.setAsName();
         }
+        
+        if (pkFields.contains(fieldName)){
+        	ef.setAsCompositePk();
+        }
 
         // 检查 @Id 和 @Name 的冲突
         if (ef.isId() && ef.isName())
@@ -260,31 +340,15 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
                                  ef.getName(),
                                  ef.getEntity().getType().getName());
 
-//        // 检查 PK
-//        if (null != info.annPK) {
-//            // 用 @PK 的方式声明的主键
-//            if (info.annPK.value().length == 1) {
-//                if (Lang.contains(info.annPK.value(), info.name)) {
-//                    if (ef.getTypeMirror().isIntLike())
-//                        ef.setAsId();
-//                    else
-//                        ef.setAsName();
-//                }
-//            }
-//            // 看看是不是复合主键
-//            else if (Lang.contains(info.annPK.value(), info.name))
-//                ef.setAsCompositePk();
-//        }
-
-
-
-
         // 只读
 //        if (null != info.annReadonly)
 //            ef.setAsReadonly();
 
         // 字段更多定义
         if (null != columnElem) {
+//        	if (fieldName.equals("suspended")){
+//        		System.out.println("======");
+//        	};
             // 类型
 //            ef.setColumnType(info.annDefine.type());
         	Jdbcs.guessEntityFieldColumnType(ef);
@@ -327,14 +391,14 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
             // 插入更新操作
 //            ef.setInsert(info.annDefine.insert());
         	String update = fieldElm.getAttribute("update");
-        	if (update!=null){
+        	if (update!=null && !update.trim().equals("")){
         		ef.setUpdate(Boolean.parseBoolean(update));
         	}
         	
             // 默认值
             if (columnElem!=null ){
             	String defaultValue = columnElem.getAttribute("default");
-                if (null != null  ){
+                if (null != defaultValue  ){
                 	if (defaultValue.equals("CURRENT_TIMESTAMP")){
                 		ef.setUpdate(false);//mysql 数据库自动设值
                 		ef.setInsert(false);//mysql 数据库自动设值
@@ -354,7 +418,9 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
         // 字段值的适配器
         String adaptorClzName = fieldElm.getAttribute("adaptor");
         if (null==adaptorClzName || adaptorClzName.trim().equals("")){
-        	ef.setAdaptor(expert.getAdaptor(ef));
+        	if (expert!=null){
+        		ef.setAdaptor(expert.getAdaptor(ef));
+        	}
         }else{
         	try {
         		Class clz = Class.forName(adaptorClzName);
@@ -385,6 +451,7 @@ public class ExAnnotationEntityMaker extends AnnotationEntityMaker {
 //		}
 		System.out.println("Begin~~~~~~~~~~~~~~~~~~~~~~~~");
 		ExAnnotationEntityMaker maker = new ExAnnotationEntityMaker(null,null,null);
+		Entity entity = maker.make(ProcessInstanceImpl.class);
 		System.out.println("end!!!");
 		
 	}

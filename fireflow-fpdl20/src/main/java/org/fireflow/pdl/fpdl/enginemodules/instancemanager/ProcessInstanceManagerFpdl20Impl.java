@@ -152,9 +152,9 @@ public class ProcessInstanceManagerFpdl20Impl extends AbsProcessInstanceManager 
 			for (Property property:processProperties){
 				String valueAsStr = property.getInitialValueAsString();
 				Object value = null;
-				if (valueAsStr!=null && valueAsStr.trim()!=null){
-					//数字类型,bool类型自动赋给初始值
-					QName dataType = property.getDataType();
+				QName dataType = property.getDataType();
+				if (valueAsStr!=null ){
+					//数字类型,bool类型自动赋给初始值					
 					
 					if (valueAsStr.trim().equals("") && dataType!=null 
 							&& NameSpaces.JAVA.getUri().equals(dataType.getNamespaceURI())){
@@ -172,7 +172,12 @@ public class ProcessInstanceManagerFpdl20Impl extends AbsProcessInstanceManager 
 					}
 					try {
 //						System.out.println("valueAsStr=="+valueAsStr);
-						value = JavaDataTypeConvertor.convertToJavaObject(property.getDataType(), valueAsStr, property.getDataPattern());
+						if (  JavaDataTypeConvertor.isPrimaryDataType(dataType.getLocalPart())){
+							value = JavaDataTypeConvertor.convertToJavaObject(property.getDataType(), valueAsStr, property.getDataPattern());
+						}
+						else{
+							value = null;
+						}
 
 					} catch (ClassCastException e) {
 						//TODO 记录流程日志
@@ -199,7 +204,6 @@ public class ProcessInstanceManagerFpdl20Impl extends AbsProcessInstanceManager 
 						if (tmpValue instanceof String){
 							tmpValue = ((String)tmpValue).trim();
 							//数字类型,bool类型自动赋给初始值
-							QName dataType = property.getDataType();
 							
 							if (tmpValue.equals("") && dataType!=null 
 									&& NameSpaces.JAVA.getUri().equals(dataType.getNamespaceURI())){

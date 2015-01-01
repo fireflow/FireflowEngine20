@@ -105,6 +105,9 @@ public abstract class AbsScheduleJob extends AbsWorkflowEntity implements Schedu
 //	@Column("NOTE")
 	protected String note;
 	
+	@XmlElement(name="activityInstanceId")
+//	@Column("ACTIVITY_INSTANCE_ID")
+	protected String activityInstanceId;
 	
 	/**
 	 * @return the name
@@ -285,6 +288,12 @@ public abstract class AbsScheduleJob extends AbsWorkflowEntity implements Schedu
 	
 	public void setCancelAttachedToActivity(Boolean b){
 		this.cancelAttachedToActivity = b;
+	}
+	public String getActivityInstanceId() {
+		return activityInstanceId;
+	}
+	public void setActivityInstanceId(String activityInstanceId) {
+		this.activityInstanceId = activityInstanceId;
 	}
 	
 }

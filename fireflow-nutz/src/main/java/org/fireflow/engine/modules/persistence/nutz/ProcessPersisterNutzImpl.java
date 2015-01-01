@@ -116,9 +116,16 @@ public class ProcessPersisterNutzImpl extends AbsPersisterNutzImpl implements
 	}
 
 	public String findProcessXml(ProcessKey processKey) {
-		ProcessRepository repository = (ProcessRepository)this.findProcessDescriptorByProcessKey(processKey);
-		if (repository==null)return "";
-		return repository.getProcessContent();
+		ProcessRepository repository;
+		try {
+			repository = this.findProcessRepositoryByProcessKey(processKey);
+			if (repository==null)return "";
+			return repository.getProcessContent();
+		} catch (InvalidModelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
 	}
 
 	public ProcessDescriptor findProcessDescriptorByProcessKey(

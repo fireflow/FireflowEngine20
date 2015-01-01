@@ -105,13 +105,13 @@ public abstract class AbsProcessInstance extends AbsWorkflowEntity implements Pr
 //	@Column("CREATOR_NAME")
     protected String creatorName = null;
 	
-	@XmlElement(name="creatorOrgId")
+	@XmlElement(name="creatorDeptId")
 //	@Column("CREATOR_ORG_ID")
-    protected String creatorOrgId = null;
+    protected String creatorDeptId = null;
 	
-	@XmlElement(name="creatorOrgName")
+	@XmlElement(name="creatorDeptName")
 //	@Column("CREATOR_ORG_NAME")
-    protected String creatorOrgName = null;
+    protected String creatorDeptName = null;
     
 	@XmlElement(name="createdTime")
 	@XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
@@ -203,22 +203,22 @@ public abstract class AbsProcessInstance extends AbsWorkflowEntity implements Pr
 	 * @see org.fireflow.engine.entity.runtime.ProcessInstance#getCreatorOrgId()
 	 */
 	public String getCreatorDeptId() {
-		return this.creatorOrgId;
+		return this.creatorDeptId;
 	}
 	
 	public void setCreatorDeptId(String orgId){
-		this.creatorOrgId = orgId;
+		this.creatorDeptId = orgId;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.fireflow.engine.entity.runtime.ProcessInstance#getCreatorOrgName()
 	 */
 	public String getCreatorDeptName() {
-		return this.creatorOrgName;
+		return this.creatorDeptName;
 	}
 	
 	public void setCreatorDeptName(String orgName){
-		this.creatorOrgName = orgName;
+		this.creatorDeptName = orgName;
 	}
 
 	/* (non-Javadoc)

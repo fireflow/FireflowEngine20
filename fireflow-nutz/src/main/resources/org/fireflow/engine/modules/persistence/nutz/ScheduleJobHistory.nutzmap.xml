@@ -92,13 +92,13 @@
 				<comment>备注</comment>
 			</column>
 		</property>
-		<!-- 
+ 
 		<property name="activityInstanceId" type="java.lang.String">
 			<column length="50" name="ACTIVITY_INSTANCE_ID">
 				<comment>Activity Instance Id</comment>
 			</column>
 		</property>
-		 -->
+
 		<property name="lastUpdateTime" type="java.util.Date"  generated="always" >
 			<column name="LAST_UPDATE_TIME"  sql-type="timestamp"  default="CURRENT_TIMESTAMP">
 				<comment>最后更新时间</comment>

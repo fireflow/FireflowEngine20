@@ -52,7 +52,7 @@ public interface WorkItemManager extends EngineModule,ServiceInvoker{
      * 根据TaskInstance创建workItem。
      * @param activityInstance
      * @param user
-     * @param workitemPropertyValues workitem 属性值，<br>
+     * @param workitemPropertyValues workitem 属性值，<br/>
      * 只有当workitem的属性值不能从activityInstance,user这两个参数获取时，才尝试从这个参数获取。
      * @return
      * @throws org.fireflow.engine.exception.EngineException

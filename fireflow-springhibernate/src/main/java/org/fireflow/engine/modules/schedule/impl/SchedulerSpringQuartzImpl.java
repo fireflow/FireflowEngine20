@@ -23,19 +23,21 @@ import org.fireflow.client.WorkflowSession;
 import org.fireflow.client.WorkflowSessionFactory;
 import org.fireflow.client.WorkflowStatement;
 import org.fireflow.client.impl.WorkflowSessionLocalImpl;
-import org.fireflow.engine.context.AbsEngineModule;
 import org.fireflow.engine.context.RuntimeContext;
+import org.fireflow.engine.context.TransactionTemplateAware;
 import org.fireflow.engine.entity.runtime.ActivityInstance;
 import org.fireflow.engine.entity.runtime.ActivityInstanceState;
 import org.fireflow.engine.entity.runtime.ProcessInstance;
 import org.fireflow.engine.entity.runtime.ScheduleJob;
 import org.fireflow.engine.entity.runtime.ScheduleJobState;
+import org.fireflow.engine.entity.runtime.impl.ActivityInstanceImpl;
 import org.fireflow.engine.entity.runtime.impl.ScheduleJobImpl;
 import org.fireflow.engine.exception.InvalidOperationException;
 import org.fireflow.engine.exception.WorkflowProcessNotFoundException;
 import org.fireflow.engine.modules.calendar.CalendarService;
 import org.fireflow.engine.modules.instancemanager.ActivityInstanceManager;
 import org.fireflow.engine.modules.ousystem.impl.FireWorkflowSystem;
+import org.fireflow.engine.modules.persistence.ActivityInstancePersister;
 import org.fireflow.engine.modules.persistence.PersistenceService;
 import org.fireflow.engine.modules.persistence.ScheduleJobPersister;
 import org.fireflow.engine.modules.persistence.TokenPersister;
@@ -56,7 +58,6 @@ import org.quartz.Trigger;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
-import org.fireflow.engine.context.TransactionTemplateAware;
 
 /**
  * 
@@ -224,7 +225,7 @@ public class SchedulerSpringQuartzImpl  extends AbsScheduler implements Transact
 		final ScheduleJobPersister persister = persistenceService.getScheduleJobPersister();	
 		final TokenPersister tokenPersister = persistenceService.getTokenPersister();
 		final CalendarService calendarService = runtimeContext.getEngineModule(CalendarService.class, scheduleJob.getProcessType());
-		
+		final ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
 		final WorkflowSession session = WorkflowSessionFactory.createWorkflowSession(runtimeContext, FireWorkflowSystem.getInstance());
 		final WorkflowStatement statement = session.createWorkflowStatement(scheduleJob.getProcessType());
 		if (scheduleJob.isCreateNewProcessInstance()){
@@ -273,8 +274,8 @@ public class SchedulerSpringQuartzImpl  extends AbsScheduler implements Transact
 
 				
 				public Object doInTransaction(TransactionStatus arg0) {
-					ActivityInstance activityInstance = scheduleJob
-							.getActivityInstance();
+					ActivityInstance activityInstance =  actInstPersister.fetch(ActivityInstanceImpl.class, scheduleJob
+							.getActivityInstanceId())	;
 
 					if (activityInstance == null
 							|| activityInstance.getState().getValue() > ActivityInstanceState.DELIMITER

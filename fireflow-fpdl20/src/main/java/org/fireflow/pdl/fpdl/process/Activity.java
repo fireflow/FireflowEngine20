@@ -26,9 +26,9 @@ import org.fireflow.pdl.fpdl.misc.LoopStrategy;
 import org.fireflow.pdl.fpdl.process.event.EventListenerDef;
 
 /**
- * 活动。<br>
- * 从2.0开始，一个活动可以有多个输入，任何一个输入发生了都可以出发该活动的执行。<br>
- * 一个活动也可以有多个输出，输出是否被执行是由输出边上的转移条件决定的。<br>
+ * 活动。<br/>
+ * 从2.0开始，一个活动可以有多个输入，任何一个输入发生了都可以出发该活动的执行。<br/>
+ * 一个活动也可以有多个输出，输出是否被执行是由输出边上的转移条件决定的。<br/>
  * 两个活动之间可以用Transition直接相连。
  * <Activity>
  * 	<ServiceBinding>

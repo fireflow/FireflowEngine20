@@ -225,7 +225,7 @@ public class StartNodeBehavior extends AbsSynchronizerBehavior implements
 		scheduleJob.setName(activityInstance.getName());
 		scheduleJob.setDisplayName(activityInstance.getDisplayName());
 		scheduleJob.setState(ScheduleJobState.RUNNING);
-		scheduleJob.setActivityInstance(activityInstance);
+		scheduleJob.setActivityInstanceId(activityInstance.getId());
 		if (timerDecorator.getAttachedToActivity() == null) {// 如果不是依附在Activity上，则是定时启动的StartNode
 			scheduleJob.setCreateNewProcessInstance(true);
 		} else {

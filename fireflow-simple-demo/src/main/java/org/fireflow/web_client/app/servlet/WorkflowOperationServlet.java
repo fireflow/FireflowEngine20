@@ -195,7 +195,7 @@ public class WorkflowOperationServlet extends HttpServlet {
 		//TODO 可以从一个子流程跳转到另外一个子流程吗？
 		
 		LocalWorkItem workItem = (LocalWorkItem)wi;
-		ActivityInstance activityInstance = workItem.getActivityInstance();
+		ActivityInstance activityInstance = null;//workItem.getActivityInstance();TODO 待修正
 		WorkflowProcess workflowProcess = null;
 		try {
 			workflowProcess = (WorkflowProcess)activityInstance.getWorkflowProcess(workflowSession);
@@ -255,7 +255,7 @@ public class WorkflowOperationServlet extends HttpServlet {
 
 			LocalWorkItem workItem = (LocalWorkItem)wi;
 			
-			ActivityInstance activityInstance = workItem.getActivityInstance();
+			ActivityInstance activityInstance = null;//workItem.getActivityInstance();TODO 待修正
 			
 			final ReassignmentHandler reassignmentHandler = (ReassignmentHandler)reassignmentHandlers.get(activityInstance.getNodeId());
 			if ("beforeme".equals(reassignType)){
@@ -320,7 +320,7 @@ public class WorkflowOperationServlet extends HttpServlet {
 
 		LocalWorkItem workItem = (LocalWorkItem)wi;
 		
-		ActivityInstance activityInstance = workItem.getActivityInstance();
+		ActivityInstance activityInstance = null;//workItem.getActivityInstance();TODO 待修正
 		
 		req.setAttribute("reassignFlag", reassignFlag);
 		req.setAttribute("workItem", workItem);
@@ -437,7 +437,7 @@ public class WorkflowOperationServlet extends HttpServlet {
 		LocalWorkItem workItem = (LocalWorkItem)wi;
 		
 		//1、找到当前Activity的后继Activity
-		ActivityInstance activityInstance = workItem.getActivityInstance();
+		ActivityInstance activityInstance = null;//workItem.getActivityInstance();TODO 待修正
 		WorkflowProcess workflowProcess = null;
 		try {
 			workflowProcess = (WorkflowProcess)activityInstance.getWorkflowProcess(workflowSession);
@@ -507,7 +507,7 @@ public class WorkflowOperationServlet extends HttpServlet {
 		LocalWorkItem workItem = (LocalWorkItem)wi;
 		String formURL = workItem.getActionUrl();
 		//2、获得表单的输入参数，并将参数设置到request attribute
-		ActivityInstance activityInstance = workItem.getActivityInstance();
+		ActivityInstance activityInstance = null;//workItem.getActivityInstance();TODO 待修正
 		WorkflowProcess workflowProcess = null;
 		try {
 			workflowProcess = (WorkflowProcess)activityInstance.getWorkflowProcess(workflowSession);

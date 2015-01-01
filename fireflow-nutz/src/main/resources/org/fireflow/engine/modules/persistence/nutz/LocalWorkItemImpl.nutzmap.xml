@@ -175,13 +175,13 @@
 		<!-- ///////////// 下面是冗余数据，为查询方便 ///////////////////////////// -->
 		<property name="procInstCreatorId" type="java.lang.String"
 			update="false" not-null="false">
-			<column length="100" name="PROC_INST_CREATOR_ID">
+			<column length="100" name="PROCINST_CREATOR_ID">
 				<comment>流程发起者Id</comment>
 			</column>
 		</property>		
 		<property name="procInstCreatorName" type="java.lang.String"
 			update="false" not-null="false">
-			<column length="100" name="PROC_INST_CREATOR_NAME">
+			<column length="100" name="PROCINST_CREATOR_NAME">
 				<comment>流程发起者姓名</comment>
 			</column>
 		</property>
@@ -202,7 +202,7 @@
 			</column>
 		</property>
 		<property name="subProcessId" type="java.lang.String" update="false"  not-null="false">
-			<column length="50" name="SUB_PROCESS_ID">
+			<column length="50" name="SUBPROCESS_ID">
 				<comment>子流程Id</comment>
 			</column>
 		</property>
@@ -217,16 +217,18 @@
 				<comment>流程实例Id</comment>
 			</column>
 		</property>
+		<property name="activityInstanceId" type="java.lang.String"
+			update="false"  not-null="true">
+			<column length="50" name="ACTIVITY_INSTANCE_ID">
+				<comment>活动实例Id</comment>
+			</column>
+		</property>		
 		<property name="stepNumber" type="java.lang.Integer" update="false" not-null="false">
 			<column name="STEP_NUMBER">
 				<comment>步骤号</comment>
 			</column>
 		</property>
 
-		<many-to-one cascade="save-update"
-			class="org.fireflow.engine.entity.runtime.impl.ActivityInstanceImpl"
-			column="ACTIVITY_INSTANCE_ID" fetch="join" lazy="false" name="activityInstance"
-			update="false" not-null="false" />
 
 		<property name="lastUpdateTime" type="java.util.Date"
 			generated="always">

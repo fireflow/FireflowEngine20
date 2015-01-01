@@ -75,7 +75,9 @@ public abstract class AbsAssignmentHandler implements AssignmentHandler{
 				for (User user : administrators) {					
 					WorkItem wi = workItemManager.createWorkItem(session,
 							processInstance, activityInstance, user, theActivity,values);
-
+					if (sessionLocal.getCurrentUser().getId().equals(user.getId())){
+						sessionLocal.getNewWorkItemsForCurrentUser().add(wi);
+					}
 					result.add(wi);
 					
 					List<User> agents = findReassignTo(runtimeContext, activityInstance
@@ -118,6 +120,9 @@ public abstract class AbsAssignmentHandler implements AssignmentHandler{
 				
 				WorkItem wi = workItemManager.createWorkItem(session,
 						processInstance, activityInstance, user,theActivity, values);
+				if (sessionLocal.getCurrentUser().getId().equals(user.getId())){
+					sessionLocal.getNewWorkItemsForCurrentUser().add(wi);
+				}
 				result.add(wi);
 				
 				//设置note

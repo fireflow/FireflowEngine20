@@ -18,6 +18,7 @@ import org.firesoa.common.util.Utils;
 import org.nutz.dao.jdbc.ValueAdaptor;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class VariablePayloadValueAdaptor implements ValueAdaptor {
 
@@ -31,7 +32,7 @@ public class VariablePayloadValueAdaptor implements ValueAdaptor {
 		String uri = NameSpaces.JAVA.getUri();
 		if (dataType!=null && dataType.startsWith("{"+uri+"}")){
 			//java类型
-			XStream xstream = new XStream();			
+			XStream xstream = new XStream(new DomDriver());			
 			return xstream.fromXML(s);
 		}else{
 			//xml类型

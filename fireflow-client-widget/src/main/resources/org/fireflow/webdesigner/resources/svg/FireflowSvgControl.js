@@ -298,5 +298,11 @@ function fireflowDiagramPan(svgId, checked) {
 }
 
 function on_element_click(diagramElementId,wfElementRef,wfElementType,workflowProcessId,subProcessName){
-	alert(diagramElementId+","+wfElementRef+","+wfElementType+","+workflowProcessId+","+subProcessName);
+	try{
+		parent.on_workflow_element_click(diagramElementId,wfElementRef,wfElementType,workflowProcessId,subProcessName);
+	}catch(e){
+		alert("回调javascript函数未定义，function on_workflow_element_click("+
+				diagramElementId+","+wfElementRef+","+wfElementType+","+workflowProcessId+","+subProcessName+")");
+	}
+
 }
