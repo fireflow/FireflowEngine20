@@ -59,7 +59,7 @@ public class ProcessInstancePersisterHibernateImpl extends AbsPersisterHibernate
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				String deleteProcessInstance = "Delete From ProcessInstanceImpl";
+				String deleteProcessInstance = "Delete From org.fireflow.engine.entity.runtime.impl.ProcessInstanceImpl";
 				Query q4DeleteProcessInstance = session.createQuery(deleteProcessInstance);
 				q4DeleteProcessInstance.executeUpdate();
 				

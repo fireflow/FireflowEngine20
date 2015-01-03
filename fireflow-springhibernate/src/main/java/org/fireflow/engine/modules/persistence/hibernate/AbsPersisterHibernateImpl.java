@@ -212,11 +212,14 @@ public abstract class AbsPersisterHibernateImpl // extends HibernateDaoSupport
 		}
 		return false;
 		*/
+		
+		/* 所有的对象间关联被取消，2014-12-30 非也，
 		Class entityClass = q.getEntityClass();
 		
 		if (entityClass.isAssignableFrom(WorkItem.class) || entityClass.isAssignableFrom(ScheduleJob.class)) {
 			return true;
 		}
+		*/
 		return false;
 	}
 

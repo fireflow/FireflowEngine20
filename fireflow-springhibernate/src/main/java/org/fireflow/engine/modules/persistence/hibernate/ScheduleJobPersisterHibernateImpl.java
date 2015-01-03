@@ -55,7 +55,7 @@ public class ScheduleJobPersisterHibernateImpl extends
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				Query q = session.createQuery("from ScheduleJobImpl c where c.activityInstance.id=:activityInstanceId");
+				Query q = session.createQuery("from org.fireflow.engine.entity.runtime.impl.ScheduleJobImpl c where c.activityInstanceId=:activityInstanceId");
 				q.setString("activityInstanceId", activityInstanceId);
 				return q.list();
 			}
@@ -72,7 +72,7 @@ public class ScheduleJobPersisterHibernateImpl extends
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				String deleteScheduleJob = "Delete From ScheduleJobImpl";
+				String deleteScheduleJob = "Delete From org.fireflow.engine.entity.runtime.impl.ScheduleJobImpl";
 				Query q4DeleteScheduleJob = session.createQuery(deleteScheduleJob);
 				q4DeleteScheduleJob.executeUpdate();
 				

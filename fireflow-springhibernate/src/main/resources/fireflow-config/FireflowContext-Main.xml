@@ -17,10 +17,7 @@
 	<import resource="processlanguages/FireflowContext-FPDL.xml"/>
 		
 	<bean id="fireflowRuntimeContext" class="org.fireflow.engine.context.RuntimeContext"
-		init-method="initialize">
-		<property name="transactionTemplate">
-			<ref bean="springTransactionTempate"/>
-		</property>
+		init-method="initialize" factory-method="getInstance">
 		<!-- 装载缺省的引擎模块 -->
 		<property name="defaultEngineModules">
 			<map>
@@ -101,7 +98,7 @@
 	</bean>
 	
 	<!-- 客户化定制 -->
-	<bean class="org.firesoa.common.util.BeanRefPropertyOverrideConfigurer">
+	<bean class="org.fireflow.engine.modules.beanfactory.impl.BeanRefPropertyOverrideConfigurer">
 		<property name="location" value="classpath:/FireflowContext-Override.properties"/>
 		<property name="ignoreInvalidKeys" value="true"/>
 		<property name="ignoreResourceNotFound" value="true"/>

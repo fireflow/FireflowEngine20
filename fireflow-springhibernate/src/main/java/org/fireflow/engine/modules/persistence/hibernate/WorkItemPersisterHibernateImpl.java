@@ -120,7 +120,7 @@ public class WorkItemPersisterHibernateImpl extends AbsPersisterHibernateImpl im
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				String deleteWorkItem = "Delete From AbsWorkItem";
+				String deleteWorkItem = "Delete From org.fireflow.engine.entity.runtime.impl.AbsWorkItem";
 				Query q4DeleteWorkItem = session.createQuery(deleteWorkItem);
 				q4DeleteWorkItem.executeUpdate();
 				

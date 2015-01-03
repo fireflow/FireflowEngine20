@@ -19,25 +19,24 @@ package org.fireflow.engine.modules.persistence.hibernate;
 import java.io.ByteArrayInputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.fireflow.engine.entity.repository.ProcessDescriptor;
-import org.fireflow.engine.entity.repository.ProcessDescriptorProperty;
 import org.fireflow.engine.entity.repository.ProcessKey;
 import org.fireflow.engine.entity.repository.ProcessRepository;
 import org.fireflow.engine.entity.repository.impl.ProcessDescriptorImpl;
 import org.fireflow.engine.entity.repository.impl.ProcessRepositoryImpl;
-import org.fireflow.engine.exception.EngineException;
 import org.fireflow.engine.modules.persistence.ProcessPersister;
 import org.fireflow.engine.modules.processlanguage.ProcessLanguageManager;
 import org.fireflow.model.InvalidModelException;
 import org.firesoa.common.util.Utils;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
@@ -86,7 +85,7 @@ public class ProcessPersisterHibernateImpl extends
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				Query q = session.createQuery("from ProcessDescriptorImpl c where c.processId=:processId and c.processType=:processType and c.version=:version");
+				Query q = session.createQuery("from org.fireflow.engine.entity.repository.impl.ProcessDescriptorImpl c where c.processId=:processId and c.processType=:processType and c.version=:version");
 				q.setString("processId", processKey.getProcessId());
 				q.setString("processType", processKey.getProcessType());
 				q.setInteger("version", processKey.getVersion());
@@ -105,7 +104,7 @@ public class ProcessPersisterHibernateImpl extends
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				Query q = session.createQuery("from ProcessRepositoryImpl c where c.processId=:processId and c.processType=:processType and c.version=:version");
+				Query q = session.createQuery("from org.fireflow.engine.entity.repository.impl.ProcessRepositoryImpl c where c.processId=:processId and c.processType=:processType and c.version=:version");
 				q.setString("processId", processKey.getProcessId());
 				q.setString("processType", processKey.getProcessType());
 				q.setInteger("version", processKey.getVersion());
@@ -134,7 +133,8 @@ public class ProcessPersisterHibernateImpl extends
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				Query q = session.createQuery("from ProcessRepositoryImpl c where c.processId=:processId and c.processType=:processType and c.version=:version");
+				Query q = session.createQuery("from org.fireflow.engine.entity.repository.impl.ProcessRepositoryImpl c where c.processId=:processId and c.processType=:processType and c.version=:version");
+
 				q.setString("processId", processKey.getProcessId());
 				q.setString("processType", processKey.getProcessType());
 				q.setInteger("version", processKey.getVersion());
@@ -172,10 +172,16 @@ public class ProcessPersisterHibernateImpl extends
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				Query q = session.createQuery("select max(c.version) from ProcessDescriptorImpl c where c.processId=:processId and c.processType=:processType");
+				
+				Query q = session.createQuery("select max(c.version) from org.fireflow.engine.entity.repository.impl.ProcessDescriptorImpl as c where c.processId=:processId and c.processType=:processType");
+//				SQLQuery q = session.createSQLQuery("select  max(c.version)  mxversion from  T_FF_DF_PROCESS_REPOSITORY as c where c.process_id=:processId and c.process_type=:processType");
+				
 				q.setString("processId", processId);
 				q.setString("processType", processType);
-				return q.uniqueResult();
+//				q.addScalar("mxversion", Hibernate.INTEGER);
+
+				Object obj = q.uniqueResult();
+				return obj;
 			}
 			
 		});
@@ -198,10 +204,15 @@ public class ProcessPersisterHibernateImpl extends
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				Query q = session.createQuery("select max(c.version) from ProcessDescriptorImpl c where c.processId=:processId and c.processType=:processType and c.publishState=:publishState");
+				Query q = session.createQuery("select max(c.version) from org.fireflow.engine.entity.repository.impl.ProcessDescriptorImpl c where c.processId=:processId and c.processType=:processType and c.publishState=:publishState");
+//				SQLQuery q = session.createSQLQuery("select max(c.version) maxversion from T_FF_DF_PROCESS_REPOSITORY c where c.process_id=:processId and c.process_type=:processType and c.publish_state=:publishState");
+				
 				q.setString("processId", processId);
 				q.setString("processType", processType);
 				q.setBoolean("publishState", Boolean.TRUE);
+				
+//				q.addScalar("mxversion", Hibernate.INTEGER);
+				
 				return q.uniqueResult();
 			}
 			
@@ -446,7 +457,7 @@ public class ProcessPersisterHibernateImpl extends
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				String deleteProcessRepository = "Delete From ProcessRepositoryImpl";
+				String deleteProcessRepository = "Delete From org.fireflow.engine.entity.repository.impl.ProcessRepositoryImpl";
 				Query q4DeleteProcessRepository = session.createQuery(deleteProcessRepository);
 				q4DeleteProcessRepository.executeUpdate();
 				

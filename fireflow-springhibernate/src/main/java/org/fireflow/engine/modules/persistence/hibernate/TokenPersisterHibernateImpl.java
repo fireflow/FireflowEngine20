@@ -187,7 +187,7 @@ public class TokenPersisterHibernateImpl extends AbsPersisterHibernateImpl
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				String deleteToken = "Delete From TokenImpl";
+				String deleteToken = "Delete From org.fireflow.pvm.kernel.impl.TokenImpl";
 				Query q4DeleteToken = session.createQuery(deleteToken);
 				q4DeleteToken.executeUpdate();
 				

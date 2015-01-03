@@ -139,7 +139,7 @@ public class ActivityInstancePersisterHibernateImpl extends AbsPersisterHibernat
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				String deleteActivityInstance  = "Delete From ActivityInstanceImpl";
+				String deleteActivityInstance  = "Delete From org.fireflow.engine.entity.runtime.impl.ActivityInstanceImpl";
 				Query q4DeleteActivityInstance = session.createQuery(deleteActivityInstance);
 				q4DeleteActivityInstance.executeUpdate();
 				

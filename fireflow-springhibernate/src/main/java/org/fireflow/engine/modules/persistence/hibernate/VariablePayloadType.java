@@ -32,8 +32,8 @@ public class VariablePayloadType extends ClobStringType {
 		
 		String s = lobHandler.getClobAsString(rs, names[0]);
 		
-		String headerXml = rs.getString(VariableProperty.HEADERS.name());
-		String dataType = rs.getString(VariableProperty.DATA_TYPE.name());
+		String headerXml = rs.getString(5);//配置文件，Headers必须在第五个字段//rs.getString(VariableProperty.HEADERS.name());
+		String dataType = rs.getString(6);//DataType必须在第六个字段//rs.getString(VariableProperty.DATA_TYPE.name());
 		//String uri = "http://jcp.org/en/jsr/detail?id=270";
 		String uri = NameSpaces.JAVA.getUri();
 		if (dataType!=null && dataType.startsWith("{"+uri+"}")){

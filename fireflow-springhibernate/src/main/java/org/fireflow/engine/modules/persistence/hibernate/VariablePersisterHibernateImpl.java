@@ -112,7 +112,7 @@ public class VariablePersisterHibernateImpl extends AbsPersisterHibernateImpl
 
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
-				String deleteVariable = "Delete From VariableImpl";
+				String deleteVariable = "Delete From org.fireflow.engine.entity.runtime.impl.VariableImpl";
 				Query q4DeleteVariable = session.createQuery(deleteVariable);
 				q4DeleteVariable.executeUpdate();
 				

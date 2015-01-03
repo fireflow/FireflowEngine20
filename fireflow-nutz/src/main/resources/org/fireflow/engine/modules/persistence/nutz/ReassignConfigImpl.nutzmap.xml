@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nutz-mapping>
-	<class dynamic-update="true"
+	<class 
 		name="org.fireflow.engine.entity.config.impl.ReassignConfigImpl" table="T_FF_CFG_REASSIGN_CONFIG">
 		<id name="id" type="java.lang.String">
 			<column length="50" name="ID" />
