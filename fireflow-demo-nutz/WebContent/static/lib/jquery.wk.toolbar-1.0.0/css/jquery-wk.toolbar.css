@@ -1,0 +1,63 @@
+.btndisabled {opacity:0.2;FILTER: gray;}
+.btnLe,.btnRi,.btnMore{ background-image:url(images/toolbarwin7.png); background-repeat:no-repeat}
+.gTlBar,.gTlBar .on,.gTlBar .click{ background-image:url(images/toolbarwin7.png); background-repeat:repeat-x}
+.gTlBar {height:32px;height:29px!important;background-position:0 -139px;padding:3px 2px 0 4px;}
+.gTlBar .on{background-position:0 -84px}
+.gTlBar .click{background-position:0 -111px}
+.btnLe{width:3px;height:26px;position:absolute;left:0;top:0;background-position:0 0}
+.btnRi{width:3px;height:26px;position:absolute;right:0;top:0;background-position:0 0}
+.gTlBar .click .btnLe{background-position:-0px -57px}
+.gTlBar .click .btnRi{background-position:-4px -57px}
+.gTlBar .on .btnLe{background-position:0px -30px}
+.gTlBar .on .btnRi{background-position:-4px -30px;margin-right:-1px}
+.btnTxt{margin:5px 5px 0 5px!important;margin:7px 5px 0 5px;color:#333;float:left;}
+.on .btnTxt{color:#000}
+*:lang(zh) .btnTxt{margin-top:5px}
+.click .btnTxt{margin:8px 5px 0 5px}
+*:lang(zh) .click .btnTxt{margin:6px 5px 0 5px}
+
+.tlbtn2{height:26px;position:relative;background-position:0 0;cursor:pointer;float:left;margin:0 5px 0 2px;}
+.icoBtn{background-image:url(images/buttonico.gif); background-repeat:no-repeat;}
+.icoBtn{float:left;margin:5px 0 0 5px;width:20px;height:20px;display:block;font-size:1px}
+.miniicoBtn{ background-image:url(images/buttonico.gif); background-repeat:no-repeat;}
+.miniicoBtn{float:left;margin:0px 0 0 0px;width:10px;height:10px;display:block;font-size:1px}
+.click .icoBtn{margin:5px 0 0 5px}
+/*分类*/
+.btncatgory   {background-position:-0px -0px;width:20px}
+.btndelcatgory{background-position:-20px -0px;width:20px}
+.btnupcatgory {background-position:-40px -0px;width:20px}
+.btnrecatgory {background-position:-60px -0px;width:20px}
+.btneditcatgory{background-position:-80px -0px;width:20px} 
+.btnsavecatgory{background-position:-100px -0px;width:20px}
+.btnAddcatgory{background-position:-120px -0px;width:20px}
+.btndowncatgory{background-position:-140px -0px;width:20px}
+
+/*用户*/
+.btnUserNew    {background-position:-0px -40px;width:20px}
+.btnUserDel    {background-position:-20px -40px;width:20px}
+.btnUserProject{background-position:-40px -40px;width:20px}
+.btnUser       {background-position:-60px -40px;width:20px}
+.btnUserPurview{background-position:-80px -40px;width:20px}
+/*其他*/
+.btnSave  {background-position:-0px -60px;width:20px}
+.btnprint {background-position:-20px -60px;width:20px}
+.btnprint2{background-position:-40px -60px;width:20px}
+.btnrs    {background-position:-60px -60px;width:20px}
+.btnBack  {background-position:-80px -60px;width:20px}
+.btnChecked  {background-position:-100px -60px;width:20px}
+.btnEdit  {background-position:-120px -60px;width:20px}
+.btnClose {background-position:-140px -60px;width:20px}
+.btnClose2{background-position:-160px -60px;width:20px}
+.btnQuery {background-position:-180px -60px;width:20px}
+
+.btnconfig{background-position:-100px -80px;width:20px}
+.btnleft{background-position:-140px -80px;width:20px}
+.btnright{background-position:-160px -80px;width:20px}
+
+/*功能图标*/
+.btnNew{background-position:-60px -140px;width:20px}/*新建*/
+.btnDel{background-position:-20px -140px;width:20px}/*删除*/
+/*小图标*/
+.btnminidown {background-position:-0px -100px;width:20px}
+.btnmininoway{background-position:-20px -100px;width:10px}
+.btnminiadd{background-position:-40px -100px;width:10px}

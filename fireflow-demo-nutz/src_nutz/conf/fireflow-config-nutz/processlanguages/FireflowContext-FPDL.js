@@ -1,0 +1,58 @@
+/**
+ * 
+ */
+var ioc = {
+		fireflowProcessDefinitionLanguageManager:{
+			type:"org.fireflow.pdl.fpdl.enginemodules.processlanguage.FpdlManager",
+			fields:{
+				processType:'FPDL',
+				engineModules:{
+					org.fireflow.pvm.translate.Process2PObjectTranslator:{refer:"fpdlTanslator"},
+					org.fireflow.engine.modules.instancemanager.ProcessInstanceManager:{
+						type:"org.fireflow.pdl.fpdl.enginemodules.instancemanager.ProcessInstanceManagerFpdl20Impl"
+					},
+					org.fireflow.engine.modules.instancemanager.ActivityInstanceManager:{
+						type:"org.fireflow.pdl.fpdl.enginemodules.instancemanager.ActivityInstanceManagerFpdl20Impl"
+					},
+					org.fireflow.engine.modules.workitem.WorkItemManager:{
+						type:"org.fireflow.pdl.fpdl.enginemodules.workitem.WorkItemManagerFpdl20Impl"
+					}
+					
+				}
+			}
+		},
+		fpdlTanslator:{
+			type:"org.fireflow.pdl.fpdl.enginemodules.Process2PObjectTranslatorFpdl20Impl",
+			fields:{
+				transitionBehavior:{
+					type:"org.fireflow.pdl.fpdl.behavior.TransitionBehavior"
+				},
+				startNodeBehavior:{
+					type:"org.fireflow.pdl.fpdl.behavior.StartNodeBehavior"
+				},
+				endNodeBehavior:{
+					type:"org.fireflow.pdl.fpdl.behavior.EndNodeBehavior"
+				},
+				activityBehavior:{
+					type:"org.fireflow.pdl.fpdl.behavior.ActivityBehavior"
+				},
+				routerBehavior:{
+					type:"org.fireflow.pdl.fpdl.behavior.RouterBehavior"
+				},
+				subProcessBehavior:{
+					type:"org.fireflow.pdl.fpdl.behavior.SubProcessBehavior"
+				}				
+			}
+
+		},
+		activityInstanceEventBroadcaster:{
+			type:"org.fireflow.pdl.fpdl.enginemodules.event.ActivityInstanceEventbroadcaster"
+		},
+		processInstanceEventBroadcaster:{
+			type:"org.fireflow.pdl.fpdl.enginemodules.event.ProcessInstanceEventBroadcaster"
+		},
+		workItemEventBroadcaster:{
+			type:"org.fireflow.pdl.fpdl.enginemodules.event.WorkItemEventBroadcaster"
+		}
+}
+

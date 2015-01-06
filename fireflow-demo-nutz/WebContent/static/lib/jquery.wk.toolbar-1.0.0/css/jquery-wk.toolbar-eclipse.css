@@ -1,0 +1,63 @@
+.gTlBar .btndisabled {opacity:0.2;FILTER: gray;}
+.gTlBar .btnLe,.gTlBar .btnRi,.gTlBar .btnMore{ background-image:url(images/Toolbar-eclipse.png); background-repeat:no-repeat}
+.gTlBar, .gTlBar .on,.gTlBar .click{ background-image:url(images/Toolbar-eclipse.png); background-repeat:repeat-x}
+.gTlBar {height:26px;background-position:0 -40px;padding-top:3px;padding-left:4px;padding-right:2px}
+.gTlBar .on{background-position:0 -112px}
+.gTlBar .click{background-position:0 -133px}
+.gTlBar .btnLe{width:3px;height:20px;position:absolute;left:0;top:0;background-position:0 0}
+.gTlBar .btnRi{width:3px;height:20px;position:absolute;right:0;top:0;background-position:0 0}
+.gTlBar .click .btnLe{background-position:-0px -91px}
+.gTlBar .click .btnRi{background-position:-4px -91px}
+.gTlBar .on .btnLe{background-position:0px -70px}
+.gTlBar .on .btnRi{background-position:-4px -70px;margin-right:-1px}
+.gTlBar .btnTxt{margin:3px 0px 0 -5px;color:#333;float:left}
+.gTlBar .on .btnTxt{color:#000}
+.gTlBar *:lang(zh) .btnTxt{margin-top:3px}
+.gTlBar .click .btnTxt{margin:5px 0px 0 -5px}
+.gTlBar *:lang(zh) .click .btnTxt{margin:5px 0px 0 -5px}
+
+.tlbtn2{height:20px;position:relative;background-position:0 0;cursor:pointer;float:left;margin:0 5px 0 2px;}
+.gTlBar .icoBtn{ background-image:url(images/buttonico.gif); background-repeat:no-repeat;}
+.gTlBar .icoBtn{float:left;margin:5px 0 0 5px;width:20px;height:20px;display:block;font-size:1px}
+.gTlBar .miniicoBtn{ background-image:url(images/buttonico.gif); background-repeat:no-repeat;}
+.gTlBar .miniicoBtn{float:left;margin:0px 0 0 0px;width:10px;height:10px;display:block;font-size:1px}
+.gTlBar .click .icoBtn{margin:5px 0 0 5px}
+/*分类*/
+.gTlBar .btncatgory   {background-position:-0px -0px;width:20px}
+.gTlBar .btndelcatgory{background-position:-20px -0px;width:20px}
+.gTlBar .btnupcatgory {background-position:-40px -0px;width:20px}
+.gTlBar .btnrecatgory {background-position:-60px -0px;width:20px}
+.gTlBar .btneditcatgory{background-position:-80px -0px;width:20px} 
+.gTlBar .btnsavecatgory{background-position:-100px -0px;width:20px}
+.gTlBar .btnAddcatgory{background-position:-120px -0px;width:20px}
+.gTlBar .btndowncatgory{background-position:-140px -0px;width:20px}
+
+/*用户*/
+.gTlBar .btnUserNew    {background-position:-0px -40px;width:20px}
+.gTlBar .btnUserDel    {background-position:-20px -40px;width:20px}
+.gTlBar .btnUserProject{background-position:-40px -40px;width:20px}
+.gTlBar .btnUser       {background-position:-60px -40px;width:20px}
+.gTlBar .btnUserPurview{background-position:-80px -40px;width:20px}
+/*其他*/
+.gTlBar .btnSave  {background-position:-0px -60px;width:20px}
+.gTlBar .btnprint {background-position:-20px -60px;width:20px}
+.gTlBar .btnprint2{background-position:-40px -60px;width:20px}
+.gTlBar .btnrs    {background-position:-60px -60px;width:20px}
+.gTlBar .btnBack  {background-position:-80px -60px;width:20px}
+.gTlBar .btnChecked  {background-position:-100px -60px;width:20px}
+.gTlBar .btnEdit  {background-position:-120px -60px;width:20px}
+.gTlBar .btnClose {background-position:-140px -60px;width:20px}
+.gTlBar .btnClose2{background-position:-160px -60px;width:20px}
+.gTlBar .btnQuery {background-position:-180px -60px;width:20px}
+
+.gTlBar .btnconfig{background-position:-100px -80px;width:20px}
+.gTlBar .btnleft{background-position:-140px -80px;width:20px}
+.gTlBar .btnright{background-position:-160px -80px;width:20px}
+
+/*功能图标*/
+.gTlBar .btnNew{background-position:-60px -140px;width:20px}/*新建*/
+.gTlBar .btnDel{background-position:-20px -140px;width:20px}/*删除*/
+/*小图标*/
+.gTlBar .btnminidown {background-position:-0px -100px;width:20px}
+.gTlBar .btnmininoway{background-position:-20px -100px;width:10px}
+.gTlBar .btnminiadd{background-position:-40px -100px;width:10px}

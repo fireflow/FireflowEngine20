@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?><f:workflow-process xmlns:f="http://www.fireflow.org/schema/workflowprocess" display-name="请假申请流程" id="Leave_Request_Process" name="Leave_Request_Process" package-id="hr">
+  <f:import display-name="我的新流程" id="My_New_Process" location="PROJECT_LOC/processes/hr/我的新流程.v0.xml" name="My_New_Process" package-id="hr" type="org.fireflow.constants.import.PROCESS_IMPORT"/>
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.call display-name="子流程1@请假申请流程" id="Call_sub1" invoker-class="org.fireflow.service.call.CallServiceInvoker" name="Call_sub1" package-id="" parser-class="org.fireflow.service.call.CallServiceParser" target-namespace="">
+      <s:interface.call_service name="call_subprocess_interface"/>
+      <s:package-id>hr</s:package-id>
+      <s:process-id>Leave_Request_Process</s:process-id>
+      <s:subprocess-id>Leave_Request_Process.sub1</s:subprocess-id>
+      <s:process-version>0</s:process-version>
+    </s:service.call>
+    <s:service.human display-name="CEO审批表" id="ceoApproveForm" name="ceoApproveForm" package-id="" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+      <s:form-url>template/system/security/_members_of_role_.jsp</s:form-url>
+      <s:workitem-subject>
+        <s:expression display-name="工作项主题" language="UNIFIEDJEXL" name="WorkItemSubject">
+          <s:body><![CDATA[请假审批，${processVars.LeaveRequestForm.applicant},${processVars.LeaveRequestForm.totalDays}]]></s:body>
+        </s:expression>
+      </s:workitem-subject>
+      <s:interface.common name="ceoApproveForm">
+        <s:operation name="打开表单：CEO审批表">
+          <s:inputs>
+            <s:input data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="业务实体id" name="bizId"/>
+          </s:inputs>
+          <s:outputs/>
+        </s:operation>
+      </s:interface.common>
+    </s:service.human>
+    <s:service.human display-name="编辑请假单" id="EditLeaveRequestForm" name="EditLeaveRequestForm" package-id="" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+      <s:form-url>/module/holiday/LeaveRequest/loadLeaveRequestForEdit</s:form-url>
+      <s:workitem-subject>
+        <s:expression display-name="工作项主题" language="UNIFIEDJEXL" name="WorkItemSubject">
+          <s:body><![CDATA[请假单【${processVars.LeaveRequestForm.employeeName}，${processVars.LeaveRequestForm.leaveTypeName}，${processVars.LeaveRequestForm.totalDays}天】]]></s:body>
+        </s:expression>
+      </s:workitem-subject>
+      <s:interface.common name="EditLeaveRequestForm">
+        <s:operation name="打开表单：编辑请假单">
+          <s:inputs>
+            <s:input data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="单据号" name="billCode"/>
+          </s:inputs>
+          <s:outputs/>
+        </s:operation>
+      </s:interface.common>
+    </s:service.human>
+    <s:service.java display-name="Java类[LeaveFormApproveOK]" id="LeaveFormApproveOK" invoker-class="org.fireflow.service.java.JavaInvoker" name="LeaveFormApproveOK" package-id="" parser-class="org.fireflow.service.java.JavaServiceParser" target-namespace="">
+      <s:java-class-name>org.fireflow.demo.holiday.module.LeaveFormApproveOK</s:java-class-name>
+      <s:interface.java>
+        <s:interface-class>org.fireflow.demo.holiday.module.LeaveFormApproveOK</s:interface-class>
+      </s:interface.java>
+    </s:service.java>
+    <s:service.human display-name="请假单审批表" id="ApproveLeaveRequestForm" name="ApproveLeaveRequestForm" package-id="" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+      <s:form-url>/module/holiday/LeaveRequest/loadLeaveRequestForApprove</s:form-url>
+      <s:workitem-subject>
+        <s:expression display-name="工作项主题" language="UNIFIEDJEXL" name="WorkItemSubject">
+          <s:body><![CDATA[请假单审批【${processVars.LeaveRequestForm.employeeName}，${processVars.LeaveRequestForm.leaveTypeName}，${processVars.LeaveRequestForm.totalDays}天】]]></s:body>
+        </s:expression>
+      </s:workitem-subject>
+      <s:interface.common name="ApproveLeaveRequestForm">
+        <s:operation name="打开表单：请假单审批表">
+          <s:inputs>
+            <s:input data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="单据号" name="billCode"/>
+            <s:input data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="活动id" name="activityId"/>
+          </s:inputs>
+          <s:outputs/>
+        </s:operation>
+      </s:interface.common>
+    </s:service.human>
+    <s:service.java display-name="Java类[LeaveFormApproveOK]" id="LeaveFormApproveOK_2" invoker-class="org.fireflow.service.java.JavaInvoker" name="LeaveFormApproveOK_2" package-id="" parser-class="org.fireflow.service.java.JavaServiceParser" target-namespace="">
+      <s:java-class-name>org.fireflow.demo.holiday.module.LeaveFormApproveOK</s:java-class-name>
+      <s:interface.java>
+        <s:interface-class>org.fireflow.demo.holiday.module.LeaveFormApproveOK</s:interface-class>
+      </s:interface.java>
+    </s:service.java>
+    <s:service.call display-name="我的新流程" id="Call_My_New_Process" invoker-class="org.fireflow.service.call.CallServiceInvoker" name="Call_My_New_Process" package-id="" parser-class="org.fireflow.service.call.CallServiceParser" target-namespace="">
+      <s:interface.call_service name="call_subprocess_interface"/>
+      <s:package-id>hr</s:package-id>
+      <s:process-id>My_New_Process</s:process-id>
+      <s:subprocess-id>My_New_Process.main</s:subprocess-id>
+      <s:process-version>0</s:process-version>
+    </s:service.call>
+  </s:services>
+  <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
+    <r:resource display-name="技术部负责fireworkflow-designer的副经理" id="Resource_1420461138214" name="Resource_1420461138214" resource-type="org.fireflow.constants.resource_type.Custom" value="DEPT_MGR">
+      <r:resolver bean-name="myResolverBean"/>
+    </r:resource>
+    <r:resource display-name="业务主管" id="Resource_1420252578324" name="Resource_1420252578324" resource-type="org.fireflow.constants.resource_type.Role" value="ROLE_BUSINESS_CONTROLLER">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.RoleResolver"/>
+    </r:resource>
+    <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
+    </r:resource>
+    <r:resource display-name="部门经理" id="Resource_1420252426998" name="Resource_1420252426998" resource-type="org.fireflow.constants.resource_type.Custom" value="ROLE_DEPT_MANAGER">
+      <r:resolver class-name="org.fireflow.demo.workflow.ext.ApplicantDeptMgrResolver"/>
+    </r:resource>
+    <r:resource display-name="fireworklow公司CEO" id="Resource_1420460684047" name="Resource_1420460684047" resource-type="org.fireflow.constants.resource_type.Role" value="fireflowCEO">
+      <r:resolver class-name="org.fireflow.engine.resource.impl.RoleResolver"/>
+    </r:resource>
+  </r:resources>
+  <f:sub-processes>
+    <f:sub-process display-name="子流程1" entry="Leave_Request_Process.sub1.StartNode1" id="Leave_Request_Process.sub1" name="sub1">
+      <f:start-nodes>
+        <f:start-node display-name="StartNode1" id="Leave_Request_Process.sub1.StartNode1" name="StartNode1">
+          <f:features>
+            <f:normal-start-feature/>
+          </f:features>
+        </f:start-node>
+      </f:start-nodes>
+      <f:activities>
+        <f:activity display-name="Activity1" id="Leave_Request_Process.sub1.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1"/>
+      </f:activities>
+      <f:end-nodes>
+        <f:end-node display-name="EndNode1" id="Leave_Request_Process.sub1.EndNode1" name="EndNode1">
+          <f:features>
+            <f:normal-end-feature/>
+          </f:features>
+        </f:end-node>
+      </f:end-nodes>
+      <f:transitions>
+        <f:transition display-name="" from="Leave_Request_Process.sub1.StartNode1" id="Leave_Request_Process.sub1.Transition1" is-default="false" is-loop="false" name="Transition1" to="Leave_Request_Process.sub1.Activity1"/>
+        <f:transition display-name="" from="Leave_Request_Process.sub1.Activity1" id="Leave_Request_Process.sub1.Transition2" is-default="false" is-loop="false" name="Transition2" to="Leave_Request_Process.sub1.EndNode1"/>
+      </f:transitions>
+    </f:sub-process>
+    <f:sub-process display-name="main" entry="Leave_Request_Process.main.StartNode1" id="Leave_Request_Process.main" name="main">
+      <f:properties>
+        <f:property data-type="{http://jcp.org/en/jsr/detail?id=270}org.fireflow.demo.workflow.ext.BusinessObjectWrappImpl" display-name="请假单" id="Leave_Request_Process.main.LeaveRequestForm" init-value="" name="LeaveRequestForm"/>
+        <f:property data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="申请人部门id" id="Leave_Request_Process.main.APPLICANT_GROUP_CODE" init-value="" name="APPLICANT_GROUP_CODE"/>
+      </f:properties>
+      <f:start-nodes>
+        <f:start-node display-name="StartNode1" id="Leave_Request_Process.main.StartNode1" name="StartNode1">
+          <f:features>
+            <f:normal-start-feature/>
+          </f:features>
+        </f:start-node>
+      </f:start-nodes>
+      <f:activities>
+        <f:activity display-name="申请" id="Leave_Request_Process.main.FulfillRequestForm" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="FulfillRequestForm">
+          <f:service-binding operation-name="打开表单：编辑请假单" service-id="EditLeaveRequestForm">
+            <f:input-assignments>
+              <f:input-assignment>
+                <f:from>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="流程变量.请假单" language="JEXL" name="LeaveRequestForm">
+                    <f:body><![CDATA[processVars.LeaveRequestForm.billCode]]></f:body>
+                  </f:expression>
+                </f:from>
+                <f:to>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="billCode" language="XPATH" name="billCode">
+                    <f:body><![CDATA[inputs/billCode]]></f:body>
+                  </f:expression>
+                </f:to>
+              </f:input-assignment>
+            </f:input-assignments>
+          </f:service-binding>
+          <f:resource-binding assignment-strategy="org.fireflow.constants.assignment_strategy.ASSIGN_TO_ANY" display-name="">
+            <f:potential-owners>
+              <f:resource-ref resource-id="PROCESS_INSTANCE_CREATOR"/>
+            </f:potential-owners>
+          </f:resource-binding>
+          <f:workitem_event-listeners>
+            <f:event-listener class-name="org.fireflow.demo.workflow.ext.OmitInitialzedStateListener" id="Leave_Request_Process.main.FulfillRequestForm.EventListener1420263929796" name="EventListener1420263929796">
+              <f:description><![CDATA[略过initialize状态，直接进入running状态]]></f:description>
+            </f:event-listener>
+          </f:workitem_event-listeners>
+        </f:activity>
+        <f:activity display-name="部门经理审批" id="Leave_Request_Process.main.DeptMgrApprove" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="DeptMgrApprove">
+          <f:service-binding operation-name="打开表单：请假单审批表" service-id="ApproveLeaveRequestForm">
+            <f:input-assignments>
+              <f:input-assignment>
+                <f:from>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="流程变量.请假单" language="JEXL" name="LeaveRequestForm">
+                    <f:body><![CDATA[processVars.LeaveRequestForm.billCode]]></f:body>
+                  </f:expression>
+                </f:from>
+                <f:to>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="billCode" language="XPATH" name="billCode">
+                    <f:body><![CDATA[inputs/billCode]]></f:body>
+                  </f:expression>
+                </f:to>
+              </f:input-assignment>
+              <f:input-assignment>
+                <f:from>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="当前活动实例.活动id" language="JEXL" name="nodeId">
+                    <f:body><![CDATA[currentActivityInstance.nodeId]]></f:body>
+                  </f:expression>
+                </f:from>
+                <f:to>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="activityId" language="XPATH" name="activityId">
+                    <f:body><![CDATA[inputs/activityId]]></f:body>
+                  </f:expression>
+                </f:to>
+              </f:input-assignment>
+            </f:input-assignments>
+          </f:service-binding>
+          <f:resource-binding assignment-strategy="org.fireflow.constants.assignment_strategy.ASSIGN_TO_ANY" display-name="">
+            <f:potential-owners>
+              <f:resource-ref resource-id="Resource_1420252426998"/>
+            </f:potential-owners>
+          </f:resource-binding>
+        </f:activity>
+        <f:activity display-name="业务主管审批" id="Leave_Request_Process.main.DirectorApprove" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="DirectorApprove">
+          <f:service-binding operation-name="打开表单：请假单审批表" service-id="ApproveLeaveRequestForm">
+            <f:input-assignments>
+              <f:input-assignment>
+                <f:from>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="流程变量.请假单" language="JEXL" name="LeaveRequestForm">
+                    <f:body><![CDATA[processVars.LeaveRequestForm.billCode]]></f:body>
+                  </f:expression>
+                </f:from>
+                <f:to>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="billCode" language="XPATH" name="billCode">
+                    <f:body><![CDATA[inputs/billCode]]></f:body>
+                  </f:expression>
+                </f:to>
+              </f:input-assignment>
+              <f:input-assignment>
+                <f:from>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="当前活动实例.活动id" language="JEXL" name="nodeId">
+                    <f:body><![CDATA[currentActivityInstance.nodeId]]></f:body>
+                  </f:expression>
+                </f:from>
+                <f:to>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="activityId" language="XPATH" name="activityId">
+                    <f:body><![CDATA[inputs/activityId]]></f:body>
+                  </f:expression>
+                </f:to>
+              </f:input-assignment>
+            </f:input-assignments>
+          </f:service-binding>
+          <f:resource-binding assignment-strategy="org.fireflow.constants.assignment_strategy.ASSIGN_TO_ANY" display-name="">
+            <f:potential-owners>
+              <f:resource-ref resource-id="Resource_1420252578324"/>
+            </f:potential-owners>
+          </f:resource-binding>
+        </f:activity>
+        <f:activity display-name="记录请假天数" id="Leave_Request_Process.main.RecodHolidays" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="RecodHolidays">
+          <f:service-binding operation-name="updateHolidaysInfo" service-id="LeaveFormApproveOK">
+            <f:input-assignments>
+              <f:input-assignment>
+                <f:from>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="流程变量.请假单" language="JEXL" name="LeaveRequestForm">
+                    <f:body><![CDATA[processVars.LeaveRequestForm.billCode]]></f:body>
+                  </f:expression>
+                </f:from>
+                <f:to>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="billCode" language="XPATH" name="billCode">
+                    <f:body><![CDATA[inputs/billCode]]></f:body>
+                  </f:expression>
+                </f:to>
+              </f:input-assignment>
+            </f:input-assignments>
+          </f:service-binding>
+        </f:activity>
+        <f:activity display-name="财务部门备案" id="Leave_Request_Process.main.FinancialRecord" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="FinancialRecord">
+          <f:service-binding operation-name="打开表单：请假单审批表" service-id="ApproveLeaveRequestForm">
+            <f:input-assignments>
+              <f:input-assignment>
+                <f:from>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="流程变量.请假单" language="JEXL" name="LeaveRequestForm">
+                    <f:body><![CDATA[processVars.LeaveRequestForm.billCode]]></f:body>
+                  </f:expression>
+                </f:from>
+                <f:to>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="billCode" language="XPATH" name="billCode">
+                    <f:body><![CDATA[inputs/billCode]]></f:body>
+                  </f:expression>
+                </f:to>
+              </f:input-assignment>
+              <f:input-assignment>
+                <f:from>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="当前活动实例.活动id" language="JEXL" name="nodeId">
+                    <f:body><![CDATA[currentActivityInstance.nodeId]]></f:body>
+                  </f:expression>
+                </f:from>
+                <f:to>
+                  <f:expression data-type="{http://jcp.org/en/jsr/detail?id=270}java.lang.String" display-name="activityId" language="XPATH" name="activityId">
+                    <f:body><![CDATA[inputs/activityId]]></f:body>
+                  </f:expression>
+                </f:to>
+              </f:input-assignment>
+            </f:input-assignments>
+          </f:service-binding>
+          <f:resource-binding assignment-strategy="org.fireflow.constants.assignment_strategy.ASSIGN_TO_ANY" display-name="">
+            <f:potential-owners>
+              <f:resource-ref resource-id="Resource_1420252578324"/>
+            </f:potential-owners>
+          </f:resource-binding>
+        </f:activity>
+      </f:activities>
+      <f:routers>
+        <f:router id="Leave_Request_Process.main.Router1" name="Router1">
+          <f:features>
+            <f:xorjoin-xorsplit-feature/>
+          </f:features>
+        </f:router>
+        <f:router id="Leave_Request_Process.main.Router2" name="Router2">
+          <f:features>
+            <f:xorjoin-xorsplit-feature/>
+          </f:features>
+        </f:router>
+        <f:router id="Leave_Request_Process.main.Router3" name="Router3">
+          <f:features>
+            <f:xorjoin-xorsplit-feature/>
+          </f:features>
+        </f:router>
+      </f:routers>
+      <f:end-nodes>
+        <f:end-node display-name="EndNode1" id="Leave_Request_Process.main.EndNode1" name="EndNode1">
+          <f:features>
+            <f:normal-end-feature/>
+          </f:features>
+        </f:end-node>
+      </f:end-nodes>
+      <f:transitions>
+        <f:transition display-name="" from="Leave_Request_Process.main.StartNode1" id="Leave_Request_Process.main.Transition1" is-default="false" is-loop="false" name="Transition1" to="Leave_Request_Process.main.FulfillRequestForm"/>
+        <f:transition display-name="" from="Leave_Request_Process.main.FulfillRequestForm" id="Leave_Request_Process.main.Transition2" is-default="false" is-loop="false" name="Transition2" to="Leave_Request_Process.main.DeptMgrApprove"/>
+        <f:transition display-name="" from="Leave_Request_Process.main.DeptMgrApprove" id="Leave_Request_Process.main.Transition3" is-default="false" is-loop="false" name="Transition3" to="Leave_Request_Process.main.Router1"/>
+        <f:transition display-name="不同意" from="Leave_Request_Process.main.Router1" id="Leave_Request_Process.main.Transition4" is-default="false" is-loop="false" name="Transition4" to="Leave_Request_Process.main.EndNode1">
+          <f:condition>
+            <f:expression language="JEXL">
+              <f:body><![CDATA[processVars.LeaveRequestForm.deptApproveFlag!=1]]></f:body>
+            </f:expression>
+          </f:condition>
+        </f:transition>
+        <f:transition display-name="同意" from="Leave_Request_Process.main.Router1" id="Leave_Request_Process.main.Transition5" is-default="false" is-loop="false" name="Transition5" to="Leave_Request_Process.main.Router2">
+          <f:condition>
+            <f:expression language="JEXL">
+              <f:body><![CDATA[processVars.LeaveRequestForm.deptApproveFlag==1]]></f:body>
+            </f:expression>
+          </f:condition>
+        </f:transition>
+        <f:transition display-name="小于3天" from="Leave_Request_Process.main.Router2" id="Leave_Request_Process.main.Transition6" is-default="false" is-loop="false" name="Transition6" to="Leave_Request_Process.main.RecodHolidays">
+          <f:condition>
+            <f:expression language="JEXL">
+              <f:body><![CDATA[processVars.LeaveRequestForm.totalDays<3]]></f:body>
+            </f:expression>
+          </f:condition>
+        </f:transition>
+        <f:transition display-name="大于等于3天" from="Leave_Request_Process.main.Router2" id="Leave_Request_Process.main.Transition7" is-default="false" is-loop="false" name="Transition7" to="Leave_Request_Process.main.DirectorApprove">
+          <f:condition>
+            <f:expression language="JEXL">
+              <f:body><![CDATA[processVars.LeaveRequestForm.totalDays>=3]]></f:body>
+            </f:expression>
+          </f:condition>
+        </f:transition>
+        <f:transition display-name="" from="Leave_Request_Process.main.DirectorApprove" id="Leave_Request_Process.main.Transition8" is-default="false" is-loop="false" name="Transition8" to="Leave_Request_Process.main.Router3"/>
+        <f:transition display-name="" from="Leave_Request_Process.main.Router3" id="Leave_Request_Process.main.Transition9" is-default="false" is-loop="false" name="Transition9" to="Leave_Request_Process.main.RecodHolidays">
+          <f:condition>
+            <f:expression language="JEXL">
+              <f:body><![CDATA[processVars.LeaveRequestForm.deptApproveFlag==1]]></f:body>
+            </f:expression>
+          </f:condition>
+        </f:transition>
+        <f:transition display-name="" from="Leave_Request_Process.main.RecodHolidays" id="Leave_Request_Process.main.Transition10" is-default="false" is-loop="false" name="Transition10" to="Leave_Request_Process.main.FinancialRecord"/>
+        <f:transition display-name="" from="Leave_Request_Process.main.FinancialRecord" id="Leave_Request_Process.main.Transition11" is-default="false" is-loop="false" name="Transition11" to="Leave_Request_Process.main.EndNode1"/>
+        <f:transition display-name="" from="Leave_Request_Process.main.Router3" id="Leave_Request_Process.main.Transition12" is-default="false" is-loop="false" name="Transition12" to="Leave_Request_Process.main.EndNode1">
+          <f:condition>
+            <f:expression language="JEXL">
+              <f:body><![CDATA[processVars.LeaveRequestForm.deptApproveFlag!=1]]></f:body>
+            </f:expression>
+          </f:condition>
+        </f:transition>
+      </f:transitions>
+    </f:sub-process>
+  </f:sub-processes>
+  <f:diagrams>
+    <f:diagram direction="H" grid-enabled="false" id="fid_ff6b4a3d_1e88_45c2_a5ea_1270ca22bfcd" ref="Leave_Request_Process.sub1" ruler-enabled="false" snap-enabled="true">
+      <f:node id="fid_ebe07580_3d51_4e20_bce8_c16cd2319b53" ref="Leave_Request_Process.sub1.StartNode1" type="start-node">
+        <f:figure>
+          <f:circle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="32" width="32" x="86" y="48"/>
+          </f:circle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_00ba1f2f_abd3_42e6_b296_00de45d257ee" ref="Leave_Request_Process.sub1.Activity1" type="activity">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:content>
+              <f:label color="#191970" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:content>
+            <f:bounds height="72" width="108" x="345" y="76">
+              <f:border-style color="#4682B4" line-type="SOLID" radius="5" thick="2"/>
+            </f:bounds>
+            <f:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_fa7ff906_2a38_47a8_84d3_489b24d5fac9" ref="Leave_Request_Process.sub1.EndNode1" type="end-node">
+        <f:figure>
+          <f:circle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="32" width="32" x="561" y="88"/>
+          </f:circle>
+        </f:figure>
+      </f:node>
+      <f:connector from="fid_ebe07580_3d51_4e20_bce8_c16cd2319b53" id="fid_cc55ea3f_f260_4414_9c0d_9b245cafee98" ref="Leave_Request_Process.sub1.Transition1" to="fid_00ba1f2f_abd3_42e6_b296_00de45d257ee" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_00ba1f2f_abd3_42e6_b296_00de45d257ee" id="fid_34978cce_e9cf_4566_9f49_db7964ddcc8a" ref="Leave_Request_Process.sub1.Transition2" to="fid_fa7ff906_2a38_47a8_84d3_489b24d5fac9" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+    </f:diagram>
+    <f:diagram direction="H" grid-enabled="false" id="fid_ab048e49_aa60_4d2c_aaf5_286c911bacc1" ref="Leave_Request_Process.main" ruler-enabled="false" snap-enabled="true">
+      <f:node id="fid_975a0535_a03b_4ac8_bf66_2ae6b759e33b" ref="Leave_Request_Process.main.StartNode1" type="start-node">
+        <f:figure>
+          <f:circle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="32" width="32" x="51" y="100"/>
+          </f:circle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_fef0295e_58eb_440e_8f18_7050835b34ec" ref="Leave_Request_Process.main.FulfillRequestForm" type="activity">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:content>
+              <f:label color="#191970" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:content>
+            <f:bounds height="72" width="108" x="147" y="80">
+              <f:border-style color="#4682B4" line-type="SOLID" radius="5" thick="2"/>
+            </f:bounds>
+            <f:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_ac00bf39_50b7_4082_81da_ab74aeeb3ba3" ref="Leave_Request_Process.main.DeptMgrApprove" type="activity">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:content>
+              <f:label color="#191970" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:content>
+            <f:bounds height="72" width="108" x="338" y="80">
+              <f:border-style color="#4682B4" line-type="SOLID" radius="5" thick="2"/>
+            </f:bounds>
+            <f:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_a1a33ace_54c6_4dae_bc79_197e38b7a8ce" ref="Leave_Request_Process.main.DirectorApprove" type="activity">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:content>
+              <f:label color="#191970" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:content>
+            <f:bounds height="72" width="108" x="771" y="80">
+              <f:border-style color="#4682B4" line-type="SOLID" radius="5" thick="2"/>
+            </f:bounds>
+            <f:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_b9160932_84ab_415b_9617_22d7201e724d" ref="Leave_Request_Process.main.RecodHolidays" type="activity">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:content>
+              <f:label color="#191970" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:content>
+            <f:bounds height="72" width="108" x="561" y="306">
+              <f:border-style color="#4682B4" line-type="SOLID" radius="5" thick="2"/>
+            </f:bounds>
+            <f:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_7bb9cf5c_87a4_4a99_904a_00b4f2961582" ref="Leave_Request_Process.main.EndNode1" type="end-node">
+        <f:figure>
+          <f:circle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="32" width="32" x="207" y="326"/>
+          </f:circle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_465f790f_1a16_4180_88ec_3418bac12dee" ref="Leave_Request_Process.main.Router1" type="router">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="32" width="32" x="484" y="100"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_433aae51_a4bd_4b9f_b0c8_1bf9dbd20db6" ref="Leave_Request_Process.main.Router2" type="router">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="32" width="32" x="598" y="100"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_490d5b77_04a8_4bdb_8341_112efa6c6ebd" ref="Leave_Request_Process.main.Router3" type="router">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="32" width="32" x="809" y="220"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_018475b1_2d54_4019_9f05_9ca890a774e7" ref="Leave_Request_Process.main.FinancialRecord" type="activity">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:content>
+              <f:label color="#191970" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:content>
+            <f:bounds height="72" width="108" x="356" y="306">
+              <f:border-style color="#4682B4" line-type="SOLID" radius="5" thick="2"/>
+            </f:bounds>
+            <f:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:connector from="fid_975a0535_a03b_4ac8_bf66_2ae6b759e33b" id="fid_87ae2fb4_cdd3_4a3b_bb5c_83341b2be9c4" ref="Leave_Request_Process.main.Transition1" to="fid_fef0295e_58eb_440e_8f18_7050835b34ec" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_fef0295e_58eb_440e_8f18_7050835b34ec" id="fid_f5f69597_111c_40f1_9bfc_6b5daf7a5c88" ref="Leave_Request_Process.main.Transition2" to="fid_ac00bf39_50b7_4082_81da_ab74aeeb3ba3" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_ac00bf39_50b7_4082_81da_ab74aeeb3ba3" id="fid_eeb971d1_e92b_4223_a8da_aad05a693b16" ref="Leave_Request_Process.main.Transition3" to="fid_465f790f_1a16_4180_88ec_3418bac12dee" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_465f790f_1a16_4180_88ec_3418bac12dee" id="fid_bfa7c66b_859e_4eec_be63_cf82062997cc" ref="Leave_Request_Process.main.Transition4" to="fid_7bb9cf5c_87a4_4a99_904a_00b4f2961582" type="transition">
+        <f:figure>
+          <f:line point-list="(500,204);(223,204)" titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_465f790f_1a16_4180_88ec_3418bac12dee" id="fid_b55e731a_677c_472a_b996_0a2367ee6124" ref="Leave_Request_Process.main.Transition5" to="fid_433aae51_a4bd_4b9f_b0c8_1bf9dbd20db6" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(-3,-12)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_433aae51_a4bd_4b9f_b0c8_1bf9dbd20db6" id="fid_5a5ebc73_756f_4d88_8039_11a00b798a26" ref="Leave_Request_Process.main.Transition6" to="fid_b9160932_84ab_415b_9617_22d7201e724d" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_433aae51_a4bd_4b9f_b0c8_1bf9dbd20db6" id="fid_c8b34d64_cc7d_4c8d_92a6_55c7288aa973" ref="Leave_Request_Process.main.Transition7" to="fid_a1a33ace_54c6_4dae_bc79_197e38b7a8ce" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(-3,-21)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_a1a33ace_54c6_4dae_bc79_197e38b7a8ce" id="fid_1eb6165a_75e1_4a12_b65e_4ef2adb9b6b6" ref="Leave_Request_Process.main.Transition8" to="fid_490d5b77_04a8_4bdb_8341_112efa6c6ebd" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_490d5b77_04a8_4bdb_8341_112efa6c6ebd" id="fid_2279123e_e7a8_4fb0_be8d_c4d6d1bf7cea" ref="Leave_Request_Process.main.Transition9" to="fid_b9160932_84ab_415b_9617_22d7201e724d" type="transition">
+        <f:figure>
+          <f:line point-list="(825,342)" titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_b9160932_84ab_415b_9617_22d7201e724d" id="fid_c1420a2f_915c_426b_b553_81431b45b1fc" ref="Leave_Request_Process.main.Transition10" to="fid_018475b1_2d54_4019_9f05_9ca890a774e7" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_018475b1_2d54_4019_9f05_9ca890a774e7" id="fid_c62104f1_a834_45d0_a5e9_bb846e5a0c5b" ref="Leave_Request_Process.main.Transition11" to="fid_7bb9cf5c_87a4_4a99_904a_00b4f2961582" type="transition">
+        <f:figure>
+          <f:line titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+      <f:connector from="fid_490d5b77_04a8_4bdb_8341_112efa6c6ebd" id="fid_2cd5812a_4f2f_40cc_a6c4_2e9bbbeeaee2" ref="Leave_Request_Process.main.Transition12" to="fid_7bb9cf5c_87a4_4a99_904a_00b4f2961582" type="transition">
+        <f:figure>
+          <f:line point-list="(288,238)" titleLabel-position="(0,0)">
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:bounds height="10" width="10" x="0" y="0">
+              <f:border-style color="#000000" line-type="SOLID" radius="0" thick="1"/>
+            </f:bounds>
+          </f:line>
+        </f:figure>
+      </f:connector>
+    </f:diagram>
+  </f:diagrams>
+</f:workflow-process>

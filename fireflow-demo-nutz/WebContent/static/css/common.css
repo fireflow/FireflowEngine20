@@ -1,0 +1,95 @@
+@charset "utf-8";
+/* CSS Document */
+/* 公共 */
+body{ font-size:12px; font-family:"\5FAE\8F6F\96C5\9ED1"; background:#FCFCFC; color:#231816;}
+body,div,form,p,img,ul,li,ol,dl,dt,dd,hr,h1,h2,h3,h4,h5,h6,span,i{margin:0; padding:0; border:0;}
+ul,ol{ list-style:none;}
+
+.error-message{color:red;font-size:12px;}
+
+#_OU_TREE_{
+	overflow:auto;
+}
+
+#WorkspaceDiv{
+	padding:0px 5px 5px 5px;
+	overflow:auto;		
+}
+#NavigatorDiv{
+	overflow:auto;
+}
+
+#FormTitleDiv{
+	font-size:18px;
+	font-weight:bold;
+	margin-top:5px;
+	}
+
+
+
+
+	
+
+
+.chosen_select{
+	color:black;
+}
+
+.formTable{
+	border-collapse: collapse;
+	
+}
+
+.formTable  td{
+	border:1px solid gray;
+	line-height: 28px
+}
+
+/* 仅显示行线的table */
+.rowStyleTable{
+	border-collapse: collapse;
+}
+.rowStyleTable >tr >td{
+	border-bottom:1px solid gray;
+}
+
+/* 导航栏按钮 */
+.navPoint { 
+	COLOR: white; CURSOR: pointer; FONT-FAMILY: Webdings; FONT-SIZE: 9pt 
+}
+
+/*登陆页面*/
+.loginwrap{ background:#9dc915; width:400px; height:300px; position:absolute; left:50%; top:20%; margin-left:-200px; border-radius:9px;}
+.loginwrap .login_con{ width:260px; height:150px; position:absolute; left:70px; top:77px; background:#fff; border-radius:12px;}
+.loginwrap .login_con table{width:240px; height:130px; margin:10px 10px;}
+.loginwrap .login_con td{ font-size:18px; font-weight:bold; color:#000;}
+.loginwrap .login_con .text{ background:#a9a9a9; border-radius:5px;  font-size:16px;}
+.loginwrap .login_con .login{ width:86px; height:26px; color:#fff; border-radius:5px; background:#9dc915;}
+
+/* 统计页面table相关*/
+.ui-state-erp-th {
+    /* background: url("images/ui-bg_glass_40_0a0a0a_1x400.png") repeat-x scroll 50% 50% #0a0a0a;
+   		border: 1px solid #9acd32;*/
+    color: #b8ec79;
+    font-weight: bold;
+}
+
+.ui-state-erp-th a {
+    color: #b8ec79;
+}
+    /* 单个公司合计*/
+ /*.ui-state-erp-trdelete {
+   background-color: #000066;
+}*/
+   /* 总合计*/
+.ui-state-erp-tr2 {
+    background-color: #4B0082;
+}
+.jtable-data-row:hover td{ background:#191970; color:#aad079;}
+.ui-widget-content tbody tr:hover td{background:#191970; color:#aad079;}
+.formTable tbody tr:hover td{background:none; color:#fff;}
+.jtable-dialog-form tbody tr:hover td{background:none; color:#fff;}
+#zxdListForInvoiceAdd td{color:#000}
+/*合计背景颜色*/
+.ui-state-erp-tr{ background:#0000ff}
+ 
