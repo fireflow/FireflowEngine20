@@ -144,11 +144,25 @@ public class FPDLSerializer implements FPDLNames {
     	return charset;
     }
 
-	public void serialize(WorkflowProcess workflowProcess, OutputStream out)
+    /**
+     * 返回xml的字符集，便于out转为String
+     * @param workflowProcess
+     * @param out
+     * @return
+     * @throws IOException
+     * @throws SerializerException
+     * @throws InvalidModelException
+     */
+	public String serialize(WorkflowProcess workflowProcess, OutputStream out)
 			throws IOException, SerializerException ,InvalidModelException{
 		try {
 			Document document = serializeToDOM(workflowProcess);
-
+			
+			//下面是测试代码
+			Element root = document.getDocumentElement();
+			String displayname=root.getAttribute(DISPLAY_NAME);
+			//============
+			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			
 			if (JDK_TRANSFORMER_CLASS.equals(transformerFactory.getClass().getName())){
@@ -170,7 +184,10 @@ public class FPDLSerializer implements FPDLNames {
 
 			transformer.transform(new DOMSource(document),
 					new StreamResult(out));
+			
 			out.flush();
+			
+			return charset;
 		} catch (TransformerConfigurationException e) {
 			throw new SerializerException(e);
 		} catch (TransformerException e) {
@@ -639,8 +656,8 @@ public class FPDLSerializer implements FPDLNames {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-        serialize(workflowProcess, out);
-        return out.toString();
+        String charsetTmp = serialize(workflowProcess, out);
+        return out.toString(charsetTmp);
 
     }
     
