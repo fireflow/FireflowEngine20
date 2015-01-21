@@ -45,6 +45,8 @@ import org.fireflow.pvm.pdllogic.ContinueDirection;
 public class EndNodeBehavior extends AbsSynchronizerBehavior {
 	public int canBeFired(WorkflowSession session, Token token,List<Token> siblings,
 			Synchronizer synchronizer){
+
+		/*
 		RuntimeContext runtimeContext = ((WorkflowSessionLocalImpl)session).getRuntimeContext();
 		BeanFactory beanFactory = runtimeContext.getEngineModule(BeanFactory.class, FpdlConstants.PROCESS_TYPE_FPDL20);
 		
@@ -56,6 +58,11 @@ public class EndNodeBehavior extends AbsSynchronizerBehavior {
 			joinEvaluatorRegistry.put(className, joinEvaluator);
 		}
 		return joinEvaluator.canBeFired(session, token, siblings, synchronizer);
+		*/
+		
+		//对于结束节点，canbefired 定义为 永远是true,非也，20150115
+		return token.getStepNumber();
+		
 	}
 	/* (non-Javadoc)
 	 * @see org.fireflow.pvm.pdllogic.WorkflowBehavior#continueOn(org.fireflow.engine.WorkflowSession, org.fireflow.pvm.kernel.Token, java.lang.Object)

@@ -185,7 +185,12 @@
 				<comment>流程发起者姓名</comment>
 			</column>
 		</property>
-
+		<property name="procInstCreatedTime" type="java.util.Date"
+			update="false" not-null="false">
+			<column length="100" name="PROCINST_CREATED_TIME">
+				<comment>流程创建时间</comment>
+			</column>
+		</property>
 		<property name="processId" type="java.lang.String" update="false" not-null="false">
 			<column length="50" name="PROCESS_ID">
 				<comment>流程Id</comment>
