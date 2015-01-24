@@ -1,0 +1,8 @@
+INSERT INTO `T_security_permissions` (`grantee_code`,`grantee_name`,`grantee_type`,`function_code`,`function_name`,`last_update_person`) VALUES ('GROUP_FIREFLOW','FIRE WORKFLOW 公司','G','03','行政事务','系统管理员');
+INSERT INTO `T_security_permissions` (`grantee_code`,`grantee_name`,`grantee_type`,`function_code`,`function_name`,`last_update_person`) VALUES ('GROUP_FIREFLOW','FIRE WORKFLOW 公司','G','98','我的工作台','系统管理员');
+INSERT INTO `T_security_permissions` (`grantee_code`,`grantee_name`,`grantee_type`,`function_code`,`function_name`,`last_update_person`) VALUES ('GROUP_FIREFLOW','FIRE WORKFLOW 公司','G','0306','假期管理','系统管理员');
+INSERT INTO `T_security_permissions` (`grantee_code`,`grantee_name`,`grantee_type`,`function_code`,`function_name`,`last_update_person`) VALUES ('GROUP_FIREFLOW','FIRE WORKFLOW 公司','G','9801','我的待办工作','系统管理员');
+INSERT INTO `T_security_permissions` (`grantee_code`,`grantee_name`,`grantee_type`,`function_code`,`function_name`,`last_update_person`) VALUES ('GROUP_FIREFLOW','FIRE WORKFLOW 公司','G','9802','我的已办工作','系统管理员');
+INSERT INTO `T_security_permissions` (`grantee_code`,`grantee_name`,`grantee_type`,`function_code`,`function_name`,`last_update_person`) VALUES ('GROUP_FIREFLOW','FIRE WORKFLOW 公司','G','9803','我发起的流程','系统管理员');
+INSERT INTO `T_security_permissions` (`grantee_code`,`grantee_name`,`grantee_type`,`function_code`,`function_name`,`last_update_person`) VALUES ('GROUP_FIREFLOW','FIRE WORKFLOW 公司','G','030601','请假','系统管理员');
+INSERT INTO `T_security_permissions` (`grantee_code`,`grantee_name`,`grantee_type`,`function_code`,`function_name`,`last_update_person`) VALUES ('GROUP_FIREFLOW','FIRE WORKFLOW 公司','G','030602','我的请假情况','系统管理员');

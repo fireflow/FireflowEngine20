@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clay-model clay-version="1.4.2">
+<database-model alias="" author="" begin-script="" end-script="" name="行政管理-请假" remarks="" sql-dialect-id="jp.azzurri.clay.dialect.MySQL_5_0_Dialect" uid="297278de:14aa6326c5f:-8000" version="1.0">
+<database-model-description/>
+<schema-list>
+<schema alias="" name="okerpdb" remarks="" uid="297278de:14aa6326c5f:-7ffd">
+<schema-description/>
+<domain-list/>
+<table-list>
+<table alias="假期记录表" name="T_hr_holidays" remarks="" uid="297278de:14aa6326c5f:-7fff">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="54" y="53"/>
+<column-list>
+<column alias="" auto-increment="true" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="id" remarks="" uid="297278de:14aa6326c5f:-7ffa">
+<column-description/>
+<data-type jdbc-type="-5" name="BIGINT" selected-variant-pattern="BIGINT">
+<variant type-name-pattern="BIGINT"/>
+</data-type>
+</column>
+<column alias="员工号" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="employee_id" remarks="" uid="297278de:14aa6326c5f:-7ff9">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="32672" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="假期年度开始日期" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="year_start" remarks="" uid="297278de:14aa6326c5f:-7ff8">
+<column-description/>
+<data-type jdbc-type="91" literal-prefix="'" literal-suffix="'" name="DATE" selected-variant-pattern="DATE">
+<variant type-name-pattern="DATE"/>
+</data-type>
+</column>
+<column alias="假期年度结束日期" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="year_end" remarks="" uid="297278de:14aa6326c5f:-7ff7">
+<column-description/>
+<data-type jdbc-type="91" literal-prefix="'" literal-suffix="'" name="DATE" selected-variant-pattern="DATE">
+<variant type-name-pattern="DATE"/>
+</data-type>
+</column>
+<column alias="带薪假天数" auto-increment="false" column-size="4" decimal-digits="1" default-value="0" mandatory="true" name="paid_vacation_days" remarks="" uid="297278de:14aa6326c5f:-7ff6">
+<column-description/>
+<data-type jdbc-type="3" name="NUMERIC" selected-variant-pattern="NUMERIC(%p, %s)">
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s)"/>
+<variant type-name-pattern="NUMERIC"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n)"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) ZEROFILL"/>
+</data-type>
+</column>
+<column alias="已修带薪假天数" auto-increment="false" column-size="4" decimal-digits="1" default-value="0" mandatory="true" name="used_paid_vacation_days" remarks="" uid="297278de:14aa6326c5f:-7ff5">
+<column-description/>
+<data-type jdbc-type="3" name="NUMERIC" selected-variant-pattern="NUMERIC(%p, %s)">
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s)"/>
+<variant type-name-pattern="NUMERIC"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n)"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) ZEROFILL"/>
+</data-type>
+</column>
+<column alias="请病假天数" auto-increment="false" column-size="4" decimal-digits="1" default-value="0" mandatory="true" name="used_sick_leave_days" remarks="" uid="297278de:14aa6326c5f:-7ff4">
+<column-description/>
+<data-type jdbc-type="3" name="NUMERIC" selected-variant-pattern="NUMERIC(%p, %s)">
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s)"/>
+<variant type-name-pattern="NUMERIC"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n)"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) ZEROFILL"/>
+</data-type>
+</column>
+<column alias="请事假天数" auto-increment="false" column-size="4" decimal-digits="1" default-value="0" mandatory="true" name="used_absence_leave_days" remarks="" uid="297278de:14aa6326c5f:-7ff3">
+<column-description/>
+<data-type jdbc-type="3" name="NUMERIC" selected-variant-pattern="NUMERIC(%p, %s)">
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s)"/>
+<variant type-name-pattern="NUMERIC"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n)"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) ZEROFILL"/>
+</data-type>
+</column>
+<column alias="已请婚假天数" auto-increment="false" column-size="4" decimal-digits="1" default-value="0" mandatory="true" name="used_marital_leave_days" remarks="" uid="297278de:14aa6326c5f:-7ff2">
+<column-description/>
+<data-type jdbc-type="3" name="NUMERIC" selected-variant-pattern="NUMERIC(%p, %s)">
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s)"/>
+<variant type-name-pattern="NUMERIC"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n)"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) ZEROFILL"/>
+</data-type>
+</column>
+<column alias="已请产假天数" auto-increment="false" column-size="4" decimal-digits="1" default-value="0" mandatory="true" name="used_maternity_leave_days" remarks="" uid="297278de:14aa6326c5f:-7ff1">
+<column-description/>
+<data-type jdbc-type="3" name="NUMERIC" selected-variant-pattern="NUMERIC(%p, %s)">
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s)"/>
+<variant type-name-pattern="NUMERIC"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n)"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) ZEROFILL"/>
+</data-type>
+</column>
+<column alias="已请丧假天数" auto-increment="false" column-size="4" decimal-digits="1" default-value="0" mandatory="true" name="used_funeral_leave_days" remarks="" uid="297278de:14aa6326c5f:-7ff0">
+<column-description/>
+<data-type jdbc-type="3" name="NUMERIC" selected-variant-pattern="NUMERIC(%p, %s)">
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s)"/>
+<variant type-name-pattern="NUMERIC"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n)"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="sys" mandatory="true" name="last_update_person" remarks="" uid="297278de:14aa6326c5f:-7fef">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="32672" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="last_update_time" remarks="" uid="297278de:14aa6326c5f:-7fee">
+<column-description/>
+<data-type jdbc-type="93" literal-prefix="'" literal-suffix="'" name="TIMESTAMP" selected-variant-pattern="TIMESTAMP">
+<variant type-name-pattern="TIMESTAMP"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_T_HR_HOLIDAYS" remarks="" uid="297278de:14aa6326c5f:-7ffe">
+<primary-key-description/>
+<primary-key-column name="id"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_T_hr_holidays_1" remarks="" uid="297278de:14aa6326c5f:-7feb">
+<unique-key-description/>
+<unique-key-column name="employee_id"/>
+<unique-key-column name="year_start"/>
+<unique-key-column name="year_end"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list/>
+<index-list/>
+</table>
+<table alias="请假申请表" name="T_hr_leave_request" remarks="" uid="297278de:14aa6326c5f:-7fea">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="322" y="34"/>
+<column-list>
+<column alias="" auto-increment="true" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="id" remarks="" uid="297278de:14aa6326c5f:-7fe6">
+<column-description/>
+<data-type jdbc-type="-5" name="BIGINT" selected-variant-pattern="BIGINT">
+<variant type-name-pattern="BIGINT"/>
+</data-type>
+</column>
+<column alias="业务单据号" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="bill_code" remarks="" uid="297278de:14aa6326c5f:-7fba">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="员工号" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="employee_id" remarks="" uid="297278de:14aa6326c5f:-7fe5">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="32672" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="员工姓名" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="employee_name" remarks="" uid="7b5fe2f7:14aad7a209f:-7ffb">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="请假类别" auto-increment="false" column-size="20" decimal-digits="0" default-value="" mandatory="true" name="leave_type" remarks="" uid="297278de:14aa6326c5f:-7fe4">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="32672" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="请假类型中文名" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="leave_type_name" remarks="" uid="7b5fe2f7:14aad7a209f:-7ff6">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="开始日期" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="from_date" remarks="" uid="297278de:14aa6326c5f:-7fc7">
+<column-description/>
+<data-type jdbc-type="91" literal-prefix="'" literal-suffix="'" name="DATE" selected-variant-pattern="DATE">
+<variant type-name-pattern="DATE"/>
+</data-type>
+</column>
+<column alias="结束日期" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="to_date" remarks="" uid="297278de:14aa6326c5f:-7fc6">
+<column-description/>
+<data-type jdbc-type="91" literal-prefix="'" literal-suffix="'" name="DATE" selected-variant-pattern="DATE">
+<variant type-name-pattern="DATE"/>
+</data-type>
+</column>
+<column alias="总天数" auto-increment="false" column-size="4" decimal-digits="1" default-value="" mandatory="true" name="total_days" remarks="总天数" uid="297278de:14aa6326c5f:-7fe3">
+<column-description/>
+<data-type jdbc-type="3" name="NUMERIC" selected-variant-pattern="NUMERIC(%p, %s)">
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s)"/>
+<variant type-name-pattern="NUMERIC"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n)"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%n" type-name-pattern="NUMERIC(%n) ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) UNSIGNED ZEROFILL"/>
+<variant precision-max="65" precision-min="0" precision-variable="%p" scale-max="30" scale-min="0" scale-variable="%s" type-name-pattern="NUMERIC(%p, %s) ZEROFILL"/>
+</data-type>
+</column>
+<column alias="部门经理审批人员工号" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="dept_mgr_id" remarks="" uid="297278de:14aa6326c5f:-7fdc">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="部门经理姓名" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="dept_mgr_name" remarks="" uid="297278de:14aa6326c5f:-7fdb">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="部门经理审批标志" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="dept_approve_flag" remarks="1=批准，0=不批准" uid="297278de:14aa6326c5f:-7fda">
+<column-description/>
+<data-type jdbc-type="-6" name="TINYINT" selected-variant-pattern="TINYINT">
+<variant type-name-pattern="TINYINT"/>
+<variant type-name-pattern="TINYINT UNSIGNED"/>
+<variant type-name-pattern="TINYINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="TINYINT ZEROFILL"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n)"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) ZEROFILL"/>
+</data-type>
+</column>
+<column alias="部门经理审批时间" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="dept_approve_time" remarks="" uid="297278de:14aa6326c5f:-7fd9">
+<column-description/>
+<data-type jdbc-type="93" literal-prefix="'" literal-suffix="'" name="DATETIME" selected-variant-pattern="DATETIME">
+<variant type-name-pattern="DATETIME"/>
+</data-type>
+</column>
+<column alias="部门经理审批意见" auto-increment="false" column-size="150" decimal-digits="0" default-value="" mandatory="false" name="dept_approve_info" remarks="" uid="297278de:14aa6326c5f:-7fd8">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="主管员工号" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="director_id" remarks="审批主管员工号" uid="297278de:14aa6326c5f:-7fd7">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="主管姓名" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="director_name" remarks="审批主管姓名" uid="297278de:14aa6326c5f:-7fd6">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="主管审批标志，" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="director_approve_flag" remarks="1=同意，0=不同意" uid="297278de:14aa6326c5f:-7fd5">
+<column-description/>
+<data-type jdbc-type="-6" name="TINYINT" selected-variant-pattern="TINYINT">
+<variant type-name-pattern="TINYINT"/>
+<variant type-name-pattern="TINYINT UNSIGNED"/>
+<variant type-name-pattern="TINYINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="TINYINT ZEROFILL"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n)"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) ZEROFILL"/>
+</data-type>
+</column>
+<column alias="主管审批时间" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="director_approve_time" remarks="" uid="297278de:14aa6326c5f:-7fd4">
+<column-description/>
+<data-type jdbc-type="93" literal-prefix="'" literal-suffix="'" name="DATETIME" selected-variant-pattern="DATETIME">
+<variant type-name-pattern="DATETIME"/>
+</data-type>
+</column>
+<column alias="主管审批意见" auto-increment="false" column-size="150" decimal-digits="0" default-value="" mandatory="false" name="director_approve_info" remarks="" uid="297278de:14aa6326c5f:-7fd3">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="ceo员工号" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="ceo_id" remarks="" uid="297278de:14aa6326c5f:-7fd2">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="ceo姓名" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="ceo_name" remarks="" uid="297278de:14aa6326c5f:-7fd1">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="ceo审批标志" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="ceo_approve_flag" remarks="1=通过，0不通过" uid="297278de:14aa6326c5f:-7fd0">
+<column-description/>
+<data-type jdbc-type="-6" name="TINYINT" selected-variant-pattern="TINYINT">
+<variant type-name-pattern="TINYINT"/>
+<variant type-name-pattern="TINYINT UNSIGNED"/>
+<variant type-name-pattern="TINYINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="TINYINT ZEROFILL"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n)"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) ZEROFILL"/>
+</data-type>
+</column>
+<column alias="ceo审批时间" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="ceo_approve_time" remarks="" uid="297278de:14aa6326c5f:-7fcf">
+<column-description/>
+<data-type jdbc-type="93" literal-prefix="'" literal-suffix="'" name="DATETIME" selected-variant-pattern="DATETIME">
+<variant type-name-pattern="DATETIME"/>
+</data-type>
+</column>
+<column alias="ceo审批意见" auto-increment="false" column-size="150" decimal-digits="0" default-value="" mandatory="false" name="ceo_approve_info" remarks="" uid="297278de:14aa6326c5f:-7fce">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="财务备案操作人员工号" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="financial_record_uid" remarks="" uid="297278de:14aa6326c5f:-7fcd">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="财务备案操作人姓名" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="financial_record_uname" remarks="" uid="297278de:14aa6326c5f:-7fcc">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="财物备案时间" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="financial_record_time" remarks="财务备案时间" uid="297278de:14aa6326c5f:-7fcb">
+<column-description/>
+<data-type jdbc-type="93" literal-prefix="'" literal-suffix="'" name="DATETIME" selected-variant-pattern="DATETIME">
+<variant type-name-pattern="DATETIME"/>
+</data-type>
+</column>
+<column alias="备注信息" auto-increment="false" column-size="150" decimal-digits="0" default-value="" mandatory="false" name="financial_record_info" remarks="" uid="297278de:14aa6326c5f:-7fca">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="sys" mandatory="true" name="last_update_person" remarks="" uid="297278de:14aa6326c5f:-7fc9">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="last_update_time" remarks="" uid="297278de:14aa6326c5f:-7fc8">
+<column-description/>
+<data-type jdbc-type="93" literal-prefix="'" literal-suffix="'" name="TIMESTAMP" selected-variant-pattern="TIMESTAMP">
+<variant type-name-pattern="TIMESTAMP"/>
+<variant precision-max="14" precision-min="0" precision-variable="%n" type-name-pattern="TIMESTAMP(%n)"/>
+</data-type>
+</column>
+<column alias="创建人id" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="creator_id" remarks="" uid="7b5fe2f7:14aad7a209f:-7ffa">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="创建时间" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="create_time" remarks="" uid="7b5fe2f7:14aad7a209f:-7ff9">
+<column-description/>
+<data-type jdbc-type="93" literal-prefix="'" literal-suffix="'" name="DATETIME" selected-variant-pattern="DATETIME">
+<variant type-name-pattern="DATETIME"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_T_HR_LEAVE_REQUEST" remarks="" uid="297278de:14aa6326c5f:-7fe9">
+<primary-key-description/>
+<primary-key-column name="id"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_T_hr_leave_request_1" remarks="" uid="297278de:14aa6326c5f:-7fad">
+<unique-key-description/>
+<unique-key-column name="bill_code"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list/>
+<index-list/>
+</table>
+<table alias="请假明细表" name="T_hr_leave_request_detail" remarks="" uid="297278de:14aa6326c5f:-7fc3">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="667" y="58"/>
+<column-list>
+<column alias="" auto-increment="true" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="id" remarks="" uid="297278de:14aa6326c5f:-7fbf">
+<column-description/>
+<data-type jdbc-type="-5" name="BIGINT" selected-variant-pattern="BIGINT">
+<variant type-name-pattern="BIGINT"/>
+<variant precision-max="255" precision-min="0" precision-variable="%n" type-name-pattern="BIGINT(%n)"/>
+<variant precision-max="255" precision-min="0" precision-variable="%n" type-name-pattern="BIGINT(%n) UNSIGNED"/>
+<variant precision-max="255" precision-min="0" precision-variable="%n" type-name-pattern="BIGINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="255" precision-min="0" precision-variable="%n" type-name-pattern="BIGINT(%n) ZEROFILL"/>
+<variant type-name-pattern="BIGINT UNSIGNED"/>
+<variant type-name-pattern="BIGINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="BIGINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="业务单据号" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="bill_code" remarks="" uid="297278de:14aa6326c5f:-7fbe">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="请假日期" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="leave_date" remarks="" uid="297278de:14aa6326c5f:-7faa">
+<column-description/>
+<data-type jdbc-type="91" literal-prefix="'" literal-suffix="'" name="DATE" selected-variant-pattern="DATE">
+<variant type-name-pattern="DATE"/>
+</data-type>
+</column>
+<column alias="时段" auto-increment="false" column-size="0" decimal-digits="0" default-value="2" mandatory="true" name="time_section" remarks="0=上午,1=下午，2=全天" uid="297278de:14aa6326c5f:-7fa9">
+<column-description/>
+<data-type jdbc-type="-6" name="TINYINT" selected-variant-pattern="TINYINT">
+<variant type-name-pattern="TINYINT"/>
+<variant type-name-pattern="TINYINT UNSIGNED"/>
+<variant type-name-pattern="TINYINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="TINYINT ZEROFILL"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n)"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) ZEROFILL"/>
+</data-type>
+</column>
+<column alias="财务备案处理人" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="financial_record_uid" remarks="" uid="297278de:14aa6326c5f:-7fa8">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="处理人姓名" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="financial_record_uname" remarks="" uid="297278de:14aa6326c5f:-7fa7">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="处理时间" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="financial_record_time" remarks="" uid="297278de:14aa6326c5f:-7fa6">
+<column-description/>
+<data-type jdbc-type="93" literal-prefix="'" literal-suffix="'" name="DATETIME" selected-variant-pattern="DATETIME">
+<variant type-name-pattern="DATETIME"/>
+</data-type>
+</column>
+<column alias="处理记录" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="financial_record_info" remarks="" uid="297278de:14aa6326c5f:-7fa5">
+<column-description/>
+<data-type jdbc-type="1" literal-prefix="'" literal-suffix="'" name="CHAR" selected-variant-pattern="CHAR(%n)">
+<variant precision-max="255" precision-min="0" precision-variable="%n" type-name-pattern="CHAR(%n)"/>
+<variant type-name-pattern="CHAR"/>
+<variant precision-max="255" precision-min="0" precision-variable="%n" type-name-pattern="CHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="sys" mandatory="true" name="last_update_person" remarks="" uid="297278de:14aa6326c5f:-7fa4">
+<column-description/>
+<data-type jdbc-type="1" literal-prefix="'" literal-suffix="'" name="CHAR" selected-variant-pattern="CHAR(%n)">
+<variant precision-max="255" precision-min="0" precision-variable="%n" type-name-pattern="CHAR(%n)"/>
+<variant type-name-pattern="CHAR"/>
+<variant precision-max="255" precision-min="0" precision-variable="%n" type-name-pattern="CHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="last_update_time" remarks="" uid="297278de:14aa6326c5f:-7fa3">
+<column-description/>
+<data-type jdbc-type="93" literal-prefix="'" literal-suffix="'" name="TIMESTAMP" selected-variant-pattern="TIMESTAMP">
+<variant type-name-pattern="TIMESTAMP"/>
+<variant precision-max="14" precision-min="0" precision-variable="%n" type-name-pattern="TIMESTAMP(%n)"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_T_HR_LEAVE_REQUEST_DETAIL" remarks="" uid="297278de:14aa6326c5f:-7fc2">
+<primary-key-description/>
+<primary-key-column name="id"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="FK_T_hr_leave_request_detail_1" on-delete="" on-update="" referenced-key="UQ_T_hr_leave_request_1" referenced-table="T_hr_leave_request" referenced-table-schema="okerpdb" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="297278de:14aa6326c5f:-7f89">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="bill_code" referenced-key-column-name="bill_code"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+</table-list>
+</schema>
+</schema-list>
+</database-model>
+</clay-model>

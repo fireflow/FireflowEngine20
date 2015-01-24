@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//WebContent/template/workflow/TodoList.jsp=UTF-8
+encoding//WebContent/template/workflow/_TodoList_Body_.jsp=UTF-8
+encoding//dbscript/init_data/00_init_data_T_hr_organization.sql=UTF-8
+encoding/<project>=UTF-8
