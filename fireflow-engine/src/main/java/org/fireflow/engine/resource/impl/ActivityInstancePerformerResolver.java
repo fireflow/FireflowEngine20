@@ -95,14 +95,14 @@ public class ActivityInstancePerformerResolver extends ResourceResolver {
 		
 		for (WorkItem wi : workItemList){
 			if (wi.getState().equals(WorkItemState.COMPLETED)){
-//				User u = ouSystemAdapter.findUserById(wi.getUserId());
-				UserImpl u = new UserImpl();
-				Properties props = new Properties();
-				u.setId(processInstance.getCreatorId());
-				u.setName(processInstance.getCreatorName());
-				u.setDeptId(processInstance.getCreatorDeptId());
-				u.setDeptName(processInstance.getCreatorDeptName());
-				u.setProperties(props);
+				User u = ouSystemAdapter.findUserById(wi.getOwnerId());
+//				UserImpl u = new UserImpl();
+//				Properties props = new Properties();
+//				u.setId(processInstance.getCreatorId());
+//				u.setName(processInstance.getCreatorName());
+//				u.setDeptId(processInstance.getCreatorDeptId());
+//				u.setDeptName(processInstance.getCreatorDeptName());
+//				u.setProperties(props);
 				users.add(u);
 			}
 		}

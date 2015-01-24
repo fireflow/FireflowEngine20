@@ -87,7 +87,7 @@ public enum ActivityInstanceProperty implements EntityProperty{
 	}
 	
 	public String getDisplayName(Locale locale){
-		ResourceBundle resb = ResourceBundle.getBundle("myres", locale);
+		ResourceBundle resb = ResourceBundle.getBundle("EngineMessages", locale);
 		return resb.getString(this.name());
 	}
 	
