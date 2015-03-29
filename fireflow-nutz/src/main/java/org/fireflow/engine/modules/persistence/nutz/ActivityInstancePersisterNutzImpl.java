@@ -20,7 +20,7 @@ public class ActivityInstancePersisterNutzImpl extends AbsPersisterNutzImpl
 
 	public int countAliveActivityInstance(String processInstanceId,
 			String nodeId) {
-		int result = dao().count(ActivityInstanceImpl.class, Cnd.where(ActivityInstanceProperty.PROCESS_INSTANCE_ID.getDisplayName(),
+		int result = dao().count(ActivityInstanceImpl.class, Cnd.where(ActivityInstanceProperty.PROCESS_INSTANCE_ID.getPropertyName(),
 				"=",processInstanceId)
 				.and(ActivityInstanceProperty.NODE_ID.getPropertyName(),"=",nodeId)
 				.and(ActivityInstanceProperty.STATE.getPropertyName(),"<",ActivityInstanceState.DELIMITER.getValue()));
@@ -36,14 +36,14 @@ public class ActivityInstancePersisterNutzImpl extends AbsPersisterNutzImpl
 
 	public List<ActivityInstance> findActivityInstances(
 			String processInstanceId, String activityId) {
-		List result = dao().query(ActivityInstanceImpl.class, Cnd.where(ActivityInstanceProperty.PROCESS_INSTANCE_ID.getDisplayName(),
+		List result = dao().query(ActivityInstanceImpl.class, Cnd.where(ActivityInstanceProperty.PROCESS_INSTANCE_ID.getPropertyName(),
 				"=",processInstanceId)
 				.and(ActivityInstanceProperty.NODE_ID.getPropertyName(),"=",activityId));
 		return (List<ActivityInstance>)result;
 	}
 
 	public List<ActivityInstance> findActivityInstances(String processInstanceId) {
-		List result = dao().query(ActivityInstanceImpl.class, Cnd.where(ActivityInstanceProperty.PROCESS_INSTANCE_ID.getDisplayName(),
+		List result = dao().query(ActivityInstanceImpl.class, Cnd.where(ActivityInstanceProperty.PROCESS_INSTANCE_ID.getPropertyName(),
 				"=",processInstanceId));
 		return (List<ActivityInstance>)result;
 	}

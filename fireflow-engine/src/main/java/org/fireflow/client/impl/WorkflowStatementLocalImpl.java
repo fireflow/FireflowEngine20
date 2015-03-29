@@ -72,6 +72,7 @@ import org.fireflow.engine.modules.persistence.ProcessPersister;
 import org.fireflow.engine.modules.persistence.VariablePersister;
 import org.fireflow.engine.modules.persistence.WorkItemPersister;
 import org.fireflow.engine.modules.processlanguage.ProcessLanguageManager;
+import org.fireflow.engine.modules.script.BusinessObjectWrapper;
 import org.fireflow.engine.modules.workitem.WorkItemManager;
 import org.fireflow.model.InvalidModelException;
 import org.fireflow.model.binding.ResourceBinding;
@@ -1156,7 +1157,20 @@ public class WorkflowStatementLocalImpl implements WorkflowStatement,
 
 		Variable var = variablePersister.findVariable(scope.getScopeId(), name);
 		if (var != null) {
-			return var.getPayload();
+			Object payload = var.getPayload();
+			if (payload==null || !(payload instanceof BusinessObjectWrapper)){
+				return payload;
+			}else{
+				if (scope instanceof ProcessInstance){
+					return ((BusinessObjectWrapper)payload).resolveBusinessObject(ctx, ((ProcessInstance)scope), persistenceService);
+				}else {
+					ActivityInstance actInst = (ActivityInstance)scope;
+					ProcessInstance processInstance = actInst.getProcessInstance(this.session);
+					return ((BusinessObjectWrapper)payload).resolveBusinessObject(ctx,processInstance, persistenceService);
+				}
+				
+			}
+			
 		} else {
 			return null;
 		}
