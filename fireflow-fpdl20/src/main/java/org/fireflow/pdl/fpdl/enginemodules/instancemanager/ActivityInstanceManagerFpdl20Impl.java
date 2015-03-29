@@ -88,6 +88,7 @@ public class ActivityInstanceManagerFpdl20Impl extends
 		
 		if (node instanceof Activity){
 			Activity activity = (Activity) node;
+			
 			ServiceBinding serviceBinding = activity.getServiceBinding();
 			if (serviceBinding!=null){
 				actInst.setServiceId(serviceBinding.getServiceId());

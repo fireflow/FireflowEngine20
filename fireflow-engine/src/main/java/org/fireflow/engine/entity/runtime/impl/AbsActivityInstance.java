@@ -599,6 +599,7 @@ public abstract class AbsActivityInstance extends AbsWorkflowEntity implements A
 
 	public void setProcInstCreatedTime(Date processInstanceCreatedTime) {
 		this.procInstCreatedTime = processInstanceCreatedTime;
+
 	}
 	
 	

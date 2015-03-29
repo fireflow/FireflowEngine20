@@ -19,7 +19,6 @@ package org.fireflow.pdl.fpdl.enginemodules.workitem;
 
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.script.ScriptException;
 
@@ -47,6 +46,7 @@ import org.fireflow.model.binding.ResourceBinding;
 import org.fireflow.model.binding.ServiceBinding;
 import org.fireflow.model.data.Expression;
 import org.fireflow.model.resourcedef.WorkItemAssignmentStrategy;
+import org.fireflow.pdl.fpdl.misc.LoopStrategy;
 import org.fireflow.pdl.fpdl.process.Activity;
 import org.fireflow.service.human.HumanService;
 
@@ -223,5 +223,33 @@ public class WorkItemManagerFpdl20Impl extends AbsWorkItemManager {
 
 		return obj == null ? null : obj.toString();
 
+	}
+	
+	protected boolean isSkip(WorkflowSession session,
+			ActivityInstance activityInstance, ServiceBinding serviceBinding,
+			ResourceBinding resourceBinding, Object theActivityObj){
+		Activity theActivity = (Activity)theActivityObj;
+		
+		LoopStrategy loopStrategy = theActivity.getLoopStrategy();
+		if (loopStrategy!=null && loopStrategy.equals(LoopStrategy.SKIP)){
+			return true;
+		}
+		
+		return false;
+	}
+	
+	protected boolean isRedo(WorkflowSession session,
+			ActivityInstance activityInstance, ServiceBinding serviceBinding,
+			ResourceBinding resourceBinding, Object theActivityObj){
+		Activity theActivity = (Activity)theActivityObj;
+		
+		LoopStrategy loopStrategy = theActivity.getLoopStrategy();
+		if (loopStrategy!=null && loopStrategy.equals(LoopStrategy.REDO)){
+			
+			
+			return true;
+		}
+				
+		return false;
 	}
 }

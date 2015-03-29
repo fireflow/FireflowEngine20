@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><f:workflow-process xmlns:f="http://www.fireflow.org/schema/workflowprocess" display-name="我的新流程" id="My_New_Process" name="My_New_Process" package-id="main.java.processes">
-  <s:services xmlns:s="http://www.fireflow.org/schema/service"/>
+  <s:services xmlns:s="http://www.fireflow.org/schema/service">
+    <s:service.human display-name="test" id="test" name="test" package-id="" parser-class="org.fireflow.service.human.HumanServiceParser" target-namespace="">
+      <s:form-url>/test</s:form-url>
+      <s:workitem-subject>
+        <s:expression display-name="工作项主题" language="UNIFIEDJEXL" name="WorkItemSubject">
+          <s:body><![CDATA[test]]></s:body>
+        </s:expression>
+      </s:workitem-subject>
+      <s:interface.common name="test">
+        <s:operation name="打开表单：test">
+          <s:inputs/>
+          <s:outputs/>
+        </s:operation>
+      </s:interface.common>
+    </s:service.human>
+  </s:services>
   <r:resources xmlns:r="http://www.fireflow.org/schema/resource">
     <r:resource display-name="流程实例创建者" id="PROCESS_INSTANCE_CREATOR" name="PROCESS_INSTANCE_CREATOR" resource-type="org.fireflow.constants.resource_type.ProcessInstanceCreator" value="">
       <r:resolver class-name="org.fireflow.engine.resource.impl.ProcessInstanceCreatorResolver"/>
@@ -18,7 +33,14 @@
         </f:start-node>
       </f:start-nodes>
       <f:activities>
-        <f:activity display-name="Activity1" id="My_New_Process.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1"/>
+        <f:activity display-name="Activity1" id="My_New_Process.main.Activity1" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Activity1">
+          <f:service-binding operation-name="" service-id=""/>
+          <f:resource-binding assignment-strategy="org.fireflow.constants.assignment_strategy.ASSIGN_TO_ANY" display-name=""/>
+        </f:activity>
+        <f:activity display-name="test" id="My_New_Process.main.Call_test" loop-strategy="org.fireflow.constants.loop_strategy.REDO" name="Call_test">
+          <f:service-binding operation-name="" service-id="test"/>
+          <f:resource-binding assignment-strategy="org.fireflow.constants.assignment_strategy.ASSIGN_TO_ANY" display-name=""/>
+        </f:activity>
       </f:activities>
       <f:end-nodes/>
       <f:transitions>
@@ -48,6 +70,22 @@
               <f:label color="#191970" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
             </f:content>
             <f:bounds height="72" width="108" x="393" y="66">
+              <f:border-style color="#4682B4" line-type="SOLID" radius="5" thick="2"/>
+            </f:bounds>
+            <f:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>
+          </f:rectangle>
+        </f:figure>
+      </f:node>
+      <f:node id="fid_00ad3cf6_120e_426f_b1b7_b05b71c55980" ref="My_New_Process.main.Call_test" type="activity">
+        <f:figure>
+          <f:rectangle>
+            <f:title>
+              <f:label color="#000000" font-style="NORMAL" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:title>
+            <f:content>
+              <f:label color="#191970" font-style="BOLD" size="12" text-direction="HORIZANTAL"><![CDATA[#CONTENT_FROM_WF_ELEMENT#]]></f:label>
+            </f:content>
+            <f:bounds height="72" width="108" x="634" y="65">
               <f:border-style color="#4682B4" line-type="SOLID" radius="5" thick="2"/>
             </f:bounds>
             <f:fulfil-style color1="#FFFFFF" color2="#F0FFFF" gradient-style="L2R"/>

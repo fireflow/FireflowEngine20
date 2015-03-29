@@ -33,5 +33,41 @@ import javax.xml.bind.annotation.XmlType;
 //@Table("T_FF_RT_ACTIVITY_INSTANCE")
 public class ActivityInstanceImpl extends AbsActivityInstance implements java.io.Serializable {
 
+	@Override
+	public Object clone()  {
+		ActivityInstanceImpl actInst = new ActivityInstanceImpl();
+		actInst.setId(this.getId());
+		actInst.setName(this.getName());	
+		actInst.setDisplayName(this.getDisplayName());
+		actInst.setState(this.getState());
+		
+		actInst.setProcessName(this.getProcessName());
+		actInst.setProcessDisplayName(this.getProcessDisplayName());
+		actInst.setSubProcessName(this.getSubProcessName());
+		actInst.setSubProcessDisplayName(this.getSubProcessDisplayName());
+		actInst.setBizType(this.getBizType());
+		
+		actInst.setProcessId(this.getProcessId());
+		actInst.setVersion(this.getVersion());
+		actInst.setProcessType(this.getProcessType());
+		actInst.setProcessInstanceId(this.getProcessInstanceId());
+		actInst.setNodeId(this.getNodeId());		
+		actInst.setBizId(this.getBizId());
+		actInst.setSubProcessId(this.getSubProcessId());
+		actInst.setProcInstCreatorId(this.getProcInstCreatorId());
+		actInst.setProcInstCreatorName(this.getProcInstCreatorName());
+		actInst.setProcInstCreatedTime(this.getProcInstCreatedTime());
+		
+		actInst.setServiceId(this.getServiceId());
+		actInst.setServiceVersion(this.getServiceVersion());
+
+		
+		actInst.setParentScopeId(this.getParentScopeId());
+		actInst.setCreatedTime(this.getCreatedTime());
+		actInst.setExpiredTime(this.getExpiredTime());
+
+		return actInst;
+	}
+
  
 }

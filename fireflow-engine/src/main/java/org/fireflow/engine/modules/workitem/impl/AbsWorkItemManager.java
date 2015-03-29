@@ -16,6 +16,7 @@
  */
 package org.fireflow.engine.modules.workitem.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -30,6 +31,8 @@ import org.fireflow.engine.context.AbsEngineModule;
 import org.fireflow.engine.context.RuntimeContext;
 import org.fireflow.engine.entity.repository.ProcessKey;
 import org.fireflow.engine.entity.runtime.ActivityInstance;
+import org.fireflow.engine.entity.runtime.ActivityInstanceState;
+import org.fireflow.engine.entity.runtime.LocalWorkItem;
 import org.fireflow.engine.entity.runtime.ProcessInstance;
 import org.fireflow.engine.entity.runtime.WorkItem;
 import org.fireflow.engine.entity.runtime.WorkItemProperty;
@@ -43,14 +46,18 @@ import org.fireflow.engine.exception.InvalidOperationException;
 import org.fireflow.engine.exception.ServiceInvocationException;
 import org.fireflow.engine.invocation.AssignmentHandler;
 import org.fireflow.engine.invocation.ServiceInvoker;
+import org.fireflow.engine.invocation.impl.DynamicAssignmentHandler;
 import org.fireflow.engine.modules.beanfactory.BeanFactory;
 import org.fireflow.engine.modules.calendar.CalendarService;
 import org.fireflow.engine.modules.event.EventBroadcaster;
 import org.fireflow.engine.modules.event.EventBroadcasterManager;
 import org.fireflow.engine.modules.instancemanager.ActivityInstanceManager;
+import org.fireflow.engine.modules.ousystem.User;
 import org.fireflow.engine.modules.ousystem.impl.FireWorkflowSystem;
+import org.fireflow.engine.modules.ousystem.impl.UserImpl;
 import org.fireflow.engine.modules.persistence.ActivityInstancePersister;
 import org.fireflow.engine.modules.persistence.PersistenceService;
+import org.fireflow.engine.modules.persistence.TokenPersister;
 import org.fireflow.engine.modules.persistence.WorkItemPersister;
 import org.fireflow.engine.modules.processlanguage.ProcessLanguageManager;
 import org.fireflow.engine.modules.workitem.WorkItemCenter;
@@ -61,6 +68,9 @@ import org.fireflow.model.InvalidModelException;
 import org.fireflow.model.binding.ResourceBinding;
 import org.fireflow.model.binding.ServiceBinding;
 import org.fireflow.model.resourcedef.WorkItemAssignmentStrategy;
+import org.fireflow.pvm.kernel.Token;
+import org.fireflow.pvm.kernel.TokenState;
+import org.fireflow.pvm.kernel.impl.TokenImpl;
 
 /**
  * 
@@ -78,47 +88,111 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 	////////////////////////////////////////////////////////////////////////////////////////
 	//////////////         下面两个方法实现ServiceInvoker  //////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////
+	protected boolean isSkip(WorkflowSession session,
+			ActivityInstance activityInstance, ServiceBinding serviceBinding,
+			ResourceBinding resourceBinding, Object theActivityObj){
+		return false;
+	}
+	
+	protected boolean isRedo(WorkflowSession session,
+			ActivityInstance activityInstance, ServiceBinding serviceBinding,
+			ResourceBinding resourceBinding, Object theActivityObj){
+		return false;
+	}
+	
+	
+	
 	public boolean invoke(WorkflowSession session,
 			ActivityInstance activityInstance, ServiceBinding serviceBinding,
-			ResourceBinding resourceBinding, Object theActivity) throws ServiceInvocationException {
+			ResourceBinding resourceBinding, Object theActivityObj) throws ServiceInvocationException {
 		RuntimeContext runtimeContext = ((WorkflowSessionLocalImpl)session).getRuntimeContext();
 		
-		//1、首先检查有无设置DynamicAssignmentHandler
-		AssignmentHandler _handler = ((WorkflowSessionLocalImpl)session).consumeDynamicAssignmentHandler(activityInstance.getNodeId());
-		if (_handler!=null){
-			_handler.assign(session, activityInstance,this,theActivity, serviceBinding, resourceBinding);
-			return false;//return false表示该服务持续执行
-		}
-
-		//TODO 2、然后检查是否是重做，如果是重做则应用重做策略
-		
-		
-		//3、调用resourceBinding的设置进行workitem分配
 		boolean assignDone = false;
-		if (resourceBinding!=null){
-			String assignmentHandlerBeanName = resourceBinding.getAssignmentHandlerBeanName();
-			String assignmentHandlerClassName = resourceBinding.getAssignmentHandlerClassName();
-			BeanFactory beanFactory = runtimeContext.getDefaultEngineModule(BeanFactory.class);
-			AssignmentHandler handler = null;
-			
-			if (!StringUtils.isEmpty(assignmentHandlerBeanName)){
-				//3、检查是否有AssignmentHandlerBeanName				
-				handler = (AssignmentHandler)beanFactory.getBean(assignmentHandlerBeanName);
-			}else if (!StringUtils.isEmpty(assignmentHandlerClassName)){
-				//4、检查是否有AssignmentHandlerClassName
-				handler = (AssignmentHandler)beanFactory.createBean(assignmentHandlerClassName);
+		
+		// 1、检查是否是重做，如果是重做则应用重做策略
+		if (isSkip(session,activityInstance,serviceBinding,resourceBinding,theActivityObj)){
+			WorkflowQuery<WorkItem> wiQuery = session.createWorkflowQuery(WorkItem.class);
+			wiQuery.add(Restrictions.eq(WorkItemProperty.PROCESS_INSTANCE_ID, activityInstance.getProcessInstanceId()))
+					.add(Restrictions.eq(WorkItemProperty.ACTIVITY_ID, activityInstance.getNodeId()));//只要有产生工作项，则认为已经被执行过一次
+
+			List<WorkItem> completedWorkItemList = wiQuery.list();
+			if (completedWorkItemList!=null && completedWorkItemList.size()>0){
+				return true;//true表示结束当前activity instance继续往前流转
 			}
 			
-			if (handler!=null){
-				handler.assign(session, activityInstance,this,theActivity, serviceBinding, resourceBinding);
+			
+		}else if (isRedo(session,activityInstance,serviceBinding,resourceBinding,theActivityObj)){
+			//先查找当前环节已经存在的工作项，
+			//查询当前实例的，同一环节的，已经完成的工作项
+			WorkflowQuery<WorkItem> wiQuery = session.createWorkflowQuery(WorkItem.class);
+			wiQuery.add(Restrictions.eq(WorkItemProperty.PROCESS_INSTANCE_ID, activityInstance.getProcessInstanceId()))
+					.add(Restrictions.eq(WorkItemProperty.ACTIVITY_ID, activityInstance.getNodeId()))
+					.add(Restrictions.eq(WorkItemProperty.STATE, WorkItemState.COMPLETED));
+
+			List<WorkItem> completedWorkItemList = wiQuery.list();
+			if (completedWorkItemList!=null || completedWorkItemList.size()>0){
+				//分配给上次完成本工作的人
+				List<User> owners = new ArrayList<User>();
+				for (WorkItem wi : completedWorkItemList){
+					UserImpl u = new UserImpl();
+					u.setId(wi.getOwnerId());
+					u.setName(wi.getOwnerName());
+					u.setDeptId(wi.getOwnerDeptId());
+					u.setDeptName(wi.getOwnerDeptName());
+					owners.add(u);
+				}
+				DynamicAssignmentHandler assignmentHandler = new DynamicAssignmentHandler();
+				assignmentHandler.setPotentialOwners(owners);
+				assignmentHandler.setAssignmentStrategy(resourceBinding.getAssignmentStrategy());
+				
+				assignmentHandler.assign(session, activityInstance,this,theActivityObj, serviceBinding, resourceBinding);
+				
+				return false;//return false表示该服务持续执行,需要引擎等待
+			}
+			
+		}
+			
+		// 2、检查有无设置DynamicAssignmentHandler
+		AssignmentHandler _handler = ((WorkflowSessionLocalImpl) session)
+				.consumeDynamicAssignmentHandler(activityInstance.getNodeId());
+		if (_handler != null) {
+			_handler.assign(session, activityInstance, this, theActivityObj,
+					serviceBinding, resourceBinding);
+			return false;// return false表示该服务持续执行，需要引擎等待
+		}
+
+		// 3、调用resourceBinding的设置进行workitem分配
+
+		if (resourceBinding != null) {
+			String assignmentHandlerBeanName = resourceBinding
+					.getAssignmentHandlerBeanName();
+			String assignmentHandlerClassName = resourceBinding
+					.getAssignmentHandlerClassName();
+			BeanFactory beanFactory = runtimeContext
+					.getDefaultEngineModule(BeanFactory.class);
+			AssignmentHandler handler = null;
+
+			if (!StringUtils.isEmpty(assignmentHandlerBeanName)) {
+				// 3、检查是否有AssignmentHandlerBeanName
+				handler = (AssignmentHandler) beanFactory
+						.getBean(assignmentHandlerBeanName);
+			} else if (!StringUtils.isEmpty(assignmentHandlerClassName)) {
+				// 4、检查是否有AssignmentHandlerClassName
+				handler = (AssignmentHandler) beanFactory
+						.createBean(assignmentHandlerClassName);
+			}
+
+			if (handler != null) {
+				handler.assign(session, activityInstance, this, theActivityObj,
+						serviceBinding, resourceBinding);
 				assignDone = true;
-			}		
+			}
 		}
 		
 		if (!assignDone){
 			//TODO 分配给系统用户，并记录流程日志
 			//TODO 此处直接调用WorkItemManager，待优化
-			this.createWorkItem(session, ((WorkflowSessionLocalImpl)session).getCurrentProcessInstance(), activityInstance, FireWorkflowSystem.getInstance(), theActivity,null);
+			this.createWorkItem(session, ((WorkflowSessionLocalImpl)session).getCurrentProcessInstance(), activityInstance, FireWorkflowSystem.getInstance(), theActivityObj,null);
 		}
 		return false;//表示是异步调用
 	}
@@ -472,8 +546,88 @@ public abstract class AbsWorkItemManager  extends AbsEngineModule implements Wor
 	 */
 	public WorkItem withdrawWorkItem(WorkflowSession currentSession,WorkItem workItem)
 			throws InvalidOperationException {
-		//TODO 待实现
-		return null;
+
+		WorkflowQuery<WorkItem> wiQuery = currentSession.createWorkflowQuery(WorkItem.class);
+		wiQuery.add(Restrictions.eq(WorkItemProperty.PROCESS_INSTANCE_ID,
+				((LocalWorkItem)workItem).getProcessInstanceId()))
+				.add(Restrictions.eq(WorkItemProperty.SUBPROCESS_ID, ((LocalWorkItem)workItem).getSubProcessId()))
+				.add(Restrictions.gt(WorkItemProperty.STEP_NUMBER,  ((LocalWorkItem)workItem).getStepNumber()));
+		
+		List<WorkItem> nextWorkItemList = wiQuery.list();
+		
+		if (nextWorkItemList==null || nextWorkItemList.size()==0){
+			throw new InvalidOperationException("无后续工作项，无法取回");
+		}
+		
+		List<String> nextActInstanceIdList = new ArrayList<String>();
+		boolean canBeWithdrawn = true;
+		int maxStepNumber = 0;
+		for (WorkItem wi : nextWorkItemList){
+			if (wi.getState().getValue()>WorkItemState.INITIALIZED.getValue()){
+				//说明有工作项已经被签收，不能做取回操作
+				canBeWithdrawn = false;
+			}
+			String actInstId = ((LocalWorkItem)wi).getActivityInstanceId();
+			if (!nextActInstanceIdList.contains(actInstId)){
+				nextActInstanceIdList.add(actInstId);
+			}
+			
+			if (maxStepNumber<((LocalWorkItem)wi).getStepNumber()){
+				maxStepNumber = ((LocalWorkItem)wi).getStepNumber();
+			}
+		}
+		
+		if (!canBeWithdrawn){
+			throw new InvalidOperationException("有后续工作项已经被签收，不能做取回操作。");
+
+		}
+		
+		WorkflowSessionLocalImpl localSession = (WorkflowSessionLocalImpl)currentSession;
+		RuntimeContext rtCtx = ((WorkflowSessionLocalImpl)currentSession).getRuntimeContext();
+		PersistenceService persistenceService = rtCtx.getEngineModule(PersistenceService.class, ((LocalWorkItem)workItem).getProcessType());
+		CalendarService calendarService = rtCtx.getEngineModule(CalendarService.class,  ((LocalWorkItem)workItem).getProcessType());
+		WorkItemPersister workItemPersister = persistenceService.getWorkItemPersister();
+		ActivityInstancePersister actInstPersister = persistenceService.getActivityInstancePersister();
+
+		TokenPersister tokenPersister = persistenceService.getTokenPersister();
+		
+		//1、先创建本环节的token,actinst和工作项，
+		int newStepNumber = maxStepNumber+1;
+		ActivityInstance thisActivityInstance = actInstPersister.fetch(ActivityInstance.class, ((LocalWorkItem)workItem).getActivityInstanceId());
+		Token thisToken = tokenPersister.fetch(Token.class, thisActivityInstance.getTokenId());
+		
+		Token newToken = new TokenImpl(thisToken);
+		newToken.setElementId(thisToken.getElementId());
+		newToken.setFromToken(thisToken.getFromToken());
+		newToken.setStepNumber(newStepNumber);
+		newToken.setState(TokenState.RUNNING);
+		
+		tokenPersister.saveOrUpdate(newToken);
+		
+		ActivityInstanceImpl newActivityInstance = (ActivityInstanceImpl)((ActivityInstanceImpl)thisActivityInstance).clone();
+		newActivityInstance.setId(null);
+		newActivityInstance.setTokenId(newToken.getId());
+		newActivityInstance.setStepNumber(newStepNumber);
+		newActivityInstance.setState(ActivityInstanceState.RUNNING);
+		
+		actInstPersister.saveOrUpdate(newActivityInstance);
+		
+		LocalWorkItemImpl newWorkItem = (LocalWorkItemImpl)(( LocalWorkItemImpl)workItem).clone();
+		newWorkItem.setId(null);
+		newWorkItem.setActivityInstanceId(newActivityInstance.getId());
+		newWorkItem.setStepNumber(newStepNumber);
+		newWorkItem.setState(WorkItemState.INITIALIZED);
+		
+		workItemPersister.saveOrUpdate(newWorkItem);
+		
+		
+		//2、然后对后续环节实例做abort操作
+		WorkflowStatement stmt = currentSession.createWorkflowStatement();
+		
+		for (String actInstId : nextActInstanceIdList){
+			stmt.abortActivityInstance(actInstId, "被取回");
+		}
+		return newWorkItem;
 	}
 
 	
